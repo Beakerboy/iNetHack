@@ -16,7 +16,6 @@
 		431FD068100B598200DC7260 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 431FD067100B598200DC7260 /* Settings.bundle */; };
 		431FE2EB102ADC7200B15149 /* TouchInfoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 431FE2EA102ADC7200B15149 /* TouchInfoStore.m */; };
 		431FE517102B3CE800B15149 /* NSString+Regexp.m in Sources */ = {isa = PBXBuildFile; fileRef = 431FE516102B3CE800B15149 /* NSString+Regexp.m */; };
-		4325C35C1035FC3F00653E8A /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4325C35B1035FC3F00653E8A /* Entitlements.plist */; };
 		435C0D7A10342A490007613E /* manual.html in Resources */ = {isa = PBXBuildFile; fileRef = 435C0D7910342A490007613E /* manual.html */; };
 		43753C96104307DB0021BFC5 /* AsciiTileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 43753C95104307DB0021BFC5 /* AsciiTileSet.m */; };
 		439C072F107CE8D3008D1C0E /* Hearse.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C072E107CE8D3008D1C0E /* Hearse.m */; };
@@ -809,7 +808,7 @@
 		FBAC43EB298C379200CCFA26 /* bigrm-8.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-8.lev"; path = "nethack/dat/bigrm-8.lev"; sourceTree = "<group>"; };
 		FBAC43EC298C379200CCFA26 /* engrave.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = engrave.txt; path = nethack/dat/engrave.txt; sourceTree = "<group>"; };
 		FBAC43ED298C379200CCFA26 /* rumors */ = {isa = PBXFileReference; lastKnownFileType = text; name = rumors; path = nethack/dat/rumors; sourceTree = "<group>"; };
-		FBAC43EE298C379200CCFA26 /* nhdat */ = {isa = PBXFileReference; lastKnownFileType = text; name = nhdat; path = nethack/dat/nhdat; sourceTree = "<group>"; };
+		FBAC43EE298C379200CCFA26 /* nhdat */ = {isa = PBXFileReference; lastKnownFileType = text; name = nhdat; path = dat/nhdat; sourceTree = "<group>"; };
 		FBAC43EF298C379200CCFA26 /* oracle.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = oracle.des; path = nethack/dat/oracle.des; sourceTree = "<group>"; };
 		FBAC43F0298C379200CCFA26 /* Bar-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bar-fila.lev"; path = "nethack/dat/Bar-fila.lev"; sourceTree = "<group>"; };
 		FBAC43F1298C379200CCFA26 /* Sam-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sam-loca.lev"; path = "nethack/dat/Sam-loca.lev"; sourceTree = "<group>"; };

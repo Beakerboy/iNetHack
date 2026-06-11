@@ -43,14 +43,14 @@ jobs:
         run: |
           RUNNER_ARCH=$(uname -m)
           
-          # Dropping 'OS=18.5' ensures that when GitHub upgrades its pre-installed 
-          # sim packages, the command dynamically grabs whatever tablet runtime is active.
+          # Using the exact placeholder name from the available destinations log
+          # ensures the build always matches a valid runtime on any GitHub runner image.
           xcodebuild build \
             -project "iNetHack.xcodeproj" \
             -scheme "iNetHack2" \
             -configuration Debug \
             -sdk iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPad (10th generation)" \
+            -destination "platform=iOS Simulator,name=Any iOS Simulator Device" \
             -derivedDataPath "build_output" \
             ONLY_ACTIVE_ARCH=NO \
             ARCHS="$RUNNER_ARCH" \

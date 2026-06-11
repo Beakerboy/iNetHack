@@ -25,15 +25,13 @@ jobs:
       - name: "Step 1: Initialize Source and Sandbox Mock Assets"
         run: |
           # 1. Clear absolute root-level copy folder constraints
-          mkdir -p dat
+          mkdir -p dat lib
           echo "mock data" > dat/nhdat
-          mkdir -p lib
           echo "mock library" > lib/placeholder.txt
 
           # 2. Clear nested subfolder copy constraints
-          mkdir -p nethack/dat
+          mkdir -p nethack/dat nethack/lib
           echo "mock data" > nethack/dat/nhdat
-          mkdir -p nethack/lib
           echo "mock library" > nethack/lib/placeholder.txt
 
           # 3. Pre-build the exact DerivedData sandboxed directory structures to clear copier errors
@@ -45,12 +43,14 @@ jobs:
         run: |
           RUNNER_ARCH=$(uname -m)
           
+          # Dropping 'OS=18.5' ensures that when GitHub upgrades its pre-installed 
+          # sim packages, the command dynamically grabs whatever tablet runtime is active.
           xcodebuild build \
             -project "iNetHack.xcodeproj" \
             -scheme "iNetHack2" \
             -configuration Debug \
             -sdk iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPad (10th generation),OS=18.5" \
+            -destination "platform=iOS Simulator,name=iPad (10th generation)" \
             -derivedDataPath "build_output" \
             ONLY_ACTIVE_ARCH=NO \
             ARCHS="$RUNNER_ARCH" \

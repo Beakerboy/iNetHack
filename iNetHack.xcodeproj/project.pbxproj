@@ -25,7 +25,6 @@
 		439F0DD51001FECB0050AED4 /* MenuViewLeaf.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439F0DD41001FECB0050AED4 /* MenuViewLeaf.xib */; };
 		439F0ED2100210690050AED4 /* ExtendedCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439F0ED1100210690050AED4 /* ExtendedCommandViewController.m */; };
 		439F0ED4100210770050AED4 /* ExtendedCommandView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439F0ED3100210770050AED4 /* ExtendedCommandView.xib */; };
-		43A103AC10B5706E006DD634 /* tiles32.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A103A710B5706E006DD634 /* tiles32.png */; };
 		43A1879D100C9129001BDB88 /* Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A1879C100C9129001BDB88 /* Shortcut.m */; };
 		43A187A8100C92DC001BDB88 /* ShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A187A7100C92DC001BDB88 /* ShortcutView.m */; };
 		43A7B06A10302D880083CE1B /* DMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B06910302D880083CE1B /* DMath.m */; };
@@ -173,15 +172,9 @@
 		FB65444129845A03002F4737 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444029845A03002F4737 /* sys.c */; };
 		FB6544472986429A002F4737 /* tile.c in Sources */ = {isa = PBXBuildFile; fileRef = FB6544462986429A002F4737 /* tile.c */; };
 		FB65444B29864943002F4737 /* isaac64.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444A29864942002F4737 /* isaac64.c */; };
-		FB65444E298849E1002F4737 /* absurd32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65444D298849E1002F4737 /* absurd32.png */; };
-		FB65445429884A03002F4737 /* nethackmodern.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445329884A03002F4737 /* nethackmodern.png */; };
-		FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445529884A0E002F4737 /* pixelhack32x32.png */; };
-		FB65445829884A98002F4737 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445729884A98002F4737 /* chozo32b.png */; };
 		FB6CDF7829944BF400BD5D0E /* lib in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF7729944BF400BD5D0E /* lib */; };
 		FB6CDF992996977600BD5D0E /* Px437_IBM_VGA_8x16.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */; };
 		FB6CDF9D29B9C31A00BD5D0E /* tiles32classic.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */; };
-		FB76CA252D53BB5500DF971A /* dawnhack32-anim.png in Resources */ = {isa = PBXBuildFile; fileRef = FB76CA242D53BB5500DF971A /* dawnhack32-anim.png */; };
-		FB94F05A2D5A794F00A9E36A /* duskhack32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB94F0592D5A794F00A9E36A /* duskhack32.png */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
 		FBAC441C298C379500CCFA26 /* mines.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC436C298C378A00CCFA26 /* mines.des */; };
@@ -363,7 +356,6 @@
 		FBAC44CD298C5FAD00CCFA26 /* wizard3.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43D4298C379100CCFA26 /* wizard3.lev */; };
 		FBAC44CE298C5FAD00CCFA26 /* wizhelp in Resources */ = {isa = PBXBuildFile; fileRef = FBAC441A298C379500CCFA26 /* wizhelp */; };
 		FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB7FAA41A89364F008F64AD /* Images-2.xcassets */; };
-		FBE5BC272D84F3F30092ACCF /* dawnhack32-anim1.png in Resources */ = {isa = PBXBuildFile; fileRef = FBE5BC262D84F3F30092ACCF /* dawnhack32-anim1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -395,7 +387,6 @@
 		439F0ED0100210690050AED4 /* ExtendedCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedCommandViewController.h; sourceTree = "<group>"; };
 		439F0ED1100210690050AED4 /* ExtendedCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedCommandViewController.m; sourceTree = "<group>"; };
 		439F0ED3100210770050AED4 /* ExtendedCommandView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtendedCommandView.xib; sourceTree = "<group>"; };
-		43A103A710B5706E006DD634 /* tiles32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32.png; sourceTree = "<group>"; };
 		43A1879B100C9129001BDB88 /* Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shortcut.h; sourceTree = "<group>"; };
 		43A1879C100C9129001BDB88 /* Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shortcut.m; sourceTree = "<group>"; };
 		43A187A6100C92DC001BDB88 /* ShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutView.h; sourceTree = "<group>"; };
@@ -665,16 +656,10 @@
 		FB6544462986429A002F4737 /* tile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tile.c; path = nethack/src/tile.c; sourceTree = "<group>"; };
 		FB65444A29864942002F4737 /* isaac64.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = isaac64.c; path = nethack/src/isaac64.c; sourceTree = "<group>"; };
 		FB65444C29873B84002F4737 /* onames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = onames.h; sourceTree = "<group>"; };
-		FB65444D298849E1002F4737 /* absurd32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = absurd32.png; sourceTree = "<group>"; };
-		FB65445329884A03002F4737 /* nethackmodern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethackmodern.png; sourceTree = "<group>"; };
-		FB65445529884A0E002F4737 /* pixelhack32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixelhack32x32.png; sourceTree = "<group>"; };
-		FB65445729884A98002F4737 /* chozo32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32b.png; sourceTree = "<group>"; };
 		FB6CDF352994446700BD5D0E /* iNetHack2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iNetHack2-Bridging-Header.h"; sourceTree = "<group>"; };
 		FB6CDF7729944BF400BD5D0E /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Px437_IBM_VGA_8x16.ttf; sourceTree = "<group>"; };
 		FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32classic.png; sourceTree = "<group>"; };
-		FB76CA242D53BB5500DF971A /* dawnhack32-anim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dawnhack32-anim.png"; sourceTree = "<group>"; };
-		FB94F0592D5A794F00A9E36A /* duskhack32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = duskhack32.png; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		FBAC436A298C378A00CCFA26 /* medusa-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-1.lev"; path = "nethack/dat/medusa-1.lev"; sourceTree = "<group>"; };
@@ -856,7 +841,6 @@
 		FBAC441A298C379500CCFA26 /* wizhelp */ = {isa = PBXFileReference; lastKnownFileType = text; name = wizhelp; path = nethack/dat/wizhelp; sourceTree = "<group>"; };
 		FBAC441B298C379500CCFA26 /* Hea-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hea-strt.lev"; path = "nethack/dat/Hea-strt.lev"; sourceTree = "<group>"; };
 		FBB7FAA41A89364F008F64AD /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "iNetHack2/Images-2.xcassets"; sourceTree = "<group>"; };
-		FBE5BC262D84F3F30092ACCF /* dawnhack32-anim1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dawnhack32-anim1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1020,16 +1004,7 @@
 		4394EB9510394C5F0053C8C2 /* Tilesets */ = {
 			isa = PBXGroup;
 			children = (
-				FB65445329884A03002F4737 /* nethackmodern.png */,
-				FB65445529884A0E002F4737 /* pixelhack32x32.png */,
-				FB65445729884A98002F4737 /* chozo32b.png */,
-				FB65444D298849E1002F4737 /* absurd32.png */,
 				FBA6C9D81B47442C006C88B5 /* nevanda32.png */,
-				FB33C48A1A7F774A0020F638 /* dawnhack32.png */,
-				FB94F0592D5A794F00A9E36A /* duskhack32.png */,
-				FB76CA242D53BB5500DF971A /* dawnhack32-anim.png */,
-				FBE5BC262D84F3F30092ACCF /* dawnhack32-anim1.png */,
-				43A103A710B5706E006DD634 /* tiles32.png */,
 				FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */,
 				43A7B1C9103046EA0083CE1B /* petmark.png */,
 			);
@@ -1526,7 +1501,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBE5BC272D84F3F30092ACCF /* dawnhack32-anim1.png in Resources */,
 				FB6CDF992996977600BD5D0E /* Px437_IBM_VGA_8x16.ttf in Resources */,
 				FBAC4445298C5FAC00CCFA26 /* air.lev in Resources */,
 				FBAC4446298C5FAC00CCFA26 /* Arc-fila.lev in Resources */,
@@ -1711,15 +1685,10 @@
 				FBAC4442298C379600CCFA26 /* medusa-4.lev in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				43DD07B20FF4C64100580249 /* MainView.xib in Resources */,
-				FB65445829884A98002F4737 /* chozo32b.png in Resources */,
 				FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */,
 				FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */,
-				FB65445429884A03002F4737 /* nethackmodern.png in Resources */,
 				FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */,
-				FB65444E298849E1002F4737 /* absurd32.png in Resources */,
 				FB64D9551A785ED80035BA74 /* Icon.png in Resources */,
-				FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */,
-				FB33C48B1A7F774A0020F638 /* dawnhack32.png in Resources */,
 				43C103D30FF8D59C00DBD0EF /* MenuView.xib in Resources */,
 				43C5AD930FFA772B004F67ED /* NethackMenuView.xib in Resources */,
 				43ACB5D80FFF4A9F005DB589 /* DirectionInputView.xib in Resources */,
@@ -1730,10 +1699,8 @@
 				43A7B1CA103046EA0083CE1B /* petmark.png in Resources */,
 				435C0D7A10342A490007613E /* manual.html in Resources */,
 				4325C35C1035FC3F00653E8A /* Entitlements.plist in Resources */,
-				FB94F05A2D5A794F00A9E36A /* duskhack32.png in Resources */,
 				43AFFC22103FE53500DCC8C1 /* ItemAmountView.xib in Resources */,
 				43DC336B1070CD1C00FBCE71 /* MainMenuView.xib in Resources */,
-				43A103AC10B5706E006DD634 /* tiles32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

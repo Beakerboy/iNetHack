@@ -21,26 +21,26 @@ jobs:
 
       - name: "Step 1: Initialize Source, Dependencies & Mock Assets"
         run: |
-          # Install XcodeGen dependency 
           brew install xcodegen
-          
-          # Maintain internal sandbox build files expected by NetHack core
           mkdir -p dat lib nethack/dat nethack/lib
           echo "mock data" > dat/nhdat
           echo "mock library" > lib/placeholder.txt
           echo "mock data" > nethack/dat/nhdat
           echo "mock library" > nethack/lib/placeholder.txt
 
-          # Move the header file to the shared search path directory
+          # Rescue the header file 
           cp nethack/sys/msdos/nhlua.h nethack/include/
 
-          # 2. SATISFY THE RELATIVE PATH WITHOUT DEEP SYMLINK LOOPS
-          # Create the literal relative folder framework expected by nhlua.h
+          # Copy loose Lua headers to satisfy the relative lookup path
           mkdir -p nethack/lib/lua544/src
-          
-          # Copy ONLY the C header definitions into it so the compiler is satisfied
           cp nethack/submodules/lua/*.h nethack/lib/lua544/src/ || true
           cp nethack/submodules/lua/src/*.h nethack/lib/lua544/src/ || true
+
+          # --- SAFELY FIX APP DELEGATE REFERENCE WITHOUT BREAKING NSLOCK ---
+          # This replaces the unlinked variable 'lock' with a literal string filename for the sandbox
+          sed -i '' 's/encoding:NSASCIIStringEncoding\];/encoding:NSASCIIStringEncoding\]; lockFile = @"nethack.lock";/g' Classes/iNethackAppDelegate.m
+          sed -i '' 's/unlink(lock);/unlink("nethack.lock");/g' Classes/iNethackAppDelegate.m
+          sed -i '' 's/lock);/ "nethack.lock");/g' Classes/iNethackAppDelegate.m
 
       - name: "Step 2: Generate and Compile App for Physical iPhone Hardware"
         run: |

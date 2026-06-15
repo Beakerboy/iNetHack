@@ -71,72 +71,47 @@ boolean winiphone_autokick = TRUE;
 boolean winiphone_clickable_tiles = FALSE;
 boolean winiphone_travel = TRUE;
 
-struct window_procs iphone_procs = {
-"iphone",
-WC_COLOR|WC_HILITE_PET|
-WC_ASCII_MAP|WC_TILED_MAP|
-WC_FONT_MAP|WC_TILE_FILE|WC_TILE_WIDTH|WC_TILE_HEIGHT|
-WC_PLAYER_SELECTION|WC_SPLASH_SCREEN,
-0L,
-{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-iphone_init_nhwindows,
-iphone_player_selection,
-iphone_askname,
-iphone_get_nh_event,
-iphone_exit_nhwindows,
-iphone_suspend_nhwindows,
-iphone_resume_nhwindows,
-iphone_create_nhwindow,
-iphone_clear_nhwindow,
-iphone_display_nhwindow,
-iphone_destroy_nhwindow,
-iphone_curs,
-iphone_putstr,
-genl_putmixed,
-iphone_display_file,
-iphone_start_menu,
-iphone_add_menu,
-iphone_end_menu,
-iphone_select_menu,
-genl_message_menu,	  /* no need for X-specific handling */
-iphone_update_inventory,
-iphone_mark_synch,
-iphone_wait_synch,
-#ifdef CLIPPING
-iphone_cliparound,
-#endif
-#ifdef POSITIONBAR
-donull,
-#endif
-iphone_print_glyph,
-iphone_raw_print,
-iphone_raw_print_bold,
-iphone_nhgetch,
-iphone_nh_poskey,
-iphone_nhbell,
-iphone_doprev_message,
-iphone_yn_function,
-iphone_getlin,
-iphone_get_ext_cmd,
-iphone_number_pad,
-iphone_delay_output,
-#ifdef CHANGE_COLOR	 /* only a Mac option currently */
-donull,
-donull,
-#endif
-/* other defs that really should go away (they're tty specific) */
-iphone_start_screen,
-iphone_end_screen,
-iphone_outrip,
-genl_preference_update,
-genl_getmsghistory,
-genl_putmsghistory,
-genl_status_init,
-genl_status_finish,
-genl_status_enablefield,
-genl_status_update,
-genl_can_suspend_no,
-};
+// 1. Declare the container structure globally without static element assignments
+struct window_procs iphone_procs;
+
+// 2. Automatically bind the function address layouts on app launch
+__attribute__((constructor)) static void initialize_iphone_window_procs() {
+    iphone_procs.name = "iphone";
+    iphone_procs.w_init_nhwindows = (void *)iphone_init_nhwindows;
+    iphone_procs.w_player_selection = (void *)iphone_player_selection;
+    iphone_procs.w_askname = (void *)iphone_askname;
+    iphone_procs.w_get_nh_event = (void *)iphone_get_nh_event;
+    iphone_procs.w_exit_nhwindows = (void *)iphone_exit_nhwindows;
+    iphone_procs.w_suspend_nhwindows = (void *)iphone_suspend_nhwindows;
+    iphone_procs.w_resume_nhwindows = (void *)iphone_resume_nhwindows;
+    iphone_procs.w_create_nhwindow = (void *)iphone_create_nhwindow;
+    iphone_procs.w_clear_nhwindow = (void *)iphone_clear_nhwindow;
+    iphone_procs.w_display_nhwindow = (void *)iphone_display_nhwindow;
+    iphone_procs.w_destroy_nhwindow = (void *)iphone_destroy_nhwindow;
+    iphone_procs.w_curs = (void *)iphone_curs;
+    iphone_procs.w_putstr = (void *)iphone_putstr;
+    iphone_procs.w_display_file = (void *)iphone_display_file;
+    iphone_procs.w_start_menu = (void *)iphone_start_menu;
+    iphone_procs.w_add_menu = (void *)iphone_add_menu;
+    iphone_procs.w_end_menu = (void *)iphone_end_menu;
+    iphone_procs.w_select_menu = (void *)iphone_select_menu;
+    iphone_procs.w_cliparound = (void *)iphone_cliparound;
+    iphone_procs.w_print_glyph = (void *)iphone_print_glyph;
+    iphone_procs.w_raw_print = (void *)iphone_raw_print;
+    iphone_procs.w_raw_print_bold = (void *)iphone_raw_print_bold;
+    iphone_procs.w_nhgetch = (void *)iphone_nhgetch;
+    iphone_procs.w_nh_poskey = (void *)iphone_nh_poskey;
+    iphone_procs.w_bell = (void *)iphone_bell;
+    iphone_procs.w_doprev_message = (void *)iphone_doprev_message;
+    iphone_procs.w_yn_function = (void *)iphone_yn_function;
+    iphone_procs.w_getlin = (void *)iphone_getlin;
+    iphone_procs.w_get_ext_cmd = (void *)iphone_get_ext_cmd;
+    iphone_procs.w_number_pad = (void *)iphone_number_pad;
+    iphone_procs.w_delay_output = (void *)iphone_delay_output;
+    iphone_procs.w_outrip = (void *)iphone_outrip;
+    iphone_procs.w_preference_update = (void *)iphone_preference_update;
+}
+
 
 // ScreenTimer object to handle updating map for animated tilesets.
 @interface ScreenTimer : NSObject

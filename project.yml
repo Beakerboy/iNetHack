@@ -20,7 +20,7 @@ targets:
     sources:
       # --- TARGETED COMPILER OVERRIDES FOR IOS FRONTEND CODE ---
       - path: Classes
-        compilerFlags: "-x objective-c -Dlock=fqn_prefix_locked[0]"
+        compilerFlags: "-x objective-c"
         
       - path: Settings.bundle
       - path: nethack

@@ -37,14 +37,7 @@ jobs:
           cp nethack/submodules/lua/src/*.h nethack/lib/lua544/src/ || true
           echo '#define AM_PM' > nethack/include/date.h
           echo '#define TIMED_DELAY' >> nethack/include/date.h
-          # --- TARGETED WINDOW PROCS INITIALIZER REPAIR ---
-          # This replaces mismatched function signatures in your window_procs table with safe null-pointer checks
-          sed -i '' 's/iphone_init_nhwindows,/(void (*)(int *, char **))iphone_init_nhwindows,/g' win/iphone/winiphone.m || true
-          sed -i '' 's/iphone_add_menu,/(void *)iphone_add_menu,/g' win/iphone/winiphone.m || true
-          sed -i '' 's/iphone_end_menu,/(void *)iphone_end_menu,/g' win/iphone/winiphone.m || true
-          sed -i '' 's/iphone_select_menu,/(void *)iphone_select_menu,/g' win/iphone/winiphone.m || true
-          sed -i '' 's/iphone_cliparound,/(void *)iphone_cliparound,/g' win/iphone/winiphone.m || true
-          sed -i '' 's/iphone_print_glyph,/(void *)iphone_print_glyph,/g' win/iphone/winiphone.m || true
+
       - name: "Step 2: Generate and Compile App for Physical iPhone Hardware"
         run: |
           # Instantly builds a fresh, uncorrupted iNetHack.xcodeproj

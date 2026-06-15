@@ -21,7 +21,7 @@ targets:
       # --- TARGETED COMPILER OVERRIDES FOR IOS FRONTEND CODE ---
       - path: Classes
         compilerFlags: "-x objective-c"
-        
+      - path: win/iphone
       - path: Settings.bundle
       - path: nethack
         excludes:

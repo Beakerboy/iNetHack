@@ -89,7 +89,9 @@ extern short glyph2tile[];
 		}
 		if (menuWindow.acceptMoney) {
 			any.a_int = '$';
-            NSString *title = [NSString stringWithFormat:@"%d %s ($)", (int) money_cnt(invent), currency(u.umoney0)];
+			// --- THE CORRECT INDEPENDENT FIX ---
+            // This reads your wallet balance directly, totally bypassing the missing 'invent' pointer
+            NSString *title = [NSString stringWithFormat:@"%ld %s ($)", (long)u.umoney0, currency(u.umoney0)];
 
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
 																glyph:kNoGlyph isMeta:YES preselected:NO];

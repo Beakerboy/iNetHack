@@ -22,7 +22,9 @@
 
 #import "TileSet.h"
 
-extern short glyph2tile[];
+// --- FIXED: FORWARD DECLARE NETHACK'S NATIVE LOOKUP API FUNCTION ---
+// Bypasses internal global state structs entirely, avoiding incomplete type errors
+extern int glyph_to_tile(int glyph_idx);
 
 static TileSet *instance = nil;
 
@@ -33,7 +35,8 @@ static TileSet *instance = nil;
 }
 
 + (int) glyphToTileIndex:(int)g {
-	return glyph2tile[g];
+    // Safely routes your incoming character index to NetHack's internal layout translator
+    return glyph_to_tile(g);
 }
 
 - (id) initWithImage:(UIImage *)image tileSize:(CGSize)ts {

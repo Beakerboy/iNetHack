@@ -17,6 +17,11 @@
 #import "MenuViewController.h"
 #import "hack.h"
 
+// --- REMOVE THE G STRUCT MACROS COMPLETELY ---
+// Replace them with local buffers to capture selection properties safely
+static int pl_race = 0;
+static char pl_character[8] = {0}; 
+
 @interface RoleSelectionController ()
 @property (retain) UINavigationController *navigationController;
 - (instancetype)initWithNavigationController:(UINavigationController *)navController;

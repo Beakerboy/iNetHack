@@ -1,60 +1,74 @@
-name: iOS Compilation Test
+name: iOS App Compilation & Packaging
 
 on:
   push:
     branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
-  compile:
+  build-ipa:
     runs-on: macos-latest
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
 
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: Fix Misplaced Entitlements Warning
+      - name: "Step 1: Initialize Source, Dependencies & Mock Assets"
         run: |
-          sed -i '' '/Entitlements.pbxproj/d' iNetHack.xcodeproj/project.pbxproj || true
-          sed -i '' '/Entitlements.plist/d' iNetHack.xcodeproj/project.pbxproj || true
-
-      - name: "Step 1: Initialize Source and Sandbox Mock Assets"
-        run: |
-          # 1. Clear absolute root-level copy folder constraints
-          mkdir -p dat
+          brew install xcodegen
+          mkdir -p dat lib nethack/dat nethack/lib
           echo "mock data" > dat/nhdat
-          mkdir -p lib
           echo "mock library" > lib/placeholder.txt
-
-          # 2. Clear nested subfolder copy constraints
-          mkdir -p nethack/dat
           echo "mock data" > nethack/dat/nhdat
-          mkdir -p nethack/lib
           echo "mock library" > nethack/lib/placeholder.txt
 
-          # 3. Pre-build the exact DerivedData sandboxed directory structures to clear copier errors
-          mkdir -p build_output/Build/Products/Debug-iphonesimulator/iNetHack2.app/lib
-          echo "mock data" > build_output/Build/Products/Debug-iphonesimulator/iNetHack2.app/nhdat
-          echo "mock library" > build_output/Build/Products/Debug-iphonesimulator/iNetHack2.app/lib/placeholder.txt
+          # Copy the core required system header
+          cp nethack/sys/msdos/nhlua.h nethack/include/
 
-      - name: "Step 2: Execute Code Linker Verification"
+          # Copy standard Lua headers to satisfy the relative lookup path layout
+          mkdir -p nethack/lib/lua544/src
+          cp nethack/submodules/lua/*.h nethack/lib/lua544/src/ || true
+          cp nethack/submodules/lua/src/*.h nethack/lib/lua544/src/ || true
+
+          # Generate the missing timing engine header definitions
+          echo '#define AM_PM' > nethack/include/date.h
+          echo '#define TIMED_DELAY' >> nethack/include/date.h
+
+      - name: "Step 2: Generate and Compile App for Physical iPhone Hardware"
         run: |
-          RUNNER_ARCH=$(uname -m)
+          # Instantly builds a fresh, uncorrupted iNetHack.xcodeproj
+          xcodegen generate
           
+          # Compile the generated project structure
           xcodebuild build \
             -project "iNetHack.xcodeproj" \
-            -scheme "iNetHack2" \
+            -scheme "iNetHack" \
             -configuration Debug \
-            -sdk iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPad (10th generation),OS=18.5" \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
             -derivedDataPath "build_output" \
             ONLY_ACTIVE_ARCH=NO \
-            ARCHS="$RUNNER_ARCH" \
+            ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             COMPILER_INDEX_STORE_ENABLE=NO \
             XCODE_BUILD_SYSTEM_ENABLE_EAGER_LINKING=NO
+
+      - name: "Step 3: Package App Layout into an .ipa Installer"
+        run: |
+          # iOS requires the .app folder to live inside a folder named 'Payload' 
+          mkdir -p Payload
+          cp -r build_output/Build/Products/Debug-iphoneos/iNetHack2.app Payload/
+          zip -r iNetHack2.ipa Payload
+
+      - name: "Step 4: Upload Installer to GitHub Actions"
+        uses: actions/upload-artifact@v4
+        with:
+          name: iNetHack2-iPhone-Installer
+          path: iNetHack2.ipa

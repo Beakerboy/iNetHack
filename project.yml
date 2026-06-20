@@ -76,6 +76,7 @@ targets:
       
     settings:
       base:
+        ARCHS: "$(ARCHS_STANDARD)"
         GCC_C_LANGUAGE_STANDARD: gnu99
         PRODUCT_NAME: iNethack2 
         PRODUCT_BUNDLE_IDENTIFIER: com.beakerboy.inethack2

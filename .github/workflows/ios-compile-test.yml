@@ -55,7 +55,11 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             COMPILER_INDEX_STORE_ENABLE=NO
-
+      - name: "Verify 64-bit arm64 Architecture"
+        run: |
+          FILE_PATH="build_output/Build/Products/Debug-iphoneos/iNethack2.app/iNethack2"
+          echo "Checking architecture slices for $FILE_PATH..."
+          lipo -info "$FILE_PATH"
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |
           # Create packaging directory

@@ -41,10 +41,9 @@ jobs:
 
       - name: "Step 2: Generate and Compile App for Physical iPhone Hardware"
         run: |
-          # Instantly builds a fresh, uncorrupted iNetHack.xcodeproj
           xcodegen generate
           
-          # Compile the generated project structure
+          # Built explicitly for 64-bit arm64 iOS hardware targets
           xcodebuild build \
             -project "iNetHack.xcodeproj" \
             -scheme "iNetHack" \
@@ -53,17 +52,19 @@ jobs:
             -destination "generic/platform=iOS" \
             -derivedDataPath "build_output" \
             ONLY_ACTIVE_ARCH=NO \
-            ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            COMPILER_INDEX_STORE_ENABLE=NO \
-            XCODE_BUILD_SYSTEM_ENABLE_EAGER_LINKING=NO
+            COMPILER_INDEX_STORE_ENABLE=NO
 
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |
-          # iOS requires the .app folder to live inside a folder named 'Payload' 
+          # Create packaging directory
           mkdir -p Payload
-          cp -r build_output/Build/Products/Debug-iphoneos/iNetHack2.app Payload/
+          
+          # FIXED: Swapped 'H' to matches the exact case of PRODUCT_NAME (iNethack2.app)
+          cp -r build_output/Build/Products/Debug-iphoneos/iNethack2.app Payload/
+          
+          # Zip into installer package
           zip -r iNetHack2.ipa Payload
 
       - name: "Step 4: Upload Installer to GitHub Actions"

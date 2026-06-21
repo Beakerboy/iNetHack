@@ -80,7 +80,7 @@
 	// load tileset
 	NSString *tilesetName = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyTileset];
 	if (!tilesetName) {
-		tilesetName = @"chozo32b";
+		tilesetName = @"nevanda32";
 	}
     if ([tilesetName hasSuffix:@"-anim"]) {
         animatedTileset = true;
@@ -108,10 +108,10 @@
         NSString *animImgName = [NSString stringWithFormat:@"%@1.png", tilesetName];
 		UIImage *tilesetImage = [UIImage imageNamed:imgName];
 		if (!tilesetImage) {
-			tilesetImage = [UIImage imageNamed:@"chozo32b.png"];
+			tilesetImage = [UIImage imageNamed:@"nevanda32.png"];
 			tilesetTileSize = CGSizeMake(32,32);
 			maxTileSize = tilesetTileSize;
-			[[NSUserDefaults standardUserDefaults] setObject:@"chozo32b" forKey:kKeyTileset];
+			[[NSUserDefaults standardUserDefaults] setObject:@"nevanda32" forKey:kKeyTileset];
 			[[NSUserDefaults standardUserDefaults] synchronize];
 		}
         tileSet = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];

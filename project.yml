@@ -12,6 +12,9 @@ targets:
     info:
       path: Info.plist
 
+    entitlements:
+      path: iNetHack.entitlements
+
     frameworks:
       - sdk: Foundation.framework
       - sdk: UIKit.framework

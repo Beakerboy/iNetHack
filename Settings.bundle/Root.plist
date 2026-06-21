@@ -140,7 +140,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>chozo32b</string>
+			<string>nevanda32</string>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
@@ -149,11 +149,6 @@
 			<string>tileset</string>
 			<key>Titles</key>
 			<array>
-				<string>Nethack Modern</string>
-				<string>Chozo/Abigaba</string>
-				<string>DawnHack</string>
-				<string>DawnHack Animated</string>
-				<string>DuskHack</string>
 				<string>Nevanda</string>
 				<string>Tiles32</string>
 				<string>Tiles 32 (Classic)</string>
@@ -165,11 +160,6 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>nethackmodern</string>
-				<string>chozo32b</string>
-				<string>dawnhack32</string>
-				<string>dawnhack32-anim</string>
-				<string>duskhack32</string>
 				<string>nevanda32</string>
 				<string>tiles32</string>
 				<string>tiles32classic</string>

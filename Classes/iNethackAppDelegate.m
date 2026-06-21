@@ -31,10 +31,37 @@
 #define kBonesFilename (@"filename")
 #define kBonesMd5 (@"md5")
 
+// Begin Teoubleshooting
+
+#import <dlfcn.h>
+#import <CoreFoundation/CoreFoundation.h>
+
+void showEarlyAlert(void) {
+    typedef int32_t (*CFUserNotificationDisplayAlertFunc)(
+        CFAllocatorRef alloc, CFTimeInterval timeout, CFOptionFlags flags,
+        CFURLRef iconURL, CFURLRef soundURL, CFStringRef localizationLoopKey,
+        CFStringRef alertHeader, CFStringRef alertMessage, CFStringRef defaultButtonTitle,
+        CFStringRef alternateButtonTitle, CFStringRef otherButtonTitle, CFOptionFlags *responseFlags
+    );
+    
+    void *handle = dlopen(nil, RTLD_NOW);
+    CFUserNotificationDisplayAlertFunc alert = (CFUserNotificationDisplayAlertFunc)dlsym(handle, "CFUserNotificationDisplayAlert");
+    
+    if (alert) {
+        alert(NULL, 5.0, 0, NULL, NULL, NULL, 
+              CFSTR("App Initialized"), 
+              CFSTR("If you see this, the early startup phase succeeded."), 
+              CFSTR("OK"), NULL, NULL, NULL);
+    }
+}
+
+// End Troubleshooting
+
 @implementation iNethackAppDelegate
 
 @synthesize window;
 
+// Unused? Delete?
 - (void) loggingTest {
 	NSString *tmpFile = [FileLogger tmpFileName];
 	NSLog(@"tmpFile %@", tmpFile);
@@ -49,8 +76,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-//	[self loggingTest];
-//	return;
+    showEarlyAlert();
 
 	BOOL badBonesSeen = [self checkNetHackDirectories];
     //iNethack2: UPDATE: iOS9 the below fix actually causese issues. commenting out.

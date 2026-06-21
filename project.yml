@@ -12,6 +12,9 @@ targets:
     info:
       path: Info.plist
 
+    entitlements:
+      path: iNetHack.entitlements
+
     frameworks:
       - sdk: Foundation.framework
       - sdk: UIKit.framework
@@ -76,6 +79,7 @@ targets:
       
     settings:
       base:
+        ARCHS: "$(ARCHS_STANDARD)"
         GCC_C_LANGUAGE_STANDARD: gnu99
         PRODUCT_NAME: iNethack2 
         PRODUCT_BUNDLE_IDENTIFIER: com.beakerboy.inethack2
@@ -85,7 +89,6 @@ targets:
         CLANG_ENABLE_OBJC_ARC: NO       
         
         GCC_PREPROCESSOR_DEFINITIONS:
-          - "LUA_USE_DLOPEN=1"
           - "l_system(x)=-1"
         
         HEADER_SEARCH_PATHS: 

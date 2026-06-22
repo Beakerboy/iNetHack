@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-// #include "hack.h"
+#include "hack.h"
 
 #define kNoGlyph (-1)
 

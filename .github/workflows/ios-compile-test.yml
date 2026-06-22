@@ -28,7 +28,7 @@ jobs:
           echo "mock library" > nethack/lib/placeholder.txt
 
           # Copy the core required system header
-          cp nethack/sys/msdos/nhlua.h nethack/include/
+          # cp nethack/sys/msdos/nhlua.h nethack/include/
 
           # Copy standard Lua headers to satisfy the relative lookup path layout
           mkdir -p nethack/lib/lua544/src

@@ -1,11 +1,3 @@
-/* menu return list */
-typedef struct mi {
-    anything item;     /* identifier */
-    long count;        /* count */
-    unsigned itemflags; /* item flags */
-} menu_item;
-#define MENU_ITEM_P struct mi
-
 /* generic parameter - must not be any larger than a pointer */
 typedef union any {
     genericptr_t a_void;
@@ -35,3 +27,11 @@ typedef union any {
     uint64 a_uint64;
     /* add types as needed */
 } anything;
+
+/* menu return list */
+typedef struct mi {
+    anything item;     /* identifier */
+    long count;        /* count */
+    unsigned itemflags; /* item flags */
+} menu_item;
+#define MENU_ITEM_P struct mi

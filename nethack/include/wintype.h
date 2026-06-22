@@ -1,6 +1,6 @@
 /* generic parameter - must not be any larger than a pointer */
 typedef union any {
-    genericptr_t a_void;
+    // genericptr_t a_void;
     struct obj *a_obj;
     struct monst *a_monst;
     int a_int;

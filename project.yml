@@ -27,55 +27,7 @@ targets:
       - path: win/iphone
         compilerFlags: "-x objective-c -Wno-error=incompatible-function-pointer-types -Wno-initializer-overrides"
       - path: Settings.bundle
-      - path: nethack
-        excludes:
-          - "**/README.xcode"
-          - "**/README.md"          
-          - "**/Info.plist"         
-          - "**/Makefile*"          
-          - "**/*.rc"               
-          - "**/sys/vms/**"            
-          - "**/sys/unix/**"           
-          - "**/sys/windows/**"        
-          - "**/sys/amiga/**"          
-          - "**/sys/msdos/**"          
-          - "**/sys/share/**"          
-          - "**/outdated/**"           
-          
-          # --- WINDOW SYSTEM STRIPIFY FILTERS ---
-          - "**/win/Qt/**"          
-          - "**/win/X11/**"         
-          - "**/win/gem/**"         
-          - "**/win/gnome/**"       
-          - "**/win/proxy/**"       
-          - "**/win/tty/**"         
-          - "**/win/chain/**"       
-          - "**/win/win32/**"       
-          - "**/win/share/**" 
-
-          # --- AUDIO BACKEND ENGINE FILTERS ---
-          - "**/sound/**"           
-          
-          # --- UTILITY & API LIBRARY FILTERS ---
-          - "**/util/**"            
-          - "**/sys/libnh/**"       
-
-          # --- COMPLETE CURSES & TERMINAL STRIPPER ---
-          # We block ALL curses submodules and core curses window code files entirely!
-          - "**/submodules/pdcurses/**"       
-          - "**/submodules/pdcursesmod/**"    
-          - "**/win/curses/**"        # <-- Completely prevents NetHack from trying to use a text terminal backend
-
-          # --- LUA SOURCE PATCHES ---
-          - "**/submodules/lua/testes/**"             
-          - "**/onelua.c" # <-- SIMPLIFIED BROAD WILDCARD
-          
-          - "**/*.xpm"                             
-          - "**/*.mif"                             
-          - "**/*.md"                              
-      - path: gfx
       - path: iNethack2
-      - path: Tilesets
       
     settings:
       base:
@@ -90,11 +42,3 @@ targets:
         
         GCC_PREPROCESSOR_DEFINITIONS:
           - "l_system(x)=-1"
-        
-        HEADER_SEARCH_PATHS: 
-          - "$(SRCROOT)/nethack/include"
-          - "$(SRCROOT)/nethack/sys/share"          
-          - "$(SRCROOT)/nethack/win/share"          
-          - "$(SRCROOT)/nethack/submodules/lua"     
-          - "$(SRCROOT)/nethack/submodules/lua/src" 
-          - "$(SRCROOT)/nethack/submodules/pdcursesmod"

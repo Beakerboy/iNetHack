@@ -25,6 +25,7 @@ targets:
       - path: Classes
         compilerFlags: "-x objective-c"
       - path: Settings.bundle
+      - path: nethack 
       - path: iNethack2
       
     settings:

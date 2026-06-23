@@ -5,13 +5,16 @@ typedef int winid; /* a window identifier */
 
 /* generic parameter - must not be any larger than a pointer */
 typedef union any {
+    /*
     genericptr_t a_void;
     struct obj *a_obj;
     struct monst *a_monst;
+    */
     int a_int;
     int a_xint16;
     int a_xint8;
     char a_char;
+/*
     schar a_schar;
     uchar a_uchar;
     unsigned int a_uint;
@@ -30,6 +33,7 @@ typedef union any {
     unsigned long a_mask32; /* used by status highlighting */
     int64 a_int64;
     uint64 a_uint64;
+*/
     /* add types as needed */
 } anything;
 #define ANY_P union any /* avoid typedef in prototypes

@@ -17,4 +17,5 @@ typedef signed char schar;
 typedef unsigned char uchar;
 #endif
 
+#include "integer.h"
 #include "global.h"

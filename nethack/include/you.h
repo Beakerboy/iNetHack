@@ -1,3 +1,8 @@
+struct RoleName {
+    const char *m; /* name when character is male */
+    const char *f; /* when female; null if same as male */
+};
+
 struct Align {
     const char *adj;      /* lawful/neutral/chaotic */
 };

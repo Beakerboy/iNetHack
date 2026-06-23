@@ -1,7 +1,4 @@
 enum monnums {
-#define MONS_ENUM
-#include "monsters.h"
-#undef MONS_ENUM
         NUMMONS,
         NON_PM = -1,              /* "not a monster" */
         LOW_PM = NON_PM + 1,      /* first monster in mons */

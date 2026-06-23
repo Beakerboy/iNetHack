@@ -21,6 +21,7 @@ extern const struct Gender genders[]; /* table of available genders */
 struct Role {
     /*** Strings that name various things ***/
     struct RoleName name;    /* the role's name (from u_init.c) */
+    const char *filecode;           /* abbreviation for use in file names */
 };
 extern const struct Role roles[]; /* table of available roles */
 

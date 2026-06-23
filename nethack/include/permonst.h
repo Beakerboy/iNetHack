@@ -9,7 +9,4 @@ enum monnums {
                                    *  (NON_PM - 2) for no corpse
                                    *  (NON_PM - 3) for no corpse, no grave */
         HIGH_PM = NUMMONS - 1,
-        SPECIAL_PM = PM_LONG_WORM_TAIL  /* [normal] < ~ < [special] */
-                /* mons[SPECIAL_PM] through mons[NUMMONS-1], inclusive, are
-                   never generated randomly and cannot be polymorphed into */
 };

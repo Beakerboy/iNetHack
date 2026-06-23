@@ -1,8 +1,3 @@
-#ifdef AZTEC
-#define schar char
-#else
-typedef signed char schar;
-#endif
 #include "tradstdc.h"
 /*
  * type uchar:

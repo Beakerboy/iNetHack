@@ -40,3 +40,4 @@ typedef struct mi {
     unsigned itemflags; /* item flags */
 } menu_item;
 #define MENU_ITEM_P struct mi
+#endif /* WINTYPE_H */

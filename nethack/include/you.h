@@ -30,3 +30,8 @@ struct Race {
     const char *noun;           /* noun ("human", "elf") */
 };
 extern const struct Race races[]; /* Table of available races */
+
+/*** Information about the player ***/
+struct you {
+    long umoney0;
+}; /* end of `struct you' */

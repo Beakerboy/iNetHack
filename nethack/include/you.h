@@ -11,6 +11,14 @@ struct Gender {
 #define ROLE_GENDERS 2    /* number of permitted player genders
                              increment to 3 if you allow neuter roles */
 extern const struct Gender genders[]; /* table of available genders */
+
+/*** Unified structure containing role information ***/
+struct Role {
+    /*** Strings that name various things ***/
+    struct RoleName name;    /* the role's name (from u_init.c) */
+};
+extern const struct Role roles[]; /* table of available roles */
+
 struct Race {
     /*** Strings that name various things ***/
     const char *noun;           /* noun ("human", "elf") */

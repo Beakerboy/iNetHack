@@ -1,0 +1,1 @@
+extern NEARDATA winid WIN_MAP, WIN_INVEN;

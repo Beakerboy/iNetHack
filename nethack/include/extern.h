@@ -1,5 +1,9 @@
 #ifndef EXTERN_H
 #define EXTERN_H
+
+#include "permonst.h"
+
+/* ### do.c ### */
 #ifdef INSURANCE
 extern void save_currentstate(void);
 #endif

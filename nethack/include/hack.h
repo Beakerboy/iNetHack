@@ -1,6 +1,7 @@
 #ifndef HACK_H
 #define HACK_H
 #include "config.h"
+#include "dungeon.h"
 #include "wintype.h"
 #include "flag.h"
 #include "display.h"

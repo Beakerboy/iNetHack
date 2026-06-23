@@ -24,3 +24,4 @@ typedef unsigned char uchar;
  *      of the last level change, after running a utility program.
  */
 #define INSURANCE /* allow crashed game recovery */
+#define NEARDATA

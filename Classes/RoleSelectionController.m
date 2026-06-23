@@ -15,7 +15,7 @@
 #import "RoleSelectionController.h"
 #import "MenuItem.h"
 #import "MenuViewController.h"
-// #import "hack.h"
+#import "hack.h"
 
 // --- REMOVE THE G STRUCT MACROS COMPLETELY ---
 // Replace them with local buffers to capture selection properties safely

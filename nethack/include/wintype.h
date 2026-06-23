@@ -40,4 +40,13 @@ typedef struct mi {
     unsigned itemflags; /* item flags */
 } menu_item;
 #define MENU_ITEM_P struct mi
+
+/* window types */
+/* any additional port specific types should be defined in win*.h */
+#define NHW_MESSAGE 1
+#define NHW_STATUS 2
+#define NHW_MAP 3
+#define NHW_MENU 4
+#define NHW_TEXT 5
+
 #endif /* WINTYPE_H */

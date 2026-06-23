@@ -1,4 +1,9 @@
+struct Align {
+    const char *adj;      /* lawful/neutral/chaotic */
+};
 #define ROLE_ALIGNS 3     /* number of permitted player alignments */
+extern const struct Align aligns[]; /* table of available alignments */
+
 /*** Unified structure specifying gender information ***/
 struct Gender {
     const char *adj;      /* male/female/neuter */

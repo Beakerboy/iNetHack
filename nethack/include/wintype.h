@@ -47,6 +47,12 @@ typedef struct mi {
 } menu_item;
 #define MENU_ITEM_P struct mi
 
+/* select_menu() "how" argument types */
+/* [MINV_PICKMASK in monst.h assumes these have values of 0, 1, 2] */
+#define PICK_NONE 0 /* user picks nothing (display only) */
+#define PICK_ONE 1  /* only pick one */
+#define PICK_ANY 2  /* can pick any amount */
+
 /* window types */
 /* any additional port specific types should be defined in win*.h */
 #define NHW_MESSAGE 1

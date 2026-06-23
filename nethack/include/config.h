@@ -3,7 +3,7 @@
 #else
 typedef signed char schar;
 #endif
-
+#include "tradstdc.h"
 /*
  * type uchar:
  * small unsigned integers (8 bits suffice - but 7 bits do not)

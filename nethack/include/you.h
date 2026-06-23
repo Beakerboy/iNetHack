@@ -33,5 +33,10 @@ extern const struct Race races[]; /* Table of available races */
 
 /*** Information about the player ***/
 struct you {
+    coordxy ux, uy;     /* current map coordinates */
+    d_level uz, uz0;    /* your level on this and the previous turn */
+    int mh, mhmax,              /* current and max hit points when polyd */
+        mtimedone;              /* no. of turns until polymorph times out */
+    int uhp, uhpmax;         /* hit points, aka health */
     long umoney0;
 }; /* end of `struct you' */

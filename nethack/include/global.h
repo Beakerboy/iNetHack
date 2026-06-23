@@ -18,3 +18,7 @@ typedef int16_t coordxy;
  * in the range -32768 to 32767), non-coordinates.
  */
 typedef int16_t xint16;
+
+/* size of terminal screen is (at least) (ROWNO+3) by COLNO */
+#define COLNO 80
+#define ROWNO 21

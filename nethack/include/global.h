@@ -19,6 +19,15 @@ typedef int16_t coordxy;
  */
 typedef int16_t xint16;
 
+#ifdef __MINGW32__
+/* Resolve conflict with Qt 5 and MinGW-w32 */
+typedef unsigned char boolean; /* 0 or 1 */
+#else
+#ifndef SKIP_BOOLEAN
+typedef schar boolean; /* 0 or 1 */
+#endif
+#endif
+
 /* size of terminal screen is (at least) (ROWNO+3) by COLNO */
 #define COLNO 80
 #define ROWNO 21

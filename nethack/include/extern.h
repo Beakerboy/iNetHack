@@ -4,6 +4,9 @@
 extern void save_currentstate(void);
 #endif
 
+/* ### invent.c ### */
+extern const char *currency(long);
+
 /* ### role.c ### */
 extern boolean validrace(int, int);
 extern boolean validgend(int, int, int);

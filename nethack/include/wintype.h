@@ -7,7 +7,7 @@ typedef union any {
     int a_xint16;
     int a_xint8;
     char a_char;
-    // schar a_schar;
+    schar a_schar;
     uchar a_uchar;
     unsigned int a_uint;
     long a_long;

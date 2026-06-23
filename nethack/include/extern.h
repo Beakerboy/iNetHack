@@ -4,6 +4,9 @@
 extern void save_currentstate(void);
 #endif
 
+/* ### dungeon.c ### */
+extern boolean on_level(d_level *, d_level *) NONNULLARG12;
+
 /* ### invent.c ### */
 extern const char *currency(long);
 

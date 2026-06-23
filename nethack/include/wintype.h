@@ -27,6 +27,8 @@ typedef union any {
     uint64 a_uint64;
     /* add types as needed */
 } anything;
+#define ANY_P union any /* avoid typedef in prototypes
+                         * (buggy old Ultrix compiler) */
 
 /* menu return list */
 typedef struct mi {

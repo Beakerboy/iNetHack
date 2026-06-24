@@ -8,6 +8,7 @@
 
 // the preprocessor is supposed to do this apparently
 #define NUMMONS 5
+#define FIRST_OBJECT 10
 
 #include "display.h"
 #include "you.h"

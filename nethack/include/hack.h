@@ -13,6 +13,13 @@ struct dgn_topology { /* special dungeon levels for speed */
 };
 #define rogue_level             (svd.dungeon_topology.d_rogue_level)
 
+#ifndef max
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#endif
+#ifndef min
+#define min(x, y) ((x) < (y) ? (x) : (y))
+#endif
+
 #include "extern.h"
 #include "decl.h"
 #endif /* HACK_H */

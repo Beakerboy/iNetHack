@@ -1,3 +1,5 @@
+#define WIZMODECMD   0x0004 /* wizard-mode command */
+
 struct ext_func_tab {
     uchar key;
     const char *ef_txt, *ef_desc;

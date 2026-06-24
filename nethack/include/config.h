@@ -5,6 +5,11 @@
 #else
 typedef signed char schar;
 #endif
+
+#ifndef _AIX32 /* identical typedef in system file causes trouble */
+typedef unsigned char uchar;
+#endif
+
 #include "tradstdc.h"
 
 #include "integer.h"

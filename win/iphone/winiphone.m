@@ -8,6 +8,7 @@
 #import "NSString+Regexp.h"
 #import "TilePosition.h"
 
+#define kOptionAutopickup (@"autopickup")
 #define kOptionWizard (@"wizard")
 @interface WinIPhone : NSObject {}
 
@@ -25,14 +26,6 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 								@"YES", kOptionAutopickup,
-								@"$\"=/!?+", kOptionPickupTypes,
-                                @"`", kOptionBoulderSym,
-                                @"YES", kOptionTravel,
-                                @"YES", kOptionPickupThrown,
-								@"YES", kOptionAutokick,
-								@"YES", kOptionShowExp,
-								@"YES", kOptionTime,
-								@"YES", kOptionAutoDig,
 								nil]];
 }
 

@@ -2,6 +2,7 @@
 #define HACK_H
 #include "config.h"
 #include "dungeon.h"
+#include "objclass.h"
 #include "wintype.h"
 #include "flag.h"
 #include "display.h"

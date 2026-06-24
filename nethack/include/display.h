@@ -1,0 +1,32 @@
+#ifndef DISPLAY_H
+#define DISPLAY_H
+#define WARNCOUNT 10
+// Not really, just filling it in.
+enum glyph_offsets {
+    GLYPH_MON_OFF = 0,
+    GLYPH_MON_MALE_OFF = (GLYPH_MON_OFF),
+    GLYPH_MON_FEM_OFF = (NUMMONS + GLYPH_MON_MALE_OFF),
+    GLYPH_PET_OFF = (NUMMONS + GLYPH_MON_FEM_OFF),
+    GLYPH_PET_MALE_OFF = (GLYPH_PET_OFF),
+    GLYPH_PET_FEM_OFF = (NUMMONS + GLYPH_PET_MALE_OFF),
+    GLYPH_BODY_OFF = (NUMMONS + GLYPH_PET_FEM_OFF),
+    GLYPH_OBJ_OFF = (NUMMONS + GLYPH_BODY_OFF),
+    GLYPH_STATUE_OFF = (WARNCOUNT + GLYPH_OBJ_OFF),
+    GLYPH_STATUE_MALE_OFF = (GLYPH_STATUE_OFF),
+    GLYPH_PILETOP_OFF = (NUMMONS + GLYPH_BODY_OFF),
+    GLYPH_OBJ_PILETOP_OFF = (GLYPH_PILETOP_OFF),
+    GLYPH_BODY_PILETOP_OFF = (NUM_OBJECTS + GLYPH_OBJ_PILETOP_OFF),
+    GLYPH_STATUE_MALE_PILETOP_OFF = (NUMMONS + GLYPH_BODY_PILETOP_OFF),
+    GLYPH_STATUE_FEM_PILETOP_OFF = (NUMMONS + GLYPH_STATUE_MALE_PILETOP_OFF),
+    MAX_GLYPH
+};
+#define NO_GLYPH          MAX_GLYPH
+#define glyph_is_female_pet(glyph) \
+    false
+#define glyph_is_male_pet(glyph) \
+   false
+#define glyph_is_pet(glyph) \
+    false
+#define glyph_is_object(glyph) \
+    false
+#endif /* DISPLAY_H */

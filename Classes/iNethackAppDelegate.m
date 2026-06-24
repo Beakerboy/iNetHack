@@ -61,34 +61,15 @@ void showEarlyAlert(void) {
 
 @synthesize window;
 
-// Unused? Delete?
-- (void) loggingTest {
-	NSString *tmpFile = [FileLogger tmpFileName];
-	NSLog(@"tmpFile %@", tmpFile);
-	for (int i = 0; i < 500; ++i) {
-		FileLogger *logger = [[FileLogger alloc] initWithFile:tmpFile maxSize:250];
-		for (int j = 0; j < 1000; ++j) {
-			[logger logString:[NSString stringWithFormat:@"This is some logged line #%04d", j]];
-		}
-		[logger release];
-	}
-	[[NSFileManager defaultManager] removeItemAtPath:tmpFile error:NULL];
-}
-
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     showEarlyAlert();
 
 	BOOL badBonesSeen = [self checkNetHackDirectories];
-    //iNethack2: UPDATE: iOS9 the below fix actually causese issues. commenting out.
- //   [application setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO]; // prevent start orientation bug
+
     [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 
-    // use mainNavigationController.view to skip main menu
-
-    //iNethack2 commented out below, added line after, to get rid of "Application windows are expected to have a root view controller at the end of application launch" message
-    //	[window addSubview:mainNavigationController.view];
     [self.window setRootViewController:mainNavigationController];
-    //[window addSubview:mainMenuViewController.view];
+
     [window makeKeyAndVisible];
     self.window.frame = [UIScreen mainScreen].bounds; //iNethack2
     [application setStatusBarHidden:YES];

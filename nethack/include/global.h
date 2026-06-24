@@ -28,6 +28,7 @@ typedef schar boolean; /* 0 or 1 */
 #endif
 #endif
 
+#define BUFSZ 256  /* for getlin buffers */
 /* size of terminal screen is (at least) (ROWNO+3) by COLNO */
 #define COLNO 80
 #define ROWNO 21

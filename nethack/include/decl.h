@@ -13,3 +13,4 @@ struct instance_globals_saved_d {
     //short disco[NUM_OBJECTS];
 };
 extern struct instance_globals_saved_d svd;
+extern struct sinfo program_state; /* flags describing game's current state */

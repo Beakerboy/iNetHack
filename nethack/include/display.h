@@ -1,3 +1,6 @@
+#ifndef DISPLAY_H
+#define DISPLAY_H
+
 // Not really, just filling it in.
 enum glyph_offsets {
     GLYPH_MON_OFF = 0,
@@ -16,3 +19,4 @@ enum glyph_offsets {
      && (glyph) < (GLYPH_PET_MALE_OFF + 5))
 #define glyph_is_pet(glyph) \
     (glyph_is_male_pet(glyph) || glyph_is_female_pet(glyph))
+#endif /* DISPLAY_H */

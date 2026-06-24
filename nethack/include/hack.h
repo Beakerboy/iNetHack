@@ -13,6 +13,9 @@
 #include "display.h"
 #include "you.h"
 
+struct sinfo {
+    int gameover;               /* self-explanatory? */
+};
 
 struct dgn_topology { /* special dungeon levels for speed */
     d_level d_rogue_level;

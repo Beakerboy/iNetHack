@@ -7,7 +7,7 @@
 #include "flag.h"
 
 // the preprocessor is supposed to do this apparently
-#define 5 NUMMONS
+#define NUMMONS 5
 
 #include "display.h"
 #include "you.h"

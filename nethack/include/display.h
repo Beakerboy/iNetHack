@@ -1,6 +1,6 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
-#define NUMMONS 5
+
 // Not really, just filling it in.
 enum glyph_offsets {
     GLYPH_MON_OFF = 0,

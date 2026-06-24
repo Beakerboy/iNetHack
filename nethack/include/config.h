@@ -1,3 +1,5 @@
+#include "patchlevel.h"
+
 #ifdef AZTEC
 #define schar char
 #else

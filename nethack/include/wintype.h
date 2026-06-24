@@ -30,7 +30,7 @@ typedef union any {
     unsigned *a_uptr;
     const char *a_string;
     int (*a_nfunc)(void);
-    unsigned long a_mask32; /* used by status highlighting *
+    unsigned long a_mask32;
     int64 a_int64;
     uint64 a_uint64;
 */

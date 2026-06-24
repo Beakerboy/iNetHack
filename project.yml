@@ -24,6 +24,8 @@ targets:
       # --- TARGETED COMPILER OVERRIDES FOR IOS FRONTEND CODE ---
       - path: Classes
         compilerFlags: "-x objective-c"
+      - path: win/iphone
+        compilerFlags: "-x objective-c -Wno-error=incompatible-function-pointer-types -Wno-initializer-overrides"
       - path: Settings.bundle
       - path: nethack 
       - path: iNethack2

@@ -1,3 +1,4 @@
+#import "winiphone.h"
 #define kOptionWizard (@"wizard")
 @interface WinIPhone : NSObject {}
 

@@ -5,6 +5,10 @@
 #include "objclass.h"
 #include "wintype.h"
 #include "flag.h"
+
+// the preprocessor is supposed to do this apparently
+#define NUMMONS 5
+
 #include "display.h"
 #include "you.h"
 

@@ -1,4 +1,5 @@
 #define WIZMODECMD   0x0004 /* wizard-mode command */
+#define CMD_NOT_AVAILABLE 0x0010 /* recognized but non-functional (!SHELL,&c)*/
 
 struct ext_func_tab {
     uchar key;

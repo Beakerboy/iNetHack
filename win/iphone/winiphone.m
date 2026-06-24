@@ -1,4 +1,13 @@
 #import "winiphone.h"
+#import "MainViewController.h"
+#import "Window.h"
+#import "NethackMenuItem.h"
+#import "NethackYnFunction.h"
+#import "NethackEvent.h"
+#import "NethackEventQueue.h"
+#import "NSString+Regexp.h"
+#import "TilePosition.h"
+
 #define kOptionWizard (@"wizard")
 @interface WinIPhone : NSObject {}
 

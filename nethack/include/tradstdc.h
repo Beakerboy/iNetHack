@@ -1,3 +1,4 @@
+#define WIDENED_PROTOTYPES
 #ifdef UNWIDENED_PROTOTYPES
 #define CHAR_P char
 #define SCHAR_P schar

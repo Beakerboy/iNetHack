@@ -29,6 +29,16 @@
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
+        <dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Blind</string>
+			<key>Key</key>
+			<string>blind</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
 	</array>
     </dict>
 </plist>

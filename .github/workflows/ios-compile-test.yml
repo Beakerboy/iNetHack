@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main, dev ]
   pull_request:
-    branches: [ main, dev ]
 
 jobs:
   build-ipa:
@@ -13,6 +12,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Compile and Run Tilemap Generator
+        run: |
+          # 1. Compile tilemap.c natively on the runner host
+          cd nethack/win
+          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
+        
+          # 2. Execute the generator to output the missing tile mapping files
+          ./tilemap_generator
+        
+          # 3. Verify the generated file exists in the expected path
+          cd ..
+          ls -la src/
+          cd ..
 
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app

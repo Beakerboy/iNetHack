@@ -240,7 +240,14 @@ void iphone_init_nhwindows(int* argc, char** argv) {
 }
 
 void iphone_player_selection() {
-	//strcpy(pl_character, "Barb");
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		
+	BOOL startAsBlind = [defaults boolForKey:@"blind"];
+	if (startAsBlind) {
+		setenv("NETHACKOPTIONS", "blind", 1);
+	} else {
+		unsetenv("NETHACKOPTIONS");
+	}
 	[[MainViewController instance] doPlayerSelection];
 }
 
@@ -644,7 +651,7 @@ void iphone_init_options() {
     wizard = [defaults boolForKey:kOptionWizard];
 
 #endif
-    winiphone_blind = [defaults boolForKey:kOptionAutoDig];
+    winiphone_blind = [defaults boolForKey:kOptionBlind];
     winiphone_autokick = [defaults boolForKey:kOptionAutokick];
     //iNethack2: travel setting. not the travelcmd setting as that would prevent clickable tiles from working.
     winiphone_travel = [defaults boolForKey:kOptionTravel];

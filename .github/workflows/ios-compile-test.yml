@@ -15,24 +15,16 @@ jobs:
 
       - name: Compile and Run Tilemap Generator
         run: |
-          # 1. Compile tilemap.c natively on the runner host
           cd nethack/win
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
-        
-          # 2. Execute the generator to output the missing tile mapping files
           ./tilemap_generator
-        
-          # 3. Verify the generated file exists in the expected path
-          cd ..
-          ls -la src/
-          cd ..
+          cd ../..
 
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Fix Misplaced Entitlements Warning
         run: |
-          sed -i '' '/Entitlements.pbxproj/d' iNetHack.xcodeproj/project.pbxproj || true
           sed -i '' '/Entitlements.plist/d' iNetHack.xcodeproj/project.pbxproj || true
 
       - name: "Step 1: Initialize Source and Sandbox Mock Assets"

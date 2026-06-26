@@ -37,7 +37,6 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSString *name = [defaults objectForKey:kOptionUsername];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
 	if (startAsBlind) {
 		setenv("NETHACKOPTIONS", "blind", 1);

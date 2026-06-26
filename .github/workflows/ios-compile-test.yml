@@ -24,6 +24,7 @@ jobs:
         
           # 3. Verify the generated file exists in the expected path
           ls -la src/
+          cd ..
 
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app

@@ -186,7 +186,7 @@ genl_can_suspend_no,
 								@"YES", kOptionShowExp,
 								@"YES", kOptionTime,
 								@"YES", kOptionAutoDig,
-								@"No", kOptionBlind,
+								@"NO", kOptionBlind,
 								nil]];
 }
 

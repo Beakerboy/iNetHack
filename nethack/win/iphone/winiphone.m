@@ -56,10 +56,11 @@
 #define kOptionTravel (@"travel")
 #define kOptionPickupThrown (@"pickupThrown")
 #define kOptionWizard (@"wizard")
-#define kOptionAutokick (@"autokick")
+#define kOption (@"")
 #define kOptionTime (@"time")
 #define kOptionShowExp (@"showexp")
 #define kOptionAutoDig (@"autodig")
+#define kOptionBlind (@"blind")
 
 #undef DEFAULT_WINDOW_SYS
 #define DEFAULT_WINDOW_SYS "iphone"
@@ -68,6 +69,7 @@ static CHHapticEngine *hapticEngine = nil;
 boolean dohaptics = TRUE;
 
 boolean winiphone_autokick = TRUE;
+boolean winiphone_blind = FALSE;
 boolean winiphone_clickable_tiles = FALSE;
 boolean winiphone_travel = TRUE;
 
@@ -184,6 +186,7 @@ genl_can_suspend_no,
 								@"YES", kOptionShowExp,
 								@"YES", kOptionTime,
 								@"YES", kOptionAutoDig,
+								@"No", kOptionBlind,
 								nil]];
 }
 
@@ -641,7 +644,7 @@ void iphone_init_options() {
     wizard = [defaults boolForKey:kOptionWizard];
 
 #endif
-
+    winiphone_blind = [defaults boolForKey:kOptionAutoDig];
     winiphone_autokick = [defaults boolForKey:kOptionAutokick];
     //iNethack2: travel setting. not the travelcmd setting as that would prevent clickable tiles from working.
     winiphone_travel = [defaults boolForKey:kOptionTravel];

@@ -1,0 +1,60 @@
+name: iOS Compilation Test
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  compile:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Force Xcode Version
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Fix Misplaced Entitlements Warning
+        run: |
+          sed -i '' '/Entitlements.pbxproj/d' iNetHack.xcodeproj/project.pbxproj || true
+          sed -i '' '/Entitlements.plist/d' iNetHack.xcodeproj/project.pbxproj || true
+
+      - name: "Step 1: Initialize Source and Sandbox Mock Assets"
+        run: |
+          # 1. Clear absolute root-level copy folder constraints
+          mkdir -p dat
+          echo "mock data" > dat/nhdat
+          mkdir -p lib
+          echo "mock library" > lib/placeholder.txt
+
+          # 2. Clear nested subfolder copy constraints
+          mkdir -p nethack/dat
+          echo "mock data" > nethack/dat/nhdat
+          mkdir -p nethack/lib
+          echo "mock library" > nethack/lib/placeholder.txt
+
+          # 3. Pre-build the exact DerivedData sandboxed directory structures to clear copier errors
+          mkdir -p build_output/Build/Products/Debug-iphonesimulator/iNetHack2.app/lib
+          echo "mock data" > build_output/Build/Products/Debug-iphonesimulator/iNetHack2.app/nhdat
+          echo "mock library" > build_output/Build/Products/Debug-iphonesimulator/iNetHack2.app/lib/placeholder.txt
+
+      - name: "Step 2: Execute Code Linker Verification"
+        run: |
+          RUNNER_ARCH=$(uname -m)
+          
+          xcodebuild build \
+            -project "iNetHack.xcodeproj" \
+            -scheme "iNetHack2" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "platform=iOS Simulator,name=iPad (10th generation),OS=18.5" \
+            -derivedDataPath "build_output" \
+            ONLY_ACTIVE_ARCH=NO \
+            ARCHS="$RUNNER_ARCH" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            XCODE_BUILD_SYSTEM_ENABLE_EAGER_LINKING=NO

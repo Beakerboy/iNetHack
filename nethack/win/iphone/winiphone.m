@@ -56,7 +56,7 @@
 #define kOptionTravel (@"travel")
 #define kOptionPickupThrown (@"pickupThrown")
 #define kOptionWizard (@"wizard")
-#define kOption (@"")
+#define kOptionAutokick (@"autokick")
 #define kOptionTime (@"time")
 #define kOptionShowExp (@"showexp")
 #define kOptionAutoDig (@"autodig")

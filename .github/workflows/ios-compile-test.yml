@@ -16,6 +16,7 @@ jobs:
       - name: Compile and Run Tilemap Generator
         run: |
           # 1. Compile tilemap.c natively on the runner host
+          cd nethack
           gcc src/tilemap.c -o tilemap_generator
         
           # 2. Execute the generator to output the missing tile mapping files

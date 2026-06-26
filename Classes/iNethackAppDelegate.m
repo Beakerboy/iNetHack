@@ -39,6 +39,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
 	BOOL startAsNudist = [defaults boolForKey:@"nudist"];
+	NSString *dogName = [defaults stringForKey:@"dogname"];
 	NSMutableArray *activeOptions = [NSMutableArray array];
 	
 	if (startAsBlind) {
@@ -47,6 +48,10 @@
 	if (startAsNudist) {
 		[activeOptions addObject:@"nudist"];
 	}
+	if (dogName && [dogName length] > 0) {
+        NSString *dogOption = [NSString stringWithFormat:@"dogname:%@", dogName];
+        [activeOptions addObject:dogOption];
+    }
 	if ([activeOptions count] > 0) {
 	    NSString *optionsString = [activeOptions componentsJoinedByString:@","];
 		setenv("NETHACKOPTIONS", [optionsString UTF8String], 1);

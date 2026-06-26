@@ -245,6 +245,12 @@ void iphone_askname() {
 	if (!wizard) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		NSString *name = [defaults objectForKey:kOptionUsername];
+		BOOL startAsBlind = [defaults boolForKey:@"blind"];
+		if (startAsBlind) {
+		    setenv("NETHACKOPTIONS", "blind", 1);
+		} else {
+		    unsetenv("NETHACKOPTIONS");
+		}
 
 		if (!name || name.length == 0) {
 			name = [NSFullUserName() capitalizedString];

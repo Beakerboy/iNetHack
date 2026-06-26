@@ -36,7 +36,14 @@
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *name = [defaults objectForKey:kOptionUsername];
+	BOOL startAsBlind = [defaults boolForKey:@"blind"];
+	if (startAsBlind) {
+		setenv("NETHACKOPTIONS", "blind", 1);
+	} else {
+		unsetenv("NETHACKOPTIONS");
+	}
 	BOOL badBonesSeen = [self checkNetHackDirectories];
     [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 

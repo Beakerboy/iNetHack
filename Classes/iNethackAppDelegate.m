@@ -38,10 +38,20 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
+	BOOL startAsNudist = [defaults boolForKey:@"nudist"];
+	NSMutableArray *activeOptions = [NSMutableArray array];
+	
 	if (startAsBlind) {
-		setenv("NETHACKOPTIONS", "blind", 1);
+		[activeOptions addObject:@"blind"];
+	}
+	if (startAsNudist) {
+		[activeOptions addObject:@"nudist"];
+	}
+	if ([activeOptions count] > 0) {
+	    NSString *optionsString = [activeOptions componentsJoinedByString:@","];
+		setenv("NETHACKOPTIONS", [optionsString UTF8String], 1);
 	} else {
-		unsetenv("NETHACKOPTIONS");
+	    unsetenv("NETHACKOPTIONS");
 	}
 	BOOL badBonesSeen = [self checkNetHackDirectories];
     [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];

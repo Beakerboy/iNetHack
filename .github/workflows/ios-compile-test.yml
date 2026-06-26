@@ -17,7 +17,7 @@ jobs:
         run: |
           # 1. Compile tilemap.c natively on the runner host
           cd nethack
-          gcc -Iinclude -Isrc -Wno-macro-redefinition win/share/tilemap.c -o tilemap_generator
+          gcc -Iinclude -Isrc -Wp,-w win/share/tilemap.c -o tilemap_generator
         
           # 2. Execute the generator to output the missing tile mapping files
           ./tilemap_generator

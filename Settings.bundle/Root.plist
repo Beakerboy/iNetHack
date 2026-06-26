@@ -180,6 +180,16 @@
 				<string>asciimono</string>
 			</array>
 		</dict>
+        <dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Dog Name</string>
+			<key>Key</key>
+			<string>dogname</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>

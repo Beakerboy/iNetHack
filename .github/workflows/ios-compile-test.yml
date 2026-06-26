@@ -23,6 +23,7 @@ jobs:
           ./tilemap_generator
         
           # 3. Verify the generated file exists in the expected path
+          cd ..
           ls -la src/
           cd ..
 

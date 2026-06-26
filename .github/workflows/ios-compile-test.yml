@@ -32,7 +32,6 @@ jobs:
 
       - name: Fix Misplaced Entitlements Warning
         run: |
-          sed -i '' '/Entitlements.pbxproj/d' iNetHack.xcodeproj/project.pbxproj || true
           sed -i '' '/Entitlements.plist/d' iNetHack.xcodeproj/project.pbxproj || true
 
       - name: "Step 1: Initialize Source and Sandbox Mock Assets"

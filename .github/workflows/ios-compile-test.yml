@@ -17,7 +17,7 @@ jobs:
         run: |
           # 1. Compile tilemap.c natively on the runner host
           cd nethack
-          gcc -Iinclude -Isrc win/share/tilemap.c -o tilemap_generator
+          gcc -Iinclude -Isrc -UTARGET_OS_IPHONE -DTARGET_OS_IPHONE=0 win/share/tilemap.c -o tilemap_generator
         
           # 2. Execute the generator to output the missing tile mapping files
           ./tilemap_generator

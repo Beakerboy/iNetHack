@@ -1,12 +1,16 @@
 name: iNetHack2
 options:
-  bundleIdPrefix: com.beakerboy
+  bundleIdPrefix: com.yourcompany
+
+# =========================================================================
+# CORRECTED CONFIGURATIONS & SETTINGS
+# =========================================================================
+configs:
+  Debug: debug
+  Release: release
+  Distribution: release
 
 settings:
-  configs:
-    Debug: debug
-    Release: release
-    Distribution: release
   base:
     # Core Build Settings from your configuration block
     SDKROOT: iphoneos

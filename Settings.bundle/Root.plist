@@ -181,6 +181,30 @@
 			</array>
 		</dict>
         <dict>
+			<key>DefaultValue</key>
+			<string>random</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Pet Type</string>
+			<key>Key</key>
+			<string>pettype</string>
+			<key>Titles</key>
+			<array>
+				<string>Random</string>
+				<string>Cat</string>
+				<string>Dog</string>
+				<string>None</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>random</string>
+				<string>cat</string>
+				<string>dog</string>
+				<string>none</string>
+			</array>
+		</dict>
+        <dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>

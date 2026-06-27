@@ -81,7 +81,7 @@ targets:
     sources:
       - path: Classes
         name: Classes
-      - path: Other Sources/main.m
+      - path: main.m
         name: Other Sources
       - path: lib
         name: Other Sources/lib

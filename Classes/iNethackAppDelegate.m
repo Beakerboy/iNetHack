@@ -39,6 +39,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
 	BOOL startAsNudist = [defaults boolForKey:@"nudist"];
+	NSString *petType = [defaults stringForKey:@"pettype"];
+	NSString *dogName = [defaults stringForKey:@"dogname"];
+	NSString *catName = [defaults stringForKey:@"catname"];
+	NSString *horseName = [defaults stringForKey:@"horsename"];
 	NSMutableArray *activeOptions = [NSMutableArray array];
 	
 	if (startAsBlind) {
@@ -47,6 +51,22 @@
 	if (startAsNudist) {
 		[activeOptions addObject:@"nudist"];
 	}
+	if (petType && [petType length] > 0 && ![petType isEqualToString:@"random"]) {
+        NSString *petOption = [NSString stringWithFormat:@"pettype:%@", petType];
+        [activeOptions addObject:petOption];
+    }
+	if (dogName && [dogName length] > 0) {
+        NSString *dogOption = [NSString stringWithFormat:@"dogname:%@", dogName];
+        [activeOptions addObject:dogOption];
+    }
+	if (catName && [catName length] > 0) {
+        NSString *catOption = [NSString stringWithFormat:@"catname:%@", catName];
+        [activeOptions addObject:catOption];
+    }
+	if (horseName && [horseName length] > 0) {
+        NSString *horseOption = [NSString stringWithFormat:@"horsename:%@", horseName];
+        [activeOptions addObject:horseOption];
+    }
 	if ([activeOptions count] > 0) {
 	    NSString *optionsString = [activeOptions componentsJoinedByString:@","];
 		setenv("NETHACKOPTIONS", [optionsString UTF8String], 1);

@@ -1,6 +1,6 @@
 name: iNetHack2
 options:
-  bundleIdPrefix: com.yourcompany
+  bundleIdPrefix: com.beakerboy
 
 settings:
   configs:

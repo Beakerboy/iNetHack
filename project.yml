@@ -120,7 +120,7 @@ targets:
       - path: Entitlements.plist
         name: Resources
 
-  # =========================================================================
+# =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE
   # =========================================================================
   NetHackEngine36:
@@ -130,12 +130,22 @@ targets:
     
     settings:
       base:
-        # Isolates headers strictly inside this target
         HEADER_SEARCH_PATHS:
           - $(SRCROOT)/nethack/include
           - $(SRCROOT)/nethack/win/iphone
 
-    # Pulls exactly the core C files and your custom iOS port backend files
+    # =========================================================================
+    # TILEMAP GENERATOR BUILD SCRIPT
+    # =========================================================================
+    preBuildScripts:
+      - name: "Generate NetHack Tilemaps"
+        script: |
+          cd "${SRCROOT}/nethack/win"
+          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
+          ./tilemap_generator
+          rm tilemap_generator # Clean up binary artifact after execution
+        runOnlyForDeploymentPostprocessing: false
+
     sources:
       - path: nethack/src
         name: nethack/src

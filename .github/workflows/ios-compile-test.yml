@@ -16,6 +16,11 @@ jobs:
       - name: Install XcodeGen
         run: brew install xcodegen
 
+      - name: Debug Repository File Tree
+        run: |
+          echo "=== Displaying Current Directory Mapping ==="
+          find . -maxdepth 3 -not -path '*/.*'
+
       - name: Generate Xcode Project File
         run: xcodegen generate
 

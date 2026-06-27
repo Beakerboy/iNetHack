@@ -94,7 +94,7 @@ targets:
         name: Resources/Tilesets
       - path: Classes/MainMenuView.xib
         name: Resources
-      - path: Classes/MainWindow.xib
+      - path: MainWindow.xib
         name: Resources
       - path: Px437_IBM_VGA_8x16.ttf
         name: Resources
@@ -112,7 +112,7 @@ targets:
         name: Resources
       - path: ExtendedCommandView.xib
         name: Resources
-      - path: ItemAmountView.xib
+      - path: Classes/ItemAmountView.xib
         name: Resources
       - path: Settings.bundle
         name: Resources

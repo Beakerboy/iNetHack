@@ -13,19 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile and Run Tilemap Generator
-        run: |
-          cd nethack/win
-          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
-          ./tilemap_generator
-          cd ../..
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode Project File
+        run: xcodegen generate
 
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
-
-      - name: Fix Misplaced Entitlements Warning
-        run: |
-          sed -i '' '/Entitlements.plist/d' iNetHack.xcodeproj/project.pbxproj || true
 
       - name: "Step 1: Initialize Source and Sandbox Mock Assets"
         run: |
@@ -42,10 +37,9 @@ jobs:
 
       - name: "Step 2: Compile App for Physical iPhone Hardware"
         run: |
-          # We change the SDK to 'iphoneos' and target generic iOS devices 
-          # so Xcode generates an arm64 binary for real phone processors.
+          # Target project name updated to track the newly generated project file
           xcodebuild build \
-            -project "iNetHack.xcodeproj" \
+            -project "iNetHack2.xcodeproj" \
             -scheme "iNetHack2" \
             -configuration Debug \
             -sdk iphoneos \
@@ -60,8 +54,6 @@ jobs:
 
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |
-          # iOS requires the .app folder to live inside a folder named 'Payload' 
-          # inside the zip archive to recognized it as an installable app (.ipa)
           mkdir -p Payload
           cp -r build_output/Build/Products/Debug-iphoneos/iNetHack2.app Payload/
           zip -r iNetHack2.ipa Payload

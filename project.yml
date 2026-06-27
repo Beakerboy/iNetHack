@@ -88,13 +88,13 @@ targets:
         optional: true
       
       # UI Layer Assets, XIBs and Fonts
-      - path: Images-2.xcassets
+      - path: iNetHack2/Images-2.xcassets
         name: Resources
       - path: Tilesets
         name: Resources/Tilesets
-      - path: MainMenuView.xib
+      - path: Classes/MainMenuView.xib
         name: Resources
-      - path: MainWindow.xib
+      - path: Classes/MainWindow.xib
         name: Resources
       - path: Px437_IBM_VGA_8x16.ttf
         name: Resources

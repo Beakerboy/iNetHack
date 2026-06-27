@@ -39,6 +39,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
 	BOOL startAsNudist = [defaults boolForKey:@"nudist"];
+	NSString *petType = [defaults stringForKey:@"pettype"];
 	NSString *dogName = [defaults stringForKey:@"dogname"];
 	NSString *catName = [defaults stringForKey:@"catname"];
 	NSString *horseName = [defaults stringForKey:@"horsename"];
@@ -50,6 +51,10 @@
 	if (startAsNudist) {
 		[activeOptions addObject:@"nudist"];
 	}
+	if (petType && [petType length] > 0 && ![petType isEqualToString:@"random"]) {
+        NSString *petOption = [NSString stringWithFormat:@"pettype:%@", petType];
+        [activeOptions addObject:petOption];
+    }
 	if (dogName && [dogName length] > 0) {
         NSString *dogOption = [NSString stringWithFormat:@"dogname:%@", dogName];
         [activeOptions addObject:dogOption];

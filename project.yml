@@ -85,6 +85,7 @@ targets:
         name: Other Sources
       - path: lib
         name: Other Sources/lib
+        optional: true
       
       # UI Layer Assets, XIBs and Fonts
       - path: Images-2.xcassets
@@ -157,3 +158,4 @@ targets:
         name: nethack/win/iphone
       - path: dat
         name: Resources/dat
+        optional: true

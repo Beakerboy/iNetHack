@@ -121,6 +121,8 @@ targets:
         runOnlyForDeploymentPostprocessing: false
 
     sources:
+      - path: nethack/include
+        name: nethack/include
       - path: nethack/src
         name: nethack/src
       - path: nethack/win/iphone

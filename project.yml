@@ -68,7 +68,7 @@ targets:
 
     settings:
       base:
-        INFOPLIST_FILE: Classes/Info.plist # Adjust path to your Info.plist location
+        INFOPLIST_FILE: Classes/Info.plist
         GCC_PREFIX_HEADER: Other Sources/iNethack_Prefix.pch
         GCC_PRECOMPILE_PREFIX_HEADER: YES
         SWIFT_OBJC_BRIDGING_HEADER: iNetHack2-Bridging-Header.h

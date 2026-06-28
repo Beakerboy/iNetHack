@@ -87,42 +87,7 @@ targets:
         name: Other Sources/lib
         optional: true
       
-      # UI Layer Assets, XIBs and Fonts
-      - path: iNetHack2/Images-2.xcassets
-        name: Resources
-      - path: Tilesets
-        name: Resources/Tilesets
-      - path: Classes/MainMenuView.xib
-        name: Resources
-      - path: MainWindow.xib
-        name: Resources
-      - path: Px437_IBM_VGA_8x16.ttf
-        name: Resources
-      - path: MainView.xib
-        name: Resources
-      - path: MenuView.xib
-        name: Resources
-      - path: NethackMenuView.xib
-        name: Resources
-      - path: DirectionInputView.xib
-        name: Resources
-      - path: TextInputView.xib
-        name: Resources
-      - path: MenuViewLeaf.xib
-        name: Resources
-      - path: ExtendedCommandView.xib
-        name: Resources
-      - path: Classes/ItemAmountView.xib
-        name: Resources
-      - path: Settings.bundle
-        name: Resources
-      - path: credits.html
-        name: Resources
-      - path: manual.html
-        name: Resources
-      - path: Icon.png
-        name: Resources
-      - path: Entitlements.plist
+      - path: Resources
         name: Resources
 
 # =========================================================================

@@ -71,7 +71,7 @@ targets:
         INFOPLIST_FILE: Classes/Info.plist
         GCC_PREFIX_HEADER: Classes/iNethack_Prefix.pch
         GCC_PRECOMPILE_PREFIX_HEADER: YES
-        SWIFT_OBJC_BRIDGING_HEADER: iNetHack2-Bridging-Header.h
+        SWIFT_OBJC_BRIDGING_HEADER: Classes/iNetHack2-Bridging-Header.h
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES

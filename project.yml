@@ -13,6 +13,7 @@ configs:
 settings:
   base:
     # Core Build Settings from your configuration block
+    CLANG_ENABLE_OBJC_ARC: NO
     SDKROOT: iphoneos
     IPHONEOS_DEPLOYMENT_TARGET: "12.0"
     GCC_C_LANGUAGE_STANDARD: c99

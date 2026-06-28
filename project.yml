@@ -73,6 +73,10 @@ targets:
         GCC_PREFIX_HEADER: Classes/iNethack_Prefix.pch
         GCC_PRECOMPILE_PREFIX_HEADER: YES
         SWIFT_OBJC_BRIDGING_HEADER: Classes/iNetHack2-Bridging-Header.h
+      HEADER_SEARCH_PATHS:
+          - $(inherited)
+          - $(SRCROOT)/nethack/include
+          - $(SRCROOT)/nethack/win/iphone
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES

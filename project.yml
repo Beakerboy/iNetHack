@@ -61,11 +61,11 @@ targets:
     # Links your system frameworks + the static 3.6 library engine automatically
     dependencies:
       - target: NetHackEngine36
-      - framework: Foundation.framework
-      - framework: UIKit.framework
-      - framework: CoreGraphics.framework
-      - framework: QuartzCore.framework
-      - framework: SystemConfiguration.framework
+      - sdk: Foundation.framework
+      - sdk: UIKit.framework
+      - sdk: CoreGraphics.framework
+      - sdk: QuartzCore.framework
+      - sdk: SystemConfiguration.framework
 
     settings:
       base:

@@ -42,7 +42,8 @@ jobs:
             -configuration Debug \
             -sdk iphoneos \
             -destination "generic/platform=iOS" \
-            -archivePath "build_output/iNetHack2.xcarchive" \
+            -derivedDataPath "${{ github.workspace }}/build_output" \
+            -archivePath "${{ github.workspace }}/build_output/iNetHack2.xcarchive" \
             ONLY_ACTIVE_ARCH=NO \
             ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
@@ -51,9 +52,10 @@ jobs:
 
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |
+          rm -rf Payload
           mkdir -p Payload
-          # Copy from the true compiled archive bundle layout rather than build_output products
-          cp -r build_output/iNetHack2.xcarchive/Products/Applications/iNetHack2.app Payload/
+          # Explicitly copy from the forced checkout workspace path
+          cp -r "${{ github.workspace }}/build_output/iNetHack2.xcarchive/Products/Applications/iNetHack2.app" Payload/
           zip -r iNetHack2.ipa Payload
 
 

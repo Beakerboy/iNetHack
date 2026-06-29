@@ -98,7 +98,8 @@ targets:
         name: Resources
       - path: nethack/dat
         name: dat
-        type: bundle
+        buildPhase: resources
+        type: file
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE

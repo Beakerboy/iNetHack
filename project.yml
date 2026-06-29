@@ -12,7 +12,6 @@ configs:
 
 settings:
   base:
-    # Core Build Settings from your configuration block
     CLANG_ENABLE_OBJC_ARC: NO
     SDKROOT: iphoneos
     IPHONEOS_DEPLOYMENT_TARGET: "12.0"
@@ -21,7 +20,6 @@ settings:
     ENABLE_STRICT_OBJC_MSGSEND: YES
     GCC_NO_COMMON_BLOCKS: YES
     
-    # Modernized Warning Flags matching your PBXProj
     CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
     CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING: YES
     CLANG_WARN_BOOL_CONVERSION: YES
@@ -58,7 +56,6 @@ targets:
     platform: iOS
     deploymentTarget: "12.0"
     
-    # Links your system frameworks + the static 3.6 library engine automatically
     dependencies:
       - target: NetHackEngine36
       - sdk: Foundation.framework
@@ -73,28 +70,26 @@ targets:
         GCC_PREFIX_HEADER: Classes/iNethack_Prefix.pch
         GCC_PRECOMPILE_PREFIX_HEADER: YES
         SWIFT_OBJC_BRIDGING_HEADER: Classes/iNetHack2-Bridging-Header.h
-    
         HEADER_SEARCH_PATHS:
           - $(inherited)
           - nethack/include
           - nethack/win/iphone
-        SKIP_INSTALL: NO
-
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES
           ENABLE_TESTABILITY: YES
 
-    # Frontend source groupings mirroring your project layout
     sources:
       - path: Classes
         name: Classes
       - path: lib
         name: Other Sources/lib
         optional: true
-      
       - path: Resources
         name: Resources
+      # FIXED: Moved dat folder here so Xcode copies resources into the final app package
+      - path: dat
+        name: dat
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE
@@ -107,9 +102,11 @@ targets:
     settings:
       base:
         HEADER_SEARCH_PATHS:
+          - $(inherited)
           - nethack/include
           - nethack/win/iphone
           - nethack/sys/share
+
     sources:
       - path: nethack/include
         name: nethack/include
@@ -133,6 +130,4 @@ targets:
           - "**/chain/**"
           - "**/win32/**"
           - "**/share/**"
-      - path: dat
-        name: Resources/dat
-        optional: true
+      # FIXED: Omitted dat from the static library sources list

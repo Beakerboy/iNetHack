@@ -77,6 +77,9 @@ targets:
           - $(inherited)
           - nethack/include
           - nethack/win/iphone
+        CODE_SIGN_IDENTITY: "Apple Development"
+        "CODE_SIGN_IDENTITY[sdk=iphoneos*]": "Apple Development"
+        MACH_O_TYPE: mh_execute
 
       configs:
         Debug:

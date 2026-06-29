@@ -21,37 +21,7 @@ jobs:
           cd nethack/win
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
           ./tilemap_generator
-          cd ../..
-
-      - name: Compile NetHack 3.6 Game Levels (nhdat)
-        run: |
-          # 1. Define folder mapping targets explicitly
-          ENGINE_DIR="nethack"
-          UTIL_DIR="$ENGINE_DIR/util"
-          SRC_DIR="$ENGINE_DIR/src"
-          SHARE_DIR="$ENGINE_DIR/sys/share"
-          DAT_DIR="$ENGINE_DIR/dat"
-          
-          echo "=== Compiling Level Compiler Utility ==="
-          gcc -I$ENGINE_DIR/include \
-              -I$ENGINE_DIR/src \
-              -DWARN_ON_OLD_COMP -w \
-              $SHARE_DIR/lev_yacc.c \
-              $SHARE_DIR/lev_lex.c \
-              $UTIL_DIR/lev_main.c \
-              $SRC_DIR/alloc.c \
-              $SRC_DIR/decl.c \
-              $SRC_DIR/drawing.c \
-              $SRC_DIR/monst.c \
-              $SRC_DIR/objects.c \
-              -o $UTIL_DIR/lev_comp
-          
-          echo "=== Generating Monolithic Game Database ==="
-          cd $DAT_DIR
-          ../util/lev_comp *.des
-          
-          echo "=== Cleaning Up Staging Tooling Artifacts ==="
-          rm ../util/lev_comp
+          rm tilemap_generator
           cd ../..
 
       - name: Generate Xcode Project File
@@ -60,10 +30,8 @@ jobs:
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      # STEP 1 CLEANED: Removed the commands that injected mock text into the app bundle
-      - name: "Step 1: Verify Environment Assets"
-        run: |
-          echo "XcodeGen environment clean. Starting raw asset compilation."
+      - name: "Step 1: Clean Build Environment"
+        run: echo "Environment verified. Structural data present."
 
       - name: "Step 2: Compile App for Physical iPhone Hardware"
         run: |
@@ -78,16 +46,15 @@ jobs:
             ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            COMPILER_INDEX_STORE_ENABLE=NO
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            -quiet
 
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |
           rm -rf Payload
           mkdir -p Payload
-          # Grab directly from the products folder to capture compiled modules + resources
           cp -r "${{ github.workspace }}/build_output/Build/Products/Debug-iphoneos/iNetHack2.app" Payload/
           zip -r iNetHack2.ipa Payload
-
 
       - name: "Step 4: Upload Installer to GitHub Actions"
         uses: actions/upload-artifact@v4

@@ -128,8 +128,8 @@ targets:
           - "**/chain/**"
           - "**/win32/**"
           - "**/share/**"
-      - path: nethack/lib
-        name: nethack/lib
+      - path: nethack/sys/share
+        name: nethack/sys/share
       - path: dat
         name: Resources/dat
         optional: true

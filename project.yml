@@ -142,4 +142,3 @@ targets:
           - "**/chain/**"
           - "**/win32/**"
           - "**/share/**"
-      # FIXED: Omitted dat from the static library sources list

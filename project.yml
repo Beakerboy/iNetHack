@@ -78,9 +78,13 @@ targets:
           - nethack/include
           - nethack/win/iphone
           
-        # MATCH ORIGINAL WORKING CODE-SIGN SPECIFICATION EXPLICITLY
-        CODE_SIGN_IDENTITY: "Apple Development"
-        "CODE_SIGN_IDENTITY[sdk=iphoneos*]": "Apple Development"
+        # ADD THIS PROPERTY TO TERMINATE DYNAMIC PREVIEW OVERRIDES:
+        MACH_O_TYPE: mh_execute
+        
+      configs:
+        Debug:
+          ONLY_ACTIVE_ARCH: YES
+          ENABLE_TESTABILITY: YES
 
       configs:
         Debug:

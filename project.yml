@@ -86,11 +86,6 @@ targets:
           ONLY_ACTIVE_ARCH: YES
           ENABLE_TESTABILITY: YES
 
-      configs:
-        Debug:
-          ONLY_ACTIVE_ARCH: YES
-          ENABLE_TESTABILITY: YES
-
     sources:
       - path: Classes
         name: Classes

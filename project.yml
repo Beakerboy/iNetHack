@@ -130,6 +130,8 @@ targets:
           - "**/share/**"
       - path: nethack/sys/share
         name: nethack/sys/share
+        includes:
+          - "cppregex.cpp"
       - path: dat
         name: Resources/dat
         optional: true

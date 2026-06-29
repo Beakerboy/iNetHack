@@ -36,25 +36,26 @@ jobs:
 
       - name: "Step 2: Compile App for Physical iPhone Hardware"
         run: |
-          xcodebuild build \
+          xcodebuild archive \
             -project "iNetHack2.xcodeproj" \
             -scheme "iNetHack2" \
             -configuration Debug \
             -sdk iphoneos \
             -destination "generic/platform=iOS" \
-            -derivedDataPath "build_output" \
+            -archivePath "build_output/iNetHack2.xcarchive" \
             ONLY_ACTIVE_ARCH=NO \
             ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            COMPILER_INDEX_STORE_ENABLE=NO \
-            XCODE_BUILD_SYSTEM_ENABLE_EAGER_LINKING=NO
+            COMPILER_INDEX_STORE_ENABLE=NO
 
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |
           mkdir -p Payload
-          cp -r build_output/Build/Products/Debug-iphoneos/iNetHack2.app Payload/
+          # Copy from the true compiled archive bundle layout rather than build_output products
+          cp -r build_output/iNetHack2.xcarchive/Products/Applications/iNetHack2.app Payload/
           zip -r iNetHack2.ipa Payload
+
 
       - name: "Step 4: Upload Installer to GitHub Actions"
         uses: actions/upload-artifact@v4

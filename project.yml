@@ -87,8 +87,7 @@ targets:
         optional: true
       - path: Resources
         name: Resources
-      # FIXED: Moved dat folder here so Xcode copies resources into the final app package
-      - path: dat
+      - path: nethack/dat
         name: dat
 
   # =========================================================================

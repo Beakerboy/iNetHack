@@ -114,8 +114,8 @@ targets:
         name: nethack/include
       - path: nethack/src
         name: nethack/src
-      - path: nethack/win/iphone
-        name: nethack/win/iphone
+      - path: nethack/win
+        name: nethack/win
       - path: dat
         name: Resources/dat
         optional: true

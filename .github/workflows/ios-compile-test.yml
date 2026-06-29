@@ -22,6 +22,7 @@ jobs:
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
           ./tilemap_generator
           cd ../..
+
       - name: Compile NetHack 3.6 Game Levels (nhdat)
         run: |
           # 1. Define folder mapping targets explicitly
@@ -39,6 +40,7 @@ jobs:
               $SHARE_DIR/lev_lex.c \
               $UTIL_DIR/lev_main.c \
               $SRC_DIR/alloc.c \
+              $SRC_DIR/decl.c \
               $SRC_DIR/drawing.c \
               $SRC_DIR/monst.c \
               $SRC_DIR/objects.c \

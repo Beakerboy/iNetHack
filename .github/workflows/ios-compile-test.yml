@@ -47,7 +47,8 @@ jobs:
             ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            COMPILER_INDEX_STORE_ENABLE=NO
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            -quiet
 
       - name: "Step 3: Package App Layout into an .ipa Installer"
         run: |

@@ -27,6 +27,7 @@ jobs:
           # 1. Define folder mapping targets explicitly
           ENGINE_DIR="nethack"
           UTIL_DIR="$ENGINE_DIR/util"
+          SRC_DIR="$ENGINE_DIR/src"
           SHARE_DIR="$ENGINE_DIR/sys/share"
           DAT_DIR="$ENGINE_DIR/dat"
           
@@ -37,6 +38,10 @@ jobs:
               $SHARE_DIR/lev_yacc.c \
               $SHARE_DIR/lev_lex.c \
               $UTIL_DIR/lev_main.c \
+              $SRC_DIR/alloc.c \
+              $SRC_DIR/drawing.c \
+              $SRC_DIR/monst.c \
+              $SRC_DIR/objects.c \
               -o $UTIL_DIR/lev_comp
           
           echo "=== Generating Monolithic Game Database ==="

@@ -22,15 +22,28 @@ jobs:
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
           ./tilemap_generator
           cd ../..
-      - name: Compile NetHack Game Levels (nhdat)
+      - name: Compile NetHack 3.6 Game Levels (nhdat)
         run: |
-          cd nethack/util
-          # Compile the level compiler utility tool
-          gcc -I../include -I../src -DWARN_ON_OLD_COMP -w lev_yacc.c lev_lex.c lev_main.c -o lev_comp
+          # 1. Define folder mapping targets explicitly
+          ENGINE_DIR="nethack"
+          UTIL_DIR="$ENGINE_DIR/util"
+          SHARE_DIR="$ENGINE_DIR/sys/share"
+          DAT_DIR="$ENGINE_DIR/dat"
           
-          # Move to the dat directory to bundle the assets into nhdat
-          cd ../dat
+          echo "=== Compiling Level Compiler Utility ==="
+          gcc -I$ENGINE_DIR/include \
+              -I$ENGINE_DIR/src \
+              -DWARN_ON_OLD_COMP -w \
+              $SHARE_DIR/lev_yacc.c \
+              $SHARE_DIR/lev_lex.c \
+              $UTIL_DIR/lev_main.c \
+              -o $UTIL_DIR/lev_comp
+          
+          echo "=== Generating Monolithic Game Database ==="
+          cd $DAT_DIR
           ../util/lev_comp *.des
+          
+          echo "=== Cleaning Up Staging Tooling Artifacts ==="
           rm ../util/lev_comp
           cd ../..
 

@@ -74,6 +74,11 @@ targets:
           - $(inherited)
           - nethack/include
           - nethack/win/iphone
+          
+        # MATCH ORIGINAL WORKING CODE-SIGN SPECIFICATION EXPLICITLY
+        CODE_SIGN_IDENTITY: "Apple Development"
+        "CODE_SIGN_IDENTITY[sdk=iphoneos*]": "Apple Development"
+
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES

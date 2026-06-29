@@ -107,15 +107,15 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(SRCROOT)/nethack/include
           - $(SRCROOT)/nethack/win/iphone
-        GCC_PREPROCESSOR_DEFINITIONS:
-          - $(inherited)
-          - "INTERNAL_REGEX=1"
 
-    sources:
       - path: nethack/include
         name: nethack/include
       - path: nethack/src
         name: nethack/src
+      - path: nethack/sys/share
+        name: nethack/sys/share
+        includes:
+          - "posixregex.c"
       - path: nethack/win
         name: nethack/win
         excludes:

@@ -2,13 +2,16 @@ name: iNetHack2
 options:
   bundleIdPrefix: com.yourcompany
 
-# =========================================================================
-# CORRECTED CONFIGURATIONS & SETTINGS
-# =========================================================================
 configs:
-  Debug: debug
-  Release: release
-  Distribution: release
+  Debug:
+    style: debug
+    name: Debug
+  Release:
+    style: release
+    name: Release
+  Distribution:
+    style: release
+    name: Distribution
 
 settings:
   base:

@@ -108,7 +108,7 @@ targets:
           - nethack/include
           - nethack/win/iphone
           - nethack/sys/share
-      sources:
+    sources:
       - path: nethack/include
         name: nethack/include
       - path: nethack/src

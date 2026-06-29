@@ -67,6 +67,10 @@ targets:
       - sdk: QuartzCore.framework
       - sdk: SystemConfiguration.framework
 
+    fileGroups:
+      - path: nethack/dat
+        buildPhase: resources
+
     settings:
       base:
         INFOPLIST_FILE: Classes/Info.plist
@@ -78,24 +82,12 @@ targets:
           - nethack/include
           - nethack/win/iphone
         MACH_O_TYPE: mh_execute
-        
-        # ADD THESE ASSET COMPILER KEYS HERE:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
 
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES
-
-    postBuildScripts:
-      - name: "Copy NetHack Game Data Flat to App Root"
-        script: |
-          set -e
-          echo "=== Copying Data Files Flat into Application Container Root ==="
-          # TARGET_BUILD_DIR/EXECUTABLE_FOLDER_PATH resolves directly to your built .app folder root
-          cp -f "${SRCROOT}/nethack/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/"
-        runOnlyForDeploymentPostprocessing: false
-
 
     sources:
       - path: Classes

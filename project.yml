@@ -107,7 +107,9 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(SRCROOT)/nethack/include
           - $(SRCROOT)/nethack/win/iphone
-
+        GCC_PREPROCESSOR_DEFINITIONS:
+          - $(inherited)
+          - "INTERNAL_REGEX=1"
 
     sources:
       - path: nethack/include

@@ -16,10 +16,12 @@ jobs:
       - name: Install XcodeGen
         run: brew install xcodegen
 
-      - name: Debug Repository File Tree
+      - name: Compile and Run Tilemap Generator
         run: |
-          echo "=== Displaying Current Directory Mapping ==="
-          find . -maxdepth 3 -not -path '*/.*'
+          cd nethack/win
+          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
+          ./tilemap_generator
+          cd ../..
 
       - name: Generate Xcode Project File
         run: xcodegen generate

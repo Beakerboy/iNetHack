@@ -78,6 +78,9 @@ targets:
           - $(inherited)
           - nethack/include
           - nethack/win/iphone
+        OTHER_LDFLAGS:
+          - $(inherited)
+          - -force_load $(BUILT_PRODUCTS_DIR)/libNetHackEngine36.a
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES

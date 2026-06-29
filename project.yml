@@ -67,10 +67,6 @@ targets:
       - sdk: QuartzCore.framework
       - sdk: SystemConfiguration.framework
 
-    fileGroups:
-      - path: nethack/dat
-        buildPhase: resources
-
     settings:
       base:
         INFOPLIST_FILE: Classes/Info.plist
@@ -88,6 +84,15 @@ targets:
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES
+
+    postBuildScripts:
+      - name: "Copy NetHack Game Data Flat to App Root"
+        script: |
+          set -e
+          echo "=== Copying Data Files Flat into Application Container Root ==="
+          # TARGET_BUILD_DIR/EXECUTABLE_FOLDER_PATH resolves directly to your built .app folder root
+          cp -f "${SRCROOT}/nethack/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/"
+        runOnlyForDeploymentPostprocessing: false
 
     sources:
       - path: Classes

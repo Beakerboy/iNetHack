@@ -22,6 +22,17 @@ jobs:
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
           ./tilemap_generator
           cd ../..
+      - name: Compile NetHack Game Levels (nhdat)
+        run: |
+          cd nethack/util
+          # Compile the level compiler utility tool
+          gcc -I../include -I../src -DWARN_ON_OLD_COMP -w lev_yacc.c lev_lex.c lev_main.c -o lev_comp
+          
+          # Move to the dat directory to bundle the assets into nhdat
+          cd ../dat
+          ../util/lev_comp *.des
+          rm ../util/lev_comp
+          cd ../..
 
       - name: Generate Xcode Project File
         run: xcodegen generate

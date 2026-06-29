@@ -98,7 +98,7 @@ targets:
         name: Resources
       - path: nethack/dat
         name: dat
-        type: folder
+        type: bundle
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE

@@ -107,7 +107,7 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(SRCROOT)/nethack/include
           - $(SRCROOT)/nethack/win/iphone
-
+      sources:
       - path: nethack/include
         name: nethack/include
       - path: nethack/src

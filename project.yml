@@ -116,6 +116,16 @@ targets:
         name: nethack/src
       - path: nethack/win
         name: nethack/win
+        excludes:
+          - "**/win/Qt/**"          
+          - "**/win/X11/**"         
+          - "**/win/gem/**"         
+          - "**/win/gnome/**"       
+          - "**/win/proxy/**"       
+          - "**/win/tty/**"         
+          - "**/win/chain/**"       
+          - "**/win/win32/**"       
+          - "**/win/share/**" 
       - path: dat
         name: Resources/dat
         optional: true

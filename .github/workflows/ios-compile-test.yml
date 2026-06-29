@@ -36,14 +36,13 @@ jobs:
 
       - name: "Step 2: Compile App for Physical iPhone Hardware"
         run: |
-          xcodebuild archive \
+          xcodebuild build \
             -project "iNetHack2.xcodeproj" \
             -scheme "iNetHack2" \
             -configuration Debug \
             -sdk iphoneos \
             -destination "generic/platform=iOS" \
             -derivedDataPath "${{ github.workspace }}/build_output" \
-            -archivePath "${{ github.workspace }}/build_output/iNetHack2.xcarchive" \
             ONLY_ACTIVE_ARCH=NO \
             ARCHS="arm64" \
             CODE_SIGNING_ALLOWED=NO \
@@ -54,8 +53,8 @@ jobs:
         run: |
           rm -rf Payload
           mkdir -p Payload
-          # Explicitly copy from the forced checkout workspace path
-          cp -r "${{ github.workspace }}/build_output/iNetHack2.xcarchive/Products/Applications/iNetHack2.app" Payload/
+          # Grab directly from the products folder to capture compiled modules + resources
+          cp -r "${{ github.workspace }}/build_output/Build/Products/Debug-iphoneos/iNetHack2.app" Payload/
           zip -r iNetHack2.ipa Payload
 
 

@@ -22,8 +22,13 @@ jobs:
           sh sys/unix/setup.sh sys/unix/hints/macosx
           make makedefs
           cd util
-          ./makedefs -p
           ./makedefs -o
+          ./makedefs -e
+          ./makedefs -p
+          ./makedefs -q
+          ./makedefs -r
+          ./makedefs -s
+          ./makedefs -s
           ./makedefs -v
           ./makedefs -z
           rm makedefs

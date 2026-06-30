@@ -1067,5 +1067,5 @@ void iphone_main() {
 }
 
 boolean authorize_wizard_mode() {
-    return 0
+    return 0;
 }

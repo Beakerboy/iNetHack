@@ -25,7 +25,7 @@ jobs:
           make makedefs
           make data
           cd util
-          make levels
+          make dungeon
           cd ../..
 
       - name: Compile and Run Tilemap Generator

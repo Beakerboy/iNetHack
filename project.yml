@@ -123,8 +123,8 @@ targets:
           - nethack36/sys/share
         OTHER_CFLAGS:
           - $(inherited)
-          - "-D'SYSCF_NOT_USED=1'"
-          - "-U'SYSCF'"
+          - "-include"
+          - "${SRCROOT}/compiler_overrides.h"
 
     sources:
       - path: nethack36/include

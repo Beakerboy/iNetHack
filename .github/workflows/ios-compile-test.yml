@@ -23,8 +23,7 @@ jobs:
           echo "#define MAIL" >> include/config.h
           echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
-          make data
-          make dungeon
+          make all
           cd ..
 
       - name: Compile and Run Tilemap Generator

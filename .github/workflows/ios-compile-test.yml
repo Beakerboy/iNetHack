@@ -25,6 +25,7 @@ jobs:
           make makedefs
           make all
           cd ..
+          diff -qr ./nethack ./nethack36
 
       - name: Compile and Run Tilemap Generator
         run: |

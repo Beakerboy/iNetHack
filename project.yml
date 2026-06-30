@@ -135,3 +135,7 @@ targets:
         name: nethack36/sys/share
         includes:
           - "posixregex.c"
+      - path: nethack36/sys/unix
+        name: nethack36/sys/unix
+        includes:
+          - "unixmain.c"

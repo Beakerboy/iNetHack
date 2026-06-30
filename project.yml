@@ -84,7 +84,6 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
         PRODUCT_BUNDLE_IDENTIFIER: com.beakerboy.inethack2
-        GCC_CFLAGS: -USYSCF
 
       configs:
         Debug:
@@ -122,6 +121,10 @@ targets:
           - $(inherited)
           - nethack36/include
           - nethack36/sys/share
+        OTHER_CFLAGS:
+          - $(inherited)
+          - "-D'SYSCF_NOT_USED=1'"
+          - "-U'SYSCF'"
 
     sources:
       - path: nethack36/include

@@ -73,7 +73,7 @@ targets:
         SWIFT_OBJC_BRIDGING_HEADER: Classes/iNetHack2-Bridging-Header.h
         HEADER_SEARCH_PATHS:
           - $(inherited)
-          - nethack/include
+          - nethack36/include
           - Classes/win/iphone
         MACH_O_TYPE: mh_execute
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -114,16 +114,15 @@ targets:
       base:
         HEADER_SEARCH_PATHS:
           - $(inherited)
-          - nethack/include
-          - nethack/win/iphone
-          - nethack/sys/share
+          - nethack36/include
+          - nethack36/sys/share
 
     sources:
-      - path: nethack/include
-        name: nethack/include
-      - path: nethack/src
-        name: nethack/src
-      - path: nethack/sys/share
-        name: nethack/sys/share
+      - path: nethack36/include
+        name: nethack36/include
+      - path: nethack36/src
+        name: nethack36/src
+      - path: nethack36/sys/share
+        name: nethack36/sys/share
         includes:
           - "posixregex.c"

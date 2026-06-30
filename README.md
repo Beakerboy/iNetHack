@@ -15,6 +15,7 @@ http://code.google.com/p/inethack/
 
 * Kevin Hill http://chronosoft.com
 * Ciarán Walsh http://ciaranwal.sh
+* Kevin Nowaczyk http://beakerboy.com
 
 The NetHack core code is included in the directory `nethack`. It was patched for 32/64/bit compatibility in 2015 by Jeff King.
 

@@ -24,9 +24,8 @@ jobs:
           echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
           make data
-          cd util
           make dungeon
-          cd ../..
+          cd ..
 
       - name: Compile and Run Tilemap Generator
         run: |

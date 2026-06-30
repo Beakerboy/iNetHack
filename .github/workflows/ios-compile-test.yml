@@ -19,7 +19,7 @@ jobs:
       - name: Compile and Run Makedefs
         run: |
           cd nethack36
-          sh sys/unix/setup.sh sys/unix/hints/macos
+          sh sys/unix/setup.sh sys/unix/hints/macosx
           make makedefs
           ./makedefs
           rm makedefs

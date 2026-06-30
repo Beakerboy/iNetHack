@@ -21,26 +21,10 @@ jobs:
           cd nethack36
           sh sys/unix/setup.sh sys/unix/hints/macosx
           echo "#define MAIL" >> include/config.h
+          echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
-          cd util
-          ./makedefs -o
-          ./makedefs -d
-          ./makedefs -e
-          ./makedefs -v
-          ./makedefs -p
-          ./makedefs -q
-          ./makedefs -r
-          ./makedefs -s
-          ./makedefs -h
-          ./makedefs -z
-          rm makedefs
-          cd ..
-
-      - name: Compile and Run Makedefs
-        run: |
-          cd nethack36
           make data
-          cd ..
+          make levels
 
       - name: Compile and Run Tilemap Generator
         run: |

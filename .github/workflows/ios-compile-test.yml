@@ -21,7 +21,7 @@ jobs:
           cd nethack36
           sh sys/unix/setup.sh sys/unix/hints/macosx
           make makedefs
-          ./makedefs
+          ./util/makedefs -p
           rm makedefs
           cd ..
 

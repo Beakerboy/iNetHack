@@ -25,12 +25,12 @@ jobs:
           cd util
           ./makedefs -o
           ./makedefs -e
+          ./makedefs -v
           ./makedefs -p
           ./makedefs -q
           ./makedefs -r
           ./makedefs -s
-          ./makedefs -s
-          ./makedefs -v
+          ./makedefs -h
           ./makedefs -z
           rm makedefs
           cd ..

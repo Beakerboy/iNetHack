@@ -1,0 +1,4 @@
+[submodule "nethack36"]
+    path = nethack36
+    url = https://github.com/NetHack/NetHack
+    branch = NetHack-3.6

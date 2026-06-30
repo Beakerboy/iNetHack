@@ -12,7 +12,12 @@ configs:
     name: Distribution
 
 settings:
+
   base:
+    GCC_PREPROCESSOR_DEFINITIONS:
+      - $(inherited)
+      - MAIL=1
+      - SELF_RECOVER=1
     CLANG_ENABLE_OBJC_ARC: NO
     SDKROOT: iphoneos
     IPHONEOS_DEPLOYMENT_TARGET: "12.0"

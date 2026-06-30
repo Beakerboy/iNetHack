@@ -24,7 +24,7 @@ jobs:
           echo "#define MAIL" >> include/config.h
           echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
-          make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs quest_levs dungeon
+          make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
           cd ..
           diff -qr ./nethack ./nethack36
 

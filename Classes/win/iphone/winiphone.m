@@ -1069,3 +1069,5 @@ void iphone_main() {
 boolean authorize_wizard_mode() {
     return 0;
 }
+
+void do_deferred_showpaths(int val) {}

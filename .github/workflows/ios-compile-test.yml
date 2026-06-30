@@ -16,7 +16,7 @@ jobs:
 
       - name: Compile and Run Tilemap Generator
         run: |
-          cd nethack/win
+          cd nethack36/win
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
           ./tilemap_generator
           rm tilemap_generator

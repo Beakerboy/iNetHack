@@ -37,6 +37,11 @@ jobs:
           rm tilemap_generator
           cd ../..
 
+      - name: Create Native Compiler Macro Override
+        run: |
+          # Create a custom file that wraps and kills the submodule configuration macro
+          echo "#undef SYSCF" > compiler_overrides.h
+
       - name: Generate Xcode Project File
         run: xcodegen generate
 

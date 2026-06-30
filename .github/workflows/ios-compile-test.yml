@@ -35,6 +35,12 @@ jobs:
           rm makedefs
           cd ..
 
+      - name: Compile and Run Makedefs
+        run: |
+          cd nethack36
+          make level
+          cd ..
+
       - name: Compile and Run Tilemap Generator
         run: |
           cd nethack36/win

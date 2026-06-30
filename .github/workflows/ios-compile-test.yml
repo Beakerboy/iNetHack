@@ -20,9 +20,9 @@ jobs:
         run: |
           cd nethack36
           sh sys/unix/setup.sh sys/unix/hints/macosx
-          echo "#define MAIL" >> include/config.h
           make makedefs
           cd util
+          ./makedefs -o
           ./makedefs -o
           ./makedefs -e
           ./makedefs -v

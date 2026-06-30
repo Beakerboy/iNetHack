@@ -74,7 +74,7 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(inherited)
           - nethack/include
-          - nethack/win/iphone
+          - Classes/win/iphone
         MACH_O_TYPE: mh_execute
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
@@ -127,17 +127,3 @@ targets:
         name: nethack/sys/share
         includes:
           - "posixregex.c"
-      - path: nethack/win
-        name: nethack/win
-        excludes:
-          - "**/Qt/**"
-          - "**/Qt4/**"
-          - "**/X11/**"
-          - "**/curses/**"
-          - "**/gem/**"
-          - "**/gnome/**"
-          - "**/proxy/**"
-          - "**/tty/**"
-          - "**/chain/**"
-          - "**/win32/**"
-          - "**/share/**"

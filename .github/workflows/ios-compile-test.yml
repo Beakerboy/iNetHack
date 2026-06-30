@@ -24,6 +24,8 @@ jobs:
           cd util
           ./makedefs -p
           ./makedefs -o
+          ./makedefs -v
+          ./makedefs -z
           rm makedefs
           cd ..
 

@@ -25,6 +25,7 @@ jobs:
           echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
           make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
+          make clean
           cd ..
           diff -qr ./nethack ./nethack36
 

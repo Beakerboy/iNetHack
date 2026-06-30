@@ -23,6 +23,7 @@ jobs:
           make makedefs
           cd util
           ./makedefs -p
+          ./makedefs -o
           rm makedefs
           cd ..
 

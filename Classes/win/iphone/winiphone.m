@@ -1065,3 +1065,7 @@ void iphone_main() {
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
 }
+
+boolean authorize_wizard_mode() {
+    return 0
+}

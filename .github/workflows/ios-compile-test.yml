@@ -23,7 +23,7 @@ jobs:
           echo "CFLAGS += -Wno-strict-prototypes -Wno-deprecated-non-prototype" >> sys/unix/hints/macosx
           sh sys/unix/setup.sh sys/unix/hints/macosx
           #echo "#define MAIL" >> include/config.h
-          echo "#define SELF_RECOVER" >> include/config.h
+          #echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
           make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
           make clean

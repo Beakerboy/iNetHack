@@ -123,8 +123,6 @@ targets:
         name: nethack36/include
       - path: nethack36/src
         name: nethack36/src
-      - path: Classes/win/iphone
-        name: Classes/win/iphone
       - path: nethack36/sys/share
         name: nethack36/sys/share
         includes:

@@ -101,8 +101,6 @@ targets:
         optional: true
       - path: Resources
         name: Resources
-      - path: nethack36/win/iphone
-        name: nethack36/win/iphone
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE
@@ -117,7 +115,7 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(inherited)
           - nethack36/include
-          - nethack36/win/iphone
+          - Classes/win/iphone
           - nethack36/sys/share
 
     sources:
@@ -125,8 +123,8 @@ targets:
         name: nethack36/include
       - path: nethack36/src
         name: nethack36/src
-      - path: nethack36/win/iphone
-        name: nethack36/win/iphone
+      - path: Classes/win/iphone
+        name: Classes/win/iphone
       - path: nethack36/sys/share
         name: nethack36/sys/share
         includes:

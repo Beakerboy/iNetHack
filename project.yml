@@ -124,7 +124,7 @@ targets:
       - path: nethack36/src
         name: nethack36/src
       - path: nethack36/win/iphone
-        name: nethack63/win/iphone
+        name: nethack36/win/iphone
       - path: nethack36/sys/share
         name: nethack36/sys/share
         includes:

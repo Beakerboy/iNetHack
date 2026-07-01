@@ -18,7 +18,6 @@ jobs:
 
       - name: Compile and Run Makedefs
         run: |
-          cp -r nethack/* nethack36/
           #diff -qr ./nethack ./nethack36
           cd nethack36
           echo "CFLAGS += -Wno-strict-prototypes -Wno-deprecated-non-prototype" >> sys/unix/hints/macosx
@@ -37,6 +36,7 @@ jobs:
           ./tilemap_generator
           rm tilemap_generator
           cd ../..
+          cp -r nethack/* nethack36/
 
       - name: Generate Xcode Project File
         run: xcodegen generate

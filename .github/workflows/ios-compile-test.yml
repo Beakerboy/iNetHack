@@ -27,7 +27,7 @@ jobs:
           make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
           make clean
           cd ..
-          #diff -qr ./nethack ./nethack36
+          diff -qr ./nethack ./nethack36
 
       - name: Compile and Run Tilemap Generator
         run: |

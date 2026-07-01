@@ -1065,13 +1065,3 @@ void iphone_main() {
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
 }
-
-boolean authorize_wizard_mode() {
-    return 0;
-}
-
-void do_deferred_showpaths(int val) {}
-
-void port_insert_pastebuf(buf)
-char *buf;
-{}

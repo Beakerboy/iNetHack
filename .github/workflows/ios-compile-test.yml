@@ -38,6 +38,7 @@ jobs:
           cd ../..
           cp nethack/src/* nethack36/src
           cp nethack/include/* nethack36/include
+          cp -r nethack/win/iphone nethack36/win
 
       - name: Generate Xcode Project File
         run: xcodegen generate

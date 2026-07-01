@@ -1071,3 +1071,4 @@ boolean authorize_wizard_mode() {
 }
 
 void do_deferred_showpaths(int val) {}
+void port_insert_pastebuf(buf) {}

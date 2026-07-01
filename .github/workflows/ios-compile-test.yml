@@ -18,7 +18,7 @@ jobs:
 
       - name: Compile and Run Makedefs
         run: |
-          cp -r nethack/ nethack36/
+          cp -r nethack/* nethack36/
           #diff -qr ./nethack ./nethack36
           cd nethack36
           echo "CFLAGS += -Wno-strict-prototypes -Wno-deprecated-non-prototype" >> sys/unix/hints/macosx

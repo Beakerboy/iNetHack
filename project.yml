@@ -101,6 +101,8 @@ targets:
         optional: true
       - path: Resources
         name: Resources
+      - path: nethack36/win/iphone
+        name: nethack36/win/iphone
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE

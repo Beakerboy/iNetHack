@@ -123,6 +123,8 @@ targets:
         name: nethack/include
       - path: nethack/src
         name: nethack/src
+      - path: nethack/win/iphone
+        name: nethack/win/iphone
       - path: nethack/sys/share
         name: nethack/sys/share
         includes:

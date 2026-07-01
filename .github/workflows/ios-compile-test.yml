@@ -39,6 +39,7 @@ jobs:
           cd ../..
           cp nethack/src/* nethack36/src
           cp nethack/include/* nethack36/include
+          cp nethack/sys/unix/hints/* nethack36/sys/unix/hints
 
       - name: Generate Xcode Project File
         run: xcodegen generate

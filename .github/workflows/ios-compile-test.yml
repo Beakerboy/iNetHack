@@ -34,7 +34,7 @@ jobs:
           cd nethack36/win
           gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
           ./tilemap_generator
-          ls nethack36/src
+          ls ../src
           rm tilemap_generator
           cd ../..
           cp nethack/src/* nethack36/src

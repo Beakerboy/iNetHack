@@ -14,6 +14,19 @@ jobs:
       - name: Install XcodeGen
         run: brew install xcodegen
 
+      - name: Compile and Run Makedefs
+        run: |
+          cd nethack36
+          echo "CFLAGS += -Wno-strict-prototypes -Wno-deprecated-non-prototype" >> sys/unix/hints/macosx
+          sh sys/unix/setup.sh sys/unix/hints/macosx
+          echo "#define MAIL" >> include/config.h
+          echo "#define SELF_RECOVER" >> include/config.h
+          make makedefs
+          make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
+          make clean
+          cd ..
+          #diff -qr ./nethack ./nethack36
+
       - name: Compile and Run Tilemap Generator
         run: |
           cd nethack/win

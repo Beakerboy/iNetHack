@@ -36,7 +36,8 @@ jobs:
           ./tilemap_generator
           rm tilemap_generator
           cd ../..
-          cp -r nethack/* nethack36/
+          cp nethack/src/* nethack36/src
+          cp nethack/include/* nethack36/include
 
       - name: Generate Xcode Project File
         run: xcodegen generate

@@ -31,16 +31,14 @@ jobs:
 
       - name: Compile and Run Tilemap Generator
         run: |
-          cp nethack/win/share/* nethack36/win/share
           cp nethack/include/* nethack36/include
           cp nethack/src/* nethack36/src
           cd nethack36/win
-          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
+          gcc -I../include -I../src -Wp,-w -DSTATUES_LOOK_LIKE_MONSTERS share/tilemap.c -o tilemap_generator
           ./tilemap_generator
           ls ../src
           rm tilemap_generator
           cd ../..
-          #cp nethack/sys/unix/hints/* nethack36/sys/unix/hints
 
       - name: Generate Xcode Project File
         run: xcodegen generate

@@ -52,7 +52,6 @@
 #define kOptionUsername (@"username")
 #define kOptionAutopickup (@"autopickup")
 #define kOptionPickupTypes (@"pickupTypes")
-#define kOptionBoulderSym (@"boulderSym")
 #define kOptionTravel (@"travel")
 #define kOptionPickupThrown (@"pickupThrown")
 #define kOptionWizard (@"wizard")
@@ -177,7 +176,6 @@ genl_can_suspend_no,
 	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 								@"YES", kOptionAutopickup,
 								@"$\"=/!?+", kOptionPickupTypes,
-                                @"`", kOptionBoulderSym,
                                 @"YES", kOptionTravel,
                                 @"YES", kOptionPickupThrown,
 								@"YES", kOptionAutokick,
@@ -593,25 +591,6 @@ void iphone_init_options() {
     flags.verbose = TRUE;
     iflags.toptenwin = TRUE;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //iNethack2: custom boulder symbol
-    NSString *boulderSym = [defaults objectForKey:kOptionBoulderSym];
-    if (boulderSym==NULL)
-        boulderSym=@"`";
-    const char *bould = [boulderSym UTF8String];
-    boulderSym = [boulderSym substringToIndex:1];
-    //Update user preference to ensure it's only 1 character long
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"boulderSym"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:boulderSym forKey:@"boulderSym"];
-    }
-    iflags.bouldersym = (uchar) bould[0];
-    
-    // Nethack 36: custom boulders work different now.
-    if (![boulderSym isEqual: @"`"]) {
-        ov_primary_syms[SYM_BOULDER + SYM_OFF_X] = (nhsym) iflags.bouldersym;
-        ov_rogue_syms[SYM_BOULDER + SYM_OFF_X] = (nhsym) iflags.bouldersym;
-        init_primary_symbols();
-        init_showsyms();
-    }
 
     //iNethack2: pickup_thrown setting
     flags.pickup_thrown = [defaults boolForKey:kOptionPickupThrown];

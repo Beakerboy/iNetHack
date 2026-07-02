@@ -22,8 +22,6 @@ jobs:
           cd nethack36
           echo "CFLAGS += -Wno-strict-prototypes -Wno-deprecated-non-prototype" >> sys/unix/hints/macosx
           sh sys/unix/setup.sh sys/unix/hints/macosx
-          #echo "#define MAIL" >> include/config.h
-          #echo "#define SELF_RECOVER" >> include/config.h
           make makedefs
           make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
           make clean
@@ -46,10 +44,7 @@ jobs:
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: "Step 1: Clean Build Environment"
-        run: echo "Environment verified. Structural data present."
-
-      - name: "Step 2: Compile App for Physical iPhone Hardware"
+      - name: "Compile App for Physical iPhone Hardware"
         run: |
           xcodebuild build \
             -project "iNetHack2.xcodeproj" \
@@ -65,14 +60,14 @@ jobs:
             COMPILER_INDEX_STORE_ENABLE=NO \
             -quiet
 
-      - name: "Step 3: Package App Layout into an .ipa Installer"
+      - name: "Package App Layout into an .ipa Installer"
         run: |
           rm -rf Payload
           mkdir -p Payload
           cp -r "${{ github.workspace }}/build_output/Build/Products/Debug-iphoneos/iNetHack2.app" Payload/
           zip -r iNetHack2.ipa Payload
 
-      - name: "Step 4: Upload Installer to GitHub Actions"
+      - name: "Upload Installer to GitHub Actions"
         uses: actions/upload-artifact@v4
         with:
           name: iNetHack2-iPhone-Installer

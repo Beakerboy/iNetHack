@@ -43,6 +43,7 @@
 	NSString *dogName = [defaults stringForKey:@"dogname"];
 	NSString *catName = [defaults stringForKey:@"catname"];
 	NSString *horseName = [defaults stringForKey:@"horsename"];
+	NSString *boulderSym = [defaults stringForKey:@"boulderSym"];
 	NSMutableArray *activeOptions = [NSMutableArray array];
 	
 	if (startAsBlind) {
@@ -66,6 +67,10 @@
 	if (horseName && [horseName length] > 0) {
         NSString *horseOption = [NSString stringWithFormat:@"horsename:%@", horseName];
         [activeOptions addObject:horseOption];
+    }
+	if (boulderSym && ![boulderSym isEqualToString:@"`"]) {
+        NSString *boulderOption = [NSString stringWithFormat:@"boulder:%@", boulderSym];
+        [activeOptions addObject:boulderOption];
     }
 	if ([activeOptions count] > 0) {
 	    NSString *optionsString = [activeOptions componentsJoinedByString:@","];

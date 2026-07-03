@@ -10,15 +10,31 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Install XcodeGen
         run: brew install xcodegen
 
+      - name: Compile and Run Makedefs
+        run: |
+          #diff -qr ./nethack ./nethack36
+          cd nethack36
+          echo "CFLAGS += -Wno-strict-prototypes -Wno-deprecated-non-prototype" >> sys/unix/hints/macosx
+          sh sys/unix/setup.sh sys/unix/hints/macosx
+          make makedefs
+          make bogusmon data engrave epitaph rumors quest.dat oracles options spec_levs dungeon
+          make clean
+          cd ..
+
       - name: Compile and Run Tilemap Generator
         run: |
-          cd nethack/win
-          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
+          cp nethack/include/* nethack36/include
+          cp nethack/src/* nethack36/src
+          cd nethack36/win
+          gcc -I../include -I../src -Wp,-w -DSTATUES_LOOK_LIKE_MONSTERS share/tilemap.c -o tilemap_generator
           ./tilemap_generator
+          ls ../src
           rm tilemap_generator
           cd ../..
 
@@ -28,10 +44,7 @@ jobs:
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: "Step 1: Clean Build Environment"
-        run: echo "Environment verified. Structural data present."
-
-      - name: "Step 2: Compile App for Physical iPhone Hardware"
+      - name: "Compile App for Physical iPhone Hardware"
         run: |
           xcodebuild build \
             -project "iNetHack2.xcodeproj" \
@@ -47,14 +60,14 @@ jobs:
             COMPILER_INDEX_STORE_ENABLE=NO \
             -quiet
 
-      - name: "Step 3: Package App Layout into an .ipa Installer"
+      - name: "Package App Layout into an .ipa Installer"
         run: |
           rm -rf Payload
           mkdir -p Payload
           cp -r "${{ github.workspace }}/build_output/Build/Products/Debug-iphoneos/iNetHack2.app" Payload/
           zip -r iNetHack2.ipa Payload
 
-      - name: "Step 4: Upload Installer to GitHub Actions"
+      - name: "Upload Installer to GitHub Actions"
         uses: actions/upload-artifact@v4
         with:
           name: iNetHack2-iPhone-Installer

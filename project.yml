@@ -84,6 +84,12 @@ targets:
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES
+        Release:
+          VALIDATE_PRODUCT: YES
+          DEPLOYMENT_POSTPROCESSING: YES
+        Distribution:
+          VALIDATE_PRODUCT: YES
+          DEPLOYMENT_POSTPROCESSING: YES
 
     postBuildScripts:
       - name: "Copy NetHack Game Data Flat to App Root"

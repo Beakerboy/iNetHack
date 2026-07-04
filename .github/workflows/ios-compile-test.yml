@@ -2,8 +2,6 @@ name: iOS App Compilation & Packaging
 
 on:
   push:
-    branches: [ main, dev ]
-  pull_request:
 
 jobs:
   build-ipa:

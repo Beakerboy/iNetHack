@@ -1,6 +1,6 @@
 # README
 
-This is iNetHack, the NetHack iOS port, originally released in 2009.
+This is iNetHack, thee NetHack iOS port, originally released in 2009.
 
 This project has been moved from:
 

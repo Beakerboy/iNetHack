@@ -1,0 +1,83 @@
+name: iOS App Compilation & Packaging
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+
+jobs:
+  build-ipa:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Compile and Run Tilemap Generator
+        run: |
+          # 1. Compile tilemap.c natively on the runner host
+          cd nethack/win
+          gcc -I../include -I../src -Wp,-w share/tilemap.c -o tilemap_generator
+        
+          # 2. Execute the generator to output the missing tile mapping files
+          ./tilemap_generator
+        
+          # 3. Verify the generated file exists in the expected path
+          cd ..
+          ls -la src/
+          cd ..
+
+      - name: Force Xcode Version
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Fix Misplaced Entitlements Warning
+        run: |
+          sed -i '' '/Entitlements.pbxproj/d' iNetHack.xcodeproj/project.pbxproj || true
+          sed -i '' '/Entitlements.plist/d' iNetHack.xcodeproj/project.pbxproj || true
+
+      - name: "Step 1: Initialize Source and Sandbox Mock Assets"
+        run: |
+          mkdir -p dat lib nethack/dat nethack/lib
+          echo "mock data" > dat/nhdat
+          echo "mock library" > lib/placeholder.txt
+          echo "mock data" > nethack/dat/nhdat
+          echo "mock library" > nethack/lib/placeholder.txt
+
+          # Pre-build target structure for the real phone deployment path
+          mkdir -p build_output/Build/Products/Debug-iphoneos/iNetHack2.app/lib
+          echo "mock data" > build_output/Build/Products/Debug-iphoneos/iNetHack2.app/nhdat
+          echo "mock library" > build_output/Build/Products/Debug-iphoneos/iNetHack2.app/lib/placeholder.txt
+
+      - name: "Step 2: Compile App for Physical iPhone Hardware"
+        run: |
+          # We change the SDK to 'iphoneos' and target generic iOS devices 
+          # so Xcode generates an arm64 binary for real phone processors.
+          xcodebuild build \
+            -project "iNetHack.xcodeproj" \
+            -scheme "iNetHack2" \
+            -configuration Debug \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath "build_output" \
+            ONLY_ACTIVE_ARCH=NO \
+            ARCHS="arm64" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            XCODE_BUILD_SYSTEM_ENABLE_EAGER_LINKING=NO
+
+      - name: "Step 3: Package App Layout into an .ipa Installer"
+        run: |
+          # iOS requires the .app folder to live inside a folder named 'Payload' 
+          # inside the zip archive to recognized it as an installable app (.ipa)
+          mkdir -p Payload
+          cp -r build_output/Build/Products/Debug-iphoneos/iNetHack2.app Payload/
+          zip -r iNetHack2.ipa Payload
+
+      - name: "Step 4: Upload Installer to GitHub Actions"
+        uses: actions/upload-artifact@v4
+        with:
+          name: iNetHack2-iPhone-Installer
+          path: iNetHack2.ipa

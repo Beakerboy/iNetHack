@@ -87,9 +87,6 @@ targets:
         Release:
           VALIDATE_PRODUCT: YES
           DEPLOYMENT_POSTPROCESSING: YES
-        Distribution:
-          VALIDATE_PRODUCT: YES
-          DEPLOYMENT_POSTPROCESSING: YES
 
     postBuildScripts:
       - name: "Copy NetHack Game Data Flat to App Root"

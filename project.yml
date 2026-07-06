@@ -140,3 +140,29 @@ targets:
         name: nethack36/sys/share
         includes:
           - "posixregex.c"
+
+ # =========================================================================
+  # 2. THE ISOLATED NETHACK 3.4 ENGINE
+  # =========================================================================
+  NetHackEngine34:
+    type: library.static
+    platform: iOS
+    deploymentTarget: "12.0"
+    
+    settings:
+      base:
+        HEADER_SEARCH_PATHS:
+          - $(inherited)
+          - nethack34/include
+          - Classes/win/iphone
+          - nethack34/sys/share
+
+    sources:
+      - path: nethack34/include
+        name: nethack34/include
+      - path: nethack34/src
+        name: nethack34/src
+      - path: nethack34/sys/share
+        name: nethack34/sys/share
+        includes:
+          - "posixregex.c"

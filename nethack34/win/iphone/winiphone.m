@@ -896,3 +896,13 @@ void iphone_main() {
 	}
 	return c;
 }
+
+void
+custom_mapglyph(glyph, ochar, ocolor, ospecial, x, y, flag)
+int glyph, flag;
+*ocolor, x, y;
+int *ochar;
+unsigned *ospecial;
+{
+    mapglyph(g, &ochar, &ocolor, &special, x, y);
+}

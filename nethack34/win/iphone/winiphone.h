@@ -72,16 +72,12 @@ void iphone_finished_bones(const char *bonesid);
 void iphone_test_main();
 void iphone_main();
 int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
-#ifdef __OBJC__
-#import <Foundation/Foundation.h> // Added to ensure NSObject and NSString are recognized
-#import <UIKit/UIKit.h>           // Added to ensure UITableView and NSInteger are recognized
 
 @interface WinIPhone : NSObject {}
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 @end
-#endif
 
 void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache
 void iphone_haptic_reset();

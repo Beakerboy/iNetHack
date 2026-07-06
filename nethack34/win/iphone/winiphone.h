@@ -20,7 +20,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
-void more();
+
 #include "hack.h"
 
 void iphone_init_nhwindows(int* argc, char** argv);
@@ -72,6 +72,7 @@ void iphone_finished_bones(const char *bonesid);
 void iphone_test_main();
 void iphone_main();
 int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
+void more(void);
 #ifdef __OBJC__
 // This block will be completely ignored by C files, 
 // but read perfectly by Objective-C files

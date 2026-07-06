@@ -107,6 +107,13 @@ targets:
         name: Resources
         excludes:
           - "Tilesets/nethack34/**"
+          - "Tilesets/nethack36/**"
+      - path: Resources/Tilesets/nethack34
+        name: Resources/Tilesets/nethack34
+        type: folder
+      - path: Resources/Tilesets/nethack36
+        name: Resources/Tilesets/nethack36
+        type: folder
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE

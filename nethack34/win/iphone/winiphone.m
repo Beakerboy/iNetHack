@@ -696,9 +696,7 @@ void iphone_reset_glyph_cache() {
 	[[MainViewController instance] resetGlyphCache];
 }
 
-void iphone_haptic_reset() {
-    hapticEngine = nil;
-}
+void iphone_haptic_reset() {}
 
 boolean
 check_version_64(version_data, filename, complain)

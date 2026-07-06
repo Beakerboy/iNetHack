@@ -89,7 +89,7 @@ extern short glyph2tile[];
 		}
 		if (menuWindow.acceptMoney) {
 			any.a_int = '$';
-            NSString *title = [NSString stringWithFormat:@"%d %s ($)", (int) money_cnt(invent), currency(u.umoney0)];
+            NSString *title = universal_money_string(invent);
 
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
 																glyph:kNoGlyph isMeta:YES preselected:NO];

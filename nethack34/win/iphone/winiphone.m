@@ -149,15 +149,19 @@ genl_preference_update,
 }
 
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	struct ext_func_tab *f = extcmdlist;
+	iphone_tableview()
+}
+@end
+
+int iphone_tableview() {
+    struct ext_func_tab *f = extcmdlist;
 	int c = 0;
 	while (f++->ef_txt) {
 		c++;
 	}
 	return c;
 }
-@end
-
+	
 FILE *iphone_fopen(const char *filename, const char *mode) {
 	NSString *path = [[NSBundle mainBundle]
 					  pathForResource:[NSString stringWithCString:filename encoding:NSASCIIStringEncoding] ofType:@""];

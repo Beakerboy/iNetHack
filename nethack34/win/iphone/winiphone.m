@@ -123,13 +123,6 @@ iphone_outrip,
 genl_preference_update,
 };
 
-@interface WinIPhone : NSObject {}
-
-+ (void) triggerInitialize;
-+ (NSString *)universalMoneyString;
-+ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-@end
-
 @implementation WinIPhone
 
 + (void) triggerInitialize {

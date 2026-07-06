@@ -78,5 +78,6 @@ void iphone_main();
 @end
 
 void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache
+void iphone_haptic_reset();
 #define VERSION_SANITY2_64 0xb8d26958UL //iNethack2: the versioninfo string for 64-bit bones
 

@@ -886,5 +886,5 @@ long
 money_cnt(otmp)
 struct obj *otmp;
 {
-    return u.umoney0
+    return u.ugold
 }

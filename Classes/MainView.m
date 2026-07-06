@@ -74,113 +74,242 @@
 }
 
 /**
- * @brief Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.
+ * @brief Performs runtime initialization after the view has been loaded from a nib.
  *
- * This method handles the core runtime initialization for the game view. It loads configuration 
- * values from user defaults, enforces strict tile size constraints, instantiates caching layers, 
- * resolves and loads the active graphical or ASCII tileset asset, and injects required subviews.
- *
- * @details The initialization flow performs the following actions in sequence:
- * - **Version & Typography:** Caches the application's bundle version string and defaults the status font.
- * - **Tile Size Geometry:** Sets strict structural bounds (`minTileSize`, `maxTileSize`) and initializes 
- *   the default active `tileSize` bounded tightly within those limits.
- * - **Caching Infrastructure:** Spawns `NSCache` instance layers (`cache`, `cache2`) for rapid glyph 
- *   and animation frame retrieval.
- * - **Tileset Parsing:** Detects if the chosen asset is text-based (ASCII, IBM Graphics) or image-based, 
- *   overriding dimension rules dynamically (e.g., standard sizing vs. elongated IBM DOS configurations).
- * - **Subviews:** Directs the immediate generation and injection of helper overlay subviews like `shortcutView`.
- *
- * @note This implementation overrides the standard application constraints dynamically to support a boosted 
- *       maximum zoom-in factor targeted specifically for the `iNethack2` variant.
- *
- * @see initialize
- * @see initWithFrame:
- * @see kKeyTileSize
- * @see kKeyTileset
+ * This method orchestrates initialization of application state, tile geometry,
+ * caches, tileset resources, and helper subviews required by the game view.
  */
-- (void) awakeFromNib {
-	[super awakeFromNib];
-	
-	bundleVersionString = [[NSString alloc] initWithFormat:@"%@",
-						   [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
-	statusFont = [UIFont systemFontOfSize:16];
-	
-	// tileSize
-	maxTileSize = tilesetTileSize = CGSizeMake(32,32);
-    maxTileSize = CGSizeMake(48,48);    //iNethack2 increasing max zoom-in a little bit.
-	minTileSize = CGSizeMake(8,8);
-	offset = CGPointMake(0,0);
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    [self initializeRuntimeState];
+    [self initializeTileGeometry];
+    [self initializeCaches];
+    [self loadConfiguredTileset];
+    [self initializeSubviews];
+}
+
+/**
+ * @brief Initializes general runtime state.
+ *
+ * Retrieves application metadata, initializes default rendering fonts,
+ * and loads persistent rendering preferences from user defaults.
+ *
+ * @details
+ * Initializes:
+ * - bundleVersionString
+ * - statusFont
+ * - colorInvert
+ */
+- (void)initializeRuntimeState
+{
+    bundleVersionString =
+        [[NSString alloc] initWithFormat:@"%@",
+            [[NSBundle mainBundle]
+                objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+
+    statusFont = [UIFont systemFontOfSize:16];
+
     asciiTileset = NO;
     animatedTileset = NO;
-    colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
-    
-	float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
-	tileSize = CGSizeMake(ts,ts);
-	if (tileSize.width > maxTileSize.width) {
-		tileSize = maxTileSize;
-	} else if (tileSize.width < minTileSize.width) {
-		tileSize = minTileSize;
-	}
-    
-    cache = [NSCache new]; //iNethack2: glyph cache
-    
-	// load tileset
-	NSString *tilesetName = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyTileset];
-	if (!tilesetName) {
-		tilesetName = @"chozo32b";
-	}
+    ibmTileset = NO;
+
+    colorInvert =
+        [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
+}
+
+/**
+ * @brief Initializes tile sizing constraints.
+ *
+ * Configures the default minimum and maximum tile dimensions, restores the
+ * preferred tile size from user defaults, and clamps it to supported limits.
+ *
+ * @note IBM graphics tilesets may override these values later during
+ *       tileset loading.
+ */
+- (void)initializeTileGeometry
+{
+    tilesetTileSize = CGSizeMake(32, 32);
+
+    maxTileSize = CGSizeMake(48, 48);
+    minTileSize = CGSizeMake(8, 8);
+
+    offset = CGPointZero;
+
+    CGFloat ts =
+        [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
+
+    tileSize = CGSizeMake(ts, ts);
+
+    if (tileSize.width > maxTileSize.width)
+        tileSize = maxTileSize;
+    else if (tileSize.width < minTileSize.width)
+        tileSize = minTileSize;
+}
+
+/**
+ * @brief Creates glyph rendering caches.
+ *
+ * Allocates the primary cache used for glyph rendering.
+ * Secondary animation caches are created later only if an animated
+ * tileset is selected.
+ */
+- (void)initializeCaches
+{
+    cache = [NSCache new];
+}
+
+/**
+ * @brief Loads the user-selected tileset.
+ *
+ * Determines the configured tileset type, creates any animation caches,
+ * dispatches loading to either the ASCII or image-based loader, and
+ * populates the active tileset array.
+ */
+- (void)loadConfiguredTileset
+{
+    NSString *tilesetName =
+        [[NSUserDefaults standardUserDefaults] objectForKey:kKeyTileset];
+
+    if (!tilesetName)
+        tilesetName = @"chozo32b";
+
     if ([tilesetName hasSuffix:@"-anim"]) {
-        animatedTileset = true;
+        animatedTileset = YES;
         cache2 = [NSCache new];
     }
-    
-	if ([tilesetName isEqualToString:@"ascii"]
-        || [tilesetName isEqualToString:@"asciimono"]
-        || [tilesetName isEqualToString:@"ibmgraphics"]) {
-		asciiTileset = YES;
-        if ([tilesetName isEqualToString:@"ibmgraphics"]) {
-            ibmTileset = YES;
-            // Make the DOS font to look good.
-            tilesetTileSize = CGSizeMake(32,64);
-            maxTileSize = CGSizeMake(32,64);
-            minTileSize = CGSizeMake(4,8);
-            offset = CGPointMake(0,0);
-            float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
-            tileSize = CGSizeMake(ts,ts*2);
-        }
-        tileSet = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
-	} else {
-        asciiTileset = NO;
-        NSString *imgName = [NSString stringWithFormat:@"%@.png", tilesetName];
-        NSString *animImgName = [NSString stringWithFormat:@"%@1.png", tilesetName];
-		UIImage *tilesetImage = [UIImage imageNamed:imgName];
-		if (!tilesetImage) {
-			tilesetImage = [UIImage imageNamed:@"chozo32b.png"];
-			tilesetTileSize = CGSizeMake(32,32);
-			maxTileSize = tilesetTileSize;
-			[[NSUserDefaults standardUserDefaults] setObject:@"chozo32b" forKey:kKeyTileset];
-			[[NSUserDefaults standardUserDefaults] synchronize];
-		}
-        tileSet = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
-        if (animatedTileset) {
-            tilesetImage = [UIImage imageNamed:animImgName];
-            tileSetAnim = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
-        }
-	}
-	tileSets[0] = tileSet;
+
+    if ([tilesetName isEqualToString:@"ascii"] ||
+        [tilesetName isEqualToString:@"asciimono"] ||
+        [tilesetName isEqualToString:@"ibmgraphics"])
+    {
+        [self loadAsciiTileset:tilesetName];
+    }
+    else
+    {
+        [self loadImageTileset:tilesetName];
+    }
+
+    tileSets[0] = tileSet;
     tileSets[1] = nil;
 
-    if (animatedTileset) {
+    if (animatedTileset)
         tileSets[2] = tileSetAnim;
+}
+
+/**
+ * @brief Loads an ASCII-based tileset.
+ *
+ * Creates an AsciiTileSet using the current tile geometry.
+ *
+ * @param tilesetName
+ * The configured tileset name.
+ *
+ * @details
+ * IBM Graphics tilesets override the default tile geometry to preserve the
+ * aspect ratio of the DOS font.
+ */
+- (void)loadAsciiTileset:(NSString *)tilesetName
+{
+    asciiTileset = YES;
+
+    if ([tilesetName isEqualToString:@"ibmgraphics"]) {
+
+        ibmTileset = YES;
+
+        tilesetTileSize = CGSizeMake(32, 64);
+        maxTileSize = CGSizeMake(32, 64);
+        minTileSize = CGSizeMake(4, 8);
+
+        offset = CGPointZero;
+
+        CGFloat ts =
+            [[NSUserDefaults standardUserDefaults]
+                floatForKey:kKeyTileSize];
+
+        tileSize = CGSizeMake(ts, ts * 2);
     }
-	NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
-	petMark = [[UIImage alloc] initWithContentsOfFile:[bundlePath stringByAppendingPathComponent:@"petmark.png"]];
 
-	shortcutView = [[ShortcutView alloc] initWithFrame:CGRectZero];
-	[self addSubview:shortcutView];
+    tileSet =
+        [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
+}
 
-	// reuse the more button
-	moreButton = [[UIButton buttonWithType:UIButtonTypeDetailDisclosure] retain];
+/**
+ * @brief Loads an image-based tileset.
+ *
+ * Attempts to load the configured PNG tileset. If unavailable, the default
+ * Chozo tileset is restored and persisted in user defaults.
+ *
+ * Animated companion tilesets are loaded automatically when requested.
+ *
+ * @param tilesetName
+ * The configured tileset name.
+ */
+- (void)loadImageTileset:(NSString *)tilesetName
+{
+    asciiTileset = NO;
+
+    NSString *imageName =
+        [NSString stringWithFormat:@"%@.png", tilesetName];
+
+    NSString *animationName =
+        [NSString stringWithFormat:@"%@1.png", tilesetName];
+
+    UIImage *image = [UIImage imageNamed:imageName];
+
+    if (!image) {
+
+        image = [UIImage imageNamed:@"chozo32b.png"];
+
+        tilesetTileSize = CGSizeMake(32, 32);
+        maxTileSize = tilesetTileSize;
+
+        [[NSUserDefaults standardUserDefaults]
+            setObject:@"chozo32b"
+               forKey:kKeyTileset];
+
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
+    tileSet =
+        [[TileSet alloc] initWithImage:image
+                              tileSize:tilesetTileSize];
+
+    if (animatedTileset) {
+
+        UIImage *animImage =
+            [UIImage imageNamed:animationName];
+
+        tileSetAnim =
+            [[TileSet alloc] initWithImage:animImage
+                                  tileSize:tilesetTileSize];
+    }
+}
+
+/**
+ * @brief Creates helper UI objects used by the game view.
+ *
+ * Loads overlay artwork, creates the shortcut view, installs it into the
+ * view hierarchy, and creates the reusable disclosure button used for the
+ * "more" prompt.
+ */
+- (void)initializeSubviews
+{
+    NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
+
+    petMark =
+        [[UIImage alloc]
+            initWithContentsOfFile:
+                [bundlePath stringByAppendingPathComponent:@"petmark.png"]];
+
+    shortcutView =
+        [[ShortcutView alloc] initWithFrame:CGRectZero];
+
+    [self addSubview:shortcutView];
+
+    moreButton =
+        [[UIButton buttonWithType:UIButtonTypeDetailDisclosure] retain];
 }
 
 - (CGPoint) subViewedCenter {
@@ -352,16 +481,8 @@
 		for (int i = 0; i < m.width; ++i) {
 			int glyph = [m glyphAtX:i y:j];
 			if (glyph != kNoGlyph) {
-				/*
-				 // might be handy for debugging ...
-				int ochar, ocolor;
-				unsigned special;
-				mapglyph(glyph, &ochar, &ocolor, &special, i, j);
-				 */
 				CGRect r = CGRectMake(start.x+i*tileSize.width, start.y+j*tileSize.height, tileSize.width, tileSize.height);
 				if (CGRectIntersectsRect(clipRect, r)) {
-					//UIImage *img = [UIImage imageWithCGImage:[tileSet imageForGlyph:glyph atX:i y:j]];
-                    //UIImage * img = [self imageForGlyph:glyph size:r.size.width];
                     UIImage * img = [self imageForGlyph:glyph size:tilesetTileSize.width]; //use native width of tile rather than cache for each scaled size.
 
 					[img drawInRect:r];

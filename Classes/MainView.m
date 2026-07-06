@@ -37,6 +37,16 @@
 @synthesize status, map, message;
 @synthesize cache, cache2;
 
+**
+ * @brief Retrieves the current tile size configuration.
+ *
+ * Fetches the user-configured tile size from the standard user defaults. 
+ * If no custom value has been saved by the user, this returns the default 
+ * value (40.0f) registered during class initialization.
+ *
+ * @var ts Holds the retrieved tile size as a floating-point number.
+ * @see kKeyTileSize
+ */
 + (void) initialize {
 	@autoreleasepool {
 	[[NSUserDefaults standardUserDefaults]
@@ -44,6 +54,18 @@
 	}
 }
 
+/**
+ * @brief Initializes and returns a newly allocated view object with the specified frame rectangle.
+ *
+ * This is the designated initializer for the view. It calls the superclass's 
+ * initialization method and provides a designated location for custom setup code.
+ *
+ * @param frame The frame rectangle for the view, measured in points.
+ *
+ * @return An initialized view object, or `nil` if the object could not be created.
+ *
+ * @see initWithFrame:
+ */
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
@@ -51,6 +73,31 @@
     return self;
 }
 
+/**
+ * @brief Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.
+ *
+ * This method handles the core runtime initialization for the game view. It loads configuration 
+ * values from user defaults, enforces strict tile size constraints, instantiates caching layers, 
+ * resolves and loads the active graphical or ASCII tileset asset, and injects required subviews.
+ *
+ * @details The initialization flow performs the following actions in sequence:
+ * - **Version & Typography:** Caches the application's bundle version string and defaults the status font.
+ * - **Tile Size Geometry:** Sets strict structural bounds (`minTileSize`, `maxTileSize`) and initializes 
+ *   the default active `tileSize` bounded tightly within those limits.
+ * - **Caching Infrastructure:** Spawns `NSCache` instance layers (`cache`, `cache2`) for rapid glyph 
+ *   and animation frame retrieval.
+ * - **Tileset Parsing:** Detects if the chosen asset is text-based (ASCII, IBM Graphics) or image-based, 
+ *   overriding dimension rules dynamically (e.g., standard sizing vs. elongated IBM DOS configurations).
+ * - **Subviews:** Directs the immediate generation and injection of helper overlay subviews like `shortcutView`.
+ *
+ * @note This implementation overrides the standard application constraints dynamically to support a boosted 
+ *       maximum zoom-in factor targeted specifically for the `iNethack2` variant.
+ *
+ * @see initialize
+ * @see initWithFrame:
+ * @see kKeyTileSize
+ * @see kKeyTileset
+ */
 - (void) awakeFromNib {
 	[super awakeFromNib];
 	

@@ -906,3 +906,7 @@ unsigned *ospecial;
 {
     mapglyph(g, &ochar, &ocolor, &special, x, y);
 }
+
+void more()
+{
+}

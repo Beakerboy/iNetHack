@@ -1735,10 +1735,6 @@ long* out_cnt;
 
 	/* oxymoron? temporarily assign permanent inventory letters */
 	if (!flags.invlet_constant) reassign();
-
-#ifdef __APPLE__
-#include "TargetConditionals.h"
-#endif
 	
 #if !TARGET_OS_IPHONE
 	/* I would prefer this code to be removed for other window ports too.

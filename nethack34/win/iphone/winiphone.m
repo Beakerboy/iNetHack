@@ -1,5 +1,5 @@
 /*
- *  iphone.c
+ *  winiphone.m
  *  iNetHack
  *
  *  Created by dirk on 6/26/09.

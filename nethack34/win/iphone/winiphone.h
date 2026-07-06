@@ -72,7 +72,6 @@ void iphone_finished_bones(const char *bonesid);
 void iphone_test_main();
 void iphone_main();
 int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
-void more();
 #ifdef __OBJC__
 // This block will be completely ignored by C files, 
 // but read perfectly by Objective-C files

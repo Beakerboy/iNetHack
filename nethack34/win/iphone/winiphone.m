@@ -876,7 +876,7 @@ void iphone_main() {
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
 }
-
+#ifdef __OBJC__
 + (NSString *)universalMoneyString {
     return [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)];
 }
@@ -889,7 +889,7 @@ void iphone_main() {
 	}
 	return c;
 }
-
+#endif
 void
 custom_mapglyph(glyph, ochar, ocolor, ospecial, x, y, flag)
 int glyph, flag;

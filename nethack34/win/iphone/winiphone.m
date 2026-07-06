@@ -889,12 +889,12 @@ void iphone_main() {
 	exit(EXIT_SUCCESS);
 }
 
-void
+int
 custom_mapglyph(glyph, ochar, ocolor, ospecial, x, y, flag)
 int glyph, flag, *ocolor, x, y, *ochar;
 unsigned *ospecial;
 {
-    mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y);
+    return mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y);
 }
 
 void more(void) {

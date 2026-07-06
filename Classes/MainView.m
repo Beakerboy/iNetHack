@@ -37,7 +37,7 @@
 @synthesize status, map, message;
 @synthesize cache, cache2;
 
-**
+/**
  * @brief Retrieves the current tile size configuration.
  *
  * Fetches the user-configured tile size from the standard user defaults. 

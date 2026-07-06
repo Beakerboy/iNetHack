@@ -907,6 +907,6 @@ unsigned *ospecial;
     mapglyph(g, &ochar, &ocolor, &special, x, y);
 }
 
-void more()
-{
+void more(void) {
+    // Left empty on purpose to act as a do-nothing stub
 }

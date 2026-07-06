@@ -71,7 +71,7 @@ void iphone_finished_bones(const char *bonesid);
 
 void iphone_test_main();
 void iphone_main();
-
+int FDECL(mapglyph, (int, int *, int *, unsigned *, int, int, int));
 @interface WinIPhone : NSObject {}
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;

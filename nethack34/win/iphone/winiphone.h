@@ -20,7 +20,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
-
+#ifndef WINIPHONE_H
+#define WINIPHONE_H
 #include "hack.h"
 
 void iphone_init_nhwindows(int* argc, char** argv);
@@ -90,3 +91,4 @@ void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache
 void iphone_haptic_reset();
 #define VERSION_SANITY2_64 0xb8d26958UL //iNethack2: the versioninfo string for 64-bit bones
 
+#endif // WINIPHONE_H

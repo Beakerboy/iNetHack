@@ -20,7 +20,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
-
+void more();
 #include "hack.h"
 
 void iphone_init_nhwindows(int* argc, char** argv);

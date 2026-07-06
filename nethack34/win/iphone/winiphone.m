@@ -127,6 +127,7 @@ genl_preference_update,
 
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;
++ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 @end
 
 @implementation WinIPhone
@@ -883,6 +884,15 @@ void iphone_main() {
 	exit(EXIT_SUCCESS);
 }
 
-+(NSString *)universalMoneyString {
++ (NSString *)universalMoneyString {
     return [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)];
+}
+
++ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	struct ext_func_tab *f = extcmdlist;
+	int c = 0;
+	while (f++->ef_txt) {
+		c++;
+	}
+	return c;
 }

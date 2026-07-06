@@ -116,6 +116,8 @@ targets:
       - path: Resources/Tilesets/nethack36
         name: Resources/Tilesets/nethack36
         type: folder
+      - path: nethack34/win/iphone
+        name: nethack34/win/iphone
 
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE

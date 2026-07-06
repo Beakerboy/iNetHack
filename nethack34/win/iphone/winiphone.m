@@ -895,7 +895,7 @@ int glyph, flag, *ocolor, x, y, *ochar;
 unsigned *ospecial;
 {
     mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y);
-	return 0
+	return 0;
 }
 
 void more(void) {

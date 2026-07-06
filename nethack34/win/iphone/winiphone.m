@@ -149,7 +149,7 @@ genl_preference_update,
 }
 
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	iphone_tableview()
+	iphone_tableview();
 }
 @end
 

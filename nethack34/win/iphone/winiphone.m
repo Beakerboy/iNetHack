@@ -883,5 +883,5 @@ void iphone_main() {
 }
 
 +(NSString *)universalMoneyString {
-    return [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)]
+    return [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)];
 }

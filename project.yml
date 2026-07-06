@@ -58,7 +58,7 @@ targets:
     deploymentTarget: "12.0"
     
     dependencies:
-      - target: NetHackEngine36
+      - target: NetHackEngine34
       - sdk: Foundation.framework
       - sdk: UIKit.framework
       - sdk: CoreGraphics.framework
@@ -74,8 +74,8 @@ targets:
         SWIFT_OBJC_BRIDGING_HEADER: Classes/iNetHack2-Bridging-Header.h
         HEADER_SEARCH_PATHS:
           - $(inherited)
-          - nethack36/include
-          - nethack36/win/iphone
+          - nethack34/include
+          - nethack34/win/iphone
         MACH_O_TYPE: mh_execute
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
@@ -94,7 +94,7 @@ targets:
           set -e
           echo "=== Copying Data Files Flat into Application Container Root ==="
           # TARGET_BUILD_DIR/EXECUTABLE_FOLDER_PATH resolves directly to your built .app folder root
-          cp -f "${SRCROOT}/nethack36/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/"
+          cp -f "${SRCROOT}/nethack34/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/"
         runOnlyForDeploymentPostprocessing: false
 
     sources:
@@ -118,28 +118,28 @@ targets:
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.6 ENGINE
   # =========================================================================
-  NetHackEngine36:
-    type: library.static
-    platform: iOS
-    deploymentTarget: "12.0"
-    
-    settings:
-      base:
-        HEADER_SEARCH_PATHS:
-          - $(inherited)
-          - nethack36/include
-          - Classes/win/iphone
-          - nethack36/sys/share
+  #NetHackEngine36:
+  #  type: library.static
+  #  platform: iOS
+  #  deploymentTarget: "12.0"
+  #  
+  #  settings:
+  #    base:
+  #      HEADER_SEARCH_PATHS:
+  #        - $(inherited)
+  #        - nethack36/include
+  #        - Classes/win/iphone
+  #        - nethack36/sys/share
 
-    sources:
-      - path: nethack36/include
-        name: nethack36/include
-      - path: nethack36/src
-        name: nethack36/src
-      - path: nethack36/sys/share
-        name: nethack36/sys/share
-        includes:
-          - "posixregex.c"
+  #  sources:
+  #    - path: nethack36/include
+  #      name: nethack36/include
+  #    - path: nethack36/src
+  #      name: nethack36/src
+  #    - path: nethack36/sys/share
+  #      name: nethack36/sys/share
+  #      includes:
+  #        - "posixregex.c"
 
  # =========================================================================
   # 2. THE ISOLATED NETHACK 3.4 ENGINE

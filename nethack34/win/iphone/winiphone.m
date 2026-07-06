@@ -894,7 +894,7 @@ custom_mapglyph(glyph, ochar, ocolor, ospecial, x, y, flag)
 int glyph, flag, *ocolor, x, y, *ochar;
 unsigned *ospecial;
 {
-    mapglyph(g, &ochar, &ocolor, &special, x, y);
+    mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y);
 }
 
 void more(void) {

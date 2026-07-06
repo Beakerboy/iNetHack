@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "AsciiTileSet.h"
-#include "winiphone.h"
+#import "winiphone.h"
 #include "hack.h"
 #include "display.h"
 

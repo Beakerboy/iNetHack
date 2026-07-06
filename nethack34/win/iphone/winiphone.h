@@ -75,6 +75,7 @@ void iphone_main();
 @interface WinIPhone : NSObject {}
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;
++ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 @end
 
 void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache

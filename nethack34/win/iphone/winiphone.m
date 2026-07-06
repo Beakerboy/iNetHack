@@ -126,7 +126,7 @@ genl_preference_update,
 @interface WinIPhone : NSObject {}
 
 + (void) triggerInitialize;
-
++ (NSString *)universalMoneyString;
 @end
 
 @implementation WinIPhone

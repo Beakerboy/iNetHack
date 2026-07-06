@@ -881,3 +881,10 @@ void iphone_main() {
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
 }
+
+long
+money_cnt(otmp)
+struct obj *otmp;
+{
+    return u.umoney0
+}

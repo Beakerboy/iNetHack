@@ -368,5 +368,5 @@ typedef unsigned char	uchar;
 /* End of Section 5 */
 
 #include "global.h"	/* Define everything else according to choices above */
-
+void more(void);
 #endif /* CONFIG_H */

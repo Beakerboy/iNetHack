@@ -156,7 +156,7 @@
 		    subDirectoryName = @"nethack36";
 		}
         NSString *imgName = [NSString stringWithFormat:@"%@", tilesetName];
-		NSString *imgPath = [[NSBundle mainBundle] pathForResource:imgname ofType:@"png" inDirectory:subDirectoryName];
+		NSString *imgPath = [[NSBundle mainBundle] pathForResource:imgName ofType:@"png" inDirectory:subDirectoryName];
 		UIImage *tilesetImage = [UIImage imageWithContentsOfFile:imgPath];
         NSString *animImgName = [NSString stringWithFormat:@"%@1", tilesetName];
 		

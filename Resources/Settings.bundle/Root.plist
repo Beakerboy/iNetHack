@@ -12,6 +12,28 @@
 			<key>Title</key>
 			<string>Gameplay</string>
 		</dict>
+	    <dict>
+			<key>DefaultValue</key>
+			<string>nethack36</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Core Version</string>
+			<key>Key</key>
+			<string>coreversion</string>
+			<key>Titles</key>
+			<array>
+				<string>3.4</string>
+				<string>3.6</string>
+				<string>5.0</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>nethack34</string>
+				<string>nethack36</string>
+				<string>nethack50</string>
+			</array>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>

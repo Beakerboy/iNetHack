@@ -882,9 +882,6 @@ void iphone_main() {
 	exit(EXIT_SUCCESS);
 }
 
-long
-money_cnt(otmp)
-struct obj *otmp;
-{
-    return u.ugold
+universal_money_string() {
+    return [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)]
 }

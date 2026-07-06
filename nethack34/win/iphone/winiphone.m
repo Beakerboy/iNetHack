@@ -882,6 +882,6 @@ void iphone_main() {
 	exit(EXIT_SUCCESS);
 }
 
-- (NSString *)universalMoneyString {
++(NSString *)universalMoneyString {
     return [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)]
 }

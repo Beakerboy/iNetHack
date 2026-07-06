@@ -73,11 +73,18 @@ void iphone_test_main();
 void iphone_main();
 int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
 
+#ifdef __OBJC__
+// This block will be completely ignored by C files, 
+// but read perfectly by Objective-C files
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface WinIPhone : NSObject {}
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 @end
+#endif // __OBJC__
 
 void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache
 void iphone_haptic_reset();

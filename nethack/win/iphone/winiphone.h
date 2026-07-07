@@ -88,6 +88,8 @@ int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
 #import <UIKit/UIKit.h>
 
 @interface WinIPhone : NSObject {}
+@property (nonatomic, readonly, retain) NSMutableArray *filteredExtCmd; /* visible list of extended commands */
+@property (nonatomic, readonly, retain) NSMutableArray *filteredExtCmdIndex; /* index of visible to full list of extended commands */
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;

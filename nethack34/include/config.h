@@ -189,6 +189,7 @@
 #define HACKDIR "nethack34/"
 #endif
 #define VAR_PLAYGROUND "nethack34/"
+#define DATAPREFIX "nethack34/"
 #endif
 
 #ifndef COMPRESS

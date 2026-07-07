@@ -58,7 +58,7 @@ static boolean FDECL(find_file,(const char *name, library **lib, long *startp,
 								long *sizep));
 static boolean NDECL(lib_dlb_init);
 static void NDECL(lib_dlb_cleanup);
-static boolean FDECL(lib_dlb_fopen,(dlb *, const char *, const char *));
+static boolean FDECL(lib_en,(dlb *, const char *, const char *));
 static int FDECL(lib_dlb_fclose,(dlb *));
 static int FDECL(lib_dlb_fread,(char *, int, int, dlb *));
 static int FDECL(lib_dlb_fseek,(dlb *, long, int));
@@ -450,6 +450,23 @@ dlb_cleanup()
     }
 }
 
+/**
+ * @brief Opens a data library (DLB) file or a standard library file for reading.
+ *
+ * This function attempts to open a file by first searching within the initialized 
+ * data library system. If the file is not found in the library, it falls back to 
+ * opening it as a standard external data file.
+ *
+ * @note This function only supports read modes (e.g., "r", "rb"). Any other modes 
+ *       will cause the function to fail immediately.
+ *
+ * @param[in] name The path or identifier of the file to open.
+ * @param[in] mode The file access mode (must begin with 'r').
+ *
+ * @return dlb* Pointer to the allocated dlb file structure if successful.
+ * @return NULL  If the library is uninitialized, the mode is invalid, or the 
+ *               file cannot be found/opened.
+ */
 dlb *
 dlb_fopen(name, mode)
     const char *name, *mode;

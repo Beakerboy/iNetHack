@@ -188,10 +188,12 @@ genl_can_suspend_no,
 @end
 
 FILE *iphone_fopen(const char *filename, const char *mode) {
-	NSString *path = [[NSBundle mainBundle]
-					  pathForResource:[NSString stringWithCString:filename encoding:NSASCIIStringEncoding] ofType:@""];
-	const char *pathc = [path fileSystemRepresentation];
-	FILE *file = fopen(pathc, mode);
+	NSString *filenameStr = [NSString stringWithCString:filename encoding:NSASCIIStringEncoding];
+    NSString *path = [[NSBundle mainBundle] pathForResource:filenameStr 
+                                            ofType:@"" 
+                                            inDirectory:@"nethack36"];
+    const char *pathc = [path fileSystemRepresentation];
+    FILE *file = fopen(pathc, mode);
 	return file;
 }
 

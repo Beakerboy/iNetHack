@@ -474,8 +474,10 @@ dlb_fopen(name, mode)
     FILE *fp;
     dlb *dp;
 
-    if (!dlb_initialized) return (dlb *) 0;
-    panic("dlb_initialized");
+    if (!dlb_initialized) {
+		panic("dlb not initialized");
+		return (dlb *) 0;
+	}
     dp = (dlb *) alloc(sizeof(dlb));
     if (do_dlb_fopen(dp, name, mode)) {
     	dp->fp = (FILE *) 0;

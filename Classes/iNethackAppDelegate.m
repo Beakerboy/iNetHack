@@ -78,6 +78,7 @@
 	} else {
 	    unsetenv("NETHACKOPTIONS");
 	}
+	setenv("HACKDIR", "nethack34", 1);
 	BOOL badBonesSeen = [self checkNetHackDirectories];
     [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 

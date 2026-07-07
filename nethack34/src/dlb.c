@@ -487,6 +487,7 @@ dlb_fopen(name, mode)
 	  /* can't find anything */
 	  free((genericptr_t) dp);
 	  dp = (dlb *) 0;
+	  panic("else");
 	}
 
     return dp;

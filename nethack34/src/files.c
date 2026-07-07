@@ -380,6 +380,9 @@ int prefix;
 #else
 	fp = fopen(filename, mode);
 #endif
+	if (!fp) {
+        panic(filemane);
+	}
 	return fp;
 }
 

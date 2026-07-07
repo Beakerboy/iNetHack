@@ -807,9 +807,9 @@ void iphone_main() {
 	fqn_prefix[SCOREPREFIX] = (char *)alloc(len+2);
 	Strcpy(fqn_prefix[SCOREPREFIX], VAR_PLAYGROUND);
 	if (fqn_prefix[SCOREPREFIX][len-1] != '/') {
-	fqn_prefix[SCOREPREFIX][len] = '/';
-	fqn_prefix[SCOREPREFIX][len+1] = '\0';
-
+	    fqn_prefix[SCOREPREFIX][len] = '/';
+	    fqn_prefix[SCOREPREFIX][len+1] = '\0';
+    }
 	fqn_prefix[LEVELPREFIX] = fqn_prefix[SCOREPREFIX];
 	fqn_prefix[SAVEPREFIX] = fqn_prefix[SCOREPREFIX];
 	fqn_prefix[BONESPREFIX] = fqn_prefix[SCOREPREFIX];

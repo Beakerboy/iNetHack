@@ -674,8 +674,6 @@ init_dungeons()		/* initialize the "dungeon" structs */
 				 (genericptr_t)fqn_prefix[DATAPREFIX]);
 #endif
 	    panic(tbuf);
-	} else {
-		panic("Opened Dungeon");
 	}
 	/* validate the data's version against the program's version */
 	Fread((genericptr_t) &vers_info, sizeof vers_info, 1, dgn_file);

@@ -649,7 +649,7 @@ init_dungeons()		/* initialize the "dungeon" structs */
 	struct version_info vers_info;
 
 	pd.n_levs = pd.n_brs = 0;
-	str1 = "nethack34/";
+	char str1[50] = "nethack34/";
     strcat(str1, DUNGEON_FILE);
 	dgn_file = dlb_fopen(str1, RDBMODE);
 	if (!dgn_file) {

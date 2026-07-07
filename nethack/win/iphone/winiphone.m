@@ -179,6 +179,40 @@ genl_can_suspend_no,
 								nil]];
 }
 
+/* should we display this extended command? */
+- (Boolean) showExtCmd:(int) row {
+    struct ext_func_tab *efp = &extcmdlist[row];
+
+    if (!efp->ef_txt)
+        return false;
+
+    int wizc;
+    /* skip wizard mode commands if not in wizard mode */
+    wizc = (efp->flags & WIZMODECMD) != 0;
+    if (wizc && !wizard)
+        return false;
+
+    uchar original = ((char) (0x7F & (efp->key)));
+    if (original == efp->key && (!wizard && wizc)) {
+        switch (original) {
+            /* show a few special case commands */
+            case 'X': /* twoweapon */
+            case 'N': /* name */
+            case 'n':
+                break;
+            default: return false;
+        }
+    }
+
+    if (original == '?')
+        return false; // don't bother showing #?
+    if ((efp->flags & CMD_NOT_AVAILABLE) != 0)
+        return false;
+    /* if hiding non-autocomplete commands, skip such */
+    if ((efp->flags & AUTOCOMPLETE) == 0)
+        return false;
+    return true;
+}
 @end
 
 FILE *iphone_fopen(const char *filename, const char *mode) {
@@ -1039,41 +1073,6 @@ void iphone_main() {
 	moveloop(restored);
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
-}
-
-/* should we display this extended command? */
-- (Boolean) showExtCmd:(int) row {
-    struct ext_func_tab *efp = &extcmdlist[row];
-
-    if (!efp->ef_txt)
-        return false;
-
-    int wizc;
-    /* skip wizard mode commands if not in wizard mode */
-    wizc = (efp->flags & WIZMODECMD) != 0;
-    if (wizc && !wizard)
-        return false;
-
-    uchar original = ((char) (0x7F & (efp->key)));
-    if (original == efp->key && (!wizard && wizc)) {
-        switch (original) {
-            /* show a few special case commands */
-            case 'X': /* twoweapon */
-            case 'N': /* name */
-            case 'n':
-                break;
-            default: return false;
-        }
-    }
-
-    if (original == '?')
-        return false; // don't bother showing #?
-    if ((efp->flags & CMD_NOT_AVAILABLE) != 0)
-        return false;
-    /* if hiding non-autocomplete commands, skip such */
-    if ((efp->flags & AUTOCOMPLETE) == 0)
-        return false;
-    return true;
 }
 
 int

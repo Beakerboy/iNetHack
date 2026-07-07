@@ -804,7 +804,6 @@ int fd;
 void iphone_main() {
 	int argc = 0;
 	char **argv = NULL;
-	int len = strlen(VAR_PLAYGROUND);
 	
 	// from macmain.c, enables special levels like sokoban
 	x_maze_max = COLNO-1;

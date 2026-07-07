@@ -8,7 +8,7 @@
 
 #ifdef OVL1
 
-#define DUNGEON_FILE	"nethack34/dungeon"
+#define DUNGEON_FILE	"dungeon"
 
 #define X_START		"x-strt"
 #define X_LOCATE	"x-loca"

@@ -676,7 +676,7 @@ init_dungeons()		/* initialize the "dungeon" structs */
 	    panic(tbuf);
 	} else {
 		panic("Opened Dungeon");
-
+	}
 	/* validate the data's version against the program's version */
 	Fread((genericptr_t) &vers_info, sizeof vers_info, 1, dgn_file);
 	/* we'd better clear the screen now, since when error messages come from

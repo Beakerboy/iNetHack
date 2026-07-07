@@ -184,6 +184,9 @@
 #if TARGET_OS_IPHONE
 #undef COMPRESS
 #undef COMPRESS_EXTENSION
+#ifndef HACKDIR	/* override the default hackdir below */
+# define HACKDIR "/usr/games/lib/nethackdir/nethack34"
+#endif
 #endif
 
 #ifndef COMPRESS

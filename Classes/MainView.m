@@ -30,7 +30,10 @@
 #import "AsciiTileSet.h"
 
 #define kKeyTileset (@"tileset")
+#import "NetHackEngineProtocol.h"
 
+@import NetHackEngine34;
+@import NetHackEngine36;
 @implementation MainView
 
 @synthesize start, tileSize, dummyTextField, tileSet;

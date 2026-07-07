@@ -8,7 +8,7 @@
 
 #ifdef OVL1
 
-#define DUNGEON_FILE	"dungeon"
+#define DUNGEON_FILE	"nethack34/dungeon"
 
 #define X_START		"x-strt"
 #define X_LOCATE	"x-loca"
@@ -649,9 +649,7 @@ init_dungeons()		/* initialize the "dungeon" structs */
 	struct version_info vers_info;
 
 	pd.n_levs = pd.n_brs = 0;
-	char str1[50] = "nethack34/";
-    strcat(str1, DUNGEON_FILE);
-	dgn_file = dlb_fopen(str1, RDBMODE);
+	dgn_file = dlb_fopen(DUNGEON_FILE, RDBMODE);
 	if (!dgn_file) {
 	    char tbuf[BUFSZ];
 	    Sprintf(tbuf, "Cannot open dungeon description - \"%s",

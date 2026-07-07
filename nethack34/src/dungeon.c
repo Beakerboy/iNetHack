@@ -649,12 +649,13 @@ init_dungeons()		/* initialize the "dungeon" structs */
 	struct version_info vers_info;
 
 	pd.n_levs = pd.n_brs = 0;
-
-	dgn_file = dlb_fopen(DUNGEON_FILE, RDBMODE);
+	str1 = "nethack34/";
+    strcat(str1, DUNGEON_FILE);
+	dgn_file = dlb_fopen(str1, RDBMODE);
 	if (!dgn_file) {
 	    char tbuf[BUFSZ];
 	    Sprintf(tbuf, "Cannot open dungeon description - \"%s",
-		HACKDIR);
+		str1);
 #ifdef DLBRSRC /* using a resource from the executable */
 	    Strcat(tbuf, "\" resource!");
 #else /* using a file or DLB file */

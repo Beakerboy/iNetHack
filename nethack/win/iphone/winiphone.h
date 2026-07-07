@@ -20,7 +20,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
-
+#ifndef WINIPHONE_H
+#define WINIPHONE_H
 #include "hack.h"
 
 void iphone_init_nhwindows(int* argc, char** argv);
@@ -80,3 +81,15 @@ void iphone_haptic(int haptictype);
 #define VERSION_SANITY2_64 0xb8d26958UL //iNethack2: the versioninfo string for 64-bit bones
 #define HAPTIC_DAMAGE 1
 #define HAPTIC_VIBRATING 2
+#ifdef __OBJC__
+// This block will be completely ignored by C files, 
+// but read perfectly by Objective-C files
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface WinIPhone : NSObject {}
++ (void) triggerInitialize;
++ (NSString *)universalMoneyString;
++ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+@end
+#endif // __OBJC__

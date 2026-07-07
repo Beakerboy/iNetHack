@@ -906,3 +906,19 @@ unsigned *ospecial;
 void more(void) {
     // Left empty on purpose to act as a do-nothing stub
 }
+
+void
+append_slash(name)
+char *name;
+{
+	char *ptr;
+
+	if (!*name)
+		return;
+	ptr = name + (strlen(name) - 1);
+	if (*ptr != '/') {
+		*++ptr = '/';
+		*++ptr = '\0';
+	}
+	return;
+}

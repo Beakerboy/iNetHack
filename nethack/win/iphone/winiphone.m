@@ -43,6 +43,7 @@
 #include <fcntl.h>
 #include "dlb.h"
 #include "hack.h"
+#include "func_tab.h"
 #include "date.h"
 
 #ifdef __APPLE__

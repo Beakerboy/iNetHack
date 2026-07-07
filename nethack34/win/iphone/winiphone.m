@@ -805,19 +805,6 @@ void iphone_main() {
 	int argc = 0;
 	char **argv = NULL;
 	int len = strlen(VAR_PLAYGROUND);
-
-	fqn_prefix[SCOREPREFIX] = (char *)alloc(len+2);
-	Strcpy(fqn_prefix[SCOREPREFIX], VAR_PLAYGROUND);
-	if (fqn_prefix[SCOREPREFIX][len-1] != '/') {
-	    fqn_prefix[SCOREPREFIX][len] = '/';
-	    fqn_prefix[SCOREPREFIX][len+1] = '\0';
-    }
-	fqn_prefix[LEVELPREFIX] = fqn_prefix[SCOREPREFIX];
-	fqn_prefix[SAVEPREFIX] = fqn_prefix[SCOREPREFIX];
-	fqn_prefix[BONESPREFIX] = fqn_prefix[SCOREPREFIX];
-	fqn_prefix[LOCKPREFIX] = fqn_prefix[SCOREPREFIX];
-	fqn_prefix[TROUBLEPREFIX] = fqn_prefix[SCOREPREFIX];
-	fqn_prefix[DATAPREFIX] = fqn_prefix[SCOREPREFIX];
 	
 	// from macmain.c, enables special levels like sokoban
 	x_maze_max = COLNO-1;

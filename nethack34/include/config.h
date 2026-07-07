@@ -188,6 +188,7 @@
 #ifndef HACKDIR	/* override the default hackdir below */
 #define HACKDIR "nethack34/"
 #endif
+#define VAR_PLAYGROUND "nethack34/"
 #endif
 
 #ifndef COMPRESS

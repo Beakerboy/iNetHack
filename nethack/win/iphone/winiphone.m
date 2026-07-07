@@ -159,12 +159,6 @@ genl_can_suspend_no,
 }
 @end
 
-@interface WinIPhone : NSObject {}
-
-+ (void) triggerInitialize;
-
-@end
-
 @implementation WinIPhone
 
 + (void) triggerInitialize {

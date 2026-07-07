@@ -78,7 +78,10 @@
 	} else {
 	    unsetenv("NETHACKOPTIONS");
 	}
-	setenv("HACKDIR", "nethack34", 1);
+	NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
+    NSString *nethackPath = [bundlePath stringByAppendingPathComponent:@"nethack36"];
+    setenv("HACKDIR", [nethackPath UTF8String], 1);
+	
 	BOOL badBonesSeen = [self checkNetHackDirectories];
     [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 

@@ -31,6 +31,7 @@ jobs:
         run: |
           cp nethack/include/* nethack36/include
           cp nethack/src/* nethack36/src
+          cp nethack/win/* nethack36/win
           cd nethack36/win
           gcc -I../include -I../src -Wp,-w -DSTATUES_LOOK_LIKE_MONSTERS share/tilemap.c -o tilemap_generator
           ./tilemap_generator

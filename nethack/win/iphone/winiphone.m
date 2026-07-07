@@ -179,6 +179,21 @@ genl_can_suspend_no,
 								nil]];
 }
 
+/**
+ * @brief Returns the number of rows to display in a given section of the table view.
+ *
+ * @details This method dynamically filters the global external command list (`extcmdlist`)
+ * based on visibility rules defined by `showExtCmd:`. It populates `filteredExtCmd`
+ * and `filteredExtCmdIndex` with the valid items and their original indices.
+ *
+ * @param tableView The table view requesting this information.
+ * @param section   The index number identifying a section in @p tableView.
+ *
+ * @return The number of rows (filtered commands) to display in the specified section.
+ *
+ * @note This method mutates state by reinitializing and repopulating data source arrays.
+ *       It assumes a single-section table view as the @p section parameter is not explicitly checked.
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	struct ext_func_tab *f = extcmdlist;
     filteredExtCmd = [[NSMutableArray alloc] init];
@@ -200,7 +215,19 @@ genl_can_suspend_no,
     return filtered;
 }
 
-/* should we display this extended command? */
+/**
+ * @brief Determines whether a specific external command should be displayed in the UI.
+ *
+ * @details Evaluates a command from the global `extcmdlist` against game state and flag 
+ * filters. It blocks wizard commands for non-wizards, excludes the '?' help command, 
+ * filters unavailable commands, and enforces autocomplete availability.
+ *
+ * @param row The index of the command to evaluate within the `extcmdlist` array.
+ *
+ * @return `true` if the command meets all visibility criteria; otherwise `false`.
+ *
+ * @note This function references global state variables `extcmdlist` and `wizard`.
+ */
 - (Boolean) showExtCmd:(int) row {
     struct ext_func_tab *efp = &extcmdlist[row];
 

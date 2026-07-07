@@ -381,7 +381,7 @@ int prefix;
 	fp = fopen(filename, mode);
 #endif
 	if (!fp) {
-        panic(filemane);
+        panic(filename);
 	}
 	return fp;
 }

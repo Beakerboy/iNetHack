@@ -93,3 +93,5 @@ void iphone_haptic(int haptictype);
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 @end
 #endif // __OBJC__
+
+#endif // WINIPHONE_H

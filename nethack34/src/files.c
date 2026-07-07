@@ -345,8 +345,22 @@ char *reasonbuf;
 	return 1;
 }
 
-/* fopen a file, with OS-dependent bells and whistles */
-/* NOTE: a simpler version of this routine also exists in util/dlb_main.c */
+/**
+ * @brief Opens a datafile by resolving its full qualified path name.
+ *
+ * This function determines the full path of the specified file using a 
+ * prefix type, applies system-specific handling (such as appending version 
+ * punctuation for VMS platforms), and returns an open file pointer.
+ *
+ * NOTE: a simpler version of this routine also exists in util/dlb_main.c 
+ *
+ * @param filename The base name or relative path of the file to open.
+ * @param mode     The access mode string (e.g., "r", "w", "a").
+ * @param prefix   The directory or path prefix identifier code.
+ *
+ * @return FILE*   A pointer to the successfully opened file stream, 
+ *                 or NULL if the file could not be opened.
+ */
 FILE *
 fopen_datafile(filename, mode, prefix)
 const char *filename, *mode;

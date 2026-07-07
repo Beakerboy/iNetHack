@@ -4,7 +4,7 @@
 
 #include "hack.h"
 #include "dlb.h"
-
+#include "winiphone.h"
 #ifdef TTY_GRAPHICS
 #include "wintty.h" /* more() */
 #endif

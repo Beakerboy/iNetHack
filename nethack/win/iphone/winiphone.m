@@ -197,8 +197,8 @@ genl_can_suspend_no,
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	struct ext_func_tab *f = extcmdlist;
-	NSMutableArray *filteredExtCmd;
-	NSMutableArray *filteredExtCmdIndex; 
+	NSMutableArray *filteredExtCmd = [NSMutableArray array];
+    NSMutableArray *filteredExtCmdIndex = [NSMutableArray array];
     filteredExtCmd = [[NSMutableArray alloc] init];
     filteredExtCmdIndex = [[NSMutableArray alloc] init];
     int filtered = 0;

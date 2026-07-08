@@ -230,21 +230,73 @@ static NSString *const hearseCommandDownload = @"download";
 	return [self httpGetRequestWithoutData:req];
 }
 
-- (NSHTTPURLResponse *) httpGetRequest:(NSURLRequest *)req withData:(NSData **)data {
-	NSURLResponse *response;
-	NSError *error;
-	NSData *received = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
-	if (data) {
-		*data = received;
-	}
-	if (!received) {
-		[self logMessage:[NSString stringWithFormat:@"Connection failed! Error - %@ %@",
-									[error localizedDescription],
-									[[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]]];
-		return nil;
-	}
-	return (NSHTTPURLResponse *) response;
+/**
+ * @brief Performs a synchronous HTTP GET request using modern networking APIs.
+ *
+ * This method blocks the calling thread using a dispatch semaphore until the network request 
+ * completes. This is intended to satisfy the synchronous requirements of the core NetHack engine.
+ *
+ * @param req The configured `NSURLRequest` to execute.
+ * @param data A pointer to an `NSData` reference where the received payload will be stored.
+ * @return The `NSHTTPURLResponse` received from the server, or `nil` if the request fails.
+ */
+- (nullable NSHTTPURLResponse *)httpGetRequest:(NSURLRequest *)req withData:(NSData * _Nullable * _Nullable)data {
+    // Create a semaphore to halt execution until the async callback hits
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    // __block storage modifiers allow the async closure block to write to these variables
+    __block NSData *received = nil;
+    __block NSURLResponse *response = nil;
+    __block NSError *error = nil;
+    
+    // Fire the modern network data task
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:req 
+                                            completionHandler:^(NSData * _Nullable blockData, NSURLResponse * _Nullable blockResponse, NSError * _Nullable blockError) {
+        // Capture outputs (Retain objects manually if the project runs on MRC)
+        received = [blockData retain];
+        response = [blockResponse retain];
+        error = [blockError retain];
+        
+        // Signal the waiting main execution thread to wake up
+        dispatch_semaphore_signal(semaphore);
+    }];
+    
+    [task resume];
+    
+    // Force the function to block right here until dispatch_semaphore_signal is called
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_release(semaphore); // Clean up the dispatch structure memory
+    
+    // Populate output pointer safely if requested
+    if (data) {
+        *data = received; // The calling scope handles autoreleasing/releasing this downstream
+    }
+    
+    // Clean error handling and logging
+    if (!received) {
+        NSString *errorString = [error localizedDescription] ?: @"Unknown Network Error";
+        NSString *failingURL = [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey] ?: @"";
+        
+        [self logMessage:[NSString stringWithFormat:@"Connection failed! Error - %@ %@", errorString, failingURL]];
+        
+        [error release];
+        [response release];
+        return nil;
+    }
+    
+    // Clean up internal MRC references for local scope allocations
+    [error release];
+    
+    // Return the response object, letting the dynamic cast happen safely
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        return (NSHTTPURLResponse *)response;
+    }
+    
+    [response release];
+    return nil;
 }
+
 
 - (NSString *) getHeader:(NSString *)header fromResponse:(NSHTTPURLResponse *)response {
 	NSDictionary *headers = [response allHeaderFields];

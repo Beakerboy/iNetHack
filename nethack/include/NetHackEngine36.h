@@ -1,4 +1,4 @@
 #import <Foundation/Foundation.h>
 
 // Only import the high-level engine wrapper interface here
-#import "EngineWrapper36.h" 
+#import <NetHackEngine36/EngineWrapper36.h>

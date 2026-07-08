@@ -26,22 +26,6 @@
 
 @implementation FileLogger
 
-+ (int) openTmpFile {
-	NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"log.tmp.XXXX"];
-	char str[PATH_MAX];
-	strlcpy(str, [template fileSystemRepresentation], PATH_MAX);
-	return mkstemp(str);
-}
-
-+ (NSString *) tmpFileName {
-	NSFileManager *fm = [NSFileManager defaultManager];
-	NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"log.tmp.XXXX"];
-	char str[PATH_MAX];
-	strlcpy(str, [template fileSystemRepresentation], PATH_MAX);
-	char *pStr = mktemp(str);
-	return [fm stringWithFileSystemRepresentation:pStr length:strlen(pStr)];
-}
-
 - (void) resize {
 	NSDictionary *info = [[NSFileManager defaultManager] attributesOfItemAtPath:filename error:NULL];
 	if (info) {

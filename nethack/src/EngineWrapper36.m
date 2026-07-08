@@ -1,4 +1,5 @@
-#import "hack.h" 
+#import "hack.h"
+#import "EngineWrapper36.h"
 
 @implementation EngineWrapper36
 - (void)runEngine {

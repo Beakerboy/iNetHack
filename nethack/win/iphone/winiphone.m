@@ -22,7 +22,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "winiphone.h"
-
+#import "EngineWrapper36.h"
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
 

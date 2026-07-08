@@ -135,7 +135,7 @@ static MainViewController *instance;
 
 - (void) mainNethackLoop:(id)arg {
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	iphone_main();
+	main();
 	[pool drain];
 }
 

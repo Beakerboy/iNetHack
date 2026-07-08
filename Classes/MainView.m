@@ -32,7 +32,7 @@
 #define kKeyTileset (@"tileset")
 #import "NetHackEngineProtocol.h"
 
-@import NetHackEngine34;
+//@import NetHackEngine34;
 @import NetHackEngine36;
 @implementation MainView
 

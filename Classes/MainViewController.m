@@ -654,23 +654,17 @@ static MainViewController *instance;
 
 - (winid) createWindow:(int)type {
 	Window *w = [[Window alloc] initWithType:type];
-	//[windows addObject:w];    //iNethack2 changing to a dict
     [windows setValue:w forKey:[NSString stringWithFormat:@"%d", windowIdCounter]];
     windowIdCounter++;
 	[w release];
-    return (winid) (windowIdCounter-1); //iNethack2
-	//return (winid) w;
+    return (winid) (windowIdCounter-1);
 }
 
 - (void) destroyWindow:(winid)wid {
-	//Window *w = (Window *) wid;
     [windows removeObjectForKey:[NSString stringWithFormat:@"%d",wid]];
 }
 
 - (Window *) windowWithId:(winid)wid {
-//    NSLog(@"%@",windows);
-//	return (Window *) wid;
-//    return [windows objectAtIndex:wid]; //iNethack2
     return [windows objectForKey:[NSString stringWithFormat:@"%d",wid]]; //iNethack2
 }
 

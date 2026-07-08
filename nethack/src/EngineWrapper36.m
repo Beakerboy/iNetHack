@@ -1,4 +1,4 @@
-#import "nethack36/hack.h" 
+#import "nethack36/src/hack.h" 
 
 @implementation EngineWrapper36
 - (void)runEngine {

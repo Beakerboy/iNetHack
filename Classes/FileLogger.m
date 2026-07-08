@@ -26,28 +26,77 @@
 
 @implementation FileLogger
 
-- (void) resize {
-	NSDictionary *info = [[NSFileManager defaultManager] attributesOfItemAtPath:filename error:NULL];
-	if (info) {
-		unsigned long size = [info fileSize];
-		if (size >= maxSize) {
-			int halfSize = maxSize / 2;
-			NSData *src = [[NSData alloc] initWithContentsOfMappedFile:filename];
-			NSData *sub = [src subdataWithRange:NSMakeRange(size - halfSize, halfSize)];
-			[src release];
-			const char *bytes = [sub bytes];
-			const char *pBytes = bytes;
-			int offset = 0;
-			while (*pBytes++ != '\n' && offset < halfSize) {
-				offset++;
-			}
-			offset++;
-			offset = offset >= halfSize ? halfSize:offset;
-			NSData *newData = [sub subdataWithRange:NSMakeRange(offset, sub.length - offset)];
-			[newData writeToFile:filename atomically:NO];
-		}
-	}
+/**
+ * @brief Truncates the log file when it exceeds the maximum allowed size.
+ *
+ * This method monitors log growth. When the log file exceeds the configured 
+ * `maxSize`, it isolates the younger half of the file payload, rolls forward to 
+ * the nearest complete line boundary (newline character), and overwrites the 
+ * file atomically with the remaining data tail.
+ *
+ * This prevents active logs from bloating device storage while preserving 
+ * partial logs and maintaining correct formatting boundaries.
+ */
+- (void)resize {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error = nil;
+    
+    // Fetch file attributes safely
+    NSDictionary *attributes = [fm attributesOfItemAtPath:filename error:&error];
+    if (!attributes) {
+        NSLog(@"Error reading log attributes: %@", error.localizedDescription);
+        return;
+    }
+    
+    unsigned long long size = [attributes fileSize];
+    if (size < maxSize) {
+        return; // File is small enough; nothing to do
+    }
+    
+    // Map the file securely using modern URLs
+    NSURL *fileURL = [NSURL fileURLWithPath:filename];
+    NSData *src = [[NSData alloc] initWithContentsOfURL:fileURL
+                                                options:NSDataReadingMappedIfSafe
+                                                  error:&error];
+    if (!src || error) {
+        NSLog(@"Error mapping log file: %@", error.localizedDescription);
+        [src release]; // Only needed if project strictly forces Manual Reference Counting (MRC)
+        return;
+    }
+    
+    // Find the truncation point directly inside the mapped buffer
+    unsigned long halfSize = maxSize / 2;
+    unsigned long startOffset = (unsigned long)(size - halfSize);
+    
+    const char *bytes = (const char *)[src bytes];
+    unsigned long scanOffset = 0;
+    
+    // Scan forward from the midpoint until we find the first safe newline character
+    while ((startOffset + scanOffset) < size) {
+        if (bytes[startOffset + scanOffset] == '\n') {
+            scanOffset++; // Move past the newline character
+            break;
+        }
+        scanOffset++;
+    }
+    
+    // Guard against zero-byte slices or out-of-bounds anomalies
+    unsigned long finalCutOffset = startOffset + scanOffset;
+    if (finalCutOffset >= size) {
+        finalCutOffset = startOffset; // Fallback to exact half-size split if no newline found
+    }
+    
+    // Extract the remaining log tail and overwrite atomically
+    NSRange remainingRange = NSMakeRange(finalCutOffset, (NSUInteger)(size - finalCutOffset));
+    NSData *newData = [src subdataWithRange:remainingRange];
+    
+    // Write atomically to prevent log corruption if the app crashes mid-write
+    [newData writeToURL:fileURL atomically:YES];
+    
+    // Clean up memory allocations manually (omit these two lines if project is using ARC)
+    [src release];
 }
+
 
 - (instancetype) initWithFile:(NSString *)path maxSize:(int)ms {
 	if (self = [super init]) {

@@ -126,14 +126,16 @@ targets:
     deploymentTarget: "12.0"
 
     settings:
+      PRODUCT_MODULE_NAME: NetHackEngine36
       CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
       DEFINES_MODULE: YES
-      PRODUCT_MODULE_NAME: NetHackEngine36
       HEADER_SEARCH_PATHS:
         - $(inherited)
         - nethack36/include
         - Classes/win/iphone
         - nethack36/sys/share
+      OTHER_CFLAGS: 
+        - "-Wno-deprecated-non-prototype"
 
     sources:
       - path: nethack36/include/NetHackEngine36.h

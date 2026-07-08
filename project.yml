@@ -58,7 +58,6 @@ targets:
     deploymentTarget: "12.0"
     
     dependencies:
-   #   - target: NetHackEngine34
       - target: NetHackEngine36
       - sdk: Foundation.framework
       - sdk: UIKit.framework
@@ -73,16 +72,14 @@ targets:
         GCC_PREFIX_HEADER: Classes/iNethack_Prefix.pch
         GCC_PRECOMPILE_PREFIX_HEADER: YES
         SWIFT_OBJC_BRIDGING_HEADER: Classes/iNetHack2-Bridging-Header.h
-        HEADER_SEARCH_PATHS:
-          - $(inherited)
-          - nethack36/include
-          - nethack36/win/iphone
+          
         MACH_O_TYPE: mh_execute
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
         PRODUCT_BUNDLE_IDENTIFIER: com.beakerboy.inethack2
         OTHER_CFLAGS: 
-        - "-Wno-deprecated-non-prototype"
+          - $(inherited)
+          - "-Wno-deprecated-non-prototype"
 
       configs:
         Debug:
@@ -96,7 +93,6 @@ targets:
         script: |
           set -e
           echo "=== Copying Data Files Flat into Application Container Root ==="
-          # TARGET_BUILD_DIR/EXECUTABLE_FOLDER_PATH resolves directly to your built .app folder root
           cp -f "${SRCROOT}/nethack34/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack34/"
           cp -f "${SRCROOT}/nethack36/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack36/"
         runOnlyForDeploymentPostprocessing: false
@@ -131,12 +127,15 @@ targets:
       PRODUCT_MODULE_NAME: NetHackEngine36
       CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
       DEFINES_MODULE: YES
+      CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES: YES
+      
       HEADER_SEARCH_PATHS:
         - $(inherited)
         - nethack36/include
         - Classes/win/iphone
         - nethack36/sys/share
       OTHER_CFLAGS: 
+        - $(inherited)
         - "-Wno-deprecated-non-prototype"
 
     sources:

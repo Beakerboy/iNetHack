@@ -126,19 +126,23 @@ targets:
     type: framework
     platform: iOS
     deploymentTarget: "12.0"
-    
+
     settings:
       CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
-      base:
-        HEADER_SEARCH_PATHS:
-          - $(inherited)
-          - nethack36/include
-          - Classes/win/iphone
-          - nethack36/sys/share
+      DEFINES_MODULE: YES
+      PRODUCT_MODULE_NAME: NetHackEngine36
+      HEADER_SEARCH_PATHS:
+        - $(inherited)
+        - nethack36/include
+        - Classes/win/iphone
+        - nethack36/sys/share
 
     sources:
+      - path: nethack36/include/NetHackEngine36.h
+        headerVisibility: public
       - path: nethack36/include
         name: nethack36/include
+        headerVisibility: private
       - path: nethack36/src
         name: nethack36/src
       - path: nethack36/win/iphone

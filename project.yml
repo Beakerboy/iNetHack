@@ -58,6 +58,7 @@ targets:
     deploymentTarget: "12.0"
     
     dependencies:
+      - target: NetHackEngine34
       - target: NetHackEngine36
       - sdk: Foundation.framework
       - sdk: UIKit.framework

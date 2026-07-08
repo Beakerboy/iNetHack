@@ -135,7 +135,8 @@ static MainViewController *instance;
 
 - (void) mainNethackLoop:(id)arg {
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	main();
+	EngineWrapper36 *wrapper = [[EngineWrapper36 alloc] init];
+    [wrapper main];
 	[pool drain];
 }
 

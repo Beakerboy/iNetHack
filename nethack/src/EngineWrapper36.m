@@ -5,4 +5,7 @@
 - (void)main {
     iphone_main();
 }
+- (void)haptic_reset {
+    iphone_haptic_reset()
+}
 @end

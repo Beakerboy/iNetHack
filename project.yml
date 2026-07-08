@@ -128,6 +128,7 @@ targets:
     deploymentTarget: "12.0"
     
     settings:
+      CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
       base:
         HEADER_SEARCH_PATHS:
           - $(inherited)

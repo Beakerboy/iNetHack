@@ -33,7 +33,6 @@
 }
 
 + (int) openTmpFile;
-+ (NSString *) tmpFileName;
 
 - (instancetype) initWithFile:(NSString *)path maxSize:(int)ms;
 - (instancetype) initWithFile:(NSString *)path;

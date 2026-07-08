@@ -22,22 +22,12 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "winiphone.h"
-#import "MainViewController.h"
-#import "Window.h"
-#import "NethackMenuItem.h"
-#import "NethackYnFunction.h"
-#import "NethackEvent.h"
-#import "NethackEventQueue.h"
-#import "NSString+Regexp.h"
-#import "TilePosition.h"
 
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
 
 // for md5 methods
 #import "Hearse.h"
-
-#import "NSString+Regexp.h"
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -49,6 +39,8 @@
 #ifdef __APPLE__
 #include "TargetConditionals.h"
 #endif
+
+extern __weak id<NetHackEngineDelegate> _globalWindowDelegate;
 
 #define kOptionUsername (@"username")
 #define kOptionAutopickup (@"autopickup")
@@ -364,9 +356,10 @@ void iphone_resume_nhwindows() {
 }
 
 winid iphone_create_nhwindow(int type) {
-	winid wid = [[MainViewController instance] createWindow:type];
-	//NSLog(@"iphone_create_nhwindow(%d) -> %d", type, wid);
-	return wid;
+    if (_globalWindowDelegate) {
+        return [_globalWindowDelegate createWindowWithType:type];
+    }
+    return -1; 
 }
 
 void iphone_clear_nhwindow(winid wid) {
@@ -381,8 +374,9 @@ void iphone_display_nhwindow(winid wid, BOOLEAN_P block) {
 }
 
 void iphone_destroy_nhwindow(winid wid) {
-	//NSLog(@"iphone_destroy_nhwindow %d", wid);
-	[[MainViewController instance] destroyWindow:wid];
+    if (_globalWindowDelegate) {
+        [_globalWindowDelegate destroyWindowWithId:wid];
+    }
 }
 
 void iphone_curs(winid wid, int x, int y) {

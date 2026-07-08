@@ -58,7 +58,7 @@ targets:
     deploymentTarget: "12.0"
     
     dependencies:
-      - target: NetHackEngine34
+   #   - target: NetHackEngine34
       - target: NetHackEngine36
       - sdk: Foundation.framework
       - sdk: UIKit.framework
@@ -150,27 +150,27 @@ targets:
   # =========================================================================
   # 2. THE ISOLATED NETHACK 3.4 ENGINE
   # =========================================================================
-  NetHackEngine34:
-    type: framework
-    platform: iOS
-    deploymentTarget: "12.0"
-    
-    settings:
-      base:
-        HEADER_SEARCH_PATHS:
-          - $(inherited)
-          - nethack34/include
-          - nethack34/win/iphone
-          - nethack34/sys/share
-
-    sources:
-      - path: nethack34/include
-        name: nethack34/include
-      - path: nethack34/src
-        name: nethack34/src
-      - path: nethack34/win/iphone
-        name: nethack34/win/iphone
-      - path: nethack34/sys/share
-        name: nethack34/sys/share
-        includes:
-          - "posixregex.c"
+  #NetHackEngine34:
+  #  type: framework
+  #  platform: iOS
+  #  deploymentTarget: "12.0"
+  #  
+  #  settings:
+  #    base:
+  #      HEADER_SEARCH_PATHS:
+  #        - $(inherited)
+  #        - nethack34/include
+  #        - nethack34/win/iphone
+  #        - nethack34/sys/share
+  #
+  #  sources:
+  #    - path: nethack34/include
+  #      name: nethack34/include
+  #    - path: nethack34/src
+  #      name: nethack34/src
+  #    - path: nethack34/win/iphone
+  #      name: nethack34/win/iphone
+  #    - path: nethack34/sys/share
+  #      name: nethack34/sys/share
+  #      includes:
+  #        - "posixregex.c"

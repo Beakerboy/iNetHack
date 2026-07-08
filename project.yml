@@ -140,9 +140,14 @@ targets:
     sources:
       - path: nethack36/include/NetHackEngine36.h
         headerVisibility: public
+      - path: nethack36/include/EngineWrapper36.h
+        headerVisibility: public
       - path: nethack36/include
         name: nethack36/include
         headerVisibility: private
+        excludes:
+          - "NetHackEngine36.h"
+          - "EngineWrapper36.h"
       - path: nethack36/src
         name: nethack36/src
       - path: nethack36/win/iphone

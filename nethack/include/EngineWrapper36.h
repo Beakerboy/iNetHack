@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface EngineWrapper36 : NSObject
-
-- (void)main;
-- (void)haptic_reset;
-
+@protocol NetHackEngineDelegate <NSObject>
+- (int)createWindowWithType:(int)type;
+- (void)destroyWindowWithId:(int)wid;
+// ... add future migrated window functions here ...
 @end
 
-NS_ASSUME_NONNULL_END
+@interface EngineWrapper36 : NSObject
+- (void)main;
+- (void)haptic_reset;
+@end

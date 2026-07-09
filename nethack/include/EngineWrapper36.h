@@ -5,6 +5,9 @@ typedef int winid;
 @protocol NetHackEngineDelegate <NSObject>
 - (winid)createWindowWithType:(int)type;
 - (void)destroyWindowWithId:(winid)wid;
+- (void)updateScreen;
+- (int)animFrame;
+- (void)setAnimFrame:(int)frame;
 // ... add future migrated window functions here ...
 @end
 

@@ -287,17 +287,14 @@ void intron() {}
 void introff() {}
 
 int dosuspend() {
-	//NSLog(@"dosuspend");
 	return 0;
 }
 
 int dosh() {
-	//NSLog(@"dosh");
 	return 0;
 }
 
 void error(const char *s, ...) {
-	//NSLog(@"error: %s");
 	exit(0);
 }
 
@@ -311,7 +308,6 @@ void regularize(char *s) {
 }
 
 int child(int wt) {
-	//NSLog(@"child %d", wt);
 	return 0;
 }
 
@@ -341,7 +337,6 @@ void iphone_askname() {
 			[lossyName getBytes:plname length:PL_NSIZ-1];
 			plname[lossyName.length] = 0;
 		}
-		//NSCAssert1(plname[0], @"Failed to init plname from name '%@'", name);
         if (!plname[0]) {
             strcpy(plname, "Mobile User");
             [defaults setObject:@"Mobile User" forKey:kOptionUsername];
@@ -353,7 +348,6 @@ void iphone_askname() {
 
 // Replace with donull?
 void iphone_get_nh_event() {
-	//NSLog(@"iphone_get_nh_event");
 }
 
 void iphone_exit_nhwindows(const char *str) {
@@ -382,7 +376,6 @@ void iphone_clear_nhwindow(winid wid) {
 }
 
 void iphone_display_nhwindow(winid wid, BOOLEAN_P block) {
-	//NSLog(@"iphone_display_nhwindow %d", wid);
 	[_globalWindowDelegate displayWindowId:wid blocking:block ? YES:NO];
 }
 
@@ -393,17 +386,14 @@ void iphone_destroy_nhwindow(winid wid) {
 }
 
 void iphone_curs(winid wid, int x, int y) {
-	//NSLog(@"iphone_curs %d %d,%d", wid, x, y);
 }
 
 void iphone_putstr(winid wid, int attr, const char *text) {
-	//NSLog(@"iphone_putstr %d %s", wid, text);
 	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w putString:text];
 }
 
 void iphone_display_file(const char *filename, BOOLEAN_P must_exist) {
-	//NSLog(@"iphone_display_file %s", filename);
 	[_globalWindowDelegate displayFile:[NSString stringWithCString:filename encoding:NSASCIIStringEncoding]
 									 mustExist:must_exist ? YES : NO];
 }
@@ -417,7 +407,6 @@ void iphone_start_menu(winid wid) {
 void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
 					 CHAR_P accelerator, CHAR_P group_accel, int attr, 
 					 const char *str, BOOLEAN_P presel) {
-	//NSLog(@"iphone_add_menu %d %s", wid, str);
     NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier title:str glyph:glyph preselected:presel?YES:NO accelerator:accelerator];
 	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w addMenuItem:i];
@@ -440,17 +429,14 @@ int iphone_select_menu(winid wid, int how, menu_item **selected) {
 
 // Replace with donull?
 void iphone_update_inventory() {
-	//NSLog(@"iphone_update_inventory");
 }
 
 // Replace with donull?
 void iphone_mark_synch() {
-	//NSLog(@"iphone_mark_synch");
 }
 
 // Replace with donull?
 void iphone_wait_synch() {
-	//NSLog(@"iphone_wait_synch");
 }
 
 void iphone_cliparound(int x, int y) {
@@ -464,7 +450,6 @@ void iphone_cliparound_window(winid wid, int x, int y) {
 }
 
 void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph, int ignore) {
-	//NSLog(@"iphone_print_glyph %d %d,%d", wid, x, y);
 	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w setGlyph:glyph atX:x y:y];
 }

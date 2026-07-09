@@ -427,11 +427,9 @@ void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
 }
 
 void iphone_end_menu(winid wid, const char *prompt) {
-	//NSLog(@"iphone_end_menu %d, %s", wid, prompt);
-	if (prompt) {
-		Window *w = [_globalWindowDelegate windowWithId:wid];
-		w.menuPrompt = [NSString stringWithCString:prompt encoding:NSASCIIStringEncoding];
-	}
+    if (_globalWindowDelegate) {
+        [_globalWindowDelegate endMenuForWindowWithId:wid prompt:prompt];
+    }
 }
 
 int iphone_select_menu(winid wid, int how, menu_item **selected) {

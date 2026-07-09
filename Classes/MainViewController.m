@@ -1265,7 +1265,7 @@ static MainViewController *instance;
             }
         }
         
-        lets = expandInventoryLetters(lets);
+        lets = [self expandInventoryLetters:lets];
         inventoryWindow.menuPrompt = q;
         
         // Execute your local application inventory presentation layout
@@ -1355,6 +1355,33 @@ static MainViewController *instance;
         Window *w = [windows objectForKey:@(wid)];
         [w putString:text];
     }
+}
+
+/**
+ * @brief Expands tokenized character boundaries (e.g., 'a-c') into explicit sequential inventory letters ('abc').
+ * @param lets The compressed inventory shorthand string token passed from the selection loops.
+ * @return An expanded mutable string listing all legitimate item characters in order.
+ */
+- (NSString *)expandInventoryLetters:(NSString *)lets {
+    NSMutableString *res = [NSMutableString string];
+    char lastChar = 0; // Initialize to 0 for safety
+    BOOL isRange = NO;
+    
+    for (int i = 0; i < lets.length; ++i) {
+        char c = [lets characterAtIndex:i];
+        if (isRange) {
+            for (char ch = lastChar + 1; ch <= c; ++ch) {
+                [res appendFormat:@"%c", ch]; // Use appendFormat for cleaner execution string expansion
+            }
+            isRange = NO;
+        } else if (c == '-' && lastChar) {
+            isRange = YES;
+        } else {
+            [res appendFormat:@"%c", c];
+            lastChar = c;
+        }
+    }
+    return res;
 }
 
 @end

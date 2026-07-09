@@ -643,7 +643,9 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 					c = [stringAmount characterAtIndex:0];
 					for (int i = 1; i < stringAmount.length; ++i) {
 						char ch = [stringAmount characterAtIndex:i];
-						[[[MainViewController instance] nethackEventQueue] addKeyEvent:ch];
+						if (_globalWindowDelegate) {
+                            [_globalWindowDelegate postKeyEvent:ch];
+                        }
 					}
 					return c;
 				} else {
@@ -654,7 +656,7 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 				iphone_putstr(WIN_MESSAGE, ATR_NONE, question);
 				[_globalWindowDelegate updateScreen];
 				[_globalWindowDelegate showKeyboard:YES];
-				NethackEvent *e = [[[MainViewController instance] nethackEventQueue] waitForNextEvent];
+				NethackEvent *e = [_globalWindowDelegate fetchNextInputEvent];
 				[_globalWindowDelegate showKeyboard:NO];
 				return e.key;
 			}

@@ -2,12 +2,12 @@
 
 typedef int winid;
 @class Window;
-@class MainViewController;
 @class NethackEvent;
 @class NethackMenuItem;
 @class NethackYnFunction;
 
 @protocol NetHackEngineDelegate <NSObject>
+- (void)clipAroundX:(int)x y:(int)y;
 - (winid)createWindow:(int)type;
 - (void)destroyWindow:(winid)wid;
 - (void)displayFile:(NSString *)filename mustExist:(BOOL)e;

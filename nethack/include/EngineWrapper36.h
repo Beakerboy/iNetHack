@@ -63,12 +63,6 @@ struct menu_item;
 - (void)displayFile:(NSString *)filename mustExist:(BOOL)e;
 
 /**
- * @brief Presents a populated menu choice interaction sheet to the viewport layer.
- * @param w Reference pointer to the underlying \c Window object tracking the list items.
- */
-- (void)displayMenuWindow:(Window *)w;
-
-/**
  * @brief Transitions a specific window layout into an active, visible display state.
  * @param wid      The target \c winid tracking code of the window layer to show.
  * @param blocking Set to YES if the calling thread loop must pause execution until user interaction yields.

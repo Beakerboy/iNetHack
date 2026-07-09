@@ -25,9 +25,7 @@
 #import "EngineWrapper36.h"
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
-
-// for md5 methods
-#import "Hearse.h"
+#import <CommonCrypto/CommonDigest.h>
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -750,7 +748,7 @@ void iphone_will_load_bones(const char *bonesid) {
 	//NSLog(@"load bones %s", bonesid);
 	NSString *src = [NSString stringWithFormat:@"./bon%s", bonesid]; //iNethack2 prepending with ./
 	NSString *dest = [NSString stringWithFormat:@"./bon%s.bad", bonesid]; //iNethack2 prepending with ./
-	NSString *md5 = [Hearse md5HexForFile:src];
+	NSString *md5 = nativeMD5HexForFile(src);
 	NSError *error = nil;
 	[md5 writeToFile:dest atomically:YES encoding:NSASCIIStringEncoding error:&error];
 }
@@ -1074,4 +1072,24 @@ int glyph, flag, *ocolor, x, y, *ochar;
 unsigned *ospecial;
 {
     return mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y, flag);
+}
+
+NSString *nativeMD5HexForFile(NSString *path) {
+    // 1. Read the entire file into an NSData block in a single step
+    NSData *fileData = [NSData dataWithContentsOfFile:path];
+    if (!fileData || fileData.length == 0) {
+        return nil;
+    }
+    
+    // 2. Execute CommonCrypto's one-shot hashing function
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(fileData.bytes, (CC_LONG)fileData.length, digest);
+    
+    // 3. Convert the resulting raw bytes into a lowercase hex string
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    
+    return output;
 }

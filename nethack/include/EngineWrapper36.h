@@ -22,6 +22,12 @@ typedef int winid;
 #if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(ANY_P)
     static const int COLNO = 80;
     static const int ROWNO = 21;
+    typedef NS_ENUM(NSInteger, NetHackPlayerResetType) {
+        RESET_ROLE   = 1,
+        RESET_RACE   = 2,
+        RESET_GENDER = 3,
+        RESET_ALIGN  = 4
+    };
 
     typedef NS_ENUM(NSInteger, NetHackWindowType) {
         NHW_MESSAGE = 1,

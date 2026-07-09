@@ -372,7 +372,7 @@ void iphone_resume_nhwindows() {
 
 winid iphone_create_nhwindow(int type) {
     if (_globalWindowDelegate) {
-        return [_globalWindowDelegate createWindowWithType:type];
+        return [_globalWindowDelegate createWindow:type];
     }
     return -1; 
 }
@@ -390,7 +390,7 @@ void iphone_display_nhwindow(winid wid, BOOLEAN_P block) {
 
 void iphone_destroy_nhwindow(winid wid) {
     if (_globalWindowDelegate) {
-        [_globalWindowDelegate destroyWindowWithId:wid];
+        [_globalWindowDelegate destroyWindow:wid];
     }
 }
 

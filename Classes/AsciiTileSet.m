@@ -21,8 +21,6 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 #import "winiphone.h"
 #import "AsciiTileSet.h"
-#include "hack.h"
-#include "display.h"
 
 /*
 static float _colorTable[][4] = {

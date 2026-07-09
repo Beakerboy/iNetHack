@@ -23,6 +23,7 @@
 #import "iNethackAppDelegate.h"
 #import "MainViewController.h"
 #import "MainView.h"
+#import "NethackMenuItem.h"
 #import "Window.h"
 #import "MenuViewController.h"
 #import "MenuItem.h"

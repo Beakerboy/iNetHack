@@ -7,8 +7,8 @@ typedef int winid;
 @class NethackYnFunction;
 
 @protocol NetHackEngineDelegate <NSObject>
-- (winid)createWindowWithType:(int)type;
-- (void)destroyWindowWithId:(winid)wid;
+- (winid)createWindow:(int)type;
+- (void)destroyWindow:(winid)wid;
 - (void)displayFile:(NSString *)filename mustExist:(BOOL)e;
 - (void)displayMenuWindow:(Window *)w;
 - (void)displayWindowId:(winid)wid blocking:(BOOL)blocking;

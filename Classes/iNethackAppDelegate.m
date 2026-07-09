@@ -104,8 +104,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 
     if ([[MainViewController instance] gameInProgress]) {
-        // 2.1.0+, Now use the checkpoint system to create a save any time the app enters the background.
-        save_currentstate();
+        [self.nethackEngine saveCurrentstate];
     }
 }
 

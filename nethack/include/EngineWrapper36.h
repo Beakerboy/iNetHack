@@ -35,6 +35,9 @@ struct menu_item;
 @protocol NetHackEngineDelegate <NSObject>
 
 - (void)callStartMenu:(winid)wid;
+
+- (void)clearWindowWithId:(winid)wid;
+
 /**
  * @brief Requests the viewport display bounds or scroll window to center around a target focal point.
  * @param x The horizontal map grid tile column coordinate.

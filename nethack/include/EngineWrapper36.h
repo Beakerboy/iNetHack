@@ -19,7 +19,6 @@
  */
 typedef int winid;
 
-@class Window;
 @class NethackEvent;
 @class NethackMenuItem;
 @class NethackYnFunction;
@@ -35,6 +34,7 @@ struct menu_item;
  */
 @protocol NetHackEngineDelegate <NSObject>
 
+- (void)callStartMenu:(winid)wid;
 /**
  * @brief Requests the viewport display bounds or scroll window to center around a target focal point.
  * @param x The horizontal map grid tile column coordinate.

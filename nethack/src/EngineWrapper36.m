@@ -11,9 +11,9 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 }
 
 - (void)main {
-    iphone_main();
+    main();
 }
 - (void)haptic_reset {
-    iphone_haptic_reset()
+    haptic_reset()
 }
 @end

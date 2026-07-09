@@ -970,7 +970,7 @@ sys_random_seed()
 
 
 
-void main() {
+int main() {
 	int argc = 0;
 	char **argv = NULL;
     

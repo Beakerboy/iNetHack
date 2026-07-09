@@ -14,16 +14,18 @@ typedef int winid;
 - (void)displayYnQuestion:(NethackYnFunction *)yn;
 - (void)doPlayerSelection;
 - (NethackEvent *)fetchNextInputEvent;
-- (char)getDirectionInput;
-- (int)getExtendedCommand;
 - (void)getLine:(char *)line prompt:(const char *)prompt;
 - (void)postKeyEvent:(int)ch;
 - (void)resetGlyphCache;
-- (void)setAnimFrame:(int)frame;
-- (void)setGameInProgress:(BOOL)inProgress;
 - (void)showKeyboard:(BOOL)d;
 - (void)updateScreen;
 - (Window *)windowWithId:(winid)wid;
+
+- (char)getDirectionInput;
+- (int)getExtendedCommand;
+
+- (void)setAnimFrame:(int)frame;
+- (void)setGameInProgress:(BOOL)inProgress;
 
 - (int)animFrame;
 

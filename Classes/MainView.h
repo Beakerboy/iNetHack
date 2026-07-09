@@ -22,8 +22,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "hack.h"
-
 #define kKeyTileSize (@"tileSize")
 
 @class MainViewController, TilePosition, Window, TileSet, ShortcutView;

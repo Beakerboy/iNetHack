@@ -660,11 +660,11 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 		if ([s isEqualToString:@"Really save?"] || [s isEqualToString:@"Overwrite the old file?"]) {
 			return 'y';
 		} 
-		NethackYnFunction *yn = [[NethackYnFunction alloc] initWithQuestion:question choices:choices defaultChoice:def];
-		[_globalWindowDelegate displayYnQuestion:yn];
-		[yn autorelease];
-		return yn.choice;
+		if (_globalWindowDelegate) {
+            return [_globalWindowDelegate displayYnQuestion:question choices:choices defaultChoice:def];
+        }
 	}
+	return def;
 }
 
 void iphone_getlin(const char *prompt, char *line) {

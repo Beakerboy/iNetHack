@@ -14,6 +14,7 @@ typedef int winid;
 - (void)displayWindowId:(winid)wid blocking:(BOOL)blocking;
 - (void)displayYnQuestion:(NethackYnFunction *)yn;
 - (void)doPlayerSelection;
+- (void)endMenuForWindowWithId:(int)wid prompt:(const char *)prompt;
 - (NethackEvent *)fetchNextInputEvent;
 - (void)getLine:(char *)line prompt:(const char *)prompt;
 - (void)postKeyEvent:(int)ch;

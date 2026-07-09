@@ -18,8 +18,8 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-typedef char CHAR_P;
-typedef char BOOLEAN_P;
+typedef int CHAR_P;
+typedef int BOOLEAN_P;
 typedef union any ANY_P; 
 
 @class NethackEvent;

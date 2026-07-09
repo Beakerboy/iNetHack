@@ -18,22 +18,22 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-typedef NS_ENUM(NSInteger, NetHackPlayerResetType) {
-    RESET_ROLE   = 1,
-    RESET_RACE   = 2,
-    RESET_GENDER = 3,
-    RESET_ALIGN  = 4
-};
-
-typedef NS_ENUM(NSInteger, NetHackWindowType) {
-    NHW_MESSAGE = 1,
-    NHW_STATUS  = 2,
-    NHW_MAP     = 3,
-    NHW_MENU    = 4,
-    NHW_TEXT    = 5
-};
-
 #if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(ANY_P)
+    typedef NS_ENUM(NSInteger, NetHackPlayerResetType) {
+        RESET_ROLE   = 1,
+        RESET_RACE   = 2,
+        RESET_GENDER = 3,
+        RESET_ALIGN  = 4
+    };
+
+    typedef NS_ENUM(NSInteger, NetHackWindowType) {
+        NHW_MESSAGE = 1,
+        NHW_STATUS  = 2,
+        NHW_MAP     = 3,
+        NHW_MENU    = 4,
+        NHW_TEXT    = 5
+    };
+
     static const int COLNO = 80;
     static const int ROWNO = 21;
     
@@ -282,5 +282,5 @@ struct menu_item;
  * @brief Resets character selection parameters in a fall-through cascade based on selection type.
  * @param type The starting index parameter code to wipe (RESET_ROLE, RESET_RACE, etc.).
  */
-- (void)resetPlayerChoices:(NetHackPlayerResetType)type;
+- (void)resetPlayerChoices:(int)type;
 @end

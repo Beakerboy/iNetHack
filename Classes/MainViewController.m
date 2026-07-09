@@ -1145,6 +1145,24 @@ static MainViewController *instance;
 #pragma mark - NetHackEngineDelegate Methods
 
 /**
+ * @brief Adjusts the internal map clipping position and anchors the display viewport layout.
+ *
+ * Fulfills the \c NetHackEngineDelegate protocol requirements. This method receives tracking 
+ * signals from the underlying framework layer and applies them directly to the local \c clip 
+ * structure, shielding the framework from direct awareness of your custom positioning layout.
+ *
+ * @param x The raw horizontal integer grid coordinate passed from the engine loop.
+ * @param y The raw vertical integer grid coordinate passed from the engine loop.
+ *
+ * @note This method executes safely on the calling thread, but any downstream view adjustments 
+ *       or animated scroll updates should be pushed to the main thread.
+ */
+- (void)clipAroundX:(int)x y:(int)y {
+    self.clip.x = x;
+    self.clip.y = y;
+}
+
+/**
  * @brief Blocks the calling thread and retrieves the next structured input event from the application queue.
  *
  * This method acts as the foundational bridging mechanism between the NetHack core engine's 

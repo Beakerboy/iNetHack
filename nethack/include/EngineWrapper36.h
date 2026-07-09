@@ -241,7 +241,7 @@ struct menu_item;
  * @brief Primary engine ignition method triggering NetHack's infinite main game loop loop.
  * @note This method executes blocking operations and must be dispatched onto an isolated thread context.
  */
-- (void)main;
+- (void)frameworkMain;
 
 /**
  * @brief Resets device-specific core-haptic engine patterns and tactile feedback wave files.

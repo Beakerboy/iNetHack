@@ -36,6 +36,8 @@ typedef int winid;
 @end
 
 @interface EngineWrapper36 : NSObject
+@property (nonatomic, weak) id<NetHackEngineDelegate> delegate;
+- (instancetype)initWithOptions:(NSString *)optionsString hackDir:(NSString *)hackDirPath;
 - (void)main;
 - (void)haptic_reset;
 @end

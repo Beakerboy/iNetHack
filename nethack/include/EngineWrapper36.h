@@ -18,8 +18,6 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-typedef struct menu_item menu_item;
-typedef union anything anything; 
 
 static const int COLNO = 80;
 static const int ROWNO = 21;
@@ -33,6 +31,8 @@ typedef NS_ENUM(NSInteger, NetHackWindowType) {
 };
 
 #if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(ANY_P)
+    typedef struct menu_item menu_item;
+    typedef union anything anything; 
     typedef int CHAR_P;
     typedef int BOOLEAN_P;
     typedef union any ANY_P; 

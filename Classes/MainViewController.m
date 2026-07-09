@@ -1138,6 +1138,11 @@ static MainViewController *instance;
 
 #pragma mark - NetHackEngineDelegate Methods
 
+- (void)callStartMenu:(winid)wid {
+    Window *w = [windows objectForKey:@(wid)];
+    [w startMenu];
+}
+
 /**
  * @brief Adjusts the internal map clipping position and anchors the display viewport layout.
  *

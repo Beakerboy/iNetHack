@@ -18,7 +18,7 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-#if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(ANY_P)
+#if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(COLNO) && !defined(NHW_MESSAGE)
     typedef NS_ENUM(NSInteger, NetHackPlayerResetType) {
         RESET_ROLE   = 1,
         RESET_RACE   = 2,

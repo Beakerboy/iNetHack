@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
-
+@import NetHackEngine36;
 #define kNoGlyph (-1)
 
 @class NethackMenuItem;

@@ -39,8 +39,12 @@
 @class TilePosition;
 @class DMath;
 
-@interface MainViewController : UIViewController <UIActionSheetDelegate, UITextFieldDelegate , UIAlertViewDelegate> {
-	
+@interface MainViewController : UIViewController <
+	UIActionSheetDelegate,
+	UITextFieldDelegate,
+	UIAlertViewDelegate,
+	NetHackEngineDelegate
+> {
 	IBOutlet NethackMenuViewController *nethackMenuViewController;
 	IBOutlet TextInputViewController *textInputViewController;
 	IBOutlet DirectionInputViewController *directionInputViewController;
@@ -81,17 +85,16 @@
 	Window *blockingMap;
 }
 
-//@property (nonatomic, readonly) NSArray *windows;
 @property (nonatomic, readonly, retain) NSDictionary *windows; //iNethack2: making this a dict
 @property (nonatomic, readonly, retain) TilePosition *clip;
 @property (nonatomic, readonly) Window *mapWindow;
 @property (nonatomic, readonly) Window *messageWindow;
 @property (nonatomic, readonly) Window *statusWindow;
 @property (nonatomic, retain) NethackEventQueue *nethackEventQueue;
-@property (assign) BOOL gameInProgress;
-@property (assign) int animFrame;
+@property (atomic, assign) int animFrame;
+@property (nonatomic, assign, readonly) BOOL gameInProgress;
 
-+ (MainViewController *) instance;
++ (instancetype)instance;
 + (void) message:(NSString *)format, ...;
 + (void) message:(NSString *)message format:(va_list)arg_list;
 

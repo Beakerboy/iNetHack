@@ -18,7 +18,8 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-
+typedef struct menu_item menu_item;
+typedef union anything anything; 
 #if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(ANY_P)
     typedef int CHAR_P;
     typedef int BOOLEAN_P;

@@ -10,7 +10,7 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
     _globalWindowDelegate = delegate; // Assigns the global pointer
 }
 
-- (void)framework_main {
+- (void)frameworkMain {
     main();
 }
 - (void)haptic_reset {

@@ -322,8 +322,7 @@ void iphone_init_nhwindows(int* argc, char** argv) {
 }
 
 void iphone_player_selection() {
-	//strcpy(pl_character, "Barb");
-	[[MainViewController instance] doPlayerSelection];
+	[_globalWindowDelegate doPlayerSelection];
 }
 
 void iphone_askname() {

@@ -141,6 +141,14 @@ struct menu_item;
 - (void)getLine:(char *)line prompt:(const char *)prompt;
 
 /**
+ * @brief Processes a complex NetHack engine prompt lacking explicit choices (such as inventory item selections).
+ * @param question The raw query text provided by the game engine.
+ * @param def      The fallback default character action.
+ * @return The final confirmation character response requested by the engine loop.
+ */
+- (char)handleComplexQueryPrompt:(const char *)question defaultChoice:(char)def;
+
+/**
  * @brief Injects an unexpected asynchronous key character action token down into the engine loop.
  * @param ch The integer ASCII code or engine sequence command value mapping to the key trigger.
  */

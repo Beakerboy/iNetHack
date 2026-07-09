@@ -21,4 +21,8 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 - (void)saveCurrentstate {
     save_currentstate();
 }
+
+- (int)doSave {
+    return dosave();
+}
 @end

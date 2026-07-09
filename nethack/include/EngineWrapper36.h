@@ -3,7 +3,7 @@
 typedef int winid;
 @class Window;
 @class NethackEvent;
-@class NetHackMenuItem;
+@class NethackMenuItem;
 @class NethackYnFunction;
 
 @protocol NetHackEngineDelegate <NSObject>

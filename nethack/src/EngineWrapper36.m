@@ -25,4 +25,11 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 - (int)doSave {
     return dosave();
 }
+
+- (void)cleanUpLockFile {
+    if (self.delegate) {
+        // Pass the internal 'lock' string out to the app delegate safely
+        [self.delegate unlinkLockFile:lock];
+    }
+}
 @end

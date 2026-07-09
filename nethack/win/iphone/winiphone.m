@@ -25,6 +25,8 @@
 #import "EngineWrapper36.h"
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
+#import <NetHackEngine36/NethackEvent.h>
+#import <NetHackEngine36/Window.h>
 
 // for md5 methods
 #import "Hearse.h"

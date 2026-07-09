@@ -32,6 +32,26 @@ struct menu_item;
  */
 @protocol NetHackEngineDelegate <NSObject>
 
+/**
+ * @brief Allocates and appends a new item entry to an active menu window compilation block.
+ * @param wid          The tracking handle of the window target.
+ * @param glyph        The visual tile glyph index integer code.
+ * @param identifier   Pointer to the unique NetHack engine ANY_P identification address.
+ * @param accelerator  The keyboard shortcut character associated with this selection entry.
+ * @param group_accel  The macro group selection character.
+ * @param attr         Text styling configuration modifiers.
+ * @param str          The descriptive text title shown to the user.
+ * @param presel       Flag marking whether the menu entry starts as highlighted/checked.
+ */
+- (void)addItemToMenuWindowWithId:(winid)wid
+                            glyph:(int)glyph
+                       identifier:(const ANY_P *)identifier
+                      accelerator:(CHAR_P)accelerator
+                       groupAccel:(CHAR_P)group_accel
+                        attribute:(int)attr
+                            title:(const char *)str
+                     preselected:(BOOLEAN_P)presel;
+
 - (void)callStartMenu:(winid)wid;
 
 - (void)clearWindowWithId:(winid)wid;

@@ -57,7 +57,7 @@ static MainViewController *instance;
 @synthesize windows, clip, nethackEventQueue;
 @synthesize gameInProgress, animFrame;
 
-+ (MainViewController *) instance {
++ (instancetype)instance {
 	return instance;
 }
 

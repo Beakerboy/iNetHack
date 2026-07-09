@@ -1142,4 +1142,27 @@ static MainViewController *instance;
     [super dealloc];
 }
 
+#pragma mark - NetHackEngineDelegate Methods
+
+/**
+ * @brief Blocks the calling thread and retrieves the next structured input event from the application queue.
+ *
+ * This method acts as the foundational bridging mechanism between the NetHack core engine's 
+ * execution thread and the application's asynchronous user interface. It forces the engine 
+ * thread to wait cleanly until a tap, swipe, or keystroke is captured and logged into the 
+ * internal event buffer.
+ *
+ * @note Because this method calls a blocking queue operation (`waitForNextEvent`), it must 
+ *       never be executed directly on the main UI thread, otherwise the iOS application interface 
+ *       will completely lock up.
+ *
+ * @return A shared data container instance of type \c NethackEvent containing the exact spatial 
+ *         grid coordinates (x, y) and key tokens pressed by the user.
+ *
+ * @see NetHackEngineDelegate
+ * @see NethackEventQueue
+ */
+- (NethackEvent *)fetchNextInputEvent {
+    return [nethackEventQueue waitForNextEvent];
+}
 @end

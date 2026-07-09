@@ -389,8 +389,9 @@ void iphone_curs(winid wid, int x, int y) {
 }
 
 void iphone_putstr(winid wid, int attr, const char *text) {
-	Window *w = [_globalWindowDelegate windowWithId:wid];
-	[w putString:text];
+    if (_globalWindowDelegate) {
+        [_globalWindowDelegate writeStringToWindowWithId:wid attribute:attr text:text];
+    }
 }
 
 void iphone_display_file(const char *filename, BOOLEAN_P must_exist) {

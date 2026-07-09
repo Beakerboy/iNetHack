@@ -2,8 +2,8 @@
 
 typedef int winid;
 @class Window;
-@class NethackEvent
-@class NethackYnFunction
+@class NethackEvent;
+@class NethackYnFunction;
 
 @protocol NetHackEngineDelegate <NSObject>
 - (winid)createWindowWithType:(int)type;

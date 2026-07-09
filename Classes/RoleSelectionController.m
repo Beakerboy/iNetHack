@@ -29,17 +29,6 @@ enum {
 	RESET_ALIGNMENT,
 };
 
-static void reset_choices (int type)
-{
-	switch(type)
-	{
-		case RESET_ROLE:      flags.initrole  = -1;
-		case RESET_RACE:      flags.initrace  = -1;
-		case RESET_GENDER:    flags.initgend  = -1;
-		case RESET_ALIGNMENT: flags.initalign = -1;
-	}
-}
-
 @implementation RoleSelectionController
 - (void)showChoices:(NSArray *)items withTitle:(NSString *)title {
 	if (items.count > 1) {
@@ -63,7 +52,10 @@ static void reset_choices (int type)
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
 
-	reset_choices(RESET_ALIGNMENT);
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    if (appDelegate.nethackEngine) {
+        [appDelegate.nethackEngine resetPlayerChoices:RESET_ALIGNMENT];
+    }
 	flags.initalign = (int) [sender tag];
 
 	[self moveToNextStep:nil];
@@ -91,8 +83,10 @@ static void reset_choices (int type)
 - (void)didSelectGender:(id)sender
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
-
-	reset_choices(RESET_GENDER);
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    if (appDelegate.nethackEngine) {
+        [appDelegate.nethackEngine resetPlayerChoices:RESET_GENDER];
+    }
 	flags.initgend = (int) [sender tag];
 
 	[self moveToNextStep:nil];
@@ -120,8 +114,10 @@ static void reset_choices (int type)
 - (void)didSelectRace:(id)sender
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
-
-	reset_choices(RESET_RACE);
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    if (appDelegate.nethackEngine) {
+        [appDelegate.nethackEngine resetPlayerChoices:RESET_RACE];
+    }
 	pl_race = [sender tag];
 	flags.initrace = (int) [sender tag];
 
@@ -150,8 +146,10 @@ static void reset_choices (int type)
 - (void)didSelectRole:(id)sender
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
-
-	reset_choices(RESET_ROLE);
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    if (appDelegate.nethackEngine) {
+        [appDelegate.nethackEngine resetPlayerChoices:RESET_ROLE];
+    }
 	flags.initrole = (int) [sender tag];
 	strcpy(pl_character, roles[flags.initrole].filecode);
 

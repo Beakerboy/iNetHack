@@ -20,7 +20,7 @@
 typedef int winid;
 typedef char CHAR_P;
 typedef char BOOLEAN_P;
-typedef struct any ANY_P;
+typedef union any ANY_P; 
 
 @class NethackEvent;
 struct menu_item;

@@ -16,6 +16,7 @@ typedef int winid;
 - (void)getLine:(char *)line prompt:(const char *)prompt;
 - (void)resetGlyphCache;
 - (void)setAnimFrame:(int)frame;
+- (void)setGameInProgress:(BOOL)inProgress;
 - (void)showKeyboard:(BOOL)d;
 - (void)updateScreen;
 - (Window *)windowWithId:(winid)wid;

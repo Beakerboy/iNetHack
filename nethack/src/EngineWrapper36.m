@@ -1,5 +1,6 @@
 #import "EngineWrapper36.h"
 #import "hack.h"
+#import "winiphone.h"
 
 __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 

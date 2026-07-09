@@ -456,10 +456,9 @@ void iphone_wait_synch() {
 }
 
 void iphone_cliparound(int x, int y) {
-	//NSLog(@"iphone_cliparound %d,%d", x, y);
-	MainViewController *v = _globalWindowDelegate;
-	v.clip.x = x;
-	v.clip.y = y;
+    if (_globalWindowDelegate) {
+        [_globalWindowDelegate clipAroundX:x y:y];
+    }
 }
 
 void iphone_cliparound_window(winid wid, int x, int y) {

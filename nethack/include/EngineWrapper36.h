@@ -138,13 +138,6 @@ struct menu_item;
  */
 - (void)updateScreen;
 
-/**
- * @brief Resolves a specific active structural UI element using its integer engine reference tracker.
- * @param wid The tracking \c winid of the required window canvas block.
- * @return Pointer map to the localized app \c Window object instance, or nil if unmapped.
- */
-- (Window *)windowWithId:(winid)wid;
-
 - (void)writeStringToWindowWithId:(winid)wid attribute:(int)attr text:(const char *)text;
 
 /**

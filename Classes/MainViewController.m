@@ -1227,4 +1227,11 @@ static MainViewController *instance;
     return w.menuResult;
 }
 
+- (void)writeStringToWindowWithId:(winid)wid attribute:(int)attr text:(const char *)text {
+    if (text) {
+        Window *w = [windows objectForKey:@(wid)];
+        [w putString:text];
+    }
+}
+
 @end

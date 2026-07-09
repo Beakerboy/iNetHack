@@ -2,7 +2,7 @@
 
 typedef int winid;
 @class Window;
-@class MainViewController
+@class MainViewController;
 @class NethackEvent;
 @class NethackMenuItem;
 @class NethackYnFunction;

@@ -1165,4 +1165,20 @@ static MainViewController *instance;
 - (NethackEvent *)fetchNextInputEvent {
     return [nethackEventQueue waitForNextEvent];
 }
+
+/**
+ * @brief Injects a raw key character event back into the application's event processing pipeline.
+ *
+ * This method is utilized by the core game engine to pass internal asynchronous keystroke signals 
+ * or automated macro choices back out to the main application interface layer. The application 
+ * consumes this value to update UI states, process textual macros, or feed downstream UI queues.
+ *
+ * @param ch The integer value representing the ASCII character or custom key token to be injected.
+ *
+ * @see fetchNextInputEvent
+ * @see NetHackEngineDelegate
+ */
+- (void)postKeyEvent:(int)ch {
+    [nethackEventQueue addKeyEvent:ch];
+}
 @end

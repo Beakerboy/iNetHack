@@ -406,12 +406,18 @@ void iphone_start_menu(winid wid) {
 }
 
 void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
-					 CHAR_P accelerator, CHAR_P group_accel, int attr, 
-					 const char *str, BOOLEAN_P presel) {
-    NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier title:str glyph:glyph preselected:presel?YES:NO accelerator:accelerator];
-	Window *w = [_globalWindowDelegate windowWithId:wid];
-	[w addMenuItem:i];
-	[i release];
+                     CHAR_P accelerator, CHAR_P group_accel, int attr, 
+                     const char *str, BOOLEAN_P presel) {
+    if (_globalWindowDelegate) {
+        [_globalWindowDelegate addItemToMenuWindowWithId:wid
+                                                   glyph:glyph
+                                              identifier:identifier
+                                             accelerator:accelerator
+                                              groupAccel:group_accel
+                                               attribute:attr
+                                                   title:str
+                                             preselected:presel];
+    }
 }
 
 void iphone_end_menu(winid wid, const char *prompt) {

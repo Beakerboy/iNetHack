@@ -757,6 +757,14 @@ static MainViewController *instance;
     }
 }
 
+- (void)drawGlyphToWindowWithId:(winid)wid atX:(int)x y:(int)y glyph:(int)glyph {
+    // Look up the window from your private tracking dictionary
+    Window *w = [windows objectForKey:@(wid)];
+    
+    // Map directly to your working application method interface
+    [w setGlyph:glyph atX:x y:y];
+}
+
 - (NSString *)formatMessageForWideScreen:(NSString *)message {
     NSMutableString *formattedMessage = [NSMutableString stringWithString:message];
 

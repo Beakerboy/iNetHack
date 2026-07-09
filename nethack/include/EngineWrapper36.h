@@ -108,6 +108,15 @@ struct menu_item;
 - (void)doPlayerSelection;
 
 /**
+ * @brief Renders a specific map tile or character sprite glyph onto a designated window grid.
+ * @param wid   The window identifier handle.
+ * @param x     The structural horizontal column grid coordinate.
+ * @param y     The structural vertical row grid coordinate.
+ * @param glyph The native core engine index tracker value matching a visual tile asset.
+ */
+- (void)drawGlyphToWindowWithId:(winid)wid atX:(int)x y:(int)y glyph:(int)glyph;
+
+/**
  * @brief Signals that the internal structural menu creation phase has terminated for a window.
  * @param wid    The operational \c winid tracking identifier.
  * @param prompt Optional C-string title text or question prompt describing the menu choices.

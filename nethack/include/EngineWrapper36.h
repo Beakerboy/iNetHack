@@ -26,7 +26,6 @@ typedef int winid;
 
 - (int)animFrame;
 
-// ... add future migrated window functions here ...
 @end
 
 @interface EngineWrapper36 : NSObject

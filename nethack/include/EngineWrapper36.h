@@ -2,7 +2,7 @@
 
 typedef int winid;
 @class Window;
-@class NetHackEvent;
+@class NethackEvent;
 @class NetHackMenuItem;
 @class NethackYnFunction;
 

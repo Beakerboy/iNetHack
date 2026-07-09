@@ -145,6 +145,8 @@ struct menu_item;
  */
 - (Window *)windowWithId:(winid)wid;
 
+- (void)writeStringToWindowWithId:(winid)wid attribute:(int)attr text:(const char *)text;
+
 /**
  * @brief Forces a modal input wait loop capturing single-direction swipe or compass tile selections.
  * @return The direct movement key code token character matching the chosen vector.

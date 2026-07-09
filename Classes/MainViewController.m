@@ -1191,4 +1191,25 @@ static MainViewController *instance;
         w.menuPrompt = [NSString stringWithCString:prompt encoding:NSASCIIStringEncoding];
     }
 }
+
+- (int)selectMenuForWindowWithId:(int)wid how:(int)how selectedItems:(struct menu_item **)selected {
+    // Look up the window from your private dictionary
+    Window *w = [windows objectForKey:@(wid)];
+    
+    // Set the window properties exactly like your legacy code did
+    w.menuHow = how;
+    
+    // Display the menu (which blocks this thread until user hits Done/Cancel)
+    [self displayMenuWindow:w];
+    
+    // Assign the resulting NetHack item list pointer back to the engine
+    *selected = w.menuList;
+    
+    // Clean up the prompt reference now that the menu lifecycle is finished
+    w.menuPrompt = nil;
+    
+    // Return the raw integer count or outcome code
+    return w.menuResult;
+}
+
 @end

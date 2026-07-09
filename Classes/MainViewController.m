@@ -1181,4 +1181,14 @@ static MainViewController *instance;
 - (void)postKeyEvent:(int)ch {
     [nethackEventQueue addKeyEvent:ch];
 }
+
+- (void)endMenuForWindowWithId:(int)wid prompt:(const char *)prompt {
+    if (prompt) {
+        // Look up the window from your dictionary
+        Window *w = [windows objectForKey:@(wid)];
+        
+        // Safely apply the string property inside the app layer where it belongs
+        w.menuPrompt = [NSString stringWithCString:prompt encoding:NSASCIIStringEncoding];
+    }
+}
 @end

@@ -246,6 +246,6 @@ struct menu_item;
 /**
  * @brief Resets device-specific core-haptic engine patterns and tactile feedback wave files.
  */
-- (void)haptic_reset;
+- (void)hapticReset;
 
 @end

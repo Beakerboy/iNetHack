@@ -32,4 +32,22 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
         [self.delegate unlinkLockFile:lock];
     }
 }
+
+- (void)resetPlayerChoices:(NetHackPlayerResetType)type {
+    // Replicates your exact working fall-through cascade safely inside the framework
+    switch (type) {
+        case RESET_ROLE:
+            flags.initrole = ROLE_NONE; // ROLE_NONE resolves natively to -1
+            [[fallthrough]];
+        case RESET_RACE:
+            flags.initrace = ROLE_NONE;
+            [[fallthrough]];
+        case RESET_GENDER:
+            flags.initgend = ROLE_NONE;
+            [[fallthrough]];
+        case RESET_ALIGNMENT:
+            flags.initalign = ROLE_NONE;
+            break;
+    }
+}
 @end

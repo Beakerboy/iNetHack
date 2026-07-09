@@ -1114,6 +1114,11 @@ static MainViewController *instance;
     [w startMenu];
 }
 
+- (void)clearWindowWithId:(winid)wid {
+    Window *w = [self windowWithId:wid];
+	[w clear];
+}
+
 /**
  * @brief Adjusts the internal map clipping position and anchors the display viewport layout.
  *

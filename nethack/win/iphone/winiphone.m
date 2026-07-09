@@ -503,24 +503,26 @@ int iphone_nhgetch() {
  * @return The ASCII character value or engine token mapping to the key pressed or action performed.
  *         Returns 027 (ASCII Escape) as a fallback signature if the delegate is uninitialized.
  */
+/**
+ * @brief Waits for the next user event and unpacks its primitives directly.
+ * @param x Pointer where the horizontal grid column will be written.
+ * @param y Pointer where the vertical grid row will be written.
+ * @return The integer/ASCII value of the pressed key.
+ */
 int iphone_nh_poskey(int *x, int *y, int *mod) {
     if (_globalWindowDelegate) {
-        // Fetch the event via your clean abstraction boundary
-        NethackEvent *e = [_globalWindowDelegate fetchNextInputEvent];
+        // Set the native NetHack modifier
+        *mod = CLICK_1; 
         
-        if (e) {
-            *x = e.x;
-            *y = e.y;
-            *mod = CLICK_1; // Retain native NetHack click modifier
-            return e.key;
-        }
+        // Pass the target pointers directly down to the delegate to populate
+        return [_globalWindowDelegate fetchNextInputEventReturningX:x y:y];
     }
     
-    // Safety fallback: if no delegate exists, return an empty escape key signature
+    // Safety fallback if no delegate exists
     *x = 0;
     *y = 0;
     *mod = 0;
-    return 027; // Octal 027 is the standard ASCII Escape code fallback in NetHack
+    return 027; // Escape key
 }
 
 void iphone_nhbell() {}

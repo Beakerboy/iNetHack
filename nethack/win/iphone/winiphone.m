@@ -841,7 +841,7 @@ void iphone_reset_glyph_cache(void) {
 }
 
 // Reset haptic engine so it is recreated next time.
-void iphone_haptic_reset() {
+void haptic_reset() {
     hapticEngine = nil;
 }
 

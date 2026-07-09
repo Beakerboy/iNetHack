@@ -189,6 +189,12 @@ struct menu_item;
 - (char)getDirectionInput;
 
 /**
+ * @brief Requests the application layer to find and delete the lock file name.
+ * @param lockFileName The raw path/name string of the NetHack lock file.
+ */
+- (void)unlinkLockFile:(const char *)lockFileName;
+
+/**
  * @brief Forces a modal selection interface capturing textual extended metadata instructions.
  * @return The operational command integer tracking token chosen by the player.
  */

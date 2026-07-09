@@ -19,6 +19,7 @@ typedef int winid;
 - (void)getLine:(char *)line prompt:(const char *)prompt;
 - (void)postKeyEvent:(int)ch;
 - (void)resetGlyphCache;
+- (int)selectMenuForWindowWithId:(int)wid how:(int)how selectedItems:(struct menu_item **)selected;
 - (void)showKeyboard:(BOOL)d;
 - (void)updateScreen;
 - (Window *)windowWithId:(winid)wid;

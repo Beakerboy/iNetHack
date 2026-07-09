@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 typedef int winid;
+@class Window;
 
 @protocol NetHackEngineDelegate <NSObject>
 - (winid)createWindowWithType:(int)type;

@@ -433,14 +433,11 @@ void iphone_end_menu(winid wid, const char *prompt) {
 }
 
 int iphone_select_menu(winid wid, int how, menu_item **selected) {
-	//NSLog(@"iphone_select_menu %x", wid);
-	Window *w = [_globalWindowDelegate windowWithId:wid];
-	w.menuHow = how;
-	[_globalWindowDelegate displayMenuWindow:w];
-	*selected = w.menuList;
-	//NSLog(@"iphone_select_menu -> %d", w.menuResult);
-	w.menuPrompt = nil;
-	return w.menuResult;
+    if (_globalWindowDelegate) {
+        // Route directly through the delegate boundary
+        return [_globalWindowDelegate selectMenuForWindowWithId:wid how:how selectedItems:selected];
+    }
+    return -1; // Fallback cancellation if no UI is attached
 }
 
 // Replace with donull?

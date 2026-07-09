@@ -277,4 +277,10 @@ struct menu_item;
  * @brief Public command letting the app trigger internal lock file cleanup.
  */
 - (void)cleanUpLockFile;
+
+/**
+ * @brief Resets character selection parameters in a fall-through cascade based on selection type.
+ * @param type The starting index parameter code to wipe (RESET_ROLE, RESET_RACE, etc.).
+ */
+- (void)resetPlayerChoices:(NetHackPlayerResetType)type;
 @end

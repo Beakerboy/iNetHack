@@ -555,108 +555,24 @@ static NSString *expandInventoryLetters(NSString *lets) {
 }
 
 char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
-	NSLog(@"iphone_yn_function %s", question);
-	[_globalWindowDelegate updateScreen];
-	if (!choices) {
-		NSString *s = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
-		if ([s containsString:@"direction"]) {
-			return [_globalWindowDelegate getDirectionInput];
-		} else {
-			NSString *q = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
-			NSString *preLets = [q substringBetweenDelimiters:@"[]"];
-			if (preLets && preLets.length > 0) {
-				Window *inventoryWindow = [_globalWindowDelegate windowWithId:WIN_INVEN];
-				inventoryWindow.nethackMenuItem = nil;
-				BOOL alphaBegan = NO;
-				BOOL terminateLoop = NO;
-				int index;
-				int start=0; //iNethack2: initializing this as it was causing a crash when bringing up screens with no inventory options
-				for (int i = 0; i < preLets.length && !terminateLoop; ++i) {
-					index = i;
-					char c = [preLets characterAtIndex:i];
-					if (!alphaBegan) {
-						switch (c) {
-							case '$':
-								inventoryWindow.acceptMoney = YES;
-								break;
-							case '-':
-								inventoryWindow.acceptBareHanded = YES;
-								break;
-							default:
-								if (isalpha(c)) {
-									start = i;
-									alphaBegan = YES;
-								}
-								break;
-						}
-					} else {
-						if (c == ' ') {
-							terminateLoop = YES;
-						}
-					}
-				}
-				if (!terminateLoop) {
-					index++;
-				}
-				NSRange r = NSMakeRange(start, index-start);
-				NSString *lets = [preLets substringWithRange:r];
-				r = [preLets rangeOfString:@"or "];
-                if (r.location == NSNotFound) {
-                    r = [preLets rangeOfString:@"*"]; // If you don't have the appopriate item we still need the * option to be visible.
-                }
-				if (r.location != NSNotFound) {
-					NSString *moreOptions = [preLets substringFromIndex:r.location+r.length];
-                    if ([preLets  isEqual: @"*"]) {
-                        moreOptions = preLets;
-                    }
-					for (int i = 0; i < moreOptions.length; ++i) {
-						char c = [moreOptions characterAtIndex:i];
-						if (c == '*') {
-							inventoryWindow.acceptMore = YES;
-						}
-					}
-				}
-				lets = expandInventoryLetters(lets);
-				inventoryWindow.menuPrompt = q;
-				char c = display_inventory([lets cStringUsingEncoding:NSASCIIStringEncoding], TRUE);
-				inventoryWindow.acceptMoney      = NO;
-				inventoryWindow.acceptBareHanded = NO;
-				inventoryWindow.acceptMore       = NO;
-				if (inventoryWindow.nethackMenuItem && inventoryWindow.nethackMenuItem.amount != -1) {
-					int amount = inventoryWindow.nethackMenuItem.amount;
-					inventoryWindow.nethackMenuItem = nil;
-					NSString *stringAmount = [NSString stringWithFormat:@"%d%c", amount, c];
-					c = [stringAmount characterAtIndex:0];
-					for (int i = 1; i < stringAmount.length; ++i) {
-						char ch = [stringAmount characterAtIndex:i];
-						if (_globalWindowDelegate) {
-                            [_globalWindowDelegate postKeyEvent:ch];
-                        }
-					}
-					return c;
-				} else {
-					return c;
-				}
-			} else {
-				// no preLets defined ([])
-				iphone_putstr(WIN_MESSAGE, ATR_NONE, question);
-				[_globalWindowDelegate updateScreen];
-				[_globalWindowDelegate showKeyboard:YES];
-				NethackEvent *e = [_globalWindowDelegate fetchNextInputEvent];
-				[_globalWindowDelegate showKeyboard:NO];
-				return e.key;
-			}
-		}
-	} else {
-		NSString *s = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
-		if ([s isEqualToString:@"Really save?"] || [s isEqualToString:@"Overwrite the old file?"]) {
-			return 'y';
-		} 
-		if (_globalWindowDelegate) {
-            return [_globalWindowDelegate displayYnQuestion:question choices:choices defaultChoice:def];
-        }
-	}
-	return def;
+    if (!_globalWindowDelegate) {
+        return def;
+    }
+
+    [_globalWindowDelegate updateScreen];
+
+    // Handle choices being provided (Simple Yes/No questions)
+    if (choices) {
+        NSString *s = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
+        // Retain your working bypass logic for automated saving saves
+        if ([s isEqualToString:@"Really save?"] || [s isEqualToString:@"Overwrite the old file?"]) {
+            return 'y';
+        } 
+        return [_globalWindowDelegate displayYnQuestion:question choices:choices defaultChoice:def];
+    }
+
+    // Handle choices being NULL (Complex inventory/direction prompts)
+    return [_globalWindowDelegate handleComplexQueryPrompt:question defaultChoice:def];
 }
 
 void iphone_getlin(const char *prompt, char *line) {

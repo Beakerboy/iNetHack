@@ -929,35 +929,6 @@ static MainViewController *instance;
     return screenSize;
 }
 
-
-- (void) displayYnQuestionOnUIThread:(NethackYnFunction *)yn {
-	currentYnFunction = yn;
-	UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:[NSString stringWithCString:yn.question
-																				  encoding:NSASCIIStringEncoding]
-													  delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil
-											 otherButtonTitles:nil];
-	const char *p = yn.choices;
-	char c;
-
-    while ((c = *p++)) {
-		char str[] = {c,0};
-		[menu addButtonWithTitle:[NSString stringWithCString:str encoding:NSASCIIStringEncoding]];
-		//NSLog(@"added button %d %s", i, str);
-	}
-    /*
-     iNethack2: on iPad iOS8, actionsheet not displaying in center because of self view bounds not matching screen size. 
-        So this hack sets bounds to match screen size, displays actionsheet, then sets them back. 
-        TODO: replace ActionSheet with proper UIAlertController. Will require several changes to accepting the user input.
-        Also there are issues with rotation while displayed, but may be unfixable (or not worth the effort).
-    */
-    // iNethack2: iOS9: Keyboard stopped dismissing when yn menu appears, the next line forced it to close
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-    CGRect oldViewBounds = CGRectFromString(NSStringFromCGRect(self.view.bounds));
-    self.view.bounds = CGRectMake(0, 0, [MainViewController screenSize].width, [MainViewController screenSize].height);
-    [menu showInView:self.view];
-    self.view.bounds=oldViewBounds;
-}
-
 - (void) getLine:(char *)line prompt:(const char *)p {
 	NSString *s = [NSString stringWithCString:p encoding:NSASCIIStringEncoding];
 	[self performSelectorOnMainThread:@selector(getLineOnUIThread:) withObject:s waitUntilDone:YES];
@@ -1159,6 +1130,28 @@ static MainViewController *instance;
 - (void)clipAroundX:(int)x y:(int)y {
     self.clip.x = x;
     self.clip.y = y;
+}
+
+- (char)displayYnQuestion:(const char *)question choices:(const char *)choices defaultChoice:(char)def {
+    // Safely convert your raw C primitives into Objective-C strings
+    NSString *questionStr = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
+    NSString *choicesStr = choices ? [NSString stringWithCString:choices encoding:NSASCIIStringEncoding] : nil;
+    
+    // Instantiate your tracking model completely inside the App layer
+    NethackYnFunction *yn = [[NethackYnFunction alloc] initWithQuestion:questionStr 
+                                                                choices:choicesStr 
+                                                          defaultChoice:def];
+    
+    // Trigger your existing visual prompt logic (which blocks the background loop)
+    [self displayYnQuestion:yn];
+    
+    // Extract the user's primitive outcome choice character
+    char finalChoice = yn.choice;
+    
+    // Clean up your allocation memory safely under standard ARC/MRC rules
+    [yn release]; // or let ARC handle it if you removed manual reference counting
+    
+    return finalChoice;
 }
 
 /**

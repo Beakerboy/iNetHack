@@ -414,9 +414,9 @@ void iphone_display_file(const char *filename, BOOLEAN_P must_exist) {
 }
 
 void iphone_start_menu(winid wid) {
-	//NSLog(@"iphone_start_menu %d", wid);
-	Window *w = [_globalWindowDelegate windowWithId:wid];
-	[w startMenu];
+    if (_globalWindowDelegate) {
+        [_globalWindowDelegate callStartMenu:wid];
+    }
 }
 
 void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,

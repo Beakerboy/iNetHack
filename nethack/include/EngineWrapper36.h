@@ -254,4 +254,8 @@ struct menu_item;
  */
 - (void)hapticReset;
 
+/**
+ * @brief Public command letting the app trigger internal lock file cleanup.
+ */
+- (void)cleanUpLockFile;
 @end

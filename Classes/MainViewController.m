@@ -1049,7 +1049,7 @@ static MainViewController *instance;
 
 - (void) didBecomeActive {
     iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate.nethackEngine haptic_reset];
+    [appDelegate.nethackEngine hapticReset];
 }
 
 

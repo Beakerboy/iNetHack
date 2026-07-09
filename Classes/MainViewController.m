@@ -1039,7 +1039,7 @@ static MainViewController *instance;
 
 - (void) didBecomeActive {
     // Will need to reinitialize haptic engine.
-    iphone_haptic_reset();
+    haptic_reset();
 }
 
 

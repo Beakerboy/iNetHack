@@ -338,6 +338,7 @@ void iphone_askname() {
 	}
 }
 
+// Replace with donull?
 void iphone_get_nh_event() {
 	//NSLog(@"iphone_get_nh_event");
 }
@@ -351,6 +352,7 @@ void iphone_suspend_nhwindows(const char *str) {
 	NSLog(@"iphone_suspend_nhwindows %s", str);
 }
 
+// Replace with donull?
 void iphone_resume_nhwindows() {
 	NSLog(@"iphone_resume_nhwindows");
 }
@@ -430,14 +432,17 @@ int iphone_select_menu(winid wid, int how, menu_item **selected) {
 	return w.menuResult;
 }
 
+// Replace with donull?
 void iphone_update_inventory() {
 	//NSLog(@"iphone_update_inventory");
 }
 
+// Replace with donull?
 void iphone_mark_synch() {
 	//NSLog(@"iphone_mark_synch");
 }
 
+// Replace with donull?
 void iphone_wait_synch() {
 	//NSLog(@"iphone_wait_synch");
 }

@@ -378,9 +378,7 @@ winid iphone_create_nhwindow(int type) {
 }
 
 void iphone_clear_nhwindow(winid wid) {
-	//NSLog(@"iphone_clear_nhwindow %d", wid);
-	Window *w = [_globalWindowDelegate windowWithId:wid];
-	[w clear];
+	[_globalWindowDelegate clearWindowWithId:wid];
 }
 
 void iphone_display_nhwindow(winid wid, BOOLEAN_P block) {

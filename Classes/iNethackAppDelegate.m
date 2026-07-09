@@ -113,21 +113,20 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	[Hearse stop];
+    [Hearse stop];
 
     [[NSUserDefaults standardUserDefaults] setFloat:[(MainView *) [[MainViewController instance] view] tileSize].width
-											 forKey:kKeyTileSize];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+                                             forKey:kKeyTileSize];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
-    if ([[MainViewController instance] gameInProgress]) {
-		[self.nethackEngine doSave];
-	} else {
-		NSString *lockFile = [NSString stringWithCString:lock encoding:NSASCIIStringEncoding];
-		if ([[NSFileManager defaultManager] fileExistsAtPath:lockFile]) {
-			int fail = unlink(lock);
-			NSCAssert1(!fail, @"Failed to unlink lock %s", lock);
-		}
-	}
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+
+    if ([MainViewController instance].gameInProgress) {
+        [self.nethackEngine doSave];
+    } else {
+        // Let the engine trigger the lock filename resolution pipeline
+        [self.nethackEngine cleanUpLockFile];
+    }
 }
 
 - (void) launchNetHack {
@@ -240,6 +239,18 @@
 - (void)dealloc {
     [window release];
     [super dealloc];
+}
+
+#pragma mark - NetHackEngineDelegate Methods
+
+- (void)unlinkLockFile:(const char *)lockFileName {
+    if (lockFileName) {
+        NSString *lockFile = [NSString stringWithCString:lockFileName encoding:NSASCIIStringEncoding];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:lockFile]) {
+            int fail = unlink(lockFileName);
+            NSCAssert1(!fail, @"Failed to unlink lock %s", lockFileName);
+        }
+    }
 }
 
 @end

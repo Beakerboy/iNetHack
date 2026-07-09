@@ -107,9 +107,6 @@
 - (void) displayMenuWindow:(Window *)w;
 - (void) displayMenuWindowOnUIThread:(Window *)w;
 
-- (void) displayYnQuestion:(NethackYnFunction *)yn;
-- (void) displayYnQuestionOnUIThread:(NethackYnFunction *)yn;
-
 - (void) getLine:(char *)line prompt:(const char *)prompt;
 - (void) getLineOnUIThread:(NSString *)s;
 

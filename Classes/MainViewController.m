@@ -139,12 +139,6 @@ static MainViewController *instance;
 	[pool drain];
 }
 
-- (void) mainNethackTestLoop:(id)arg {
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	iphone_test_main();
-	[pool drain];
-}
-
 #pragma mark window properties
 
 - (Window *) mapWindow {

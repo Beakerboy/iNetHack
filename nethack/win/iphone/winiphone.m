@@ -379,13 +379,13 @@ winid iphone_create_nhwindow(int type) {
 
 void iphone_clear_nhwindow(winid wid) {
 	//NSLog(@"iphone_clear_nhwindow %d", wid);
-	Window *w = [[MainViewController instance] windowWithId:wid];
+	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w clear];
 }
 
 void iphone_display_nhwindow(winid wid, BOOLEAN_P block) {
 	//NSLog(@"iphone_display_nhwindow %d", wid);
-	[[MainViewController instance] displayWindowId:wid blocking:block ? YES:NO];
+	[_globalWindowDelegate displayWindowId:wid blocking:block ? YES:NO];
 }
 
 void iphone_destroy_nhwindow(winid wid) {
@@ -400,19 +400,19 @@ void iphone_curs(winid wid, int x, int y) {
 
 void iphone_putstr(winid wid, int attr, const char *text) {
 	//NSLog(@"iphone_putstr %d %s", wid, text);
-	Window *w = [[MainViewController instance] windowWithId:wid];
+	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w putString:text];
 }
 
 void iphone_display_file(const char *filename, BOOLEAN_P must_exist) {
 	//NSLog(@"iphone_display_file %s", filename);
-	[[MainViewController instance] displayFile:[NSString stringWithCString:filename encoding:NSASCIIStringEncoding]
+	[_globalWindowDelegate displayFile:[NSString stringWithCString:filename encoding:NSASCIIStringEncoding]
 									 mustExist:must_exist ? YES : NO];
 }
 
 void iphone_start_menu(winid wid) {
 	//NSLog(@"iphone_start_menu %d", wid);
-	Window *w = [[MainViewController instance] windowWithId:wid];
+	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w startMenu];
 }
 
@@ -421,7 +421,7 @@ void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
 					 const char *str, BOOLEAN_P presel) {
 	//NSLog(@"iphone_add_menu %d %s", wid, str);
     NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier title:str glyph:glyph preselected:presel?YES:NO accelerator:accelerator];
-	Window *w = [[MainViewController instance] windowWithId:wid];
+	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w addMenuItem:i];
 	[i release];
 }
@@ -429,16 +429,16 @@ void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
 void iphone_end_menu(winid wid, const char *prompt) {
 	//NSLog(@"iphone_end_menu %d, %s", wid, prompt);
 	if (prompt) {
-		Window *w = [[MainViewController instance] windowWithId:wid];
+		Window *w = [_globalWindowDelegate windowWithId:wid];
 		w.menuPrompt = [NSString stringWithCString:prompt encoding:NSASCIIStringEncoding];
 	}
 }
 
 int iphone_select_menu(winid wid, int how, menu_item **selected) {
 	//NSLog(@"iphone_select_menu %x", wid);
-	Window *w = [[MainViewController instance] windowWithId:wid];
+	Window *w = [_globalWindowDelegate windowWithId:wid];
 	w.menuHow = how;
-	[[MainViewController instance] displayMenuWindow:w];
+	[_globalWindowDelegate displayMenuWindow:w];
 	*selected = w.menuList;
 	//NSLog(@"iphone_select_menu -> %d", w.menuResult);
 	w.menuPrompt = nil;
@@ -462,7 +462,7 @@ void iphone_wait_synch() {
 
 void iphone_cliparound(int x, int y) {
 	//NSLog(@"iphone_cliparound %d,%d", x, y);
-	MainViewController *v = [MainViewController instance];
+	MainViewController *v = _globalWindowDelegate;
 	v.clip.x = x;
 	v.clip.y = y;
 }
@@ -473,7 +473,7 @@ void iphone_cliparound_window(winid wid, int x, int y) {
 
 void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph, int ignore) {
 	//NSLog(@"iphone_print_glyph %d %d,%d", wid, x, y);
-	Window *w = [[MainViewController instance] windowWithId:wid];
+	Window *w = [_globalWindowDelegate windowWithId:wid];
 	[w setGlyph:glyph atX:x y:y];
 }
 
@@ -502,13 +502,39 @@ int iphone_nhgetch() {
 	return 0;
 }
 
+/**
+ * @brief Coordinates the main blocking loop that waits for user touch or keyboard input.
+ *
+ * This function handles input routing from NetHack's core engine layer. It queries the 
+ * Objective-C delegate boundary to fetch the next interaction event block. If an event 
+ * is captured, it unpacks the grid coordinates and click properties back into NetHack's 
+ * internal reference pointers.
+ *
+ * @param[out] x    Pointer to an integer where the target grid column of the tap will be written.
+ * @param[out] y    Pointer to an integer where the target grid row of the tap will be written.
+ * @param[out] mod  Pointer to an integer representing the cursor modifier (e.g., CLICK_1).
+ *
+ * @return The ASCII character value or engine token mapping to the key pressed or action performed.
+ *         Returns 027 (ASCII Escape) as a fallback signature if the delegate is uninitialized.
+ */
 int iphone_nh_poskey(int *x, int *y, int *mod) {
-	//NSLog(@"iphone_nh_poskey");
-	NethackEvent *e = [[[MainViewController instance] nethackEventQueue] waitForNextEvent];
-	*x = e.x;
-	*y = e.y;
-	*mod = CLICK_1;
-	return e.key;
+    if (_globalWindowDelegate) {
+        // Fetch the event via your clean abstraction boundary
+        NethackEvent *e = [_globalWindowDelegate fetchNextInputEvent];
+        
+        if (e) {
+            *x = e.x;
+            *y = e.y;
+            *mod = CLICK_1; // Retain native NetHack click modifier
+            return e.key;
+        }
+    }
+    
+    // Safety fallback: if no delegate exists, return an empty escape key signature
+    *x = 0;
+    *y = 0;
+    *mod = 0;
+    return 027; // Octal 027 is the standard ASCII Escape code fallback in NetHack
 }
 
 void iphone_nhbell() {}
@@ -544,16 +570,16 @@ static NSString *expandInventoryLetters(NSString *lets) {
 
 char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 	NSLog(@"iphone_yn_function %s", question);
-	[[MainViewController instance] updateScreen];
+	[_globalWindowDelegate updateScreen];
 	if (!choices) {
 		NSString *s = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
 		if ([s containsString:@"direction"]) {
-			return [[MainViewController instance] getDirectionInput];
+			return [_globalWindowDelegate getDirectionInput];
 		} else {
 			NSString *q = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
 			NSString *preLets = [q substringBetweenDelimiters:@"[]"];
 			if (preLets && preLets.length > 0) {
-				Window *inventoryWindow = [[MainViewController instance] windowWithId:WIN_INVEN];
+				Window *inventoryWindow = [_globalWindowDelegate windowWithId:WIN_INVEN];
 				inventoryWindow.nethackMenuItem = nil;
 				BOOL alphaBegan = NO;
 				BOOL terminateLoop = NO;
@@ -626,10 +652,10 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 			} else {
 				// no preLets defined ([])
 				iphone_putstr(WIN_MESSAGE, ATR_NONE, question);
-				[[MainViewController instance] updateScreen];
-				[[MainViewController instance] showKeyboard:YES];
+				[_globalWindowDelegate updateScreen];
+				[_globalWindowDelegate showKeyboard:YES];
 				NethackEvent *e = [[[MainViewController instance] nethackEventQueue] waitForNextEvent];
-				[[MainViewController instance] showKeyboard:NO];
+				[_globalWindowDelegate showKeyboard:NO];
 				return e.key;
 			}
 		}
@@ -639,7 +665,7 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 			return 'y';
 		} 
 		NethackYnFunction *yn = [[NethackYnFunction alloc] initWithQuestion:question choices:choices defaultChoice:def];
-		[[MainViewController instance] displayYnQuestion:yn];
+		[_globalWindowDelegate displayYnQuestion:yn];
 		[yn autorelease];
 		return yn.choice;
 	}
@@ -647,11 +673,11 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 
 void iphone_getlin(const char *prompt, char *line) {
 	//NSLog(@"iphone_getlin %s", prompt);
-	[[MainViewController instance] getLine:line prompt:prompt];
+	[_globalWindowDelegate getLine:line prompt:prompt];
 }
 
 int iphone_get_ext_cmd() {
-	return [[MainViewController instance] getExtendedCommand];
+	return [_globalWindowDelegate getExtendedCommand];
 }
 
 void iphone_number_pad(int num) {
@@ -831,7 +857,7 @@ void iphone_finished_bones(const char *bonesid) {
 }
 //iNethack2: pass along the glyph cache reset
 void iphone_reset_glyph_cache(void) {
-	[[MainViewController instance] resetGlyphCache];
+	[_globalWindowDelegate resetGlyphCache];
 }
 
 // Reset haptic engine so it is recreated next time.
@@ -1109,16 +1135,10 @@ void iphone_main() {
 		if(!wizard && remember_wiz_mode) wizard = TRUE;
 #endif
 		check_special_room(FALSE);
-		//wd_message();
 		
 		if (discover || wizard) {
 			if(yn("Do you want to keep the save file?") == 'n') {
 			    (void) delete_savefile();
-			}
-			else {
-			    //(void) chmod(fq_save,FCMASK); /* back to readable */
-				// compress only works in the sim
-			    //compress(fq_save);
 			}
 		}
 	} else {
@@ -1132,9 +1152,13 @@ void iphone_main() {
 	}
 	
 	iphone_override_options();
-	[[MainViewController instance] setGameInProgress:YES];
+	if (_globalWindowDelegate) {
+	    [_globalWindowDelegate setGameInProgress:YES];
+	}
 	moveloop(restored);
-	[[MainViewController instance] setGameInProgress:NO];
+	if (_globalWindowDelegate) {
+	    [_globalWindowDelegate setGameInProgress:NO];
+	}
 	exit(EXIT_SUCCESS);
 }
 

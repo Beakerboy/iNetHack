@@ -19,18 +19,18 @@
  */
 typedef int winid;
 
-static const int COLNO = 80;
-static const int ROWNO = 21;
-
-typedef NS_ENUM(NSInteger, NetHackWindowType) {
-    NHW_MESSAGE = 1,
-    NHW_STATUS  = 2,
-    NHW_MAP     = 3,
-    NHW_MENU    = 4,
-    NHW_TEXT    = 5
-};
-
 #if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(ANY_P)
+    static const int COLNO = 80;
+    static const int ROWNO = 21;
+
+    typedef NS_ENUM(NSInteger, NetHackWindowType) {
+        NHW_MESSAGE = 1,
+        NHW_STATUS  = 2,
+        NHW_MAP     = 3,
+        NHW_MENU    = 4,
+        NHW_TEXT    = 5
+    };
+
     typedef struct menu_item menu_item;
     typedef union anything anything; 
     typedef int CHAR_P;

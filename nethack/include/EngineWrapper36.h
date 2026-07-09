@@ -20,8 +20,6 @@
 typedef int winid;
 
 @class NethackEvent;
-@class NethackMenuItem;
-@class NethackYnFunction;
 struct menu_item;
 
 /**

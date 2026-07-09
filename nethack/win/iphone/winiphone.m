@@ -970,7 +970,7 @@ sys_random_seed()
 
 
 
-void iphone_main() {
+void main() {
 	int argc = 0;
 	char **argv = NULL;
     

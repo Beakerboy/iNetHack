@@ -17,4 +17,8 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 - (void)hapticReset {
     haptic_reset();
 }
+
+- (void)saveCurrentstate {
+    save_currentstate();
+}
 @end

@@ -76,10 +76,13 @@ struct menu_item;
 - (void)displayWindowId:(winid)wid blocking:(BOOL)blocking;
 
 /**
- * @brief Displays a multi-choice character query prompt (Yes/No/Cancel style questions) on screen.
- * @param yn Data model pointer packing the raw engine question text and legitimate token shortcuts.
+ * @brief Displays a modal multiple-choice query prompt and blocks until a selection is made.
+ * @param question The main C-string query text displayed to the player.
+ * @param choices  A C-string listing acceptable shortcuts (e.g., "ynq"). If NULL, any key qualifies.
+ * @param def      The fallback default character choice mapping to the Return key.
+ * @return The character matching the option chosen by the user.
  */
-- (void)displayYnQuestion:(NethackYnFunction *)yn;
+- (char)displayYnQuestion:(const char *)question choices:(const char *)choices defaultChoice:(char)def;
 
 /**
  * @brief Triggers the game launch role orchestration screen (choosing Race, Role, Gender, and Alignment).

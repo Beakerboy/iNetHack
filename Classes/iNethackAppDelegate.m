@@ -120,7 +120,7 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 
     if ([[MainViewController instance] gameInProgress]) {
-		dosave();
+		[self.nethackEngine doSave];
 	} else {
 		NSString *lockFile = [NSString stringWithCString:lock encoding:NSASCIIStringEncoding];
 		if ([[NSFileManager defaultManager] fileExistsAtPath:lockFile]) {

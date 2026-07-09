@@ -270,6 +270,26 @@ void timerAction() {
 }
 @end
 
+NSString *nativeMD5HexForFile(NSString *path) {
+    // 1. Read the entire file into an NSData block in a single step
+    NSData *fileData = [NSData dataWithContentsOfFile:path];
+    if (!fileData || fileData.length == 0) {
+        return nil;
+    }
+    
+    // 2. Execute CommonCrypto's one-shot hashing function
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(fileData.bytes, (CC_LONG)fileData.length, digest);
+    
+    // 3. Convert the resulting raw bytes into a lowercase hex string
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    
+    return output;
+}
+
 FILE *iphone_fopen(const char *filename, const char *mode) {
 	NSString *filenameStr = [NSString stringWithCString:filename encoding:NSASCIIStringEncoding];
     NSString *path = [[NSBundle mainBundle] pathForResource:filenameStr 
@@ -1072,24 +1092,4 @@ int glyph, flag, *ocolor, x, y, *ochar;
 unsigned *ospecial;
 {
     return mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y, flag);
-}
-
-NSString *nativeMD5HexForFile(NSString *path) {
-    // 1. Read the entire file into an NSData block in a single step
-    NSData *fileData = [NSData dataWithContentsOfFile:path];
-    if (!fileData || fileData.length == 0) {
-        return nil;
-    }
-    
-    // 2. Execute CommonCrypto's one-shot hashing function
-    unsigned char digest[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(fileData.bytes, (CC_LONG)fileData.length, digest);
-    
-    // 3. Convert the resulting raw bytes into a lowercase hex string
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
-        [output appendFormat:@"%02x", digest[i]];
-    }
-    
-    return output;
 }

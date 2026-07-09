@@ -457,8 +457,10 @@ void iphone_cliparound_window(winid wid, int x, int y) {
 }
 
 void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph, int ignore) {
-	Window *w = [_globalWindowDelegate windowWithId:wid];
-	[w setGlyph:glyph atX:x y:y];
+    if (_globalWindowDelegate) {
+        // Pass coordinates and glyph directly through the pipeline boundary
+        [_globalWindowDelegate drawGlyphToWindowWithId:wid atX:x y:y glyph:glyph];
+    }
 }
 
 void iphone_raw_print(const char *str) {

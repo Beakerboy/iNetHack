@@ -3,8 +3,8 @@
 typedef int winid;
 
 @protocol NetHackEngineDelegate <NSObject>
-- (int)createWindowWithType:(int)type;
-- (void)destroyWindowWithId:(int)wid;
+- (winid)createWindowWithType:(int)type;
+- (void)destroyWindowWithId:(winid)wid;
 // ... add future migrated window functions here ...
 @end
 

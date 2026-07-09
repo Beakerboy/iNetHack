@@ -21,7 +21,8 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
-
+//@import NetHackEngine34;
+@import NetHackEngine36;
 // ctrl-macro
 #ifndef C
 #define C(c)		(0x1f & (c))

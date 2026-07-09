@@ -25,14 +25,15 @@
 
 @import NetHackEngine36;
 
+@class UINavigationController;
+@class MainMenuViewController;
+
 @interface iNethackAppDelegate : NSObject <UIApplicationDelegate> {
 	IBOutlet UINavigationController *mainNavigationController;
 	IBOutlet MainMenuViewController *mainMenuViewController;
 	NSMutableArray *badBones;
 }
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
-// 2. Add the public property declaration right here
 @property (strong, nonatomic) EngineWrapper36 *nethackEngine;
 
 - (BOOL) checkNetHackDirectories;

@@ -8,6 +8,8 @@ typedef int winid;
 - (void)updateScreen;
 - (int)animFrame;
 - (void)setAnimFrame:(int)frame;
+- (void)doPlayerSelection;
+
 // ... add future migrated window functions here ...
 @end
 

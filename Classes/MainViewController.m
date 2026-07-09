@@ -1214,6 +1214,103 @@ static MainViewController *instance;
     return [nethackEventQueue waitForNextEvent];
 }
 
+- (char)handleComplexQueryPrompt:(const char *)question defaultChoice:(char)def {
+    NSString *s = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
+    
+    // 1. Handle Direction inputs
+    if ([s containsString:@"direction"]) {
+        return [self getDirectionInput];
+    }
+    
+    NSString *q = [NSString stringWithCString:question encoding:NSASCIIStringEncoding];
+    NSString *preLets = [q substringBetweenDelimiters:@"[]"];
+    
+    // 2. Handle Structured Inventory Queries
+    if (preLets && preLets.length > 0) {
+        // Fetch the window via your local application dictionary safely
+        Window *inventoryWindow = [windows objectForKey:@(WIN_INVEN)];
+        inventoryWindow.nethackMenuItem = nil;
+        
+        BOOL alphaBegan = NO;
+        BOOL terminateLoop = NO;
+        int index = 0;
+        int start = 0; 
+        
+        for (int i = 0; i < preLets.length && !terminateLoop; ++i) {
+            index = i;
+            char c = [preLets characterAtIndex:i];
+            if (!alphaBegan) {
+                switch (c) {
+                    case '$': inventoryWindow.acceptMoney = YES; break;
+                    case '-': inventoryWindow.acceptBareHanded = YES; break;
+                    default:
+                        if (isalpha(c)) {
+                            start = i;
+                            alphaBegan = YES;
+                        }
+                        break;
+                }
+            } else {
+                if (c == ' ') { terminateLoop = YES; }
+            }
+        }
+        if (!terminateLoop) { index++; }
+        
+        NSRange r = NSMakeRange(start, index - start);
+        NSString *lets = [preLets substringWithRange:r];
+        
+        r = [preLets rangeOfString:@"or "];
+        if (r.location == NSNotFound) {
+            r = [preLets rangeOfString:@"*"]; 
+        }
+        if (r.location != NSNotFound) {
+            NSString *moreOptions = [preLets substringFromIndex:r.location + r.length];
+            if ([preLets isEqual:@"*"]) { moreOptions = preLets; }
+            for (int i = 0; i < moreOptions.length; ++i) {
+                char c = [moreOptions characterAtIndex:i];
+                if (c == '*') { inventoryWindow.acceptMore = YES; }
+            }
+        }
+        
+        lets = expandInventoryLetters(lets);
+        inventoryWindow.menuPrompt = q;
+        
+        // Execute your local application inventory presentation layout
+        char c = display_inventory([lets cStringUsingEncoding:NSASCIIStringEncoding], TRUE);
+        
+        inventoryWindow.acceptMoney      = NO;
+        inventoryWindow.acceptBareHanded = NO;
+        inventoryWindow.acceptMore       = NO;
+        
+        // Extract multi-item stack quantities if applicable
+        if (inventoryWindow.nethackMenuItem && inventoryWindow.nethackMenuItem.amount != -1) {
+            int amount = inventoryWindow.nethackMenuItem.amount;
+            inventoryWindow.nethackMenuItem = nil;
+            
+            NSString *stringAmount = [NSString stringWithFormat:@"%d%c", amount, c];
+            char firstChar = [stringAmount characterAtIndex:0];
+            
+            for (int i = 1; i < stringAmount.length; ++i) {
+                char ch = [stringAmount characterAtIndex:i];
+                [self postKeyEvent:ch]; // Feeds the local keystroke queue
+            }
+            return firstChar;
+        } else {
+            return c;
+        }
+    } else {
+        // 3. Fallback: No brackets defined -> Pop virtual keyboard for raw input strings
+        // (Note: Replace internal call with your newly exposed delegate methods)
+        [self writeStringToWindowWithId:WIN_MESSAGE attribute:0 text:question];
+        [self updateScreen];
+        [self showKeyboard:YES];
+        
+        NethackEvent *e = [self fetchNextInputEvent];
+        [self showKeyboard:NO];
+        return e.key;
+    }
+}
+
 /**
  * @brief Injects a raw key character event back into the application's event processing pipeline.
  *

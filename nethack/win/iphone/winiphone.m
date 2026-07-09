@@ -136,16 +136,30 @@ genl_can_suspend_no,
 
 @implementation ScreenTimer
 
-- (void)timerAction {
+void timerAction() {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         while (true) {
-            [[MainViewController instance] updateScreen];
+            // Create a strong local reference to prevent the weak delegate 
+            // from disappearing mid-loop
+            id<NetHackEngineDelegate> strongDelegate = _globalWindowDelegate;
             
-            if ([[MainViewController instance] animFrame] == 0) {
-                [[MainViewController instance] setAnimFrame: 2];
+            if (strongDelegate) {
+                // UI updates MUST run on the Main Thread to prevent iOS crashes
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [strongDelegate updateScreen];
+                });
+                
+                // 2. Read and toggle the animation frame via the delegate
+                if ([strongDelegate animFrame] == 0) {
+                    [strongDelegate setAnimFrame:2];
+                } else {
+                    [strongDelegate setAnimFrame:0];
+                }
             } else {
-                [[MainViewController instance] setAnimFrame: 0];
+                // If the app is tearing down or the delegate is nil, kill the thread loop
+                break; 
             }
+            
             usleep(500000); // sleep for 0.5 seconds.
         }
     });

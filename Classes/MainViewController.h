@@ -99,8 +99,7 @@
 + (void) message:(NSString *)message format:(va_list)arg_list;
 
 - (void) launchNetHack;
-- (void) mainNethackLoop:(id)arg;
-- (void) mainNethackTestLoop:(id)arg;
+- (void) hackLoop:(id)arg;
 - (Window *) windowWithId:(winid)wid;
 - (void) displayWindowId:(winid)wid blocking:(BOOL)blocking;
 - (void) displayMessage:(Window *)w;

@@ -1109,6 +1109,31 @@ static MainViewController *instance;
 
 #pragma mark - NetHackEngineDelegate Methods
 
+- (void)addItemToMenuWindowWithId:(winid)wid
+                            glyph:(int)glyph
+                       identifier:(const ANY_P *)identifier
+                      accelerator:(CHAR_P)accelerator
+                       groupAccel:(CHAR_P)group_accel
+                        attribute:(int)attr
+                            title:(const char *)str
+                     preselected:(BOOLEAN_P)presel {
+    // Instantiate your menu item completely inside the app target layout
+    NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier 
+                                                       title:str 
+                                                       glyph:glyph 
+                                                 preselected:presel ? YES : NO 
+                                                 accelerator:accelerator];
+    
+    // Fetch the target window from your private application dictionary
+    Window *w = [windows objectForKey:@(wid)];
+    
+    // Append the configuration entry
+    [w addMenuItem:i];
+    
+    // Release memory under your working project rules
+    [i release];
+}
+
 - (void)callStartMenu:(winid)wid {
     Window *w = [windows objectForKey:@(wid)];
     [w startMenu];

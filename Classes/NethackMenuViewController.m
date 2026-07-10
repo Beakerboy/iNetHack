@@ -101,7 +101,7 @@ extern short glyph2tile[];
 	}
 
 	selectAll = YES;
-	if (w.menuHow == PICK_ANY) {
+	if (w.menuHow == NHE_PICK_ANY) {
 		UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithTitle:@"All" style:UIBarButtonItemStylePlain
 															  target:self action:@selector(selectAll:)];
 		self.navigationItem.rightBarButtonItem = bi;
@@ -174,7 +174,7 @@ extern short glyph2tile[];
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	if (self.navigationController.topViewController != itemAmountViewController) {
-		if (menuWindow.menuHow == PICK_ANY) {
+		if (menuWindow.menuHow == NHE_PICK_ANY) {
 			NSMutableArray *items = [NSMutableArray array];
 			[self collectSelectedItems:menuWindow.menuItems into:items];
 			menuWindow.menuResult = (int) items.count;
@@ -220,7 +220,7 @@ extern short glyph2tile[];
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
-	if (menuWindow.menuHow == PICK_ANY) {
+	if (menuWindow.menuHow == NHE_PICK_ANY) {
 		i.selected = !i.isSelected;
 		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 		cell.accessoryType = i.isSelected ? UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
@@ -235,7 +235,7 @@ extern short glyph2tile[];
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView reloadData]; // cancel delete
-	if (menuWindow.menuHow == PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"])) {
+	if (menuWindow.menuHow == NHE_PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"])) {
 		NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
 		if (!i.isMeta || i.isGold) {
 			menuWindow.nethackMenuItem = i;
@@ -349,9 +349,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 {
     tv.allowsSelection=FALSE; //iNethack2: to help fix bugginess with amount selection transition
     //iNethack2: support for selecting amount to put/take to/from a container.
-    if ((menuWindow.menuHow == PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"]))
+    if ((menuWindow.menuHow == NHE_PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"]))
         ||
-        (menuWindow.menuHow == PICK_ANY && ([self.title containsString:@"Put"] || [self.title containsString:@"Take"]))) {
+        (menuWindow.menuHow == NHE_PICK_ANY && ([self.title containsString:@"Put"] || [self.title containsString:@"Take"]))) {
         NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
         if (!i.isMeta || i.isGold) {
             menuWindow.nethackMenuItem = i;

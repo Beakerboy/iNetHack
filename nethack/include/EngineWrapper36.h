@@ -10,7 +10,7 @@
  * @date 2026
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * @brief A unique integer identifier mapped to a graphical or text window tracking context.
@@ -56,6 +56,12 @@ struct menu_item;
  * onto the application's user interface.
  */
 @protocol NetHackEngineDelegate <NSObject>
+
+/**
+ * @brief Requests the primary navigation controller instance from the parent app.
+ * @return A pointer to the application's active UINavigationController context.
+ */
+- (UINavigationController *)navigationControllerContext;
 
 /**
  * @brief Allocates and appends a new item entry to an active menu window compilation block.
@@ -249,6 +255,14 @@ struct menu_item;
  * @brief Weak property link mapping down to the application coordinator processing UI and Input actions.
  */
 @property (nonatomic, weak) id<NetHackEngineDelegate> delegate;
+
+/**
+ * @brief Public interface execution method enabling the application layer to pass its active
+ *        navigation context down into the framework to initialize the character wizard.
+ *
+ * @param navController The application's active navigation coordinator layout frame.
+ */
+- (void)launchPlayerSelectionWizard:(UINavigationController *)navController;
 
 /**
  * @brief Custom initialization routing providing upfront configuration parameters directly to NetHack's C-state environment.

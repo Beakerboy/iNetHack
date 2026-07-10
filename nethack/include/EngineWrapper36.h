@@ -275,4 +275,6 @@ struct menu_item;
  * @param type The starting index parameter code to wipe (RESET_ROLE, RESET_RACE, etc.).
  */
 - (void)resetPlayerChoices:(int)type;
+
+- (NSString *)universalMoneyString;
 @end

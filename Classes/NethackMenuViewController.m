@@ -286,7 +286,7 @@ extern short glyph2tile[];
 
 	NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
 
-	if (i.glyph != NO_GLYPH && i.glyph != kNoGlyph) {
+	if (i.glyph != NHE_NO_GLYPH && i.glyph != kNoGlyph) {
 		UIImage *uiImg = [UIImage imageWithCGImage:[[TileSet instance] imageForGlyph:i.glyph]];
 		cell.imageView.image = uiImg;
 
@@ -313,7 +313,7 @@ extern short glyph2tile[];
     if (i.accelerator > 0) {
         invletter = i.accelerator;
     }
-    if (showMenuLetters && menuWindow != [[MainViewController instance] windowWithId:WIN_INVEN]) {
+    if (showMenuLetters && menuWindow != [[MainViewController instance] windowWithId:NHE_WIN_INVEN]) {
         // If its not an inventory screen, we need to check for accelerator values instead, or else just don't show letters.
         if (i.accelerator <= 0) {
             showMenuLetters = false;

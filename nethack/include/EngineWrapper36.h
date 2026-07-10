@@ -51,7 +51,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
     typedef union any ANY_P;
 #endif
 
-@class NethackEvent;
 struct menu_item;
 
 /**

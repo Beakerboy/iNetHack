@@ -20,15 +20,15 @@
 typedef int winid;
 static const int NHE_COLNO = 80;
 static const int NHE_ROWNO = 21;
-#if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(NHW_MESSAGE)
-    typedef NS_ENUM(NSInteger, NetHackWindowType) {
-        NHW_MESSAGE = 1,
-        NHW_STATUS  = 2,
-        NHW_MAP     = 3,
-        NHW_MENU    = 4,
-        NHW_TEXT    = 5
-    };
-    
+
+typedef NS_ENUM(NSInteger, NHEWindowType) {
+    NHEW_MESSAGE = 1,
+    NHEW_STATUS  = 2,
+    NHEW_MAP     = 3,
+    NHEW_MENU    = 4,
+    NHEW_TEXT    = 5
+};
+#if !defined(HACK_H) && !defined(WINTYPE_H)    
     typedef struct menu_item menu_item;
     typedef union anything anything; 
 #endif

@@ -40,7 +40,6 @@
 #import "TouchInfoStore.h"
 #import "DMath.h"
 #import "NSString+Regexp.h"
-#import "RoleSelectionController.h"
 
 #define kOptionDoubleTapSensitivity (@"doubleTapSensitivity")
 #define kConstThingsThatAreHereTitle (@"Things that are here:")
@@ -996,12 +995,6 @@ static MainViewController *instance;
 	NSAssert(flags.initgend  != -1, @"Gender was not set");
 	NSAssert(flags.initrole  != -1, @"Role was not set");
 	[self broadcastUIEvent];
-}
-
-- (void) doPlayerSelectionOnUIThread:(id)obj {
-	RoleSelectionController* roleSelector = [RoleSelectionController roleSelectorWithNavigationController:self.navigationController];
-	roleSelector.delegate = self;
-	[roleSelector start];
 }
 
 - (void) doPlayerSelection {

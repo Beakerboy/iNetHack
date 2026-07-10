@@ -39,20 +39,20 @@
 		maxWidth = NHE_COLNO;
 		maxHeight = NHE_ROWNO;
 		switch (t) {
-			case NHW_MESSAGE:
+			case NHEW_MESSAGE:
 				width = maxWidth;
 				height = 3;
 				break;
-			case NHW_STATUS:
+			case NHEW_STATUS:
 				width = maxWidth;
 				height = 1;
 				break;
-			case NHW_MAP:
+			case NHEW_MAP:
 				width = maxWidth;
 				height = maxHeight;
 				break;
-			case NHW_MENU:
-			case NHW_TEXT:
+			case NHEW_MENU:
+			case NHEW_TEXT:
 				width = maxWidth;
 				height = maxHeight;
 				break;

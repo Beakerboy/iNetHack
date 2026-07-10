@@ -1,6 +1,7 @@
 #import "EngineWrapper36.h"
 #import "hack.h"
 #import "winiphone.h"
+#import "RoleSelectionController.h"
 
 __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 
@@ -49,5 +50,11 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
             flags.initalign = ROLE_NONE;
             break;
     }
+}
+
+- (void) doPlayerSelectionOnUIThread:(id)obj {
+	RoleSelectionController* roleSelector = [RoleSelectionController roleSelectorWithNavigationController:self.navigationController];
+	roleSelector.delegate = self;
+	[roleSelector start];
 }
 @end

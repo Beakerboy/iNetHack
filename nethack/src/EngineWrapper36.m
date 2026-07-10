@@ -52,9 +52,20 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
     }
 }
 
-- (void) doPlayerSelectionOnUIThread:(id)obj {
-	RoleSelectionController* roleSelector = [RoleSelectionController roleSelectorWithNavigationController:self.navigationController];
-	roleSelector.delegate = self;
-	[roleSelector start];
+- (void)launchPlayerSelectionWizard:(UINavigationController *)navController {
+    // Force view rendering tasks safely onto the main thread layout
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (navController) {
+            // Instantiate your controller cleanly inside the framework target
+            RoleSelectionController *roleSelector = [RoleSelectionController roleSelectorWithNavigationController:navController];
+            
+            // Bind the selection delegate back to the EngineWrapper instance 
+            // so the framework internal systems handle parsing the results
+            roleSelector.delegate = (id)self; 
+            
+            // Fire off the character picker wizard screens
+            [roleSelector start];
+        }
+    });
 }
 @end

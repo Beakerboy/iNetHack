@@ -18,10 +18,12 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-typedef union any {
-    void *a_void;
-    int a_int;
-} anything;
+#if !defined(WINTYPE_H) && !defined(HACK_H)
+    typedef union any {
+        void *a_void;
+        int a_int;
+    } anything;
+#endif
 static const int NHE_COLNO = 80;
 static const int NHE_ROWNO = 21;
 

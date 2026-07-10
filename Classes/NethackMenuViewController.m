@@ -20,6 +20,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
+#import "iNethackAppDelegate.h"
 #import "NethackMenuViewController.h"
 #import "Window.h"
 #import "NethackMenuItem.h"
@@ -89,8 +90,8 @@ extern short glyph2tile[];
 		}
 		if (menuWindow.acceptMoney) {
 			any.a_int = '$';
-            NSString *title = [WinIPhone universalMoneyString];
-
+			iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+            NSString *title = [appDelegate.nethackEngine universalMoneyString];
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
 																glyph:kNoGlyph isMeta:YES preselected:NO];
 			mi.gold = YES;

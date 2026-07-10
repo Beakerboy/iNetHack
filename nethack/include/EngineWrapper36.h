@@ -19,7 +19,13 @@
  */
 typedef int winid;
 #if !defined(HACK_H) && !defined(WINTYPE_H) && !defined(COLNO) && !defined(NHW_MESSAGE)
-
+    typedef NS_ENUM(NSInteger, NetHackWindowType) {
+        NHW_MESSAGE = 1,
+        NHW_STATUS  = 2,
+        NHW_MAP     = 3,
+        NHW_MENU    = 4,
+        NHW_TEXT    = 5
+    };
     static const int COLNO = 80;
     static const int ROWNO = 21;
     

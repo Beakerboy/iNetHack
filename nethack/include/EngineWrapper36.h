@@ -30,6 +30,12 @@ typedef NS_ENUM(NSInteger, NHEWindowType) {
     NHEW_TEXT    = 5
 };
 
+typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
+    NHE_PICK_NONE = 0, 
+    NHE_PICK_ONE  = 1,
+    NHE_PICK_ANY  = 2
+};
+
 #if !defined(HACK_H) && !defined(WINTYPE_H)
     typedef union any {
         void *a_void;

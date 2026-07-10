@@ -51,8 +51,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
     typedef union any ANY_P;
 #endif
 
-struct menu_item;
-
 /**
  * @protocol NetHackEngineDelegate
  * @brief Abstract interface defining the presentation and input commands required by the NetHack engine.

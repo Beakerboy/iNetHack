@@ -15,8 +15,13 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 - (void)frameworkMain {
     main();
 }
+
 - (void)hapticReset {
     haptic_reset();
+}
+
++ (NSString *)universalMoneyString {
+    return [NSString stringWithFormat:@"%d %s ($)", (int) money_cnt(invent), currency(u.umoney0)];
 }
 
 - (void)saveCurrentstate {

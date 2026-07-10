@@ -36,8 +36,8 @@
 - (id) initWithType:(int)t {
 	if (self = [super init]) {
 		type = t;
-		maxWidth = COLNO;
-		maxHeight = ROWNO;
+		maxWidth = NHE_COLNO;
+		maxHeight = NHE_ROWNO;
 		switch (t) {
 			case NHW_MESSAGE:
 				width = maxWidth;

@@ -997,9 +997,25 @@ static MainViewController *instance;
 	[self broadcastUIEvent];
 }
 
-- (void) doPlayerSelection {
-	[self performSelectorOnMainThread:@selector(doPlayerSelectionOnUIThread:) withObject:nil waitUntilDone:NO];
-	[self waitForCondition:uiCondition];
+/**
+ * @brief Coordinates the player role selection wizard by handing off the application's 
+ *        navigation context to the framework layer and suspending the engine thread.
+ *
+ * This method is invoked by the core engine thread via the delegate boundary during game initialization. 
+ * It offloads the rendering and management of character generation screens to the framework, 
+ * passing along the active \c UINavigationController. 
+ *
+ * @note This method blocks the calling engine background thread using a condition loop (\c uiCondition)
+ *       to prevent NetHack's primary initialization sequence from advancing prematurely while 
+ *       the user is interacting with the modal selection menus on the main UI thread.
+ *
+ * @see EngineWrapper36
+ * @see waitForCondition:
+ */
+- (void)doPlayerSelection {
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.nethackEngine launchPlayerSelectionWizardWithNavigationController:self.navigationController];
+    [self waitForCondition:uiCondition];
 }
 
 - (void) displayFile:(NSString *)filename mustExist:(BOOL)e {

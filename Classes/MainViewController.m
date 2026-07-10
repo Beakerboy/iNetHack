@@ -1014,7 +1014,7 @@ static MainViewController *instance;
  */
 - (void)doPlayerSelection {
     iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate.nethackEngine launchPlayerSelectionWizardWithNavigationController:self.navigationController];
+    [appDelegate.nethackEngine launchPlayerSelectionWizard:self.navigationController];
     [self waitForCondition:uiCondition];
 }
 

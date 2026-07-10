@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
-@import NetHackEngine36;
+
 #define kMenuCancelled (-1)
 
 @class Window, NethackMenuItem, ItemAmountViewController;

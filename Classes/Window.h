@@ -25,7 +25,7 @@
 #define kNoGlyph (-1)
 
 @class NethackMenuItem;
-
+typedef struct menu_item menu_item; 
 @interface Window : NSObject <NSLocking> {
 	
 	int maxWidth;

@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
-
+@import NetHackEngine36;
 @interface NethackMenuItem : NSObject
 
 @property (nonatomic, readonly) anything identifier;

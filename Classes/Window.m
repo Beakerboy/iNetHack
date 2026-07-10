@@ -91,10 +91,10 @@
 - (void) putString:(const char *)s {
 	[self lock];
 	NSString *str = [NSString stringWithCString:s encoding:NSASCIIStringEncoding];
-	if (type == NHW_STATUS && strings.count == 2) {
+	if (type == NHEW_STATUS && strings.count == 2) {
 		[strings removeAllObjects];
 	}
-	if (type == NHW_STATUS) {
+	if (type == NHEW_STATUS) {
 		str = [str stringWithTrimmedWhitespaces];
 	}
 	[strings addObject:str];
@@ -140,7 +140,7 @@
 }
 
 - (void) addLogString:(NSString *)s {
-	if (type != NHW_STATUS) {
+	if (type != NHEW_STATUS) {
 		[log addObject:s];
 		if (log.count > maxLogEntries) {
 			[log removeObjectAtIndex:0];

@@ -28,7 +28,7 @@
 #import "NSString+Regexp.h"
 #import "NSString+NetHack.h"
 #import "ItemAmountViewController.h"
-
+@import NetHackEngine36;
 extern short glyph2tile[];
 
 @implementation NethackMenuViewController

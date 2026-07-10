@@ -12,10 +12,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
-#import "iNethackAppDelegate.h"
 #import "RoleSelectionController.h"
-#import "MenuItem.h"
-#import "MenuViewController.h"
+#import "hack.h"
 
 @interface RoleSelectionController ()
 @property (retain) UINavigationController *navigationController;
@@ -29,6 +27,17 @@ enum {
 	RESET_GENDER,
 	RESET_ALIGNMENT,
 };
+
+static void reset_choices (int type)
+{
+	switch(type)
+	{
+		case RESET_ROLE:      flags.initrole  = -1;
+		case RESET_RACE:      flags.initrace  = -1;
+		case RESET_GENDER:    flags.initgend  = -1;
+		case RESET_ALIGNMENT: flags.initalign = -1;
+	}
+}
 
 @implementation RoleSelectionController
 - (void)showChoices:(NSArray *)items withTitle:(NSString *)title {
@@ -53,10 +62,7 @@ enum {
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
 
-    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-    if (appDelegate.nethackEngine) {
-        [appDelegate.nethackEngine resetPlayerChoices:RESET_ALIGNMENT];
-    }
+	reset_choices(RESET_ALIGNMENT);
 	flags.initalign = (int) [sender tag];
 
 	[self moveToNextStep:nil];
@@ -84,10 +90,8 @@ enum {
 - (void)didSelectGender:(id)sender
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
-    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-    if (appDelegate.nethackEngine) {
-        [appDelegate.nethackEngine resetPlayerChoices:RESET_GENDER];
-    }
+
+	reset_choices(RESET_GENDER);
 	flags.initgend = (int) [sender tag];
 
 	[self moveToNextStep:nil];
@@ -115,10 +119,8 @@ enum {
 - (void)didSelectRace:(id)sender
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
-    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-    if (appDelegate.nethackEngine) {
-        [appDelegate.nethackEngine resetPlayerChoices:RESET_RACE];
-    }
+
+	reset_choices(RESET_RACE);
 	pl_race = [sender tag];
 	flags.initrace = (int) [sender tag];
 
@@ -147,10 +149,8 @@ enum {
 - (void)didSelectRole:(id)sender
 {
 	NSAssert([sender respondsToSelector:@selector(tag)], @"sender has no tag");
-    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-    if (appDelegate.nethackEngine) {
-        [appDelegate.nethackEngine resetPlayerChoices:RESET_ROLE];
-    }
+
+	reset_choices(RESET_ROLE);
 	flags.initrole = (int) [sender tag];
 	strcpy(pl_character, roles[flags.initrole].filecode);
 

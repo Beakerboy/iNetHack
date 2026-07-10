@@ -41,7 +41,10 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
         void *a_void;
         int a_int;
     } anything;
-    typedef struct menu_item menu_item;
+    struct menu_item {
+        anything item;
+        int count;
+    };
     typedef char CHAR_P;
     typedef char BOOLEAN_P;
     typedef char XCHAR_P;

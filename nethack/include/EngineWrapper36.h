@@ -286,4 +286,9 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 - (void)resetPlayerChoices:(int)type;
 
 - (NSString *)universalMoneyString;
+
+ * @brief Evaluates whether the player is currently executing gameplay on a specialized Rogue layout dungeon level.
+ * @return YES if the current level tracking matrices exist and match a Rogue archetype configuration grid.
+ */
+- (BOOL)isPlayerOnRogueLevel;
 @end

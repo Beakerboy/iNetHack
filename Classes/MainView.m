@@ -296,8 +296,9 @@
 	center.x -= tileSize.width/2;
 	center.y -= tileSize.height/2;
 
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
     // Check if animated tileset, and NOT rogue level.
-    if (animatedTileset && !(u.uz.dlevel && Is_rogue_level(&u.uz))) {
+    if (animatedTileset && !([appDelegate.nethackEngine isPlayerOnRogueLevel])) {
         int tilesetIndex = 0;
         tilesetIndex = [[MainViewController instance] animFrame];
         tileSet = tileSets[tilesetIndex];

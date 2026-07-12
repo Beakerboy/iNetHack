@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
     typedef union any {
         void *a_void;
         int a_int;
+        char a_char;
     } anything;
     struct menu_item {
         anything item;      

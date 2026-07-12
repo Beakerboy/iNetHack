@@ -73,4 +73,10 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
         }
     });
 }
+
+- (BOOL)isPlayerOnRogueLevel {
+    if (u.uz.dlevel && Is_rogue_level(&u.uz)) {
+        return YES;
+    }
+    return NO;
 @end

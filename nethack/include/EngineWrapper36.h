@@ -294,5 +294,7 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 
 - (BOOL)isPlayerPosition:(int)x pos2:(int)y;
 
-- (UIColor *)playerHealthColor
+- (UIColor *)playerHealthColor;
+
+- (BOOL)isPetGlyph:(int)glyph;
 @end

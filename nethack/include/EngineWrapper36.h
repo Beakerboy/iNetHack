@@ -23,6 +23,7 @@ static const int NHE_COLNO = 80;
 static const int NHE_ROWNO = 21;
 static const int NHE_NO_GLYPH = -1;
 static const int NHE_WIN_INVEN = 4;
+static const int NHE_MAX_GLYPH = 5991;
 
 typedef NS_ENUM(NSInteger, NHEWindowType) {
     NHEW_MESSAGE = 1,

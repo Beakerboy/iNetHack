@@ -430,7 +430,8 @@
 
 
 - (void) checkForRogueLevel {
-	if (u.uz.dlevel && Is_rogue_level(&u.uz)) {
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+	if ([appDelegate.nethackEngine isPlayerOnRogueLevel]) {
 		if (!tileSets[1]) {
 			tileSet = tileSets[1] = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
 		} else {

@@ -370,27 +370,10 @@
 					[img drawInRect:r];
                     
 					if ([appDelegate.nethackEngine isPlayerLocation:i pos2:j]) {
-						// hp100 calculation from qt_win.cpp
-						int hp100;
-						if (u.mtimedone) {
-							hp100 = u.mhmax ? u.mh*100/u.mhmax : 100;
-						} else {
-							hp100 = u.uhpmax ? u.uhp*100/u.uhpmax : 100;
-						}
-						const static float colorValue = 0.7f;
-						float playerRectColor[] = {colorValue, 0, 0, 0.5f};
-						if (hp100 > 75) {
-							playerRectColor[0] = 0;
-							playerRectColor[1] = colorValue;
-						} else if (hp100 > 50) {
-							playerRectColor[2] = 0;
-							playerRectColor[0] = playerRectColor[1] = colorValue;
-						}
-                        //iNethack2 fix for stroke color.
-                        CGColorRef   playerRectColorRef = [[UIColor colorWithRed:playerRectColor[0] green:playerRectColor[1] blue:playerRectColor[2] alpha:playerRectColor[3]] CGColor];
-                        CGContextSetStrokeColorWithColor(ctx, playerRectColorRef);
+						(UIColor *)playerRectColor = [appDelegate.nethackEngine playerHealthColor]
+						CGContextSetStrokeColorWithColor(ctx, playerRectColor.CGColor);
 						CGContextStrokeRect(ctx, r);
-					} else if (glyph_is_pet(glyph)) {
+					} else if ([appDelegate.nethackEngine isPetGlyph:glyph]) {
 						[petMark drawInRect:r];
 					}
 				}

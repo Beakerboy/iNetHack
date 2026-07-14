@@ -80,7 +80,7 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
     }
     return NO;
 
-- (BOOL)isPlayerPosition:(int)x (int)y {
+- (BOOL)isPlayerPosition:(int)x pos2:(int)y {
     return u.ux == x && u.uy == y;
 }
 @end

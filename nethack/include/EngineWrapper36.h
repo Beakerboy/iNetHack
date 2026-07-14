@@ -293,4 +293,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 - (BOOL)isPlayerOnRogueLevel;
 
 - (BOOL)isPlayerPosition:(int)x pos2:(int)y;
+
+- (UIColor *)playerHealthColor
 @end

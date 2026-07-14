@@ -83,4 +83,27 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 - (BOOL)isPlayerPosition:(int)x pos2:(int)y {
     return u.ux == x && u.uy == y;
 }
+
+- (UIColor *)playerHealthColor {
+    int hp100;
+    if (u.mtimedone) {
+        hp100 = u.mhmax ? u.mh * 100 / u.mhmax : 100;
+    } else {
+        hp100 = u.uhpmax ? u.uhp * 100 / u.uhpmax : 100;
+    }
+
+    const CGFloat colorValue = 0.7f;
+    const CGFloat alphaValue = 0.5f;
+
+    if (hp100 > 75) {
+        // Green
+        return [UIColor colorWithRed:0.0f green:colorValue blue:0.0f alpha:alphaValue];
+    } else if (hp100 > 50) {
+        // Yellow (Red + Green)
+        return [UIColor colorWithRed:colorValue green:colorValue blue:0.0f alpha:alphaValue];
+    } else {
+        // Red
+        return [UIColor colorWithRed:colorValue green:0.0f blue:0.0f alpha:alphaValue];
+    }
+}
 @end

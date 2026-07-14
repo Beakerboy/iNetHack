@@ -292,5 +292,5 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
  */
 - (BOOL)isPlayerOnRogueLevel;
 
-- (BOOL)isPlayerPosition:(int)x (int)y;
+- (BOOL)isPlayerPosition:(int)x pos2:(int)y;
 @end

@@ -370,7 +370,7 @@
 					[img drawInRect:r];
                     
 					if ([appDelegate.nethackEngine isPlayerLocation:i pos2:j]) {
-						(UIColor *)playerRectColor = [appDelegate.nethackEngine playerHealthColor]
+						(UIColor *)playerRectColor = [appDelegate.nethackEngine playerHealthColor];
 						CGContextSetStrokeColorWithColor(ctx, playerRectColor.CGColor);
 						CGContextStrokeRect(ctx, r);
 					} else if ([appDelegate.nethackEngine isPetGlyph:glyph]) {

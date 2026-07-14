@@ -106,4 +106,8 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
         return [UIColor colorWithRed:colorValue green:0.0f blue:0.0f alpha:alphaValue];
     }
 }
+
+- (BOOL)isPetGlyph:(int)glyph {
+    return glyph_is_pet(glyph);
+}
 @end

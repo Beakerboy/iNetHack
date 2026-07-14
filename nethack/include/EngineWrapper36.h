@@ -291,4 +291,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
  * @return YES if the current level tracking matrices exist and match a Rogue archetype configuration grid.
  */
 - (BOOL)isPlayerOnRogueLevel;
+
+- (BOOL)isPlayerPosition:(int)x (int)y;
 @end

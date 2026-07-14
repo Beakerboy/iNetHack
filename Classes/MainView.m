@@ -369,7 +369,7 @@
 
 					[img drawInRect:r];
                     
-					if (u.ux == i && u.uy == j) {
+					if ([appDelegate.nethackEngine isPlayerLocation:i pos2:j]) {
 						// hp100 calculation from qt_win.cpp
 						int hp100;
 						if (u.mtimedone) {

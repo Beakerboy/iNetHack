@@ -21,7 +21,7 @@ typedef int winid;
 typedef struct menu_item NHEMenuItem; 
 static const int NHE_COLNO = 80;
 static const int NHE_ROWNO = 21;
-static const int NHE_NO_GLYPH = -1;
+static const int NHE_NO_GLYPH = 5991;
 static const int NHE_WIN_INVEN = 4;
 static const int NHE_MAX_GLYPH = 5991;
 

@@ -578,7 +578,7 @@ static MainViewController *instance;
 				TilePosition *tp = [(MainView *) self.view tilePositionFromPoint:p];
 				NethackEvent *lastEvent = nethackEventQueue.lastEvent;
 				// todo other events to check
-				iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate
+				iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
 				
 				if ([(MainView *) self.view isMoved] || lastEvent.key == ';' || [appDelegate.nethackEngine isClickableTiles]) {
 					// tappable tiles

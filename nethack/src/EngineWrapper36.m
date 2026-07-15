@@ -110,4 +110,8 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 - (BOOL)isPetGlyph:(int)glyph {
     return glyph_is_pet(glyph);
 }
+
+-(BOOL)isClickableTiles {
+    return winiphone_clickable_tiles;
+}
 @end

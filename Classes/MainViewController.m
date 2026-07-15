@@ -145,7 +145,7 @@ static MainViewController *instance;
 	//for (Window *w in windows) {
     for (NSString* key in windows) {    //iNethack2 now a dict
         Window *w = [windows objectForKey:key];
-        if (w.type == NHW_MAP) {
+        if (w.type == NHEW_MAP) {
 			return w;
 		}
 	}
@@ -156,7 +156,7 @@ static MainViewController *instance;
 //	for (Window *w in windows) {
     for (NSString* key in windows) {    //iNethack2 now a dict
         Window *w = [windows objectForKey:key];
-        if (w.type == NHW_STATUS) {
+        if (w.type == NHEW_STATUS) {
 			return w;
 		}
 	}
@@ -167,7 +167,7 @@ static MainViewController *instance;
 //	for (Window *w in windows) {
     for (NSString* key in windows) {    //iNethack2 now a dict
         Window *w = [windows objectForKey:key];
-        if (w.type == NHW_MESSAGE) {
+        if (w.type == NHEW_MESSAGE) {
 			return w;
 		}
 	}

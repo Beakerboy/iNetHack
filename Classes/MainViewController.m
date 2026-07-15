@@ -563,87 +563,117 @@ static MainViewController *instance;
 	[touchInfoStore removeTouches:touches];
 }
 
+/**
+ * @brief Handles the conclusion of touch interactions on the primary interface.
+ *
+ * @details Evaluates touch states to differentiate between single taps, double taps, 
+ *          and complex multi-touch gestures (like pinches or drags). Based on the gesture 
+ *          type and active gameplay state, it maps screen coordinate hits into 
+ *          NetHack core context actions (such as direct coordinate target inputs, 
+ *          center-tile selections, direction-based movement, or macro repeats).
+ *
+ * @param touches A set of UITouch objects representing the ending phase of the interaction.
+ * @param event   An object encapsulating the specific touch event characteristics.
+ * 
+ * @note Triggers internal offset resets on the MainView wrapper and updates global queue parameters.
+ * @see touchInfoStore
+ * @see nethackEventQueue
+ */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	if (touches.count == 1) {
-		TouchInfo *ti = [touchInfoStore touchInfoForTouch:[touches anyObject]];
-		if (!ti.pinched && !ti.moved && !ti.doubleTap) {
-			if (blockingMap) {
-				blockingMap.blocking = NO;
-				blockingMap = nil;
-				[(MainView *) self.view resetOffset];
-				[self broadcastUIEvent];
-			} else {
-				UITouch *touch = [touches anyObject];
-				CGPoint p = [touch locationInView:self.view];
-				TilePosition *tp = [(MainView *) self.view tilePositionFromPoint:p];
-				NethackEvent *lastEvent = nethackEventQueue.lastEvent;
-				// todo other events to check
-				iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-				
-				if ([(MainView *) self.view isMoved] || lastEvent.key == ';' || [appDelegate.nethackEngine isClickableTiles]) {
-					// tappable tiles
-					lastSingleTapDelta.x = tp.x-u.ux;
-					lastSingleTapDelta.y = tp.y-u.uy;
-					NethackEvent *e = [[NethackEvent alloc] init];
-					e.x = tp.x;
-					e.y = tp.y;
-					e.key = 0;
-					[nethackEventQueue addNethackEvent:e];
-					[e release];
-					[(MainView *) self.view resetOffset];
-					//[self.view setNeedsDisplay];
-				} else {
-					CGPoint viewCenter = [(MainView *) self.view subViewedCenter];
-					CGRect middleSquare = CGRectMake(viewCenter.x-kCenterTapWidth/2,
-													 viewCenter.y-kCenterTapWidth/2,
-													 kCenterTapWidth, kCenterTapWidth);
-					if (CGRectContainsPoint(middleSquare, p)) {
-						// tap on player (center) tile
-						lastSingleTapDelta.x = 0;
-						lastSingleTapDelta.y = 0;
-						NethackEvent *e = [[NethackEvent alloc] init];
-                        e.x = u.ux;
-                        e.y = u.uy;
-						e.key = 0;
-						[nethackEventQueue addNethackEvent:e];
-						[e release];
-						[(MainView *) self.view resetOffset];
-						//[self.view setNeedsDisplay];
-					} else {
-						// direction based movement
-						CGPoint center = [(MainView *) self.view subViewedCenter];
-						CGPoint pointDelta = CGPointMake(p.x-center.x, p.y-center.y);
-						pointDelta.y *= -1;
-						pointDelta = [DMath normalizedPoint:pointDelta];
-						dmathdirection dmdir = [dmath directionFromVector:pointDelta];
-						TilePosition *tp = [TilePosition tilePositionWithX:u.ux y:u.uy];
-						[self moveTilePosition:tp intoDMathDirection:dmdir];
-						lastSingleTapDelta.x = tp.x-u.ux;
-						lastSingleTapDelta.y = tp.y-u.uy;
-						NethackEvent *e = [[NethackEvent alloc] init];
-						e.x = tp.x;
-						e.y = tp.y;
-						e.key = 0;
-						[nethackEventQueue addNethackEvent:e];
-						[e release];
-						[(MainView *) self.view resetOffset];
-						//[self.view setNeedsDisplay];
-					}
-				}
-			}
-		} else if (!ti.pinched && !ti.moved && ti.doubleTap) {
-			TilePosition *delta = lastSingleTapDelta;
-			if (((abs(delta.x) == 0 || abs(delta.x) == 1) && (abs(delta.y) == 0)) || abs(delta.y) == 1) {
-				char direction = [self directionFromTilePositionDelta:delta];
-				if (direction) {
-					[nethackEventQueue addKeyEvent:'g'];
-					[nethackEventQueue addKeyEvent:direction];
-				}
-			}
-		}
-	}
-	initialDistance = 0;
-	[touchInfoStore removeTouches:touches];
+    if (touches.count == 1) {
+        TouchInfo *ti = [touchInfoStore touchInfoForTouch:[touches anyObject]];
+        
+        if (!ti.pinched && !ti.moved) {
+            if (!ti.doubleTap) {
+                [self handleSingleTap:[touches anyObject]];
+            } else {
+                [self handleDoubleTap];
+            }
+        }
+    }
+    initialDistance = 0;
+    [touchInfoStore removeTouches:touches];
+}
+
+/**
+ * @brief Processes valid single-tap interactions to clear overlays or trigger movement.
+ */
+- (void)handleSingleTap:(UITouch *)touch {
+    if (blockingMap) {
+        blockingMap.blocking = NO;
+        blockingMap = nil;
+        [(MainView *)self.view resetOffset];
+        [self broadcastUIEvent];
+        return;
+    }
+
+    CGPoint p = [touch locationInView:self.view];
+    TilePosition *tp = [(MainView *)self.view tilePositionFromPoint:p];
+    NethackEvent *lastEvent = nethackEventQueue.lastEvent;
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if ([(MainView *)self.view isMoved] || lastEvent.key == ';' || [appDelegate.nethackEngine isClickableTiles]) {
+        [self queueTargetedEventAtX:tp.x y:tp.y];
+    } else {
+        [self handleDirectionalOrCenterTapAtPoint:p];
+    }
+}
+
+/**
+ * @brief Differentiates between a center-screen player tap and a directional travel vector.
+ */
+- (void)handleDirectionalOrCenterTapAtPoint:(CGPoint)p {
+    CGPoint viewCenter = [(MainView *)self.view subViewedCenter];
+    CGRect middleSquare = CGRectMake(viewCenter.x - kCenterTapWidth / 2,
+                                     viewCenter.y - kCenterTapWidth / 2,
+                                     kCenterTapWidth, kCenterTapWidth);
+    
+    if (CGRectContainsPoint(middleSquare, p)) {
+        // Tap on player (center) tile
+        [self queueTargetedEventAtX:u.ux y:u.uy];
+    } else {
+        // Direction-based movement
+        CGPoint pointDelta = CGPointMake(p.x - viewCenter.x, p.y - viewCenter.y);
+        pointDelta.y *= -1; // Flip UIKit coordinate system to match grid space
+        pointDelta = [DMath normalizedPoint:pointDelta];
+        dmathdirection dmdir = [dmath directionFromVector:pointDelta];
+        
+        TilePosition *tp = [TilePosition tilePositionWithX:u.ux y:u.uy];
+        [self moveTilePosition:tp intoDMathDirection:dmdir];
+        [self queueTargetedEventAtX:tp.x y:tp.y];
+    }
+}
+
+/**
+ * @brief Dispatches the final NetHack coordinate event block to the queue.
+ */
+- (void)queueTargetedEventAtX:(int)x y:(int)y {
+    lastSingleTapDelta.x = x - u.ux;
+    lastSingleTapDelta.y = y - u.uy;
+    
+    NethackEvent *e = [[NethackEvent alloc] init];
+    e.x = x;
+    e.y = y;
+    e.key = 0;
+    [nethackEventQueue addNethackEvent:e];
+    [e release];
+    
+    [(MainView *)self.view resetOffset];
+}
+
+/**
+ * @brief Processes valid double-tap gestures to issue travel ('g') macros.
+ */
+- (void)handleDoubleTap {
+    TilePosition *delta = lastSingleTapDelta;
+    // Check if the previous tap was exactly 1 tile away radially or orthogonally
+    if (((abs(delta.x) == 0 || abs(delta.x) == 1) && (abs(delta.y) == 0)) || abs(delta.y) == 1) {
+        char direction = [self directionFromTilePositionDelta:delta];
+        if (direction) {
+            [nethackEventQueue addKeyEvent:'g']; // NetHack travel command prefix
+            [nethackEventQueue addKeyEvent:direction];
+        }
+    }
 }
 
 #pragma mark windowing

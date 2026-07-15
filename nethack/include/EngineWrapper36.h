@@ -298,4 +298,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 - (UIColor *)playerHealthColor;
 
 - (BOOL)isPetGlyph:(int)glyph;
+
+-(BOOL)isClickableTiles;
 @end

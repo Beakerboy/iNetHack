@@ -45,7 +45,6 @@
 #define kConstThingsThatAreHereTitle (@"Things that are here:")
 #define kConstThingsThatYouFeelHereTitle (@"Things that you feel here:")
 #define kConstIntroductoryStoryTitle (@"It is written in the Book of")
-extern volatile boolean winiphone_clickable_tiles;
 
 static MainViewController *instance;
 
@@ -579,7 +578,9 @@ static MainViewController *instance;
 				TilePosition *tp = [(MainView *) self.view tilePositionFromPoint:p];
 				NethackEvent *lastEvent = nethackEventQueue.lastEvent;
 				// todo other events to check
-				if ([(MainView *) self.view isMoved] || lastEvent.key == ';' || winiphone_clickable_tiles) {
+				iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate
+				
+				if ([(MainView *) self.view isMoved] || lastEvent.key == ';' || [appDelegate.nethackEngine isClickableTiles]) {
 					// tappable tiles
 					lastSingleTapDelta.x = tp.x-u.ux;
 					lastSingleTapDelta.y = tp.y-u.uy;

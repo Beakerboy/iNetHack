@@ -648,8 +648,9 @@ static MainViewController *instance;
  * @brief Dispatches the final NetHack coordinate event block to the queue.
  */
 - (void)queueTargetedEventAtX:(int)x y:(int)y {
-    lastSingleTapDelta.x = x - u.ux;
-    lastSingleTapDelta.y = y - u.uy;
+    NHEPlayerState *player = NHEGetPlayerState();
+    lastSingleTapDelta.x = x - player->ux;
+    lastSingleTapDelta.y = y - player->uy;
     
     NethackEvent *e = [[NethackEvent alloc] init];
     e.x = x;

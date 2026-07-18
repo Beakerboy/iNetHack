@@ -629,8 +629,9 @@ static MainViewController *instance;
                                      kCenterTapWidth, kCenterTapWidth);
     
     if (CGRectContainsPoint(middleSquare, p)) {
+	    NHEPlayerState *player = NHEGetPlayerState();
         // Tap on player (center) tile
-        [self queueTargetedEventAtX:u.ux y:u.uy];
+        [self queueTargetedEventAtX:player->ux y:player->uy];
     } else {
         // Direction-based movement
         CGPoint pointDelta = CGPointMake(p.x - viewCenter.x, p.y - viewCenter.y);
@@ -638,7 +639,7 @@ static MainViewController *instance;
         pointDelta = [DMath normalizedPoint:pointDelta];
         dmathdirection dmdir = [dmath directionFromVector:pointDelta];
         
-        TilePosition *tp = [TilePosition tilePositionWithX:u.ux y:u.uy];
+        TilePosition *tp = [TilePosition tilePositionWithX:player->ux y:player->uy];
         [self moveTilePosition:tp intoDMathDirection:dmdir];
         [self queueTargetedEventAtX:tp.x y:tp.y];
     }

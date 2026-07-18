@@ -115,3 +115,12 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
     return winiphone_clickable_tiles;
 }
 @end
+
+#import "EngineWrapper36.h"
+#include "hack.h" // Gives access to the real 'struct you' and global 'u'
+
+NHEPlayerState * NHEGetPlayerState(void) {
+    // We cast NetHack's global 'u' struct to our public wrapper type.
+    // Because ux and uy are the first fields in both, this is 100% memory-safe.
+    return (NHEPlayerState *)&u;
+}

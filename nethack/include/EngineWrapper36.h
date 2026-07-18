@@ -55,6 +55,33 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
     typedef union any ANY_P;
 #endif
 
+#if !defined(HACK_H)
+    /**
+     * @brief Opaque layout mapping to NetHack's core global 'u' structure.
+     * @note Only fields required by the UI layer are exposed here. The internal 
+     *       C memory layout must precisely match the engine's compilation.
+     */
+    typedef struct NHEPlayerState {
+        int ux; /**< Player's current map X-coordinate */
+        int uy; /**< Player's current map Y-coordinate */
+        // Remaining internal fields are left hidden/opaque from the wrapper view
+    } NHEPlayerState;
+
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+
+    /**
+     * @brief Retrieves a direct pointer to NetHack's active global player state structure.
+     * @return A pointer to the underlying player memory block.
+     */
+    NHEPlayerState * NHEGetPlayerState(void);
+
+    #ifdef __cplusplus
+    }
+    #endif
+#endif
+
 /**
  * @protocol NetHackEngineDelegate
  * @brief Abstract interface defining the presentation and input commands required by the NetHack engine.

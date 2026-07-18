@@ -623,13 +623,13 @@ static MainViewController *instance;
  * @brief Differentiates between a center-screen player tap and a directional travel vector.
  */
 - (void)handleDirectionalOrCenterTapAtPoint:(CGPoint)p {
+    NHEPlayerState *player = NHEGetPlayerState();
     CGPoint viewCenter = [(MainView *)self.view subViewedCenter];
     CGRect middleSquare = CGRectMake(viewCenter.x - kCenterTapWidth / 2,
                                      viewCenter.y - kCenterTapWidth / 2,
                                      kCenterTapWidth, kCenterTapWidth);
     
     if (CGRectContainsPoint(middleSquare, p)) {
-	    NHEPlayerState *player = NHEGetPlayerState();
         // Tap on player (center) tile
         [self queueTargetedEventAtX:player->ux y:player->uy];
     } else {

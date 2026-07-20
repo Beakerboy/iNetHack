@@ -114,6 +114,10 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 -(BOOL)isClickableTiles {
     return winiphone_clickable_tiles;
 }
+
+-(BOOL)isGameOver {
+    return program_state.gameover == 1;
+}
 @end
 
 #import "EngineWrapper36.h"

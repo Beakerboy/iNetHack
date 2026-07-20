@@ -1267,7 +1267,7 @@ static MainViewController *instance;
     // 2. Handle Structured Inventory Queries
     if (preLets && preLets.length > 0) {
         // Fetch the window via your local application dictionary safely
-        Window *inventoryWindow = [windows objectForKey:@(WIN_INVEN)];
+        Window *inventoryWindow = [windows objectForKey:@(NHE_WIN_INVEN)];
         inventoryWindow.nethackMenuItem = nil;
         
         BOOL alphaBegan = NO;

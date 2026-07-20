@@ -766,7 +766,10 @@ static MainViewController *instance;
             return;
         } else {
             // Use monospace font if showing game ending info, the introductory text, or in wizard mode.
-            if (program_state.gameover == 1 || wizard || [message containsString:kConstIntroductoryStoryTitle]) {
+			iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	        BOOL wizard = [defaults boolForKey:@"wizard"];
+            if ([appDelegate.nethackEngine isGameOver] || wizard || [message containsString:kConstIntroductoryStoryTitle]) {
                 if ([message containsString:kConstIntroductoryStoryTitle]) {
                     // Format the intro text a bit better for narrow displays.
                     message = [self formatMessageForWideScreen:message];

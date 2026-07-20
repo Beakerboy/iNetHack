@@ -118,6 +118,17 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 -(BOOL)isGameOver {
     return program_state.gameover == 1;
 }
+
+- (char)displayInventoryWithLetters:(NSString *)letters wantReply:(BOOL)wantReply {
+    // Safely handle nil or empty strings to prevent C crashes
+    const char *cLetters = (letters.length > 0) ? [letters cStringUsingEncoding:NSASCIIStringEncoding] : "";
+    
+    // Cast the Objective-C BOOL safely to the NetHack engine's boolean expected type
+    boolean cWantReply = wantReply ? 1 : 0;
+    
+    // Execute the underlying engine code
+    return display_inventory(cLetters, cWantReply);
+}
 @end
 
 #import "EngineWrapper36.h"

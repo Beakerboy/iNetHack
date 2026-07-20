@@ -40,7 +40,7 @@
 #import "TouchInfoStore.h"
 #import "DMath.h"
 #import "NSString+Regexp.h"
-
+#import <NetHackEngine36/RoleSelectionController.h>
 #define kOptionDoubleTapSensitivity (@"doubleTapSensitivity")
 #define kConstThingsThatAreHereTitle (@"Things that are here:")
 #define kConstThingsThatYouFeelHereTitle (@"Things that you feel here:")

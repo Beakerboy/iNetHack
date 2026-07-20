@@ -1315,7 +1315,7 @@ static MainViewController *instance;
         inventoryWindow.menuPrompt = q;
         
         // Execute your local application inventory presentation layout
-        char c = display_inventory([lets cStringUsingEncoding:NSASCIIStringEncoding], TRUE);
+        char c = [self displayInventoryWithLetters:lets wantReply:YES];
         
         inventoryWindow.acceptMoney      = NO;
         inventoryWindow.acceptBareHanded = NO;

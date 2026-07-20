@@ -331,4 +331,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 -(BOOL)isClickableTiles;
 
 -(BOOL)isGameOver;
+
+- (char)displayInventoryWithLetters:(NSString *)letters wantReply:(BOOL)wantReply;
 @end

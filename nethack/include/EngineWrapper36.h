@@ -327,4 +327,6 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 - (BOOL)isPetGlyph:(int)glyph;
 
 -(BOOL)isClickableTiles;
+
+-(BOOL)isGameOver;
 @end

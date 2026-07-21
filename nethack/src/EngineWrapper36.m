@@ -5,6 +5,10 @@
 
 __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
 
+static inline void custom_mapglyph(int glyph, int *ochar, int *ocolor, unsigned *ospecial, int x, int y, int fallback) {
+    mapglyph(glyph, ochar, ocolor, ospecial, x, y);
+}
+
 @implementation EngineWrapper36
 
 - (void)setDelegate:(id<NetHackEngineDelegate>)delegate {

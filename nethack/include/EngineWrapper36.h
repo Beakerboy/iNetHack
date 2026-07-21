@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
     }
     #endif
 #endif
-
+void custom_mapglyph(int glyph, int *ochar, int *ocolor, unsigned *ospecial, int x, int y, int fallback);
 /**
  * @protocol NetHackEngineDelegate
  * @brief Abstract interface defining the presentation and input commands required by the NetHack engine.

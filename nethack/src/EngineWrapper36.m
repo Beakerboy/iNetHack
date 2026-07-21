@@ -175,6 +175,10 @@ static inline void custom_mapglyph(int glyph, int *ochar, int *ocolor, unsigned 
 - (void)setUseColorFlag:(BOOL)useColor {
     iflags.use_color = useColor ? TRUE : FALSE;
 }
+
+- (BOOL)isGlyphObject:(int)g {
+    return glyph_is_object(g);
+}
 @end
 
 #import "EngineWrapper36.h"

@@ -1047,11 +1047,3 @@ int main() {
 	}
 	exit(EXIT_SUCCESS);
 }
-
-int
-custom_mapglyph(glyph, ochar, ocolor, ospecial, x, y, flag)
-int glyph, flag, *ocolor, x, y, *ochar;
-unsigned *ospecial;
-{
-    return mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y, flag);
-}

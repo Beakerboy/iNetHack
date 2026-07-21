@@ -320,9 +320,9 @@ void custom_mapglyph(int glyph, int *ochar, int *ocolor, unsigned *ospecial, int
 /**
  * @brief Resets character selection parameters in a fall-through cascade based on selection type.
  * @param type The starting index parameter code to wipe (RESET_ROLE, RESET_RACE, etc.).
- */
-- (void)resetPlayerChoices:(int)type;
 
+- (void)resetPlayerChoices:(int)type;
+ */
 - (NSString *)universalMoneyString;
 
 /** @brief Evaluates whether the player is currently executing gameplay on a specialized Rogue layout dungeon level.

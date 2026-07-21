@@ -345,4 +345,6 @@ void custom_mapglyph(int glyph, int *ochar, int *ocolor, unsigned *ospecial, int
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 - (void) setUseColorFlag:(BOOL)useColor;
+
+- (BOOL)isGlyphObject:(int)g;
 @end

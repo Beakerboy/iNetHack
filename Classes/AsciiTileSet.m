@@ -125,14 +125,14 @@ static float _colorTable[][4] = {
 }
 
 - (CGImageRef) imageForGlyph:(int)g atX:(int)x y:(int)y {
-	iflags.use_color = TRUE;
+    iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+	[appDelegate.nethackEngine setUseColorFlag]
 	int tile = [TileSet glyphToTileIndex:g];
     if (!images[tile]) {
         UIFont *font = [UIFont systemFontOfSize:28];
         int ochar, ocolor;
         unsigned special;
         custom_mapglyph(g, &ochar, &ocolor, &special, x, y, 0);
-        iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
         if (ibmTileset) {
             font = [UIFont fontWithName:@"Px437_IBM_VGA_8x16" size:64];
             //NSLog(@"glyph %d, spcl %d, tile %d %c", g, special, tile, ochar);

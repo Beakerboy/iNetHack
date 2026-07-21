@@ -18,7 +18,15 @@
  * Satisfies standard vanilla NetHack window tracking layouts without exposing raw core header layers.
  */
 typedef int winid;
-extern winid WIN_MESSAGE; 
+extern winid WIN_MESSAGE;
+
+struct ext_func_tab {
+    const char *ef_txt;
+    const char *ef_desc;
+    int (*ef_funct)(void);
+    BOOL ef_autocomplete;
+};
+
 typedef struct menu_item NHEMenuItem; 
 static const int NHE_COLNO = 80;
 static const int NHE_ROWNO = 21;

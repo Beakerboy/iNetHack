@@ -129,6 +129,45 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
     // Execute the underlying engine code
     return display_inventory(cLetters, cWantReply);
 }
+
+/**
+ * @brief Returns the number of rows to display in a given section of the table view.
+ *
+ * @details This method dynamically filters the global external command list (`extcmdlist`)
+ * based on visibility rules defined by `showExtCmd:`. It populates `filteredExtCmd`
+ * and `filteredExtCmdIndex` with the valid items and their original indices.
+ *
+ * @param tableView The table view requesting this information.
+ * @param section   The index number identifying a section in @p tableView.
+ *
+ * @return The number of rows (filtered commands) to display in the specified section.
+ *
+ * @note This method mutates state by reinitializing and repopulating data source arrays.
+ *       It assumes a single-section table view as the @p section parameter is not explicitly checked.
+ */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	struct ext_func_tab *f = extcmdlist;
+	NSMutableArray *filteredExtCmd = [NSMutableArray array];
+    NSMutableArray *filteredExtCmdIndex = [NSMutableArray array];
+    filteredExtCmd = [[NSMutableArray alloc] init];
+    filteredExtCmdIndex = [[NSMutableArray alloc] init];
+    int filtered = 0;
+    int row = 0;
+	while (f++->ef_txt) {
+        filtered++;
+        if (![self showExtCmd:row]) {
+            // Filter out items that shouldn't be displayed: wizard mode, regular commands, etc.
+            filtered--;
+        } else {
+            NSValue *value = [NSValue valueWithBytes:&extcmdlist[row] objCType:@encode(struct ext_func_tab)];
+            [filteredExtCmd addObject:value];
+            [filteredExtCmdIndex addObject:[NSNumber numberWithInt: row]];
+        }
+        row++;
+	}
+    return filtered;
+}
+
 @end
 
 #import "EngineWrapper36.h"

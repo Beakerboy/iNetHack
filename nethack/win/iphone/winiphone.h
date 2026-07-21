@@ -90,7 +90,7 @@ int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
 @interface WinIPhone : NSObject {}
 + (void) triggerInitialize;
 + (NSString *)universalMoneyString;
-+ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+
 @end
 #endif // __OBJC__
 

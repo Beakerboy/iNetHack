@@ -283,7 +283,8 @@ static float _colorTable[][4] = {
     int newOchar = ochar;
 
     // Check for objects
-    if (glyph_is_object(g)) {
+	iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
+    if ([appDelegate.nethackEngine isGlyphObject:g]) {
         switch ((unichar) ochar) {
             case '*':
             case '$':

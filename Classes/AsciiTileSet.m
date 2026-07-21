@@ -19,7 +19,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
-
+#import "iNethackAppDelegate.h"
 #import "AsciiTileSet.h"
 
 /*
@@ -47,7 +47,7 @@ static float _colorTable[][4] = {
 
 - (id) initWithTileSize:(CGSize)ts {
 	if (self = [super initWithImage:nil tileSize:ts]) {
-		numImages = MAX_GLYPH;
+		numImages = NHE_MAX_GLYPH;
 		size_t size = numImages * sizeof(CGImageRef);
 		images = malloc(size);
 		memset(images, 0, size);
@@ -132,7 +132,7 @@ static float _colorTable[][4] = {
         int ochar, ocolor;
         unsigned special;
         custom_mapglyph(g, &ochar, &ocolor, &special, x, y, 0);
-
+        iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
         if (ibmTileset) {
             font = [UIFont fontWithName:@"Px437_IBM_VGA_8x16" size:64];
             //NSLog(@"glyph %d, spcl %d, tile %d %c", g, special, tile, ochar);
@@ -152,7 +152,7 @@ static float _colorTable[][4] = {
                 //In_sokoban
                 baseTile -= 220;
             }
-            if (Is_rogue_level(&u.uz)) {
+            if ([appDelegate.nethackEngine isPlayerOnRogueLevel]) {
                 ochar = [self adjustTilesRogueLevel:baseTile withOchar:ochar withGlyph:g];
             } else {
                 ochar = [self adjustTiles:baseTile withOchar:ochar];
@@ -175,7 +175,7 @@ static float _colorTable[][4] = {
             CGContextSetShouldAntialias(ctx, false);
             CGContextSetAllowsAntialiasing(ctx, 0);
         }
-        if (Is_rogue_level(&u.uz) && !ibmTileset) {
+        if ([appDelegate.nethackEngine isPlayerOnRogueLevel] && !ibmTileset) {
             color = [UIColor lightGrayColor];
             if (ochar == '@') {
                 color = [UIColor whiteColor];

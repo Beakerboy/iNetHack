@@ -126,7 +126,7 @@ static float _colorTable[][4] = {
 
 - (CGImageRef) imageForGlyph:(int)g atX:(int)x y:(int)y {
     iNethackAppDelegate *appDelegate = (iNethackAppDelegate *)[UIApplication sharedApplication].delegate;
-	[appDelegate.nethackEngine setUseColorFlag]
+	[appDelegate.nethackEngine setUseColorFlag];
 	int tile = [TileSet glyphToTileIndex:g];
     if (!images[tile]) {
         UIFont *font = [UIFont systemFontOfSize:28];

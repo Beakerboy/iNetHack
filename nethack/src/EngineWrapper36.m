@@ -168,6 +168,9 @@ __weak id<NetHackEngineDelegate> _globalWindowDelegate = nil;
     return filtered;
 }
 
+- (void)setUseColorFlag:(BOOL)useColor {
+    iflags.use_color = useColor ? TRUE : FALSE;
+}
 @end
 
 #import "EngineWrapper36.h"

@@ -336,11 +336,13 @@ typedef NS_ENUM(NSInteger, NHEMenuSelectionMode) {
 
 - (BOOL)isPetGlyph:(int)glyph;
 
--(BOOL)isClickableTiles;
+- (BOOL)isClickableTiles;
 
--(BOOL)isGameOver;
+- (BOOL)isGameOver;
 
 - (char)displayInventoryWithLetters:(NSString *)letters wantReply:(BOOL)wantReply;
 
 + (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+
+- (void) setUseColorFlag:(BOOL)useColor;
 @end

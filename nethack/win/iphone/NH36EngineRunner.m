@@ -3,7 +3,8 @@
 
 // Declare the external C pointer from winiphone.m
 extern id<NHWindowPortDelegate> g_window_delegate;
-extern int iphone_main(int argc, char **argv); // Your C entry point
+extern void iphone_set_ui_context(MainViewController *vc);
+extern int iphone_main(int argc, char **argv);
 
 @interface NH36EngineRunner : NSObject
 + (void)startEngineWithDelegate:(id<NHWindowPortDelegate>)delegate;

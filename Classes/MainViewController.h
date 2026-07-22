@@ -81,7 +81,7 @@
 	Window *blockingMap;
 }
 
-//@property (nonatomic, readonly) NSArray *windows;
+@property (nonatomic, assign) BOOL isRogueLevel;
 @property (nonatomic, readonly, retain) NSDictionary *windows; //iNethack2: making this a dict
 @property (nonatomic, readonly, retain) TilePosition *clip;
 @property (nonatomic, readonly) Window *mapWindow;

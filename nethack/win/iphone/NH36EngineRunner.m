@@ -9,10 +9,9 @@ extern int iphone_main(int argc, char **argv); // Your C entry point
 @end
 
 @implementation NH36EngineRunner
-+ (void)startEngineWithDelegate:(id<NHWindowPortDelegate>)delegate {
-    g_window_delegate = delegate;
++ (void)launchGameWithController:(MainViewController *)mainVC {
+    iphone_set_ui_context(mainVC);
     
-    // Kick off the NetHack C engine loop (ideally on a background thread)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         char *argv[] = {"nethack"};
         iphone_main(1, argv);

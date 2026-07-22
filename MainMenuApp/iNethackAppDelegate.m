@@ -170,15 +170,15 @@
 		if (r.location != NSNotFound && r.location == file.length-suffixLength) {
 			NSString *bones = [file stringByReplacingCharactersInRange:r withString:@""];
 			if ([[NSFileManager defaultManager] fileExistsAtPath:bones]) {
-				NSString *md5Bad = [NSString stringWithContentsOfFile:file encoding:NSASCIIStringEncoding error:NULL];
-				NSString *md5Bones = [Hearse md5HexForFile:bones];
-				if ([md5Bad isEqual:md5Bones]) {
-					NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:bones, kBonesFilename,
-									   md5Bad, kBonesMd5, nil];
-					[badBones addObject:d];
-					[[NSFileManager defaultManager] removeItemAtPath:bones error:&error];
-					[[NSFileManager defaultManager] removeItemAtPath:file error:&error];
-				}
+				//NSString *md5Bad = [NSString stringWithContentsOfFile:file encoding:NSASCIIStringEncoding error:NULL];
+				//NSString *md5Bones = [Hearse md5HexForFile:bones];
+				//if ([md5Bad isEqual:md5Bones]) {
+				//	NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:bones, kBonesFilename,
+				//					   md5Bad, kBonesMd5, nil];
+				//	[badBones addObject:d];
+				//	[[NSFileManager defaultManager] removeItemAtPath:bones error:&error];
+				//	[[NSFileManager defaultManager] removeItemAtPath:file error:&error];
+				//}
 			}
 		}
 	}

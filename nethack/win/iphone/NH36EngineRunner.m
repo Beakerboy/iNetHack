@@ -1,4 +1,5 @@
 #import <NetHackSharedUI/NHWindowPortDelegate.h>
+#import <NetHackSharedUI/MainViewController.h>
 
 // Declare the external C pointer from winiphone.m
 extern id<NHWindowPortDelegate> g_window_delegate;

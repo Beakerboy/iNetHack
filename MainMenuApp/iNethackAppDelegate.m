@@ -23,7 +23,6 @@
 #import "iNethackAppDelegate.h"
 #import "MainViewController.h"
 #import "MainView.h"
-#import "Hearse.h"
 
 
 #define kBonesFilename (@"filename")
@@ -130,23 +129,8 @@
 }
 
 - (void) launchNetHack {
-#ifndef HEARSE_ONLY
 	[[MainViewController instance] performSelectorOnMainThread:@selector(launchNetHack)
 													withObject:nil waitUntilDone:NO];
-#endif
-}
-
-- (void) launchHearse {
-#if !defined(HEARSE_DISABLE)
-	[Hearse start];
-#endif
-}
-
-- (void) createTestBadBonesFile {
-	NSString *bones = @"./bonD0.1"; //iNethack2 -- added "./" to path
-	[@"contents of bad bones file" writeToFile:bones atomically:NO encoding:NSASCIIStringEncoding error:NULL];
-	NSString *md5Bones = [Hearse md5HexForFile:bones];
-	[md5Bones writeToFile:@"./bonD0.1.bad" atomically:NO encoding:NSASCIIStringEncoding error:NULL]; //iNethack2 -- added "./"
 }
 
 - (BOOL) checkNetHackDirectories {

@@ -23,9 +23,8 @@
 #import "iNethackAppDelegate.h"
 #import "MainViewController.h"
 #import "MainView.h"
-#import "MainMenuViewController.h"
 #import "Hearse.h"
-#import "FileLogger.h"
+
 
 #define kBonesFilename (@"filename")
 #define kBonesMd5 (@"md5")

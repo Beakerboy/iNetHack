@@ -1,3 +1,4 @@
+#import "winiphone.h"
 #import <NetHackSharedUI/NHWindowPortDelegate.h>
 #import <NetHackSharedUI/MainViewController.h>
 

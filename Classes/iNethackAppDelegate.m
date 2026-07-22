@@ -22,7 +22,6 @@
 
 #import "iNethackAppDelegate.h"
 #import "MainViewController.h"
-#import "NethackEventQueue.h"
 #import "MainView.h"
 #import "MainMenuViewController.h"
 #import "Hearse.h"

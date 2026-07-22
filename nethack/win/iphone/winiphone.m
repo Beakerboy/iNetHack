@@ -51,6 +51,8 @@
 #include "TargetConditionals.h"
 #endif
 
+static MainViewController *g_main_view_controller = nil;
+
 #define kOptionUsername (@"username")
 #define kOptionAutopickup (@"autopickup")
 #define kOptionPickupTypes (@"pickupTypes")
@@ -317,8 +319,12 @@ void iphone_init_nhwindows(int* argc, char** argv) {
 }
 
 void iphone_player_selection() {
-	//strcpy(pl_character, "Barb");
-	[[MainViewController instance] doPlayerSelection];
+    if (g_main_view_controller) {
+        // Run on the main thread since this triggers UIKit UI changes
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [g_main_view_controller doPlayerSelection];
+        });
+    }
 }
 
 void iphone_askname() {
@@ -1133,4 +1139,9 @@ int glyph, flag, *ocolor, x, y, *ochar;
 unsigned *ospecial;
 {
     return mapglyph(glyph, &ochar, &ocolor, &ospecial, x, y, flag);
+}
+
+// Dependency Injection
+void iphone_set_ui_context(MainViewController *vc) {
+    g_main_view_controller = vc;
 }

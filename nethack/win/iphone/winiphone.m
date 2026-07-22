@@ -372,28 +372,43 @@ void iphone_resume_nhwindows() {
 
 winid iphone_create_nhwindow(int type) {
 	winid wid = [[MainViewController instance] createWindow:type];
-	//NSLog(@"iphone_create_nhwindow(%d) -> %d", type, wid);
 	return wid;
 }
 
 void iphone_clear_nhwindow(winid wid) {
-	//NSLog(@"iphone_clear_nhwindow %d", wid);
 	Window *w = [[MainViewController instance] windowWithId:wid];
 	[w clear];
 }
 
 void iphone_display_nhwindow(winid wid, BOOLEAN_P block) {
-	//NSLog(@"iphone_display_nhwindow %d", wid);
-	[[MainViewController instance] displayWindowId:wid blocking:block ? YES:NO];
+    if (g_main_view_controller) {
+        // Run on the main thread since we are updating UI state and properties
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Safely execute the exact C macros for this specific NetHack version
+            BOOL rogue = (u.uz.dlevel && Is_rogue_level(&u.uz));
+            g_main_view_controller.isRogueLevel = rogue;
+            
+            // If the view is already loaded, tell it to refresh its tile configuration
+            if ([g_main_view_controller isViewLoaded]) {
+                [(MainView *)g_main_view_controller.view checkForRogueLevel];
+            }
+            
+            [g_main_view_controller displayWindowId:wid blocking:block ? YES : NO];
+        });
+        
+        // Handle NetHack's blocking input loop if 'block' is TRUE
+        if (block) {
+
+        }
+    }
 }
 
 void iphone_destroy_nhwindow(winid wid) {
-	//NSLog(@"iphone_destroy_nhwindow %d", wid);
 	[[MainViewController instance] destroyWindow:wid];
 }
 
 void iphone_curs(winid wid, int x, int y) {
-	//NSLog(@"iphone_curs %d %d,%d", wid, x, y);
+
 }
 
 void iphone_putstr(winid wid, int attr, const char *text) {

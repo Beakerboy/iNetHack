@@ -90,7 +90,6 @@
 	
 	if (!badBonesSeen) {
 		[self launchNetHack];
-		[self launchHearse];
 	}
 }
 

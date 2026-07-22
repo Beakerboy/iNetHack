@@ -71,7 +71,6 @@ void iphone_will_load_bones(const char *bonesid);
 // bones were loaded 
 void iphone_finished_bones(const char *bonesid);
 
-void iphone_test_main();
 void iphone_main();
 void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache
 void iphone_haptic_reset();

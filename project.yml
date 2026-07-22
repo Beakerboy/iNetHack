@@ -65,9 +65,9 @@ targets:
     
     dependencies:
       - framework: NetHackEngine36.framework
-      - embed: true
+        embed: true
       - framework: NetHackSharedUI.framework
-      - embed: true
+        embed: true
       - sdk: Foundation.framework
       - sdk: UIKit.framework
       - sdk: CoreGraphics.framework

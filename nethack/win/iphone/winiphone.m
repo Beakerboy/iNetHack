@@ -787,10 +787,6 @@ getlock(void)
 	close (fd);
 }
 
-void iphone_test_main() {
-	// place for threaded tests
-}
-
 void iphone_test_endianness() {
 	NSString *filename = @"endianness";
 	const char *cFilename = [filename fileSystemRepresentation];

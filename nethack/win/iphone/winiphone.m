@@ -33,6 +33,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
+#import <NetHackSharedUI/NHWindowPortDelegate.h>
 
 // for md5 methods
 #import "Hearse.h"

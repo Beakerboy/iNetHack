@@ -22,23 +22,23 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "winiphone.h"
-#import "MainViewController.h"
-#import "Window.h"
-#import "NethackMenuItem.h"
-#import "NethackYnFunction.h"
-#import "NethackEvent.h"
-#import "NethackEventQueue.h"
-#import "NSString+Regexp.h"
-#import "TilePosition.h"
 
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
 #import <NetHackSharedUI/NHWindowPortDelegate.h>
+#import <NetHackSharedUI/MainViewController.h>
+#import <NetHackSharedUI/Window.h>
+#import <NetHackSharedUI/NethackMenuItem.h>
+#import <NetHackSharedUI/NethackYnFunction.h>
+#import <NetHackSharedUI/NethackEvent.h>
+#import <NetHackSharedUI/NethackEventQueue.h>
+#import <NetHackSharedUI/NSString+Regexp.h>
+#import <NetHackSharedUI/TilePosition.h>
 
 // for md5 methods
-#import "Hearse.h"
+#import <NetHackSharedUI/Hearse.h>
 
-#import "NSString+Regexp.h"
+#import <NetHackSharedUI/NSString+Regexp.h>
 
 #include <stdio.h>
 #include <fcntl.h>

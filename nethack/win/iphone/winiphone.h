@@ -84,7 +84,6 @@ void iphone_set_ui_context(MainViewController *vc);
 #ifdef __OBJC__
 // This block will be completely ignored by C files, 
 // but read perfectly by Objective-C files
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface WinIPhone : NSObject {}

@@ -806,20 +806,21 @@ void iphone_test_endianness() {
 }
 
 void iphone_will_load_bones(const char *bonesid) {
-	//NSLog(@"load bones %s", bonesid);
-	NSString *src = [NSString stringWithFormat:@"./bon%s", bonesid]; //iNethack2 prepending with ./
-	NSString *dest = [NSString stringWithFormat:@"./bon%s.bad", bonesid]; //iNethack2 prepending with ./
-	NSString *md5 = [Hearse md5HexForFile:src];
-	NSError *error = nil;
-	[md5 writeToFile:dest atomically:YES encoding:NSASCIIStringEncoding error:&error];
+
+	//NSString *src = [NSString stringWithFormat:@"./bon%s", bonesid]; //iNethack2 prepending with ./
+	//NSString *dest = [NSString stringWithFormat:@"./bon%s.bad", bonesid]; //iNethack2 prepending with ./
+	//NSString *md5 = [Hearse md5HexForFile:src];
+	//NSError *error = nil;
+	//[md5 writeToFile:dest atomically:YES encoding:NSASCIIStringEncoding error:&error];
 }
 
 void iphone_finished_bones(const char *bonesid) {
-	//NSLog(@"finished bones %s", bonesid);
-	NSString *dest = [NSString stringWithFormat:@"bon%s.bad", bonesid];
-	NSError *error = nil;
-	[[NSFileManager defaultManager] removeItemAtPath:dest error:&error];
+
+	//NSString *dest = [NSString stringWithFormat:@"bon%s.bad", bonesid];
+	//NSError *error = nil;
+	//[[NSFileManager defaultManager] removeItemAtPath:dest error:&error];
 }
+
 //iNethack2: pass along the glyph cache reset
 void iphone_reset_glyph_cache(void) {
 	[[MainViewController instance] resetGlyphCache];

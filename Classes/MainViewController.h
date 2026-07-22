@@ -97,7 +97,6 @@
 
 - (void) launchNetHack;
 - (void) mainNethackLoop:(id)arg;
-- (void) mainNethackTestLoop:(id)arg;
 - (winid) createWindow:(int)type;
 - (void) destroyWindow:(winid)wid;
 - (Window *) windowWithId:(winid)wid;

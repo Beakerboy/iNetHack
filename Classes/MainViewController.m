@@ -127,16 +127,24 @@ static MainViewController *instance;
 
 
 - (void) launchNetHack {
-	if (!nethackThread) {
-		nethackThread = [[NSThread alloc] initWithTarget:self selector:@selector(mainNethackLoop:) object:nil];
-		[nethackThread start];
-	}
+    if (!nethackThread) {
+        nethackThread = [[NSThread alloc] initWithTarget:self selector:@selector(mainNethackLoop:) object:nil];
+        [nethackThread start];
+    }
 }
 
 - (void) mainNethackLoop:(id)arg {
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	iphone_main();
-	[pool drain];
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    
+    // Call the overridable hook instead of a hardcoded C function
+    [self runNativeEngineLoop];
+    
+    [pool drain];
+}
+
+- (void) runNativeEngineLoop {
+    // This is intentionally left blank in the shared base class.
+    // The version-specific subclasses will override this method.
 }
 
 #pragma mark window properties

@@ -36,6 +36,7 @@
 @synthesize start, tileSize, dummyTextField, tileSet;
 @synthesize status, map, message;
 @synthesize cache, cache2;
+@synthesize delegate = _delegate;
 
 /**
  * @brief Retrieves the current tile size configuration.
@@ -679,6 +680,23 @@
 		return YES;
 	}
 	return NO;
+}
+
+- (void) checkForRogueLevel {
+    // Check the delegate instead of self.viewController
+    if ([self.delegate mainViewShouldRenderRogueLevel]) {
+        if (!tileSets[1]) {
+            tileSet = tileSets[1] = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
+        } else {
+            tileSet = tileSets[1];
+        }
+    } else {
+        tileSet = tileSets[0];
+        if (tileSets[1]) {
+            [tileSets[1] release];
+            tileSets[1] = nil;
+        }
+    }
 }
 
 - (void)dealloc {

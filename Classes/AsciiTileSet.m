@@ -390,6 +390,11 @@ static float _colorTable[][4] = {
 	return [colorTable objectAtIndex:ocolor];
 }
 
+- (NSInteger)totalGlyphsCount {
+    // Shared fallback default. Subclasses in the engine framework will override this.
+    return 0; 
+}
+
 - (void) dealloc {
 	[colorTable release];
 	[super dealloc];

@@ -22,8 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-#include "hack.h"
-
 #define kNoGlyph (-1)
 
 @class NethackMenuItem;

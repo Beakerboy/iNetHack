@@ -31,4 +31,9 @@ extern char lock[];
         }
     }
 }
+
+- (TileSet *)mainViewRequiresAsciiTileSetWithTileSize:(CGSize)size {
+    // Return the specific 3.6 engine tileset variant
+    return [[[NH36AsciiTileSet alloc] initWithTileSize:size] autorelease];
+}
 @end

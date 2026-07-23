@@ -38,6 +38,7 @@
 #import "DMath.h"
 #import "NSString+Regexp.h"
 #import "RoleSelectionController.h"
+#import <CoreHaptics/CoreHaptics.h>
 
 #define kOptionDoubleTapSensitivity (@"doubleTapSensitivity")
 #define kConstThingsThatAreHereTitle (@"Things that are here:")
@@ -48,7 +49,7 @@ extern volatile boolean winiphone_clickable_tiles;
 static MainViewController *instance;
 
 @interface MainViewController () <RoleSelectionControllerDelegate>
-
+    CHHapticEngine *hapticEngine; 
 @end
 
 @implementation MainViewController
@@ -1092,8 +1093,7 @@ static MainViewController *instance;
 }
 
 - (void) didBecomeActive {
-    // Will need to reinitialize haptic engine.
-    iphone_haptic_reset();
+    hapticEngine = nil;
 }
 
 

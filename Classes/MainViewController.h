@@ -22,7 +22,6 @@
 
 #import <UIKit/UIKit.h>
 
-// Safe macro copy (No longer reliant on hack.h)
 #ifndef C
 #define C(c)		(0x1f & (c))
 #endif

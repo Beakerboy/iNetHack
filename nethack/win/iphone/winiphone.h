@@ -73,7 +73,6 @@ void iphone_finished_bones(const char *bonesid);
 
 void iphone_main();
 void iphone_reset_glyph_cache(); //iNethack2: reset glyph cache
-void iphone_haptic_reset();
 void iphone_haptic(int haptictype);
 int custom_mapglyph(int, int *, int *, unsigned *, int, int, int);
 

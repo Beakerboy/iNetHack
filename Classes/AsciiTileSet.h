@@ -21,18 +21,14 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
-
 #import "TileSet.h"
 
 @interface AsciiTileSet : TileSet {
-	
 	NSArray *colorTable;
     BOOL ibmTileset;
     BOOL colorInvert;
-
 }
 
 - (instancetype) initWithTileSize:(CGSize)ts;
 - (UIColor *) mapNetHackColor:(int)ocolor;
-
 @end

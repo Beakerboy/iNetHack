@@ -1171,4 +1171,13 @@ static MainViewController *instance;
 - (void)runNativeSaveCode {
     // Left empty! Overridden by subclasses.
 }
+
+- (void)handleApplicationTermination {
+    // Triggers the subclass hook to execute version-specific code
+    [self runNativeTerminateCode];
+}
+
+- (void)runNativeTerminateCode {
+    // Left completely blank in the shared framework base class!
+}
 @end

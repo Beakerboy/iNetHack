@@ -21,6 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
+#import "MainView.h"
 
 #ifndef C
 #define C(c)		(0x1f & (c))
@@ -36,7 +37,7 @@
 @class TilePosition;
 @class DMath;
 
-@interface MainViewController : UIViewController <UIActionSheetDelegate, UITextFieldDelegate> {
+@interface MainViewController : UIViewController <MainViewDelegate, UIActionSheetDelegate, UITextFieldDelegate> {
     
     IBOutlet NethackMenuViewController *nethackMenuViewController;
     IBOutlet TextInputViewController *textInputViewController;

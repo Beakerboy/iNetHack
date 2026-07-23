@@ -1161,4 +1161,14 @@ static MainViewController *instance;
     [super dealloc];
 }
 
+- (void)saveGameStateAndExit {
+    // If you need to stop animations, UI elements, or timers before saving, do it here.
+    
+    // Execute the version-specific C saving logic
+    [self runNativeSaveCode];
+}
+
+- (void)runNativeSaveCode {
+    // Left empty! Overridden by subclasses.
+}
 @end

@@ -123,4 +123,6 @@
 - (void) showKeyboard:(BOOL)d;
 - (void) didBecomeActive;
 
+- (void)saveGameStateAndExit;
+- (void)runNativeSaveCode;
 @end

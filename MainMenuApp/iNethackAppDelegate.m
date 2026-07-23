@@ -95,14 +95,22 @@
 }
 
 - (void) applicationDidEnterBackground:(UIApplication *)application {
-    // Save the zoom level
-    [[NSUserDefaults standardUserDefaults] setFloat:[(MainView *) [[MainViewController instance] view] tileSize].width
-                                             forKey:kKeyTileSize];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    if ([[MainViewController instance] gameInProgress]) {
-        // 2.1.0+, Now use the checkpoint system to create a save any time the app enters the background.
-        save_currentstate();
+    // Get the current active game view controller running as the root context
+    if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
+        MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
+        
+        // Save the zoom level safely by inspecting the controller's view
+        if ([gameVC isViewLoaded] && [gameVC.view isKindOfClass:[MainView class]]) {
+            MainView *mainView = (MainView *)gameVC.view;
+            [[NSUserDefaults standardUserDefaults] setFloat:mainView.tileSize.width forKey:kKeyTileSize];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
+        // Ask the controller if a game is running using its safe Obj-C property
+        if (gameVC.gameInProgress) {
+            // Triggers the subclass hook to execute the isolated version's save code
+            [gameVC saveGameStateAndExit];
+        }
     }
 }
 

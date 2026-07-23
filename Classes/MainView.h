@@ -22,43 +22,49 @@
 
 #import <UIKit/UIKit.h>
 
-#import "hack.h"
-
 #define kKeyTileSize (@"tileSize")
 
 @class MainViewController, TilePosition, Window, TileSet, ShortcutView;
 
+@protocol MainViewDelegate <NSObject>
+- (BOOL)mainViewShouldRenderRogueLevel;
+@end
+
 @interface MainView : UIView {
 
-	MainViewController *mainViewController;
-	UIFont *statusFont;
-	CGSize maxTileSize;
-	CGSize minTileSize;
-	IBOutlet UITextField *dummyTextField;
+    MainViewController *mainViewController;
+    UIFont *statusFont;
+    CGSize maxTileSize;
+    CGSize minTileSize;
+    IBOutlet UITextField *dummyTextField;
 
-	BOOL tiled;
-	TileSet *tileSet;
+    BOOL tiled;
+    TileSet *tileSet;
     TileSet *tileSetAnim;
-	TileSet *tileSets[3];
-	
-	CGPoint offset;
-	ShortcutView *shortcutView;
-	
-	UIImage *petMark;
-	
-	CGSize tilesetTileSize;
-	BOOL asciiTileset;
+    TileSet *tileSets[3];
+    
+    CGPoint offset;
+    ShortcutView *shortcutView;
+    
+    UIImage *petMark;
+    
+    CGSize tilesetTileSize;
+    BOOL asciiTileset;
     BOOL ibmTileset;
-    BOOL colorInvert; // Textmode: White background, black becomes white.
+    BOOL colorInvert; 
     BOOL animatedTileset;
-	UIButton *moreButton;
-	
-	NSString *bundleVersionString;
+    UIButton *moreButton;
     
-    NSCache * cache; //iNethack2: glyph cache for faster rendering
-    NSCache * cache2; //iNethack2: second glyph cache for animated tilsets.
+    NSString *bundleVersionString;
     
+    NSCache * cache; 
+    NSCache * cache2; 
+    
+    id<MainViewDelegate> _delegate;
 }
+
+
+@property (nonatomic, assign) id<MainViewDelegate> delegate;
 
 @property (nonatomic, readonly) CGPoint start;
 @property (nonatomic, readonly) CGSize tileSize;
@@ -70,8 +76,8 @@
 @property (nonatomic, retain) Window *status;
 @property (nonatomic, retain) Window *message;
 @property (nonatomic, readonly) CGPoint subViewedCenter;
-@property (nonatomic, readonly, retain) NSCache *cache; //iNethack2: glyph cache
-@property (nonatomic, readonly, retain) NSCache *cache2; //iNethack2: animated glyph cache
+@property (nonatomic, readonly, retain) NSCache *cache; 
+@property (nonatomic, readonly, retain) NSCache *cache2; 
 
 - (void) drawTiledMap:(Window *)m clipRect:(CGRect)clipRect;
 - (void) checkForRogueLevel;
@@ -81,5 +87,6 @@
 - (void) moveAlongVector:(CGPoint)d;
 - (void) resetOffset;
 - (void) zoom:(CGFloat)d;
-- (void) resetGlyphCache; //iNethack2: reset cache each time level change to ensure walls are correct set
+- (void) resetGlyphCache; 
 @end
+

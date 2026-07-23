@@ -22,14 +22,13 @@
 
 #import <UIKit/UIKit.h>
 
-// ctrl-macro
+// Safe macro copy (No longer reliant on hack.h)
 #ifndef C
 #define C(c)		(0x1f & (c))
 #endif
 
 #define kMinimumPinchDelta (15)
 #define kMinimumPanDelta (20)
-
 #define kCenterTapWidth (40)
 
 @class Window, NethackMenuViewController, NethackYnFunction, TextInputViewController, NethackEventQueue;
@@ -38,50 +37,40 @@
 @class TilePosition;
 @class DMath;
 
-@interface MainViewController : UIViewController <UIActionSheetDelegate, UITextFieldDelegate , UIAlertViewDelegate> {
-	
-	IBOutlet NethackMenuViewController *nethackMenuViewController;
-	IBOutlet TextInputViewController *textInputViewController;
-	IBOutlet DirectionInputViewController *directionInputViewController;
-	IBOutlet ExtendedCommandViewController *extendedCommandViewController;
-
-	//NSMutableArray *windows;
-    NSMutableDictionary *windows; //iNethack2 making this a dict
-    int windowIdCounter; //iNethack2 for dict
+@interface MainViewController : UIViewController <UIActionSheetDelegate, UITextFieldDelegate> {
     
-	TilePosition *clip;
-	
-	NethackEventQueue *nethackEventQueue;
-	
-	NethackYnFunction *currentYnFunction;
-	
-	NSCondition *textInputCondition;
-	NSCondition *uiCondition;
-	
-	// imaginary rect for bringing up the main menu
-	CGRect tapRect;
-	
-	CGFloat initialDistance;
-	
-	TouchInfoStore *touchInfoStore;
-	
-	TilePosition *lastSingleTapDelta;
-	
-	DMath *dmath;
-	
-	BOOL gameInProgress;
-	BOOL keyboardReturnShouldQueueEscape;
+    IBOutlet NethackMenuViewController *nethackMenuViewController;
+    IBOutlet TextInputViewController *textInputViewController;
+    IBOutlet DirectionInputViewController *directionInputViewController;
+    IBOutlet ExtendedCommandViewController *extendedCommandViewController;
+
+    NSMutableDictionary *windows; 
+    int windowIdCounter; 
+    
+    TilePosition *clip;
+    NethackEventQueue *nethackEventQueue;
+    NethackYnFunction *currentYnFunction;
+    
+    NSCondition *textInputCondition;
+    NSCondition *uiCondition;
+    
+    CGRect tapRect;
+    CGFloat initialDistance;
+    TouchInfoStore *touchInfoStore;
+    TilePosition *lastSingleTapDelta;
+    DMath *dmath;
+    
+    BOOL gameInProgress;
+    BOOL keyboardReturnShouldQueueEscape;
     int animFrame;
-	
-	NSTimeInterval doubleTapSensitivity;
-	
-	NSThread *nethackThread;
-	
-	Window *blockingMap;
+    
+    NSTimeInterval doubleTapSensitivity;
+    NSThread *nethackThread;
+    Window *blockingMap;
 }
 
 @property (nonatomic, assign) BOOL isRogueLevel;
-@property (nonatomic, readonly, retain) NSDictionary *windows; //iNethack2: making this a dict
+@property (nonatomic, readonly, retain) NSDictionary *windows; 
 @property (nonatomic, readonly, retain) TilePosition *clip;
 @property (nonatomic, readonly) Window *mapWindow;
 @property (nonatomic, readonly) Window *messageWindow;
@@ -90,46 +79,46 @@
 @property (assign) BOOL gameInProgress;
 @property (assign) int animFrame;
 
-+ (MainViewController *) instance;
+// Shared Class Loggers (Safe because they use foundational NSString objects)
 + (void) message:(NSString *)format, ...;
 + (void) message:(NSString *)message format:(va_list)arg_list;
 
+// Thread Management Execution Hooks
 - (void) launchNetHack;
 - (void) mainNethackLoop:(id)arg;
+- (void) runNativeEngineLoop; // The overridable execution stub
+
+// Window Management (Abstracted winid to int)
 - (int) createWindow:(int)type;
 - (void) destroyWindow:(int)wid;
 - (Window *) windowWithId:(int)wid;
-- (void)displayWindowId:(int)wid blocking:(BOOL)blocking;
+- (void) displayWindowId:(int)wid blocking:(BOOL)blocking;
 - (void) displayMessage:(Window *)w;
 
+// Core UI Engine Render Handlers
 - (void) displayMenuWindow:(Window *)w;
 - (void) displayMenuWindowOnUIThread:(Window *)w;
-
 - (void) displayYnQuestion:(NethackYnFunction *)yn;
 - (void) displayYnQuestionOnUIThread:(NethackYnFunction *)yn;
-
-- (void) getLine:(char *)line prompt:(const char *)prompt;
 - (void) getLineOnUIThread:(NSString *)s;
 
+// Synchronization Mechanics
 - (void) waitForUser;
 - (void) broadcastUIEvent;
 - (void) broadcastCondition:(NSCondition *)condition;
 - (void) waitForCondition:(NSCondition *)condition;
 
-// 0 means cancel, blocking
+// Input Mapping 
 - (char) getDirectionInput;
 - (void) showDirectionInputView:(id)obj;
-
 - (void) nethackKeyboard:(id)i;
 - (int) getExtendedCommand;
 
-- (void) resetGlyphCache; //iNethack2: reset cache each time level change to ensure walls are correct set
-
+// Rendering state & Assets Management
+- (void) resetGlyphCache; 
 - (void) doPlayerSelection;
-
 - (void) nethackShowLog:(id)i;
 - (void) displayFile:(NSString *)filename mustExist:(BOOL)e;
-
 - (void) updateScreen;
 - (void) showKeyboard:(BOOL)d;
 - (void) didBecomeActive;

@@ -35,8 +35,8 @@
 @property (nonatomic, assign) int amount;
 @property (nonatomic, assign, getter=isGold) BOOL gold;
 
-- (instancetype) initWithId:(const anything *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p;
-- (instancetype) initWithId:(const anything *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p accelerator:(int) a;
-- (instancetype) initWithId:(const anything *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p;
+- (instancetype) initWithId:(const void *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p;
+- (instancetype) initWithId:(const void *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p accelerator:(int)a;
+- (instancetype) initWithId:(const void *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p;
 
 @end

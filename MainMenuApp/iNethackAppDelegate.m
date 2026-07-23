@@ -119,7 +119,6 @@
     if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
         MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
         
-        // Use the new helper function
         [self saveCurrentZoomLevelFromController:gameVC];
         
         if (gameVC.gameInProgress) {
@@ -136,7 +135,6 @@
     if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
         MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
         
-        // Use the new helper function
         [self saveCurrentZoomLevelFromController:gameVC];
         
         [gameVC handleApplicationTermination];

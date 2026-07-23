@@ -841,10 +841,6 @@ void iphone_reset_glyph_cache(void) {
 	[[MainViewController instance] resetGlyphCache];
 }
 
-// Reset haptic engine so it is recreated next time.
-void iphone_haptic_reset() {
-    hapticEngine = nil;
-}
 
 // Trigger haptic feedback when damaged.
 void iphone_haptic(int haptictype) {

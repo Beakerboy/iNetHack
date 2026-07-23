@@ -24,6 +24,14 @@
 #import "NethackMenuItem.h"
 #import "NSString+Regexp.h"
 
+// Replace with initializer
+#ifndef COLNO
+#define COLNO 80
+#endif
+
+#ifndef ROWNO
+#define ROWNO 21
+#endif
 @implementation Window
 
 @synthesize type, curx, cury, width, height, strings, menuItems, menuPrompt;

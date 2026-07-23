@@ -430,13 +430,25 @@ void iphone_start_menu(winid wid) {
 }
 
 void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
-					 CHAR_P accelerator, CHAR_P group_accel, int attr, 
-					 const char *str, BOOLEAN_P presel) {
-	//NSLog(@"iphone_add_menu %d %s", wid, str);
-    NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier title:str glyph:glyph preselected:presel?YES:NO accelerator:accelerator];
-	Window *w = [[MainViewController instance] windowWithId:wid];
-	[w addMenuItem:i];
-	[i release];
+                     CHAR_P accelerator, CHAR_P group_accel, int attr, 
+                     const char *str, BOOLEAN_P presel) {
+    
+    // Safety check for your injected version-specific controller context
+    if (!g_main_view_controller) {
+        return;
+    }
+
+    // Pass the identifier pointer straight to the updated initializer
+    NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier 
+                                                       title:str 
+                                                       glyph:glyph 
+                                                 preselected:presel ? YES : NO 
+                                                 accelerator:accelerator];
+                                                 
+    // Fetch the window through the contextual pointer instead of a singleton
+    Window *w = [g_main_view_controller windowWithId:wid];
+    [w addMenuItem:i];
+    [i release];
 }
 
 void iphone_end_menu(winid wid, const char *prompt) {

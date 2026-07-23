@@ -21,7 +21,6 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
-#include "hack.h"
 
 // ctrl-macro
 #ifndef C
@@ -97,10 +96,10 @@
 
 - (void) launchNetHack;
 - (void) mainNethackLoop:(id)arg;
-- (winid) createWindow:(int)type;
-- (void) destroyWindow:(winid)wid;
-- (Window *) windowWithId:(winid)wid;
-- (void) displayWindowId:(winid)wid blocking:(BOOL)blocking;
+- (int) createWindow:(int)type;
+- (void) destroyWindow:(int)wid;
+- (Window *) windowWithId:(int)wid;
+- (void)displayWindowId:(int)wid blocking:(BOOL)blocking;
 - (void) displayMessage:(Window *)w;
 
 - (void) displayMenuWindow:(Window *)w;

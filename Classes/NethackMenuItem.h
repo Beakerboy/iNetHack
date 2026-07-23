@@ -24,7 +24,7 @@
 
 @interface NethackMenuItem : NSObject
 
-@property (nonatomic, readonly) anything identifier;
+@property (nonatomic, readonly) const void *identifier;
 @property (nonatomic, readonly) int accelerator;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly) BOOL isTitle;

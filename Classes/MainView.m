@@ -149,7 +149,7 @@
             float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
             tileSize = CGSizeMake(ts,ts*2);
         }
-        tileSet = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
+        tileSet = [[self.delegate mainViewRequiresAsciiTileSetWithTileSize:tilesetTileSize] retain];
 	} else {
         asciiTileset = NO;
 		NSString *subDirectoryName = [[NSUserDefaults standardUserDefaults] stringForKey:@"coreversion"];
@@ -667,7 +667,7 @@
     // Check the delegate instead of self.viewController
     if ([self.delegate mainViewShouldRenderRogueLevel]) {
         if (!tileSets[1]) {
-            tileSet = tileSets[1] = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
+            tileSet = tileSets[1] = [[self.delegate mainViewRequiresAsciiTileSetWithTileSize:tilesetTileSize] retain];
         } else {
             tileSet = tileSets[1];
         }

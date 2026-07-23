@@ -29,7 +29,7 @@
 - (id) initWithId:(const void *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p accelerator:(int) a {
 	if (self = [super init]) {
 		identifier = i;
-		if (!i->a_int) {
+		if (!i) {
 			isTitle = YES;
 			children = [[NSMutableArray alloc] init];
 		}

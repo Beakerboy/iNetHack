@@ -23,6 +23,7 @@
 #import "iNethackAppDelegate.h"
 #import "MainViewController.h"
 #import "MainView.h"
+#import <NetHack36/NH36EngineRunner.h>
 
 
 #define kBonesFilename (@"filename")

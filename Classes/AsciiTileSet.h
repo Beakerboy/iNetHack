@@ -20,7 +20,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h> // Changed from Foundation to ensure CGSize and UIColor are fully defined
 #import "TileSet.h"
 
 @interface AsciiTileSet : TileSet {
@@ -31,4 +31,7 @@
 
 - (instancetype) initWithTileSize:(CGSize)ts;
 - (UIColor *) mapNetHackColor:(int)ocolor;
+
+- (NSInteger)totalGlyphsCount;
+
 @end

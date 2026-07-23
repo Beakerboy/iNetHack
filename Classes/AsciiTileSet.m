@@ -47,7 +47,7 @@ static float _colorTable[][4] = {
 
 - (id) initWithTileSize:(CGSize)ts {
 	if (self = [super initWithImage:nil tileSize:ts]) {
-		numImages = MAX_GLYPH;
+		numImages = [self totalGlyphsCount];
 		size_t size = numImages * sizeof(CGImageRef);
 		images = malloc(size);
 		memset(images, 0, size);

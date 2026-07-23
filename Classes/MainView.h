@@ -63,9 +63,7 @@
     id<MainViewDelegate> _delegate;
 }
 
-
 @property (nonatomic, assign) id<MainViewDelegate> delegate;
-
 @property (nonatomic, readonly) CGPoint start;
 @property (nonatomic, readonly) CGSize tileSize;
 @property (nonatomic, readonly) BOOL colorInvert;

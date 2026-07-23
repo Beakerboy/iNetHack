@@ -94,21 +94,35 @@
 	}
 }
 
-- (void) applicationDidEnterBackground:(UIApplication *)application {
-    // Get the current active game view controller running as the root context
+/**
+ * @brief Saves the current map grid zoom level to user preferences.
+ *
+ * This helper function extracts the active map tile size width from the 
+ * underlying MainView and persists it under the @c kKeyTileSize key in 
+ * @c NSUserDefaults. This ensures the player's zoom preference carries 
+ * over between app launches and background sessions.
+ *
+ * @param gameVC The active game view controller instance to pull the view configuration from.
+ *
+ * @note This method safely performs defensive class type-checking on both the 
+ *       controller and its view to prevent crashes if the view layer hasn't loaded yet.
+ */
+- (void)saveCurrentZoomLevelFromController:(MainViewController *)gameVC {
+    if (gameVC && [gameVC isViewLoaded] && [gameVC.view isKindOfClass:[MainView class]]) {
+        MainView *mainView = (MainView *)gameVC.view;
+        [[NSUserDefaults standardUserDefaults] setFloat:mainView.tileSize.width forKey:kKeyTileSize];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
         MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
         
-        // Save the zoom level safely by inspecting the controller's view
-        if ([gameVC isViewLoaded] && [gameVC.view isKindOfClass:[MainView class]]) {
-            MainView *mainView = (MainView *)gameVC.view;
-            [[NSUserDefaults standardUserDefaults] setFloat:mainView.tileSize.width forKey:kKeyTileSize];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
+        // Use the new helper function
+        [self saveCurrentZoomLevelFromController:gameVC];
         
-        // Ask the controller if a game is running using its safe Obj-C property
         if (gameVC.gameInProgress) {
-            // Triggers the subclass hook to execute the isolated version's save code
             [gameVC saveGameStateAndExit];
         }
     }
@@ -119,20 +133,14 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-
-    [[NSUserDefaults standardUserDefaults] setFloat:[(MainView *) [[MainViewController instance] view] tileSize].width
-											 forKey:kKeyTileSize];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-
-    if ([[MainViewController instance] gameInProgress]) {
-		dosave();
-	} else {
-		NSString *lockFile = [NSString stringWithCString:lock encoding:NSASCIIStringEncoding];
-		if ([[NSFileManager defaultManager] fileExistsAtPath:lockFile]) {
-			int fail = unlink(lock);
-			NSCAssert1(!fail, @"Failed to unlink lock %s", lock);
-		}
-	}
+    if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
+        MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
+        
+        // Use the new helper function
+        [self saveCurrentZoomLevelFromController:gameVC];
+        
+        [gameVC handleApplicationTermination];
+    }
 }
 
 - (void) launchNetHack {

@@ -125,4 +125,6 @@
 
 - (void)saveGameStateAndExit;
 - (void)runNativeSaveCode;
+- (void)handleApplicationTermination;
+- (void)runNativeTerminateCode;
 @end

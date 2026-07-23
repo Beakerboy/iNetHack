@@ -21,7 +21,6 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
-#include "hack.h"
 
 @interface NethackMenuItem : NSObject
 

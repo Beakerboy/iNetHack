@@ -48,8 +48,9 @@ extern volatile boolean winiphone_clickable_tiles;
 
 static MainViewController *instance;
 
-@interface MainViewController () <RoleSelectionControllerDelegate>
-    CHHapticEngine *hapticEngine; 
+@interface MainViewController () <RoleSelectionControllerDelegate> {
+    CHHapticEngine *hapticEngine;
+}
 @end
 
 @implementation MainViewController

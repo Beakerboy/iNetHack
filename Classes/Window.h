@@ -54,7 +54,7 @@
 @property (nonatomic, copy) NSString *menuPrompt;
 @property (nonatomic, readonly, getter=isShallowMenu) BOOL shallowMenu;
 @property (nonatomic, assign) int menuHow;
-@property (nonatomic, assign) menu_item *menuList;
+@property (nonatomic, assign) void *menuList;
 @property (nonatomic, assign) int menuResult;
 /// used for determining amounts on \c PICK_ONE
 @property (nonatomic, retain) NethackMenuItem *nethackMenuItem;

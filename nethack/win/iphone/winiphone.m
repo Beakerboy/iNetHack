@@ -448,14 +448,22 @@ void iphone_end_menu(winid wid, const char *prompt) {
 }
 
 int iphone_select_menu(winid wid, int how, menu_item **selected) {
-	//NSLog(@"iphone_select_menu %x", wid);
-	Window *w = [[MainViewController instance] windowWithId:wid];
-	w.menuHow = how;
-	[[MainViewController instance] displayMenuWindow:w];
-	*selected = w.menuList;
-	//NSLog(@"iphone_select_menu -> %d", w.menuResult);
-	w.menuPrompt = nil;
-	return w.menuResult;
+    // Safety check for your injected version-specific controller context
+    if (!g_main_view_controller) {
+        return -1;
+    }
+    
+    // Fetch the window through the contextual pointer instead of a singleton
+    Window *w = [g_main_view_controller windowWithId:wid];
+    w.menuHow = how;
+    
+    [g_main_view_controller displayMenuWindow:w];
+    
+    // Explicitly typecast the safe void* back to the engine's menu_item* type
+    *selected = (menu_item *)w.menuList;
+    
+    w.menuPrompt = nil;
+    return w.menuResult;
 }
 
 void iphone_update_inventory() {

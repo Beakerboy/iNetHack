@@ -1181,4 +1181,9 @@ static MainViewController *instance;
 - (void)runNativeTerminateCode {
     // Left completely blank in the shared framework base class!
 }
+
+- (TileSet *)mainViewRequiresAsciiTileSetWithTileSize:(CGSize)size {
+    // Fallback baseline wrapper. Subclasses will override this completely.
+    return [[[AsciiTileSet alloc] initWithTileSize:size] autorelease];
+}
 @end

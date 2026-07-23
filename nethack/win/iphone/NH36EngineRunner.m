@@ -1,22 +1,28 @@
-#import <NetHackSharedUI/NHWindowPortDelegate.h>
-#import <NetHackSharedUI/MainViewController.h>
+#import "NH36EngineRunner.h"
+#import "NH36MainViewController.h"
 
-// Declare the external C pointer from winiphone.m
-extern id<NHWindowPortDelegate> g_window_delegate;
+// Declare the setup function exposed by your 3.6 winiphone.m
 extern void iphone_set_ui_context(MainViewController *vc);
-extern int iphone_main(int argc, char **argv);
-
-@interface NH36EngineRunner : NSObject
-+ (void)startEngineWithDelegate:(id<NHWindowPortDelegate>)delegate;
-@end
 
 @implementation NH36EngineRunner
-+ (void)launchGameWithController:(MainViewController *)mainVC {
-    iphone_set_ui_context(mainVC);
+
++ (UIViewController *)launchGameAndReturnViewController {
+    // 1. Instantiate the 3.6 subclass (which inherits all shared layout code)
+    // Note: If you are using standard storyboards/XIBs, ensure they point to the base class module
+    NH36MainViewController *gameVC = [[NH36MainViewController alloc] init];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        char *argv[] = {"nethack"};
-        iphone_main(1, argv);
-    });
+    // 2. Inject this concrete controller into winiphone.m's global pointer
+    iphone_set_ui_context(gameVC);
+    
+    // 3. Trigger the background nethackThread loop inherited from MainViewController
+    [gameVC launchNetHack];
+    
+    // 4. Return it so the Main App Target can push/present it on the screen
+    #if __has_feature(objc_arc)
+    return gameVC;
+    #else
+    return [gameVC autorelease];
+    #endif
 }
+
 @end

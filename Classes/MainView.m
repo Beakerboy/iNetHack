@@ -442,25 +442,6 @@
     return img;
 }
 
-
-- (void) checkForRogueLevel {
-    // Read the safe UI flag instead of the raw C engine globals
-    if (self.viewController.isRogueLevel) {
-        if (!tileSets[1]) {
-            tileSet = tileSets[1] = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
-        } else {
-            tileSet = tileSets[1];
-        }
-    } else {
-        tileSet = tileSets[0];
-        // Handle MRC memory management safely
-        if (tileSets[1]) {
-            [tileSets[1] release];
-            tileSets[1] = nil;
-        }
-    }
-}
-
 - (CGSize) drawStrings:(NSArray *)strings withSize:(CGSize)size atPoint:(CGPoint)p {
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	

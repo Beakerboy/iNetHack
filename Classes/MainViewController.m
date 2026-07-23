@@ -424,6 +424,19 @@ static MainViewController *instance;
 	return direction;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Wire up the delegate relationship
+    if ([self.view isKindOfClass:[MainView class]]) {
+        [(MainView *)self.view setDelegate:self];
+    }
+}
+
+- (BOOL)mainViewShouldRenderRogueLevel {
+    return self.isRogueLevel;
+}
+
 // obsolete
 - (char) directionFromDMathDirection:(dmathdirection)dmdir {
 	char direction = 0;

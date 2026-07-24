@@ -22,7 +22,7 @@
 
 #import "iNethackAppDelegate.h"
 #import <NetHackSharedUI/AbstractMainViewController.h
-#import "MainView.h"
+#import <NetHackSharedUI/MainView.h>
 #import <NetHackEngine36/NH36EngineRunner.h>
 
 

@@ -1,5 +1,5 @@
 //
-//  MainViewController.m
+//  AbstractMainViewController.m
 //  iNetHack
 //
 //  Created by dirk on 6/26/09.
@@ -981,7 +981,7 @@ static AbstractMainViewController *instance;
     // iNethack2: iOS9: Keyboard stopped dismissing when yn menu appears, the next line forced it to close
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     CGRect oldViewBounds = CGRectFromString(NSStringFromCGRect(self.view.bounds));
-    self.view.bounds = CGRectMake(0, 0, [MainViewController screenSize].width, [MainViewController screenSize].height);
+    self.view.bounds = CGRectMake(0, 0, [AbstractMainViewController screenSize].width, [AbstractMainViewController screenSize].height);
     [menu showInView:self.view];
     self.view.bounds=oldViewBounds;
 }

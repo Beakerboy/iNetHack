@@ -31,8 +31,6 @@
 
 @implementation iNethackAppDelegate
 
-@synthesize window;
-
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
@@ -234,7 +232,7 @@
 }
 
 - (void)dealloc {
-    [window release];
+    [_window release];
     [super dealloc];
 }
 

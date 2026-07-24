@@ -15,6 +15,7 @@
 #import "RoleSelectionController.h"
 #import "MenuItem.h"
 #import "MenuViewController.h"
+#import "hack.h"
 
 @interface RoleSelectionController ()
 @property (retain) UINavigationController *navigationController;

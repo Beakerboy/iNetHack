@@ -1,5 +1,5 @@
 //
-//  AsciiTileSet.h
+//  AbstractAsciiTileSet.h
 //  iNetHack
 //
 //  Created by dirk on 8/24/09.
@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h> // Changed from Foundation to ensure CGSize and UIColor are fully defined
 #import "TileSet.h"
 
-@interface AsciiTileSet : TileSet {
+@interface AbstractAsciiTileSet : TileSet {
 	NSArray *colorTable;
     BOOL ibmTileset;
     BOOL colorInvert;

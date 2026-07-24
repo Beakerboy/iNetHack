@@ -83,7 +83,7 @@
 
     // use mainNavigationController.view to skip main menu
     [self.window setRootViewController:mainNavigationController];
-    [window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
     self.window.frame = [UIScreen mainScreen].bounds; //iNethack2
     [application setStatusBarHidden:YES];
 	

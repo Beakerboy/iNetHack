@@ -1,5 +1,5 @@
 //
-//  MainViewController.h
+//  AbstractMainViewController.h
 //  iNetHack
 //
 //  Created by dirk on 6/26/09.
@@ -37,7 +37,7 @@
 @class TilePosition;
 @class DMath;
 
-@interface MainViewController : UIViewController <MainViewDelegate, UIActionSheetDelegate, UITextFieldDelegate> {
+@interface AbstractMainViewController : UIViewController <MainViewDelegate, UIActionSheetDelegate, UITextFieldDelegate> {
     
     IBOutlet NethackMenuViewController *nethackMenuViewController;
     IBOutlet TextInputViewController *textInputViewController;

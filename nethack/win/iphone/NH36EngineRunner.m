@@ -2,14 +2,14 @@
 #import "MainViewController.h"
 
 // Declare the setup function exposed by your 3.6 winiphone.m
-extern void iphone_set_ui_context(MainViewController *vc);
+extern void iphone_set_ui_context(AbstractMainViewController *vc);
 
 @implementation NH36EngineRunner
 
 + (UIViewController *)launchGameAndReturnViewController {
     // 1. Instantiate the 3.6 subclass (which inherits all shared layout code)
     // Note: If you are using standard storyboards/XIBs, ensure they point to the base class module
-    NH36MainViewController *gameVC = [[NH36MainViewController alloc] init];
+    MainViewController *gameVC = [[MainViewController alloc] init];
     
     // 2. Inject this concrete controller into winiphone.m's global pointer
     iphone_set_ui_context(gameVC);

@@ -20,7 +20,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 #import "AsciiTileSet.h"
 #import "Window.h"
 #import "MenuViewController.h"
@@ -47,19 +47,19 @@
 #define kConstIntroductoryStoryTitle (@"It is written in the Book of")
 extern volatile boolean winiphone_clickable_tiles;
 
-static MainViewController *instance;
+static AbstractMainViewController *instance;
 
-@interface MainViewController () <RoleSelectionControllerDelegate> {
+@interface AbstractMainViewController () <RoleSelectionControllerDelegate> {
     CHHapticEngine *hapticEngine;
 }
 @end
 
-@implementation MainViewController
+@implementation AbstractMainViewController
 
 @synthesize windows, clip, nethackEventQueue;
 @synthesize gameInProgress, animFrame;
 
-+ (MainViewController *) instance {
++ (AnstractMainViewController *) instance {
 	return instance;
 }
 

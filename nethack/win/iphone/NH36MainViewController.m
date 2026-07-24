@@ -1,11 +1,11 @@
-#import "NH36MainViewController.h"
+#import "MainViewController.h"
 
 // Declare the external C main function from this target's winiphone.m
 extern int iphone_main(int argc, char **argv);
 extern void save_currentstate(void);
 extern int dosave(void);
 extern char lock[]; 
-@implementation NH36MainViewController
+@implementation MainViewController
 
 - (void) runNativeEngineLoop {
     // This runs safely on the background thread spawned by the parent class
@@ -34,6 +34,6 @@ extern char lock[];
 
 - (TileSet *)mainViewRequiresAsciiTileSetWithTileSize:(CGSize)size {
     // Return the specific 3.6 engine tileset variant
-    return [[[NH36AsciiTileSet alloc] initWithTileSize:size] autorelease];
+    return [[[AsciiTileSet alloc] initWithTileSize:size] autorelease];
 }
 @end

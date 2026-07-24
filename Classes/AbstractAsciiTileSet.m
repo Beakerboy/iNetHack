@@ -1,5 +1,5 @@
 //
-//  AsciiTileSet.m
+//  AbstractAsciiTileSet.m
 //  iNetHack
 //
 //  Created by dirk on 8/24/09.
@@ -19,7 +19,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
-#import "AsciiTileSet.h"
+#import "AbstractAsciiTileSet.h"
 
 
 /*
@@ -43,7 +43,7 @@ static float _colorTable[][4] = {
 };
  */
 
-@implementation AsciiTileSet
+@implementation AbstractAsciiTileSet
 
 - (id) initWithTileSize:(CGSize)ts {
 	if (self = [super initWithImage:nil tileSize:ts]) {

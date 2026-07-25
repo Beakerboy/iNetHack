@@ -1,1 +1,1 @@
-#import <NetHackSharedUI/AbstractNethackMainMenuVieController.h>
+#import <NetHackSharedUI/AbstractNethackMenuViewController.h>

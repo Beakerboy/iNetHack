@@ -1,5 +1,5 @@
 //
-//  NethackMenuViewController.h
+//  AbstractNethackMenuViewController.h
 //  iNetHack
 //
 //  Created by dirk on 6/30/09.
@@ -26,7 +26,7 @@
 
 @class Window, NethackMenuItem, ItemAmountViewController;
 
-@interface NethackMenuViewController : UITableViewController {
+@interface AbstractNethackMenuViewController : UITableViewController {
 	
 	IBOutlet ItemAmountViewController *itemAmountViewController;
 	UITableView *tv;

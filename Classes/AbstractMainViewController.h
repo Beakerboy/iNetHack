@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainView.h"
+#import "PlayerState.h"
 
 #ifndef C
 #define C(c)		(0x1f & (c))

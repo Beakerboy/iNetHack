@@ -29,7 +29,6 @@
 #import "NSString+NetHack.h"
 #import "ItemAmountViewController.h"
 
-#define PICK_ANY 2
 extern short glyph2tile[];
 
 @implementation NethackMenuViewController

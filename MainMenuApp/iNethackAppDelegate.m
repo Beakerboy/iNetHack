@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "iNethackAppDelegate.h"
-#import <NetHackSharedUI/AbstractMainViewController.h
+#import <NetHackSharedUI/AbstractMainViewController.h>
 #import <NetHackSharedUI/MainView.h>
 #import <NetHackEngine36/NH36EngineRunner.h>
 

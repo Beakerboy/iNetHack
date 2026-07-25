@@ -365,7 +365,7 @@
                     UIImage * img = [self imageForGlyph:glyph size:tilesetTileSize.width]; //use native width of tile rather than cache for each scaled size.
 
 					[img drawInRect:r];
-                    
+                    PlayerState *u = self.mainViewController.playerState;
 					if (u.ux == i && u.uy == j) {
 						// hp100 calculation from qt_win.cpp
 						int hp100;

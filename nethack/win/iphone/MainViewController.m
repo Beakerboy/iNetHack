@@ -49,6 +49,7 @@ extern char lock[];
     state.energyMax = u.uenmax;
     state.mhmax     = u.mhmax;
     state.mtimedone = u.mtimedone;
+    state.uhp       = u.uhp;
     state.uhpmax    = u.uhpmax;
     
     return state;

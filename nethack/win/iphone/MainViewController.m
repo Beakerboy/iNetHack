@@ -30,10 +30,24 @@ extern char lock[];
             NSCAssert1(!fail, @"Failed to unlink lock %s", lock);
         }
     }
+
 }
 
 - (TileSet *)mainViewRequiresAsciiTileSetWithTileSize:(CGSize)size {
     // Return the specific 3.6 engine tileset variant
     return [[[AsciiTileSet alloc] initWithTileSize:size] autorelease];
+}
+
+- (PlayerState *)playerState {
+    PlayerState *state = [[[PlayerState alloc] init] autorelease];
+    
+    state.playerX   = u.ux;
+    state.playerY   = u.uy;
+    state.hp        = u.uhp;
+    state.hpMax     = u.uhpmax;
+    state.energy    = u.uen;
+    state.energyMax = u.uenmax;
+    
+    return state;
 }
 @end

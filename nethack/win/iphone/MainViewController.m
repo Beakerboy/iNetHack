@@ -41,8 +41,8 @@ extern char lock[];
 - (PlayerState *)playerState {
     PlayerState *state = [[[PlayerState alloc] init] autorelease];
     
-    state.playerX   = u.ux;
-    state.playerY   = u.uy;
+    state.ux   = u.ux;
+    state.uy   = u.uy;
     state.hp        = u.uhp;
     state.hpMax     = u.uhpmax;
     state.energy    = u.uen;

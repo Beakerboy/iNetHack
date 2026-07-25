@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "MainView.h"
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 #import "Window.h"
 #import "TilePosition.h"
 #import "TileSet.h"

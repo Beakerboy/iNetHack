@@ -69,6 +69,7 @@
     Window *blockingMap;
 }
 
+@property (nonatomic, readonly, retain) PlayerState *playerState;
 @property (nonatomic, assign) BOOL isRogueLevel;
 @property (nonatomic, readonly, retain) NSDictionary *windows; 
 @property (nonatomic, readonly, retain) TilePosition *clip;

@@ -1185,6 +1185,6 @@ static AbstractMainViewController *instance;
 
 - (TileSet *)mainViewRequiresAsciiTileSetWithTileSize:(CGSize)size {
     // Fallback baseline wrapper. Subclasses will override this completely.
-    return [[[AsciiTileSet alloc] initWithTileSize:size] autorelease];
+    return [[[AbstractAsciiTileSet alloc] initWithTileSize:size] autorelease];
 }
 @end

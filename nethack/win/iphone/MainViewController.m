@@ -55,4 +55,8 @@ extern char lock[];
     
     return state;
 }
+
+- (int)maxGlyphConstant {
+    return MAX_GLYPH;
+}
 @end

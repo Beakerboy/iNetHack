@@ -6,6 +6,7 @@
 @property (nonatomic, assign) int uy;
 @property (nonatomic, assign) int uz;
 @property (nonatomic, assign) int hp;
+@property (nonatomic, assign) int mh;
 @property (nonatomic, assign) int mhmax;
 @property (nonatomic, assign) int mtimedone;
 @property (nonatomic, assign) int uhp;

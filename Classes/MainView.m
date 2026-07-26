@@ -409,7 +409,7 @@
 
 - (UIImage *)imageForGlyph:(int)glyph size:(int)size
 {
-    NSNumber * key = @(size*MAX_GLYPH + glyph);
+    NSNumber *key = @(size * self.mainViewController.maxGlyphConstant + glyph);
     NSCache *curCache;
     if (self.mainViewController.animFrame == 0) {
         curCache = cache;

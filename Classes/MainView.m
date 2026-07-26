@@ -411,7 +411,7 @@
 {
     NSNumber * key = @(size*MAX_GLYPH + glyph);
     NSCache *curCache;
-    if ([[MainViewController instance] animFrame] == 0) {
+    if (self.mainViewController.animFrame == 0) {
         curCache = cache;
     } else {
         curCache = cache2;
@@ -541,7 +541,7 @@
 					CGRect frame = moreButton.frame;
 					frame.origin = p;
 					moreButton.frame = frame;
-					[moreButton addTarget:[MainViewController instance] action:@selector(nethackShowLog:)
+					[moreButton addTarget:self.mainViewController action:@selector(nethackShowLog:)
 						 forControlEvents:UIControlEventTouchUpInside];
 					[self addSubview:moreButton];
 					break;

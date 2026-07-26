@@ -297,7 +297,7 @@
     // Check if animated tileset, and NOT rogue level.
     if (animatedTileset && ![self.delegate mainViewShouldRenderRogueLevel]) {
         int tilesetIndex = 0;
-        tilesetIndex = [[MainViewController instance] animFrame];
+        tilesetIndex = [[AbstractMainViewController instance] animFrame];
         tileSet = tileSets[tilesetIndex];
     }
 

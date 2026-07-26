@@ -32,7 +32,7 @@
 
 @interface MainView : UIView {
 
-    MainViewController *mainViewController;
+    AbstractMainViewController *mainViewController;
     UIFont *statusFont;
     CGSize maxTileSize;
     CGSize minTileSize;

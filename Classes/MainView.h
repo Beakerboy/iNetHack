@@ -64,6 +64,7 @@
 }
 
 @property (nonatomic, assign) id<MainViewDelegate> delegate;
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, readonly) CGPoint start;
 @property (nonatomic, readonly) CGSize tileSize;
 @property (nonatomic, readonly) BOOL colorInvert;

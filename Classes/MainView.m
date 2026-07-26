@@ -470,7 +470,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-	mainViewController = [MainViewController instance];
+	mainViewController = [AbstractMainViewController instance];
 	
 	// retain needed windows to avoid crash on exit
 	self.map = mainViewController.mapWindow;

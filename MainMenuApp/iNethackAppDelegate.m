@@ -105,7 +105,7 @@
  * @note This method safely performs defensive class type-checking on both the 
  *       controller and its view to prevent crashes if the view layer hasn't loaded yet.
  */
-- (void)saveCurrentZoomLevelFromController:(MainViewController *)gameVC {
+- (void)saveCurrentZoomLevelFromController:(AbstractMainViewController *)gameVC {
     if (gameVC && [gameVC isViewLoaded] && [gameVC.view isKindOfClass:[MainView class]]) {
         MainView *mainView = (MainView *)gameVC.view;
         [[NSUserDefaults standardUserDefaults] setFloat:mainView.tileSize.width forKey:kKeyTileSize];
@@ -114,8 +114,8 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
-        MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
+    if ([self.window.rootViewController isKindOfClass:[AbstractMainViewController class]]) {
+        AbstractMainViewController *gameVC = (AbstractMainViewController *)self.window.rootViewController;
         
         [self saveCurrentZoomLevelFromController:gameVC];
         
@@ -126,12 +126,12 @@
 }
 
 - (void) applicationDidBecomeActive:(UIApplication *)application {
-    [[MainViewController instance] didBecomeActive];    
+    [[AbstractMainViewController instance] didBecomeActive];    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    if ([self.window.rootViewController isKindOfClass:[MainViewController class]]) {
-        MainViewController *gameVC = (MainViewController *)self.window.rootViewController;
+    if ([self.window.rootViewController isKindOfClass:[AbstractMainViewController class]]) {
+        AbstractMainViewController *gameVC = (AbstractMainViewController *)self.window.rootViewController;
         
         [self saveCurrentZoomLevelFromController:gameVC];
         
@@ -140,7 +140,7 @@
 }
 
 - (void) launchNetHack {
-	[[MainViewController instance] performSelectorOnMainThread:@selector(launchNetHack)
+	[[AbstractMainViewController instance] performSelectorOnMainThread:@selector(launchNetHack)
 													withObject:nil waitUntilDone:NO];
 }
 

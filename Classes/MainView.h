@@ -61,6 +61,7 @@
     NSCache * cache2; 
     
     id<MainViewDelegate> _delegate;
+    AbstractMainViewController *mainViewController;
 }
 
 @property (nonatomic, assign) id<MainViewDelegate> delegate;

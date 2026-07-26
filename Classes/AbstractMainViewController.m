@@ -21,11 +21,11 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "AbstractMainViewController.h"
-#import "AsciiTileSet.h"
+#import "AbstractAsciiTileSet.h"
 #import "Window.h"
 #import "MenuViewController.h"
 #import "MenuItem.h"
-#import "NethackMenuViewController.h"
+#import "AbstractNethackMenuViewController.h"
 #import "NethackYnFunction.h"
 #import "TextInputViewController.h"
 #import "NethackEvent.h"

@@ -80,6 +80,7 @@
 @property (nonatomic, retain) NethackEventQueue *nethackEventQueue;
 @property (assign) BOOL gameInProgress;
 @property (assign) int animFrame;
+@property (nonatomic, readonly) int maxGlyphConstant;
 
 // Shared Class Loggers (Safe because they use foundational NSString objects)
 + (void) message:(NSString *)format, ...;

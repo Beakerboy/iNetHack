@@ -24,7 +24,7 @@
 
 #define kKeyTileSize (@"tileSize")
 
-@class MainViewController, TilePosition, Window, TileSet, ShortcutView;
+@class AbstractMainViewController, TilePosition, Window, TileSet, ShortcutView;
 
 @protocol MainViewDelegate <NSObject>
 - (BOOL)mainViewShouldRenderRogueLevel;

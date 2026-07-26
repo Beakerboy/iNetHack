@@ -295,7 +295,7 @@
 	center.y -= tileSize.height/2;
 
     // Check if animated tileset, and NOT rogue level.
-    if (animatedTileset && !(self.mainViewController.isRogueLevel)) {
+    if (animatedTileset && ![self.delegate mainViewShouldRenderRogueLevel) {
         int tilesetIndex = 0;
         tilesetIndex = [[MainViewController instance] animFrame];
         tileSet = tileSets[tilesetIndex];

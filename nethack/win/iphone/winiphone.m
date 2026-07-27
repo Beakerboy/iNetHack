@@ -21,12 +21,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 #import <NetHackSharedUI/Window.h>
+#import <NetHackSharedUI/MainViewController.h>
 #import "winiphone.h"
 
 #import <UIKit/UIKit.h>
 #import <CoreHaptics/CoreHaptics.h>
 #import <NetHackSharedUI/NHWindowPortDelegate.h>
-#import <NetHackSharedUI/MainViewController.h>
 #import <NetHackSharedUI/NethackMenuItem.h>
 #import <NetHackSharedUI/NethackYnFunction.h>
 #import <NetHackSharedUI/NethackEvent.h>

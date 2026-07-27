@@ -59,4 +59,8 @@ extern char lock[];
 - (int)maxGlyphConstant {
     return MAX_GLYPH;
 }
+
+- (BOOL)isPetGlyph:(int)glyph {
+    return glyph_is_pet(glyph);
+}
 @end

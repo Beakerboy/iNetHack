@@ -130,4 +130,5 @@
 - (void)runNativeSaveCode;
 - (void)handleApplicationTermination;
 - (void)runNativeTerminateCode;
+- (BOOL)isPetGlyph:(int)glyph;
 @end

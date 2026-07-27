@@ -88,7 +88,7 @@ extern short glyph2tile[];
 	menuWindow.menuList->count = i.amount;
 	menuWindow.menuList->item = i.identifier;
 	[self.navigationController popToRootViewControllerAnimated:NO];
-	[[MainViewController instance] broadcastUIEvent];
+	[self.mainViewController broadcastUIEvent];
 }
 
 

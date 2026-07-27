@@ -32,7 +32,7 @@
 #define kMinimumPanDelta (20)
 #define kCenterTapWidth (40)
 
-@class Window, NethackMenuViewController, NethackYnFunction, TextInputViewController, NethackEventQueue;
+@class Window, AbstractNethackMenuViewController, NethackYnFunction, TextInputViewController, NethackEventQueue;
 @class DirectionInputViewController, ExtendedCommandViewController;
 @class TouchInfo, TouchInfoStore;
 @class TilePosition;
@@ -40,7 +40,7 @@
 
 @interface AbstractMainViewController : UIViewController <MainViewDelegate, UIActionSheetDelegate, UITextFieldDelegate> {
     
-    IBOutlet NethackMenuViewController *nethackMenuViewController;
+    IBOutlet AbstractNethackMenuViewController *nethackMenuViewController;
     IBOutlet TextInputViewController *textInputViewController;
     IBOutlet DirectionInputViewController *directionInputViewController;
     IBOutlet ExtendedCommandViewController *extendedCommandViewController;

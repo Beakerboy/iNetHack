@@ -21,13 +21,13 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "NethackMenuViewController.h"
-#import <Window.h>
-#import <NethackMenuItem.h>
+#import <NetHackSharedUI/Window.h>
+#import <NetHackSharedUI/NethackMenuItem.h>
 #import "MainViewController.h"
-#import <TileSet.h>
-#import <NSString+Regexp.h>
-#import <NSString+NetHack.h>
-#import <ItemAmountViewController.h>
+#import <NetHackSharedUI/TileSet.h>
+#import <NetHackSharedUI/NSString+Regexp.h>
+#import <NetHackSharedUI/NSString+NetHack.h>
+#import <NetHackSharedUI/ItemAmountViewController.h>
 
 extern short glyph2tile[];
 

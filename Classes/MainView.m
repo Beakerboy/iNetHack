@@ -387,7 +387,7 @@
                         CGColorRef   playerRectColorRef = [[UIColor colorWithRed:playerRectColor[0] green:playerRectColor[1] blue:playerRectColor[2] alpha:playerRectColor[3]] CGColor];
                         CGContextSetStrokeColorWithColor(ctx, playerRectColorRef);
 						CGContextStrokeRect(ctx, r);
-					} else if (self.mainViewController.isPetGlyph(glyph)) {
+					} else if ([self.mainViewController isPetGlyph:glyph]) {
 						[petMark drawInRect:r];
 					}
 				}

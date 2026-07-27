@@ -22,22 +22,22 @@
 
 #import "AbstractMainViewController.h"
 #import "AbstractAsciiTileSet.h"
-#import "Window.h"
-#import "MenuViewController.h"
-#import "MenuItem.h"
+#import <NetHackSharedUI/Window.h>
+#import <NetHackSharedUI/MenuViewController.h>
+#import <NetHackSharedUI/MenuItem.h>
 #import "AbstractNethackMenuViewController.h"
-#import "NethackYnFunction.h"
-#import "TextInputViewController.h"
-#import "NethackEvent.h"
-#import "NethackEventQueue.h"
-#import "DirectionInputViewController.h"
-#import "ExtendedCommandViewController.h"
-#import "TextDisplayViewController.h"
-#import "TilePosition.h"
-#import "TouchInfo.h"
-#import "TouchInfoStore.h"
-#import "DMath.h"
-#import "NSString+Regexp.h"
+#import <NetHackSharedUI/NethackYnFunction.h>
+#import <NetHackSharedUI/TextInputViewController.h>
+#import <NetHackSharedUI/NethackEvent.h>
+#import <NetHackSharedUI/NethackEventQueue.h>
+#import <NetHackSharedUI/DirectionInputViewController.h>
+#import <NetHackSharedUI/ExtendedCommandViewController.h>
+#import <NetHackSharedUI/TextDisplayViewController.h>
+#import <NetHackSharedUI/TilePosition.h>
+#import <NetHackSharedUI/TouchInfo.h>
+#import <NetHackSharedUI/TouchInfoStore.h>
+#import <NetHackSharedUI/DMath.h>
+#import <NetHackSharedUI/NSString+Regexp.h>
 #import "RoleSelectionController.h"
 #import <CoreHaptics/CoreHaptics.h>
 

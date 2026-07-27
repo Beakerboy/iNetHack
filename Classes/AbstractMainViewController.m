@@ -1187,4 +1187,8 @@ static AbstractMainViewController *instance;
     // Fallback baseline wrapper. Subclasses will override this completely.
     return [[[AbstractAsciiTileSet alloc] initWithTileSize:size] autorelease];
 }
+
+- (BOOL)isPetGlyph:(int)glyph {
+    teturn NO;
+}
 @end

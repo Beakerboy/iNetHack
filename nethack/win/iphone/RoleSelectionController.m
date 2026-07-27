@@ -13,8 +13,8 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "RoleSelectionController.h"
-#import "MenuItem.h"
-#import "MenuViewController.h"
+#import <NetHackSharedUI/MenuItem.h>
+#import <NetHackSharedUI/MenuViewController.h>
 #import "hack.h"
 
 @interface RoleSelectionController ()

@@ -35,7 +35,7 @@
 #import <NetHackSharedUI/TilePosition.h>
 
 // for md5 methods
-#import <NetHackSharedUI/Hearse.h>
+//#import <NetHackSharedUI/Hearse.h>
 
 #import <NetHackSharedUI/NSString+Regexp.h>
 

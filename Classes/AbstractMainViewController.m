@@ -430,6 +430,9 @@ static AbstractMainViewController *instance;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if (self.extendedCommandViewController) {
+        self.extendedCommandViewController.mainViewController = self;
+    }
 	if (self.textInputViewController) {
         self.textInputViewController.mainViewController = self;
     }

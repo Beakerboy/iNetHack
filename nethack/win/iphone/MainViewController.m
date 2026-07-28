@@ -101,4 +101,24 @@ extern char lock[];
     
     return commands;
 }
+
+- (void)filterExtendedCommandsIntoNames:(NSMutableArray<NSString *> *)names 
+                               indices:(NSMutableArray<NSNumber *> *)indices {
+    int row = 0;
+    struct ext_func_tab *f = extcmdlist;
+    
+    // Your exact while loop logic preserved natively!
+    while (f++->ef_txt) {
+        // Run your version-specific engine filters here (e.g., skip wizard mode items)
+        BOOL shouldShow = YES;
+        if (f->ef_txt == '?') { shouldShow = NO; }
+        
+        if (shouldShow) {
+            // Translate the raw C-string to a safe Objective-C string for the UI target
+            [names addObject:[NSString stringWithUTF8String:extcmdlist[row].ef_txt]];
+            [indices addObject:[NSNumber numberWithInt:row]];
+        }
+        row++;
+    }
+}
 @end

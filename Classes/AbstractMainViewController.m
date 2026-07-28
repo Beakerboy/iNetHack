@@ -1209,4 +1209,8 @@ static AbstractMainViewController *instance;
 - (void)populateMenuList:(void *)menuList withAmount:(int)amount identifier:(const void *)identifier {
     // Left empty! Overridden by subclasses inside the engine frameworks.
 }
+
+- (NSArray<NSString *> *)extendedCommandList {
+    return @[]; // Fallback empty array
+}
 @end

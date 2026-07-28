@@ -433,6 +433,12 @@ static AbstractMainViewController *instance;
 	if (self.textInputViewController) {
         self.textInputViewController.mainViewController = self;
     }
+	if (self.nethackMenuViewController) {
+        self.nethackMenuViewController.mainViewController = self;
+        if (self.nethackMenuViewController.itemAmountViewController) {
+            self.nethackMenuViewController.itemAmountViewController.mainViewController = self;
+        }
+    }
     // Wire up the delegate relationship
     if ([self.view isKindOfClass:[MainView class]]) {
         [(MainView *)self.view setDelegate:self];

@@ -72,4 +72,18 @@ extern char lock[];
     // Dynamically returns the exact memory size needed for this specific NetHack version
     return malloc(sizeof(menu_item));
 }
+
+- (void)populateMenuList:(void *)menuList withAmount:(int)amount identifier:(const void *)identifier {
+    if (menuList) {
+        // Explicitly typecast the anonymous void* back to the native C struct type
+        menu_item *nativeList = (menu_item *)menuList;
+        
+        // Safely populate the internal fields for this NetHack version
+        nativeList->count = amount;
+        
+        // NetHack's internal menu selection requires assigning the native union field
+        // Cast the generic pointer back to the version-appropriate anything union assignment
+        nativeList->item.a_void = (void *)identifier; 
+    }
+}
 @end

@@ -108,7 +108,7 @@
 #pragma mark UITableView datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	struct ext_func_tab *f = extcmdlist;
+	struct ext_func_tab *f = [self.mainViewController extendedCommandList];
     filteredExtCmd = [[NSMutableArray alloc] init];
     filteredExtCmdIndex = [[NSMutableArray alloc] init];
     int filtered = 0;

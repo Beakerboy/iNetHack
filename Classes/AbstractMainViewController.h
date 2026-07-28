@@ -21,8 +21,8 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
-#import <MainView.h>
-#import <PlayerState.h>
+#import "MainView.h"
+#import "PlayerState.h"
 
 #ifndef C
 #define C(c)		(0x1f & (c))

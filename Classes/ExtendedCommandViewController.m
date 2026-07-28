@@ -41,11 +41,17 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Allocate your cache tracker arrays ONCE during view setup
+    filteredExtCmd = [[NSMutableArray alloc] init];
+    filteredExtCmdIndex = [[NSMutableArray alloc] init];
+    
+    // Let your engine subclass populate the safe string data once before display
+    [self.mainViewController filterExtendedCommandsIntoNames:filteredExtCmd 
+                                                     indices:filteredExtCmdIndex];
 }
-
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	result = -1;

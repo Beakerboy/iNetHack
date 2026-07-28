@@ -1213,4 +1213,8 @@ static AbstractMainViewController *instance;
     // Left empty! Overridden by subclasses inside the engine frameworks.
 }
 
+- (int)filterExtendedCommandsIntoNames:(NSMutableArray<NSString *> *)names 
+                               indices:(NSMutableArray<NSNumber *> *)indices {
+    return 0;
+}
 @end

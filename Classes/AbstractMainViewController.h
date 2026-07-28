@@ -133,4 +133,5 @@
 - (void)runNativeTerminateCode;
 - (BOOL)isPetGlyph:(int)glyph;
 - (void *)allocateEngineMenuListBuffer;
+- (void)populateMenuList:(void *)menuList withAmount:(int)amount identifier:(const void *)identifier;
 @end

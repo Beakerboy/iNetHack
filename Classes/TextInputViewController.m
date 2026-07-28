@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "TextInputViewController.h"
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 
 @implementation TextInputViewController
 

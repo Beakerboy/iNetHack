@@ -84,7 +84,7 @@ extern short glyph2tile[];
 - (void) finishPickOne:(id)sender {
 	NethackMenuItem *i = menuWindow.nethackMenuItem;
 	menuWindow.menuResult = 1;
-	menuWindow.menuList = malloc(sizeof(menu_item));
+	menuWindow.menuList = [self.mainViewController allocateEngineMenuListBuffer];
 	menuWindow.menuList->count = i.amount;
 	menuWindow.menuList->item = i.identifier;
 	[self.navigationController popToRootViewControllerAnimated:NO];

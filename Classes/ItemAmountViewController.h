@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 
 @class NethackMenuItem, Window;
+@class AbstractMainViewController;
 
 @interface ItemAmountViewController : UIViewController {
 
@@ -37,7 +38,7 @@
 	BOOL targetsSet;
 	
 }
-
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, assign) Window *menuWindow;
 
 @end

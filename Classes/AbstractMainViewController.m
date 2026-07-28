@@ -1205,4 +1205,8 @@ static AbstractMainViewController *instance;
     // Left empty! Overridden by subclasses inside the engine frameworks.
     return NULL;
 }
+
+- (void)populateMenuList:(void *)menuList withAmount:(int)amount identifier:(const void *)identifier {
+    // Left empty! Overridden by subclasses inside the engine frameworks.
+}
 @end

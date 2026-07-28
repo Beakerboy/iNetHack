@@ -63,4 +63,9 @@ extern char lock[];
 - (BOOL)isPetGlyph:(int)glyph {
     return glyph_is_pet(glyph);
 }
+
+- (void *)allocateEngineMenuListBuffer {
+    // Dynamically returns the exact memory size needed for this specific NetHack version
+    return malloc(sizeof(menu_item));
+}
 @end

@@ -64,6 +64,10 @@ extern char lock[];
     return glyph_is_pet(glyph);
 }
 
+- (int)noGlyphConstant {
+    return NO_GLYPH;
+}
+
 - (void *)allocateEngineMenuListBuffer {
     // Dynamically returns the exact memory size needed for this specific NetHack version
     return malloc(sizeof(menu_item));

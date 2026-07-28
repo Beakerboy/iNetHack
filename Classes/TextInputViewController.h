@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class AbstractMainViewController;
 
 @interface TextInputViewController : UIViewController <UITextFieldDelegate> {
 	
@@ -33,6 +34,7 @@
 	int reentered;
 }
 
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, retain) NSString *prompt;
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, assign) UIReturnKeyType returnKeyType;

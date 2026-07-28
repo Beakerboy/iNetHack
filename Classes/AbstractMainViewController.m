@@ -1213,7 +1213,4 @@ static AbstractMainViewController *instance;
     // Left empty! Overridden by subclasses inside the engine frameworks.
 }
 
-- (NSArray<NSString *> *)extendedCommandList {
-    return @[]; // Fallback empty array
-}
 @end

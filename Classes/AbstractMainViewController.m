@@ -1200,4 +1200,9 @@ static AbstractMainViewController *instance;
 - (BOOL)isPetGlyph:(int)glyph {
     teturn NO;
 }
+
+- (void *)allocateEngineMenuListBuffer {
+    // Left empty! Overridden by subclasses inside the engine frameworks.
+    return NULL;
+}
 @end

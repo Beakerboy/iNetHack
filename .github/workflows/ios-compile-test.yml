@@ -117,22 +117,6 @@ jobs:
       - name: Force Xcode Version
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: "Compile App for Physical iPhone Hardware"
-        run: |
-          xcodebuild build \
-            -project "iNetHack2.xcodeproj" \
-            -scheme "iNetHack2" \
-            -configuration Release \
-            -sdk iphoneos \
-            -destination "generic/platform=iOS" \
-            -derivedDataPath "${{ github.workspace }}/build_output" \
-            ONLY_ACTIVE_ARCH=NO \
-            ARCHS="arm64" \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            COMPILER_INDEX_STORE_ENABLE=NO \
-            -quiet
-
       - name: Install signing certificate and provisioning profil
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.IOS_DIST_CERT_BASE64 }}

@@ -429,7 +429,10 @@ static AbstractMainViewController *instance;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+	if (self.textInputViewController) {
+        self.textInputViewController.mainViewController = self;
+    }
     // Wire up the delegate relationship
     if ([self.view isKindOfClass:[MainView class]]) {
         [(MainView *)self.view setDelegate:self];

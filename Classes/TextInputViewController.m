@@ -35,7 +35,7 @@
 	// save what user has typed so far
 	self.text = tf.text;
 	reentered++;
-	[[MainViewController instance] nethackShowLog:sender];
+	[self.mainViewController nethackShowLog:sender];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -118,21 +118,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellId = @"extendedCommandViewControllerCellId";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-	if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-        cell.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];
-        cell.textLabel.textColor = colorInvert?[UIColor blackColor]:[UIColor whiteColor];
-	}
-	int row = (int) [indexPath row];
-
-    struct ext_func_tab structValue;
-    NSValue *value = [filteredExtCmd objectAtIndex:row];
-    [value getValue:&structValue];
-    cell.textLabel.text = [[NSString stringWithCString:structValue.ef_txt encoding:NSASCIIStringEncoding] capitalizedString];
-	cell.accessoryType = UITableViewCellAccessoryNone;
-	return cell;
+    static NSString *cellId = @"extendedCommandViewControllerCellId";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        // Updated to modern UITableViewCell layout constructor (MRC safe)
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId] autorelease];
+        cell.backgroundColor = !colorInvert ? [UIColor blackColor] : [UIColor whiteColor];
+        cell.textLabel.textColor = colorInvert ? [UIColor blackColor] : [UIColor whiteColor];
+    }
+    
+    int row = (int)[indexPath row];
+    
+    // Pull the pre-extracted string name straight out of your optimized names cache array
+    NSString *commandName = [filteredExtCmd objectAtIndex:row];
+    
+    // Format the display label cleanly using the Objective-C string
+    cell.textLabel.text = [commandName capitalizedString];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    return cell;
 }
 
 - (void)dealloc {

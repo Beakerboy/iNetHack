@@ -107,8 +107,25 @@
 
 #pragma mark UITableView datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [WinIPhone tableView:tableView numberOfRowsInSection:section];
+-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	struct ext_func_tab *f = extcmdlist;
+    filteredExtCmd = [[NSMutableArray alloc] init];
+    filteredExtCmdIndex = [[NSMutableArray alloc] init];
+    int filtered = 0;
+    int row = 0;
+	while (f++->ef_txt) {
+        filtered++;
+        if (![self showExtCmd:row]) {
+            // Filter out items that shouldn't be displayed: wizard mode, regular commands, etc.
+            filtered--;
+        } else {
+            NSValue *value = [NSValue valueWithBytes:&extcmdlist[row] objCType:@encode(struct ext_func_tab)];
+            [filteredExtCmd addObject:value];
+            [filteredExtCmdIndex addObject:[NSNumber numberWithInt: row]];
+        }
+        row++;
+	}
+    return filtered;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

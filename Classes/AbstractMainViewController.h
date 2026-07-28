@@ -131,4 +131,5 @@
 - (void)handleApplicationTermination;
 - (void)runNativeTerminateCode;
 - (BOOL)isPetGlyph:(int)glyph;
+- (void *)allocateEngineMenuListBuffer;
 @end

@@ -1,4 +1,5 @@
 #import "MainViewController.h"
+#import "func_tab.h"
 
 // Declare the external C main function from this target's winiphone.m
 extern int iphone_main(int argc, char **argv);
@@ -85,5 +86,19 @@ extern char lock[];
         // Cast the generic pointer back to the version-appropriate anything union assignment
         nativeList->item.a_void = (void *)identifier; 
     }
+}
+
+- (NSArray<NSString *> *)extendedCommandList {
+    NSMutableArray<NSString *> *commands = [NSMutableArray array];
+    
+    // Loop through NetHack's internal C struct array until we hit the null terminator
+    for (int i = 0; extcmdlist[i].ef_txt != NULL; i++) {
+        NSString *cmdName = [NSString stringWithUTF8String:extcmdlist[i].ef_txt];
+        if (cmdName) {
+            [commands addObject:cmdName];
+        }
+    }
+    
+    return commands;
 }
 @end

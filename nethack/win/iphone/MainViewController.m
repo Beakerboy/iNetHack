@@ -88,20 +88,6 @@ extern char lock[];
     }
 }
 
-- (NSArray<NSString *> *)extendedCommandList {
-    NSMutableArray<NSString *> *commands = [NSMutableArray array];
-    
-    // Loop through NetHack's internal C struct array until we hit the null terminator
-    for (int i = 0; extcmdlist[i].ef_txt != NULL; i++) {
-        NSString *cmdName = [NSString stringWithUTF8String:extcmdlist[i].ef_txt];
-        if (cmdName) {
-            [commands addObject:cmdName];
-        }
-    }
-    
-    return commands;
-}
-
 - (void)filterExtendedCommandsIntoNames:(NSMutableArray<NSString *> *)names 
                                indices:(NSMutableArray<NSNumber *> *)indices {
     int row = 0;

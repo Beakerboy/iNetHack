@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class AbstractMainViewController;
 @interface ExtendedCommandViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, readonly) int result;

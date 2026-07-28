@@ -78,6 +78,8 @@ jobs:
     runs-on: macos-latest
     needs: build-ipa   # or standalone, your call
     steps:
+      - name: Check macOS version
+        run: sw_vers
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -88,7 +90,7 @@ jobs:
 
       # ...(same makedefs / tilemap / xcodegen generate steps as your existing job)...
 
-      - name: Install signing certificate and provisioning profile
+      - name: Install signing certificate and provisioning profil
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.IOS_DIST_CERT_BASE64 }}
           P12_PASSWORD: ${{ secrets.IOS_CERT_PASSWORD }}

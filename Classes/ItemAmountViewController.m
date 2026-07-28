@@ -72,8 +72,8 @@ extern short glyph2tile[];
     //int v = round(slider.value);
 
     int v = [textfield.text intValue];
-    int maxminv = min(v, amountSlider.maximumValue);
-    maxminv = max(maxminv, amountSlider.minimumValue);
+    int maxminv = v < amountSlider.maximumValue ? v : amountSlider.maximumValue;
+    maxminv = maxminv > amountSlider.minimumValue ? maxminv : amountSlider.minimumValue;
     if (amountSlider.value != maxminv)
         amountSlider.value = maxminv;
     amountTextLabel.text = [NSString stringWithFormat:@"%d", maxminv];

@@ -82,13 +82,18 @@ extern short glyph2tile[];
 }
 
 - (void) finishPickOne:(id)sender {
-	NethackMenuItem *i = menuWindow.nethackMenuItem;
-	menuWindow.menuResult = 1;
-	menuWindow.menuList = [self.mainViewController allocateEngineMenuListBuffer];
-	menuWindow.menuList->count = i.amount;
-	menuWindow.menuList->item = i.identifier;
-	[self.navigationController popToRootViewControllerAnimated:NO];
-	[self.mainViewController broadcastUIEvent];
+    NethackMenuItem *i = menuWindow.nethackMenuItem;
+    menuWindow.menuResult = 1;
+    
+    // Allocate the version-safe memory buffer via your controller
+    menuWindow.menuList = [self.mainViewController allocateEngineMenuListBuffer];
+
+    [self.mainViewController populateMenuList:menuWindow.menuList 
+                                   withAmount:i.amount 
+                                   identifier:i.identifier];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.mainViewController broadcastUIEvent];
 }
 
 

@@ -34,7 +34,7 @@ settings:
     CLANG_WARN_NON_LITERAL_NULL_CONVERSION: YES
     CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF: YES
     CLANG_WARN_OBJC_LITERAL_CONVERSION: YES
-    CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES
+    CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
     CLANG_WARN_RANGE_LOOP_ANALYSIS: YES
     CLANG_WARN_STRICT_PROTOTYPES: YES
     CLANG_WARN_SUSPICIOUS_MOVE: YES
@@ -90,9 +90,7 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
         PRODUCT_BUNDLE_IDENTIFIER: ge.zima.nethack
-        OTHER_CFLAGS: 
-          - -Wno-quoted-include-in-framework-header
-
+        
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES
@@ -140,8 +138,6 @@ targets:
           - nethack36/include
           - Classes/win/iphone
           - nethack36/sys/share
-        OTHER_CFLAGS: 
-          - -Wno-quoted-include-in-framework-header
 
     sources:
       - path: nethack36/include

@@ -32,7 +32,7 @@
 #define PICK_ANY 2
 extern short glyph2tile[];
 
-@implementation NethackMenuViewController
+@implementation AbstractNethackMenuViewController
 
 @synthesize menuWindow;
 

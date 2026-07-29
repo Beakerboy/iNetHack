@@ -1221,4 +1221,8 @@ static AbstractMainViewController *instance;
 - (char)extractInventoryLetterFromIdentifier:(const void *)identifier {
     return '\0';
 }
+
+- (BOOL)isGlyphObject(int)glyph {
+    return glyph_is_object(glyph);
+}
 @end

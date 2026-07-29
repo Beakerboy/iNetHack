@@ -150,12 +150,7 @@ extern short glyph2tile[];
 }
 
 - (void) finishPickOne:(NethackMenuItem *)i {
-	menuWindow.menuResult = 1;
-	menuWindow.menuList = malloc(sizeof(menu_item));
-	menuWindow.menuList->count = i.amount;
-	menuWindow.menuList->item = i.identifier;
-    menuWindow.nethackMenuItem.amount = i.amount;
-	[self.navigationController popToRootViewControllerAnimated:NO];
+	
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

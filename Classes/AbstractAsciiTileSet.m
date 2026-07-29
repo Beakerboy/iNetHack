@@ -211,7 +211,7 @@ static float _colorTable[][4] = {
     int newOchar = ochar;
 
     // Check for objects
-    if ([self.mainViewController isGlyphObject:g]) {
+    if ([self isGlyphObject:g]) {
         switch ((unichar) ochar) {
             case '*':
             case '$':

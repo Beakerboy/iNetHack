@@ -138,5 +138,5 @@
 - (int)filterExtendedCommandsIntoNames:(NSMutableArray<NSString *> *)names 
                           indices:(NSMutableArray<NSNumber *> *)indices;
 - (char)extractInventoryLetterFromIdentifier:(const void *)identifier;
-- (BOOL)isGlyphObject:(int)glyph;
+
 @end

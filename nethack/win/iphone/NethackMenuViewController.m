@@ -404,4 +404,23 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 			[mi release];
 		}
 	}
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	if (self.navigationController.topViewController != itemAmountViewController) {
+		if (menuWindow.menuHow == PICK_ANY) {
+			NSMutableArray *items = [NSMutableArray array];
+			[self collectSelectedItems:menuWindow.menuItems into:items];
+			menuWindow.menuResult = (int) items.count;
+			menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
+			for (int i = 0; i < items.count; ++i) {
+				NethackMenuItem *item = [items objectAtIndex:i];
+				menuWindow.menuList[i].count = item.amount;
+				menuWindow.menuList[i].item = item.identifier;
+			}
+		}
+		[[MainViewController instance] broadcastUIEvent];
+	}
+}
 @end

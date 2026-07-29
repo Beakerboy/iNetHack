@@ -1222,7 +1222,4 @@ static AbstractMainViewController *instance;
     return '\0';
 }
 
-- (BOOL)isGlyphObject(int)glyph {
-    return NO;
-}
 @end

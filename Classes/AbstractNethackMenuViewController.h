@@ -37,4 +37,5 @@
 }
 @property (nonatomic, assign) Window *menuWindow;
 @property (nonatomic, assign) AbstractMainViewController *mainViewController;
+@property (nonatomic, assign) ItemAmountViewController *itemAmountViewController;
 @end

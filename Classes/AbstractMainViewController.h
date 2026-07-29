@@ -82,6 +82,7 @@
 @property (assign) int animFrame;
 @property (nonatomic, readonly) int maxGlyphConstant;
 @property (nonatomic, readonly) int noGlyphConstant;
+@property (nonatomic, readonly) int winInvenConstant;
 
 // Shared Class Loggers (Safe because they use foundational NSString objects)
 + (void) message:(NSString *)format, ...;

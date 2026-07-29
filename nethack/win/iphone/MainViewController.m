@@ -122,7 +122,4 @@ extern char lock[];
     return '\0';
 }
 
-- (BOOL)isGlyphObject(int)glyph {
-    return glyph_is_object(glyph);
-}
 @end

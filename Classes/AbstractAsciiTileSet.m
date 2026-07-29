@@ -131,7 +131,7 @@ static float _colorTable[][4] = {
         UIFont *font = [UIFont systemFontOfSize:28];
         int ochar, ocolor;
         unsigned special;
-        custom_mapglyph(g, &ochar, &ocolor, &special, x, y, 0);
+        mapglyph(g, &ochar, &ocolor, &special, x, y, 0);
 
         if (ibmTileset) {
             font = [UIFont fontWithName:@"Px437_IBM_VGA_8x16" size:64];

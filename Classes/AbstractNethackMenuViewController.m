@@ -244,7 +244,7 @@ extern short glyph2tile[];
 
     BOOL showMenuLetters = [[NSUserDefaults standardUserDefaults] floatForKey:@"showmenuletters"];
 
-    char invletter = i.identifier.a_char;
+    char invletter = [self.mainViewController extractInventoryLetterFromIdentifier:i.identifier];
     if (i.accelerator > 0) {
         invletter = i.accelerator;
     }

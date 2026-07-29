@@ -25,6 +25,7 @@
 #define kMenuCancelled (-1)
 
 @class Window, NethackMenuItem, ItemAmountViewController;
+@class AbstractMainViewController;
 
 @interface AbstractNethackMenuViewController : UITableViewController {
 	

@@ -423,4 +423,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 		[[MainViewController instance] broadcastUIEvent];
 	}
 }
+
+- (void) finishPickOne:(NethackMenuItem *)i {
+	menuWindow.menuResult = 1;
+	menuWindow.menuList = malloc(sizeof(menu_item));
+	menuWindow.menuList->count = i.amount;
+	menuWindow.menuList->item = i.identifier;
+    menuWindow.nethackMenuItem.amount = i.amount;
+	[self.navigationController popToRootViewControllerAnimated:NO];
+}
 @end

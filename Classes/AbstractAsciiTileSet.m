@@ -328,4 +328,7 @@ static float _colorTable[][4] = {
 	[super dealloc];
 }
 
+- (BOOL)isGlyphObject:(int)glyph {
+    return NO;
+}
 @end

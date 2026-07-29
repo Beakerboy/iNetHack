@@ -221,7 +221,7 @@ extern short glyph2tile[];
 
 	NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
 
-	if (i.glyph != NO_GLYPH && i.glyph != kNoGlyph) {
+	if (i.glyph != self.mainViewController.noGlyphConstant && i.glyph != kNoGlyph) {
 		UIImage *uiImg = [UIImage imageWithCGImage:[[TileSet instance] imageForGlyph:i.glyph]];
 		cell.imageView.image = uiImg;
 

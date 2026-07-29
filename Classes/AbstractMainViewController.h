@@ -136,5 +136,6 @@
 - (void *)allocateEngineMenuListBuffer;
 - (void)populateMenuList:(void *)menuList withAmount:(int)amount identifier:(const void *)identifier;
 - (int)filterExtendedCommandsIntoNames:(NSMutableArray<NSString *> *)names 
-                               indices:(NSMutableArray<NSNumber *> *)indices;
+                          indices:(NSMutableArray<NSNumber *> *)indices;
+- (char)extractInventoryLetterFromIdentifier:(const void *)identifier;
 @end

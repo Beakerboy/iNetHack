@@ -680,7 +680,7 @@ static AbstractMainViewController *instance;
 
 #pragma mark windowing
 
-- (winid) createWindow:(int)type {
+- (int) createWindow:(int)type {
 	Window *w = [[Window alloc] initWithType:type];
 	//[windows addObject:w];    //iNethack2 changing to a dict
     [windows setValue:w forKey:[NSString stringWithFormat:@"%d", windowIdCounter]];
@@ -690,19 +690,15 @@ static AbstractMainViewController *instance;
 	//return (winid) w;
 }
 
-- (void) destroyWindow:(winid)wid {
-	//Window *w = (Window *) wid;
+- (void) destroyWindow:(int)wid {
     [windows removeObjectForKey:[NSString stringWithFormat:@"%d",wid]];
 }
 
-- (Window *) windowWithId:(winid)wid {
-//    NSLog(@"%@",windows);
-//	return (Window *) wid;
-//    return [windows objectAtIndex:wid]; //iNethack2
+- (Window *) windowWithId:(int)wid {
     return [windows objectForKey:[NSString stringWithFormat:@"%d",wid]]; //iNethack2
 }
 
-- (void) displayWindowId:(winid)wid blocking:(BOOL)blocking {
+- (void) displayWindowId:(int)wid blocking:(BOOL)blocking {
 	BOOL mapBlocked = NO;
 	Window *w = [self windowWithId:wid];
 	switch (w.type) {

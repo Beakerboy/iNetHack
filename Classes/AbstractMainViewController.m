@@ -1217,4 +1217,8 @@ static AbstractMainViewController *instance;
                                indices:(NSMutableArray<NSNumber *> *)indices {
     return 0;
 }
+
+- (char)extractInventoryLetterFromIdentifier:(const void *)identifier {
+    return '\0';
+}
 @end

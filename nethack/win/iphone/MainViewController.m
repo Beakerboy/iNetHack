@@ -111,4 +111,14 @@ extern char lock[];
         row++;
     }
 }
+
+- (char)extractInventoryLetterFromIdentifier:(const void *)identifier {
+    if (identifier) {
+        // Explicitly cast the generic pointer address back to the version-appropriate anything structural layout
+        // In NetHack, menu identifiers are passed down as pointer addresses containing the union data
+        const anything *nativeUnion = (const anything *)identifier;
+        return nativeUnion->a_char;
+    }
+    return '\0';
+}
 @end

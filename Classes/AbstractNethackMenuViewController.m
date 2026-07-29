@@ -63,53 +63,7 @@ extern short glyph2tile[];
 }
 
 - (void) setMenuWindow:(Window *)w {
-	menuWindow = w;
-	menuWindow.menuResult = kMenuCancelled;
-	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? menuWindow.menuPrompt : @"Menu";
-
-	// extend menu items
-	if (menuWindow.acceptBareHanded || menuWindow.acceptMoney || menuWindow.acceptMore) {
-		anything any;
-		any.a_int = 0;
-		NethackMenuItem *miParent = [[NethackMenuItem alloc] initWithId:&any title:"Meta" glyph:kNoGlyph preselected:NO];
-		[menuWindow addMenuItem:miParent];
-		[miParent release];
-		if (menuWindow.acceptBareHanded) {
-			any.a_int = '-';
-			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"Hands (-)"
-																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[menuWindow addMenuItem:mi];
-			[mi release];
-		}
-		if (menuWindow.acceptMore) {
-			any.a_int = '*';
-			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"More (*)"
-																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[menuWindow addMenuItem:mi];
-			[mi release];
-		}
-		if (menuWindow.acceptMoney) {
-			any.a_int = '$';
-            NSString *title = [WinIPhone universalMoneyString];
-
-			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
-																glyph:kNoGlyph isMeta:YES preselected:NO];
-			mi.gold = YES;
-			[menuWindow addMenuItem:mi];
-			[mi release];
-		}
-	}
-
-	selectAll = YES;
-	if (w.menuHow == PICK_ANY) {
-		UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithTitle:@"All" style:UIBarButtonItemStylePlain
-															  target:self action:@selector(selectAll:)];
-		self.navigationItem.rightBarButtonItem = bi;
-		[bi release];
-	} else {
-		self.navigationItem.rightBarButtonItem = nil;
-	}
-	[self.tableView reloadData];
+	
 }
 
 - (void) collectSelectedItems:(NSArray *)menuItems into:(NSMutableArray *)items {

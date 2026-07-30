@@ -22,9 +22,9 @@
 
 #import "AbstractTileSet.h"
 
-static TileSet *instance = nil;
+static AbstractTileSet *instance = nil;
 
-@implementation TileSet
+@implementation AbstractTileSet
 
 + (AbstractTileSet *) instance {
 	return instance;

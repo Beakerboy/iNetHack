@@ -613,7 +613,7 @@ static AbstractMainViewController *instance;
 				TilePosition *tp = [(MainView *) self.view tilePositionFromPoint:p];
 				NethackEvent *lastEvent = nethackEventQueue.lastEvent;
 				// todo other events to check
-				if ([(MainView *) self.view isMoved] || lastEvent.key == ';' || winiphone_clickable_tiles) {
+				if ([(MainView *) self.view isMoved] || lastEvent.key == ';' || self.isClickableTiles) {
 					// tappable tiles
 					lastSingleTapDelta.x = tp.x-u.ux;
 					lastSingleTapDelta.y = tp.y-u.uy;

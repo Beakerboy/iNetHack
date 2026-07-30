@@ -39,7 +39,6 @@
 #import <NetHackSharedUI/TouchInfoStore.h>
 #import <NetHackSharedUI/DMath.h>
 #import <NetHackSharedUI/NSString+Regexp.h>
-#import "RoleSelectionController.h"
 #import <CoreHaptics/CoreHaptics.h>
 
 #define kOptionDoubleTapSensitivity (@"doubleTapSensitivity")
@@ -49,7 +48,7 @@
 
 static AbstractMainViewController *instance;
 
-@interface AbstractMainViewController () <RoleSelectionControllerDelegate> {
+@interface AbstractMainViewController () {
     CHHapticEngine *hapticEngine;
 }
 @end
@@ -1057,15 +1056,14 @@ static AbstractMainViewController *instance;
 	[self broadcastUIEvent];
 }
 
-- (void) doPlayerSelectionOnUIThread:(id)obj {
-	RoleSelectionController* roleSelector = [RoleSelectionController roleSelectorWithNavigationController:self.navigationController];
-	roleSelector.delegate = self;
-	[roleSelector start];
-}
-
-- (void) doPlayerSelection {
-	[self performSelectorOnMainThread:@selector(doPlayerSelectionOnUIThread:) withObject:nil waitUntilDone:NO];
-	[self waitForCondition:uiCondition];
+- (void)doPlayerSelection {
+    // Safely dispatch the presentation to the main thread UI layout window
+    [self performSelectorOnMainThread:@selector(presentRoleSelectionOnMainThread) 
+                           withObject:nil 
+                        waitUntilDone:NO];
+    
+    // Halt the background engine thread right here until the user picks a character!
+    [self waitForCondition:uiCondition]; 
 }
 
 - (void) displayFile:(NSString *)filename mustExist:(BOOL)e {

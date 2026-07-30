@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TileSet : NSObject {
+@interface AbstractTileSet : NSObject {
 	
 	CGSize tileSize;
 	CGImageRef *images;
@@ -30,7 +30,7 @@
 
 }
 
-+ (TileSet *) instance;
++ (AbstractTileSet *) instance;
 + (int) glyphToTileIndex:(int)g;
 
 - (instancetype) initWithImage:(UIImage *)image tileSize:(CGSize)ts;

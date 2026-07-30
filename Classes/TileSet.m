@@ -22,8 +22,6 @@
 
 #import "TileSet.h"
 
-extern short glyph2tile[];
-
 static TileSet *instance = nil;
 
 @implementation TileSet

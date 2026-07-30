@@ -769,7 +769,7 @@ static AbstractMainViewController *instance;
             return;
         } else {
             // Use monospace font if showing game ending info, the introductory text, or in wizard mode.
-            if (program_state.gameover == 1 || wizard || [message containsString:kConstIntroductoryStoryTitle]) {
+            if (self.isGameOver || wizard || [message containsString:kConstIntroductoryStoryTitle]) {
                 if ([message containsString:kConstIntroductoryStoryTitle]) {
                     // Format the intro text a bit better for narrow displays.
                     message = [self formatMessageForWideScreen:message];

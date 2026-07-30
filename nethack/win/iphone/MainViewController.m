@@ -145,4 +145,9 @@ extern char lock[];
     [self presentViewController:roleVC animated:YES completion:nil];
     [roleVC release];
 }
+
+- (AbstractTileSet *)mainViewRequiresTileSetWithImage:(UIImage *)image tileSize:(CGSize)size {
+    // Instantiates and returns the 3.6 engine version subclass natively
+    return [[[TileSet alloc] initWithImage:image tileSize:size] autorelease];
+}
 @end

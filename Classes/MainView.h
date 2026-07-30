@@ -29,6 +29,7 @@
 @protocol MainViewDelegate <NSObject>
 - (BOOL)mainViewShouldRenderRogueLevel;
 - (AbstractTileSet *)mainViewRequiresTileSet;
+- (AbstractTileSet *)mainViewRequiresTileSetWithImage:(UIImage *)image tileSize:(CGSize)size;
 @end
 
 @interface MainView : UIView {

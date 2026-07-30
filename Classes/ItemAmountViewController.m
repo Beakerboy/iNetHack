@@ -24,7 +24,7 @@
 #import "NethackMenuItem.h"
 #import "AbstractMainViewController.h"
 #import "Window.h"
-#import "TileSet.h"
+#import "AbstractTileSet.h"
 #import "NSString+NetHack.h"
 
 extern short glyph2tile[];

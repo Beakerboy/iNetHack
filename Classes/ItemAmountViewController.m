@@ -114,7 +114,7 @@ extern short glyph2tile[];
 		targetsSet = YES;
 	}
 	if (menuWindow.nethackMenuItem.glyph != self.mainViewController.noGlyphConstant && menuWindow.nethackMenuItem.glyph != kNoGlyph) {
-		UIImage *uiImg = [UIImage imageWithCGImage:[[TileSet instance] imageForGlyph:menuWindow.nethackMenuItem.glyph]];
+		UIImage *uiImg = [self.mainViewController imageForGlyphConstant:menuWindow.nethackMenuItem.glyph];
 		imageView.image = uiImg;
         // For large tiles (like IBMGraphics), shrink it down since we are using larger tiles for better clarity.
         if (uiImg.size.width > 32 || uiImg.size.height > 32)

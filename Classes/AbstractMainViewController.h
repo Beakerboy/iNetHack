@@ -148,4 +148,6 @@
 - (char)extractInventoryLetterFromIdentifier:(const void *)identifier;
 
 - (void)presentRoleSelectionInterface;
+- (AbstractTileSet *)mainViewRequiresTileSetWithImage:(UIImage *)image tileSize:(CGSize)size;
+
 @end

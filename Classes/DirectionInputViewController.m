@@ -22,7 +22,7 @@
 
 #import "DirectionInputViewController.h"
 #import "DirectionInputView.h"
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 #import "Shortcut.h"
 
 @implementation DirectionInputViewController

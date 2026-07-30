@@ -1000,7 +1000,7 @@ static AbstractMainViewController *instance;
 	[self performSelectorOnMainThread:@selector(getLineOnUIThread:) withObject:s waitUntilDone:YES];
 	[self waitForCondition:textInputCondition];
 	s = textInputViewController.text;
-	[s getCString:line maxLength:BUFSZ encoding:NSASCIIStringEncoding];
+	[s getCString:line maxLength:self.bufferSize encoding:NSASCIIStringEncoding];
 }
 
 - (void) getLineOnUIThread:(NSString *)s {

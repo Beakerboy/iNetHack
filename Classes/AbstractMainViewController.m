@@ -687,7 +687,7 @@ static AbstractMainViewController *instance;
     [windows setValue:w forKey:[NSString stringWithFormat:@"%d", windowIdCounter]];
     windowIdCounter++;
 	[w release];
-    return (winid) (windowIdCounter-1); //iNethack2
+    return (int) (windowIdCounter-1); //iNethack2
 	//return (winid) w;
 }
 

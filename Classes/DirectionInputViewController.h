@@ -22,9 +22,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class AbstractMainViewController;
 
 @interface DirectionInputViewController : UIViewController
 
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, readonly) int direction;
 
 @end

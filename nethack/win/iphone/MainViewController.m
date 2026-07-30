@@ -85,6 +85,10 @@ extern char lock[];
     return program_state.gameover == 1;
 }
 
+- (BOOL) isWizarf {
+    return wizard;
+}
+
 - (void *)allocateEngineMenuListBuffer {
     // Dynamically returns the exact memory size needed for this specific NetHack version
     return malloc(sizeof(menu_item));

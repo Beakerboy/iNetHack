@@ -69,6 +69,7 @@
     NSThread *nethackThread;
     Window *blockingMap;
 }
+@property (nonatomic, retain) IBOutlet AbstractNethackMenuViewController *nethackMenuViewController;
 @property (nonatomic, retain) IBOutlet TextInputViewController *textInputViewController;
 @property (nonatomic, retain) IBOutlet ExtendedCommandViewController *extendedCommandViewController;
 @property (nonatomic, readonly, retain) PlayerState *playerState;

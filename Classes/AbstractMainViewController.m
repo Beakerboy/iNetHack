@@ -598,6 +598,7 @@ static AbstractMainViewController *instance;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    PlayerState *u = self.playerState;
 	if (touches.count == 1) {
 		TouchInfo *ti = [touchInfoStore touchInfoForTouch:[touches anyObject]];
 		if (!ti.pinched && !ti.moved && !ti.doubleTap) {

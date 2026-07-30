@@ -69,7 +69,7 @@
 				} else {
 					direction = 0;
 				}
-				[[MainViewController instance] broadcastUIEvent];
+				[self.mainViewController broadcastUIEvent];
 			}
 		}
 	}

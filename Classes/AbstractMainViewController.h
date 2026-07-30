@@ -85,6 +85,7 @@
 @property (nonatomic, readonly) int maxGlyphConstant;
 @property (nonatomic, readonly) int noGlyphConstant;
 @property (nonatomic, readonly) int winInvenConstant;
+@property (nonatomic, readonly) int bufferSize;
 
 // Shared Class Loggers (Safe because they use foundational NSString objects)
 + (void) message:(NSString *)format, ...;

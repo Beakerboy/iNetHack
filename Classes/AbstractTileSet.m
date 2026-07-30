@@ -20,13 +20,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
-#import "TileSet.h"
+#import "AbstractTileSet.h"
 
 static TileSet *instance = nil;
 
 @implementation TileSet
 
-+ (TileSet *) instance {
++ (AbstractTileSet *) instance {
 	return instance;
 }
 

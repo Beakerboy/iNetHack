@@ -1198,7 +1198,7 @@ static AbstractMainViewController *instance;
 }
 
 - (BOOL)isPetGlyph:(int)glyph {
-    teturn NO;
+    return NO;
 }
 
 - (void *)allocateEngineMenuListBuffer {

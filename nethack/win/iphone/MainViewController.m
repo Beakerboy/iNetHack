@@ -73,6 +73,11 @@ extern char lock[];
     return WIN_INVEN;
 }
 
+- (int) bufferSize {
+    return BUFSZ;
+}
+
+
 - (void *)allocateEngineMenuListBuffer {
     // Dynamically returns the exact memory size needed for this specific NetHack version
     return malloc(sizeof(menu_item));

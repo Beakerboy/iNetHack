@@ -24,10 +24,11 @@
 
 #define kKeyTileSize (@"tileSize")
 
-@class AbstractMainViewController, TilePosition, Window, TileSet, ShortcutView;
+@class AbstractMainViewController, TilePosition, Window, AbstractTileSet, ShortcutView;
 
 @protocol MainViewDelegate <NSObject>
 - (BOOL)mainViewShouldRenderRogueLevel;
+- (AbstractTileSet *)mainViewRequiresTileSet;
 @end
 
 @interface MainView : UIView {
@@ -39,9 +40,9 @@
     IBOutlet UITextField *dummyTextField;
 
     BOOL tiled;
-    TileSet *tileSet;
-    TileSet *tileSetAnim;
-    TileSet *tileSets[3];
+    AbstractTileSet *tileSet;
+    AbstractTileSet *tileSetAnim;
+    AbstractTileSet *tileSets[3];
     
     CGPoint offset;
     ShortcutView *shortcutView;

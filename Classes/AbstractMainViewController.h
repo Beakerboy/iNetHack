@@ -149,5 +149,6 @@
 
 - (void)presentRoleSelectionInterface;
 - (AbstractTileSet *)mainViewRequiresTileSetWithImage:(UIImage *)image tileSize:(CGSize)size;
+- (UIImage *)imageForGlyphConstant:(int)glyph;
 
 @end

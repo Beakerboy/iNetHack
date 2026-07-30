@@ -22,6 +22,7 @@
 
 #import "AbstractMainViewController.h"
 #import "AbstractAsciiTileSet.h"
+#import "ItemAmountViewController.h"
 #import <NetHackSharedUI/Window.h>
 #import <NetHackSharedUI/MenuViewController.h>
 #import <NetHackSharedUI/MenuItem.h>

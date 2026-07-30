@@ -147,4 +147,5 @@
                           indices:(NSMutableArray<NSNumber *> *)indices;
 - (char)extractInventoryLetterFromIdentifier:(const void *)identifier;
 
+- (void)presentRoleSelectionInterface;
 @end

@@ -69,7 +69,7 @@
     NSThread *nethackThread;
     Window *blockingMap;
 }
-
+@property (nonatomic, retain) IBOutlet TextInputViewController *textInputViewController;
 @property (nonatomic, retain) IBOutlet ExtendedCommandViewController *extendedCommandViewController;
 @property (nonatomic, readonly, retain) PlayerState *playerState;
 @property (nonatomic, assign) BOOL isRogueLevel;

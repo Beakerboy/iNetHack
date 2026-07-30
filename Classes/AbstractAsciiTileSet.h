@@ -21,9 +21,9 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h> // Changed from Foundation to ensure CGSize and UIColor are fully defined
-#import "TileSet.h"
+#import "AbstractTileSet.h"
 
-@interface AbstractAsciiTileSet : TileSet {
+@interface AbstractAsciiTileSet : AbstractTileSet {
 	NSArray *colorTable;
     BOOL ibmTileset;
     BOOL colorInvert;

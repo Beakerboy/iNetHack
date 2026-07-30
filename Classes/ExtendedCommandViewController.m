@@ -103,7 +103,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = (int) [indexPath row];
     result = [(NSNumber *) [filteredExtCmdIndex objectAtIndex: row] intValue];
-	[[MainViewController instance] broadcastUIEvent];
+	[self.mainViewController broadcastUIEvent];
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 

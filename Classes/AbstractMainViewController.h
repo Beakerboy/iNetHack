@@ -87,6 +87,8 @@
 @property (nonatomic, readonly) int winInvenConstant;
 @property (nonatomic, readonly) int bufferSize;
 @property (nonatomic, readonly) BOOL isClickableTiles;
+@property (nonatomic, readonly) BOOL isGameOver;
+
 
 // Shared Class Loggers (Safe because they use foundational NSString objects)
 + (void) message:(NSString *)format, ...;

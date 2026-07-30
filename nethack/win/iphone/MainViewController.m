@@ -150,4 +150,19 @@ extern char lock[];
     // Instantiates and returns the 3.6 engine version subclass natively
     return [[[TileSet alloc] initWithImage:image tileSize:size] autorelease];
 }
+
+- (UIImage *)imageForGlyphConstant:(int)glyph {
+    // 1. Get the current active tile index for this version using your engine's mapping rules
+    int tileIndex = [TileSet glyphToTileIndex:glyph];
+    
+    // 2. Safely read the image asset from your active tileset instance variable 
+    // (Assumes your view controller or MainView tracks the loaded tileSet instance)
+    CGImageRef cgImg = [self.tileSet imageForTile:tileIndex]; 
+    
+    if (cgImg) {
+        return [UIImage imageWithCGImage:cgImg];
+    }
+    return nil;
+}
+
 @end

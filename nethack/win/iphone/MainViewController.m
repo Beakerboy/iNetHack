@@ -138,4 +138,9 @@ extern char lock[];
     return '\0';
 }
 
+- (void)presentRoleSelectionInterface {
+    RoleSelectionController *roleVC = [[RoleSelectionController alloc] init];
+    [self presentViewController:roleVC animated:YES completion:nil];
+    [roleVC release];
+}
 @end

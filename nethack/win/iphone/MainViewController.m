@@ -77,6 +77,9 @@ extern char lock[];
     return BUFSZ;
 }
 
+- (BOOL) isClickableTiles {
+    return winiphone_clickable_tiles;
+}
 
 - (void *)allocateEngineMenuListBuffer {
     // Dynamically returns the exact memory size needed for this specific NetHack version

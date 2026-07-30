@@ -1220,4 +1220,7 @@ static AbstractMainViewController *instance;
     return '\0';
 }
 
+- (AbstractTileSet *)mainViewRequiresTileSetWithImage:(UIImage *)image tileSize:(CGSize)size {
+    return [[[AbstractTileSet alloc] initWithImage:image tileSize:size] autorelease];
+}
 @end

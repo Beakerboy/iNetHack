@@ -88,6 +88,7 @@
 @property (nonatomic, readonly) int bufferSize;
 @property (nonatomic, readonly) BOOL isClickableTiles;
 @property (nonatomic, readonly) BOOL isGameOver;
+@property (nonatomic, readonly) BOOL isWizard;
 
 
 // Shared Class Loggers (Safe because they use foundational NSString objects)

@@ -69,7 +69,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	if (result == -1) {
-		[[MainViewController instance] broadcastUIEvent];
+		[self.mainViewController broadcastUIEvent];
 	}
 }
 

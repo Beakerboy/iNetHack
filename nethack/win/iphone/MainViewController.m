@@ -81,6 +81,10 @@ extern char lock[];
     return winiphone_clickable_tiles;
 }
 
+- (BOOL) isGameOver {
+    return program_state.gameover == 1;
+}
+
 - (void *)allocateEngineMenuListBuffer {
     // Dynamically returns the exact memory size needed for this specific NetHack version
     return malloc(sizeof(menu_item));

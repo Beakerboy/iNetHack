@@ -7,6 +7,8 @@ extern void save_currentstate(void);
 extern int dosave(void);
 extern char lock[]; 
 @implementation MainViewController
+@interface MainViewController () <RoleSelectionControllerDelegate>
+@end
 
 - (void) runNativeEngineLoop {
     // This runs safely on the background thread spawned by the parent class

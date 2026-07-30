@@ -436,6 +436,9 @@ static AbstractMainViewController *instance;
 	if (self.textInputViewController) {
         self.textInputViewController.mainViewController = self;
     }
+	if (self.directionInputViewController) {
+        self.directionInputViewController.mainViewController = self;
+    }
 	if (self.nethackMenuViewController) {
         self.nethackMenuViewController.mainViewController = self;
         if (self.nethackMenuViewController.itemAmountViewController) {

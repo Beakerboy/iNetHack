@@ -30,10 +30,6 @@ static AbstractTileSet *instance = nil;
 	return instance;
 }
 
-+ (int) glyphToTileIndex:(int)g {
-	return glyph2tile[g];
-}
-
 - (id) initWithImage:(UIImage *)image tileSize:(CGSize)ts {
 	if (self = [super init]) {
 		tileSize = ts;

@@ -168,10 +168,13 @@
 			[[NSUserDefaults standardUserDefaults] setObject:@"chozo32b" forKey:kKeyTileset];
 			[[NSUserDefaults standardUserDefaults] synchronize];
 		}
-        tileSet = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
+        tileSet = [[self.delegate mainViewRequiresTileSetWithImage:tilesetImage tileSize:tilesetTileSize] retain];
+
         if (animatedTileset) {
             tilesetImage = [UIImage imageNamed:animImgName];
-            tileSetAnim = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
+    
+            // Replace the animated tileset allocation:
+            tileSetAnim = [[self.delegate mainViewRequiresTileSetWithImage:tilesetImage tileSize:tilesetTileSize] retain];
         }
 	}
 	tileSets[0] = tileSet;

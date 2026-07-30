@@ -24,10 +24,10 @@
 #import "AbstractMainViewController.h"
 #import "Window.h"
 #import "TilePosition.h"
-#import "TileSet.h"
+#import "AbstractTileSet.h"
 #import "ShortcutView.h"
 #import "Shortcut.h"
-#import "AsciiTileSet.h"
+#import "AbstractAsciiTileSet.h"
 
 #define kKeyTileset (@"tileset")
 

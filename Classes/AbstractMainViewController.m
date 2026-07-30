@@ -45,7 +45,6 @@
 #define kConstThingsThatAreHereTitle (@"Things that are here:")
 #define kConstThingsThatYouFeelHereTitle (@"Things that you feel here:")
 #define kConstIntroductoryStoryTitle (@"It is written in the Book of")
-extern volatile boolean winiphone_clickable_tiles;
 
 static AbstractMainViewController *instance;
 

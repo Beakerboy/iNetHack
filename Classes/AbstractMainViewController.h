@@ -72,6 +72,7 @@
 @property (nonatomic, retain) IBOutlet AbstractNethackMenuViewController *nethackMenuViewController;
 @property (nonatomic, retain) IBOutlet TextInputViewController *textInputViewController;
 @property (nonatomic, retain) IBOutlet ExtendedCommandViewController *extendedCommandViewController;
+@property (nonatomic, retain) IBOutlet DirectionInputViewController *directionInputViewController;
 @property (nonatomic, readonly, retain) PlayerState *playerState;
 @property (nonatomic, assign) BOOL isRogueLevel;
 @property (nonatomic, readonly, retain) NSDictionary *windows; 

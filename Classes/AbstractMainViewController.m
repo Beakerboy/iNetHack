@@ -1223,4 +1223,9 @@ static AbstractMainViewController *instance;
 - (AbstractTileSet *)mainViewRequiresTileSetWithImage:(UIImage *)image tileSize:(CGSize)size {
     return [[[AbstractTileSet alloc] initWithImage:image tileSize:size] autorelease];
 }
+
+- (UIImage *)imageForGlyphConstant:(int)glyph {
+    return nil;
+}
+
 @end

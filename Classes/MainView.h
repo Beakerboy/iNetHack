@@ -72,7 +72,7 @@
 @property (nonatomic, readonly) BOOL colorInvert;
 @property (nonatomic, readonly) IBOutlet UITextField *dummyTextField;
 @property (nonatomic, readonly, getter=isMoved) BOOL moved;
-@property (nonatomic, readonly, retain) TileSet *tileSet;
+@property (nonatomic, readonly, retain) AbstractTileSet *tileSet;
 @property (nonatomic, retain) Window *map;
 @property (nonatomic, retain) Window *status;
 @property (nonatomic, retain) Window *message;

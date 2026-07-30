@@ -70,6 +70,7 @@
     Window *blockingMap;
 }
 
+@property (nonatomic, retain) IBOutlet ExtendedCommandViewController *extendedCommandViewController;
 @property (nonatomic, readonly, retain) PlayerState *playerState;
 @property (nonatomic, assign) BOOL isRogueLevel;
 @property (nonatomic, readonly, retain) NSDictionary *windows; 

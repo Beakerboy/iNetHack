@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class AbstractMainViewController;
 
 @interface Shortcut : NSObject {
 	
@@ -30,6 +31,7 @@
 
 }
 
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *keys;
 @property (nonatomic, readonly) char key;

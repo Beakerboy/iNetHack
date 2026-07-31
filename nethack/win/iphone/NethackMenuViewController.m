@@ -33,8 +33,6 @@ extern short glyph2tile[];
 
 @implementation NethackMenuViewController
 
-@synthesize menuWindow;
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
@@ -62,39 +60,39 @@ extern short glyph2tile[];
 }
 
 - (void) setMenuWindow:(Window *)w {
-	menuWindow = w;
-	menuWindow.menuResult = kMenuCancelled;
+	self.menuWindow = w;
+	self.menuWindow.menuResult = kMenuCancelled;
 	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? menuWindow.menuPrompt : @"Menu";
 
 	// extend menu items
-	if (menuWindow.acceptBareHanded || menuWindow.acceptMoney || menuWindow.acceptMore) {
+	if (self.menuWindow.acceptBareHanded || self.menuWindow.acceptMoney || menuWindow.acceptMore) {
 		anything any;
 		any.a_int = 0;
 		NethackMenuItem *miParent = [[NethackMenuItem alloc] initWithId:&any title:"Meta" glyph:kNoGlyph preselected:NO];
-		[menuWindow addMenuItem:miParent];
+		[self.menuWindow addMenuItem:miParent];
 		[miParent release];
-		if (menuWindow.acceptBareHanded) {
+		if (self.menuWindow.acceptBareHanded) {
 			any.a_int = '-';
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"Hands (-)"
 																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[menuWindow addMenuItem:mi];
+			[self.menuWindow addMenuItem:mi];
 			[mi release];
 		}
-		if (menuWindow.acceptMore) {
+		if (self.menuWindow.acceptMore) {
 			any.a_int = '*';
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"More (*)"
 																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[menuWindow addMenuItem:mi];
+			[self.menuWindow addMenuItem:mi];
 			[mi release];
 		}
-		if (menuWindow.acceptMoney) {
+		if (self.menuWindow.acceptMoney) {
 			any.a_int = '$';
             NSString *title = [NSString stringWithFormat:@"%d %s ($)", (int) money_cnt(invent), currency(u.umoney0)];
 
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
 																glyph:kNoGlyph isMeta:YES preselected:NO];
 			mi.gold = YES;
-			[menuWindow addMenuItem:mi];
+			[self.menuWindow addMenuItem:mi];
 			[mi release];
 		}
 	}
@@ -196,30 +194,30 @@ extern short glyph2tile[];
 	int row = (int) [indexPath row];
 	int section = (int) [indexPath section];
 	NethackMenuItem *i = nil;
-	if (menuWindow.isShallowMenu) {
+	if (self.menuWindow.isShallowMenu) {
 		if (section != 0) {
 			NSLog(@"error in %s: section number in shallow menu!", __FUNCTION__);
 		}
-		i = [menuWindow.menuItems objectAtIndex:row];
+		i = [self.menuWindow.menuItems objectAtIndex:row];
 	} else {
-		i = [menuWindow.menuItems objectAtIndex:section];
+		i = [self.menuWindow.menuItems objectAtIndex:section];
 		i = [i.children objectAtIndex:row];
 	}
 	return i;
 }
 
 - (void) finishPickOne:(NethackMenuItem *)i {
-	menuWindow.menuResult = 1;
-	menuWindow.menuList = malloc(sizeof(menu_item));
-	menuWindow.menuList->count = i.amount;
-	menuWindow.menuList->item = i.identifier;
-    menuWindow.nethackMenuItem.amount = i.amount;
+	self.menuWindow.menuResult = 1;
+	self.menuWindow.menuList = malloc(sizeof(menu_item));
+	self.menuWindow.menuList->count = i.amount;
+	self.menuWindow.menuList->item = i.identifier;
+    self.menuWindow.nethackMenuItem.amount = i.amount;
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
-	if (menuWindow.menuHow == PICK_ANY) {
+	if (self.menuWindow.menuHow == PICK_ANY) {
 		i.selected = !i.isSelected;
 		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 		cell.accessoryType = i.isSelected ? UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
@@ -234,13 +232,13 @@ extern short glyph2tile[];
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView reloadData]; // cancel delete
-	if (menuWindow.menuHow == PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"])) {
+	if (self.menuWindow.menuHow == PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"])) {
 		NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
 		if (!i.isMeta || i.isGold) {
-			menuWindow.nethackMenuItem = i;
+			self.menuWindow.nethackMenuItem = i;
 			int a = [i.title parseNetHackAmount];
 			if (a > 1) {
-				itemAmountViewController.menuWindow = menuWindow;
+				itemAmountViewController.menuWindow = self.menuWindow;
 				[self.navigationController pushViewController:itemAmountViewController animated:YES];
 			}
 		}
@@ -250,27 +248,27 @@ extern short glyph2tile[];
 #pragma mark UITableView datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (menuWindow.isShallowMenu) {
+	if (self.menuWindow.isShallowMenu) {
 		return 1;
 	} else {
-		return menuWindow.menuItems.count;
+		return self.menuWindow.menuItems.count;
 	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (menuWindow.isShallowMenu) {
+	if (self.menuWindow.isShallowMenu) {
 		if (section != 0) {
 			NSLog(@"error in %s: section number in shallow menu!", __FUNCTION__);
 		}
 		return menuWindow.menuItems.count;
 	} else {
-		NethackMenuItem *i = [menuWindow.menuItems objectAtIndex:section];
+		NethackMenuItem *i = [self.menuWindow.menuItems objectAtIndex:section];
 		return i.children.count;
 	}
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NethackMenuItem *i = [menuWindow.menuItems objectAtIndex:section];
+	NethackMenuItem *i = [self.menuWindow.menuItems objectAtIndex:section];
 	return i.title;
 }
 
@@ -348,15 +346,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 {
     tv.allowsSelection=FALSE; //iNethack2: to help fix bugginess with amount selection transition
     //iNethack2: support for selecting amount to put/take to/from a container.
-    if ((menuWindow.menuHow == PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"]))
+    if ((self.menuWindow.menuHow == PICK_ONE && ([self.title containsString:@"throw"] || [self.title containsString:@"drop"]))
         ||
-        (menuWindow.menuHow == PICK_ANY && ([self.title containsString:@"Put"] || [self.title containsString:@"Take"]))) {
+        (self.menuWindow.menuHow == PICK_ANY && ([self.title containsString:@"Put"] || [self.title containsString:@"Take"]))) {
         NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
         if (!i.isMeta || i.isGold) {
-            menuWindow.nethackMenuItem = i;
+            self.menuWindow.nethackMenuItem = i;
             int a = [i.title parseNetHackAmount];
             if (a > 1) {
-                itemAmountViewController.menuWindow = menuWindow;
+                itemAmountViewController.menuWindow = self.menuWindow;
                 [self.navigationController pushViewController:itemAmountViewController animated:YES];
             } else
                 tv.allowsSelection=TRUE; //iNethack2: to help fix bugginess with amount selection transition
@@ -368,39 +366,39 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void) setMenuWindow:(Window *)w {
-	menuWindow = w;
-	menuWindow.menuResult = kMenuCancelled;
-	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? menuWindow.menuPrompt : @"Menu";
+	self.menuWindow = w;
+	self.menuWindow.menuResult = kMenuCancelled;
+	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? self.menuWindow.menuPrompt : @"Menu";
 
 	// extend menu items
-	if (menuWindow.acceptBareHanded || menuWindow.acceptMoney || menuWindow.acceptMore) {
+	if (self.menuWindow.acceptBareHanded || self.menuWindow.acceptMoney || self.menuWindow.acceptMore) {
 		anything any;
 		any.a_int = 0;
 		NethackMenuItem *miParent = [[NethackMenuItem alloc] initWithId:&any title:"Meta" glyph:kNoGlyph preselected:NO];
 		[menuWindow addMenuItem:miParent];
 		[miParent release];
-		if (menuWindow.acceptBareHanded) {
+		if (self.menuWindow.acceptBareHanded) {
 			any.a_int = '-';
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"Hands (-)"
 																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[menuWindow addMenuItem:mi];
+			[self.menuWindow addMenuItem:mi];
 			[mi release];
 		}
-		if (menuWindow.acceptMore) {
+		if (self.menuWindow.acceptMore) {
 			any.a_int = '*';
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"More (*)"
 																glyph:kNoGlyph isMeta:YES preselected:NO];
 			[menuWindow addMenuItem:mi];
 			[mi release];
 		}
-		if (menuWindow.acceptMoney) {
+		if (self.menuWindow.acceptMoney) {
 			any.a_int = '$';
             NSString *title = [WinIPhone universalMoneyString];
 
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
 																glyph:kNoGlyph isMeta:YES preselected:NO];
 			mi.gold = YES;
-			[menuWindow addMenuItem:mi];
+			[self.menuWindow addMenuItem:mi];
 			[mi release];
 		}
 	}
@@ -409,15 +407,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	if (self.navigationController.topViewController != itemAmountViewController) {
-		if (menuWindow.menuHow == PICK_ANY) {
+		if (self.menuWindow.menuHow == PICK_ANY) {
 			NSMutableArray *items = [NSMutableArray array];
 			[self collectSelectedItems:menuWindow.menuItems into:items];
-			menuWindow.menuResult = (int) items.count;
-			menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
+			self.menuWindow.menuResult = (int) items.count;
+			self.menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
 			for (int i = 0; i < items.count; ++i) {
 				NethackMenuItem *item = [items objectAtIndex:i];
-				menuWindow.menuList[i].count = item.amount;
-				menuWindow.menuList[i].item = item.identifier;
+				self.menuWindow.menuList[i].count = item.amount;
+				self.menuWindow.menuList[i].item = item.identifier;
 			}
 		}
 		[[MainViewController instance] broadcastUIEvent];
@@ -425,11 +423,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void) finishPickOne:(NethackMenuItem *)i {
-	menuWindow.menuResult = 1;
-	menuWindow.menuList = malloc(sizeof(menu_item));
-	menuWindow.menuList->count = i.amount;
-	menuWindow.menuList->item = i.identifier;
-    menuWindow.nethackMenuItem.amount = i.amount;
+	self.menuWindow.menuResult = 1;
+	self.menuWindow.menuList = malloc(sizeof(menu_item));
+	self.menuWindow.menuList->count = i.amount;
+	self.menuWindow.menuList->item = i.identifier;
+    self.menuWindow.nethackMenuItem.amount = i.amount;
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 @end

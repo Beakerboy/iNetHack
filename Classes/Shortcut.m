@@ -60,7 +60,7 @@ static NSString* ParseShortcutString (NSString* keys) {
 	if (selector) {
 		[[UIApplication sharedApplication] sendAction:selector to:target from:sender forEvent:nil];
 	} else {
-		NethackEventQueue *q = [[MainViewController instance] nethackEventQueue];
+		NethackEventQueue *q = self.mainViewController.nethackEventQueue;
 		for (int i = 0; i < keys.length; ++i) {
 			[q addKeyEvent:[keys characterAtIndex:i]];
 		}

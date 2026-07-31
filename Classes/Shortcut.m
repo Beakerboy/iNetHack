@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "Shortcut.h"
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 #import "NethackEventQueue.h"
 
 static NSString* ParseShortcutString (NSString* keys) {

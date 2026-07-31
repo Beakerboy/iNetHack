@@ -1,5 +1,5 @@
 #import "NH36EngineRunner.h"
-#import <NetHackSharedUI/AbstractMainViewController.h>
+#import "MainViewController.h"
 
 // Declare the setup function exposed by your 3.6 winiphone.m
 extern void iphone_set_ui_context(AbstractMainViewController *vc);

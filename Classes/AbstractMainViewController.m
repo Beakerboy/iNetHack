@@ -275,6 +275,7 @@ static AbstractMainViewController *instance;
 - (void) showManual:(id)obj {
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"manual" ofType:@"html"];
 	TextDisplayViewController *viewController = [TextDisplayViewController new];
+	viewController.mainViewController = self;
 	viewController.text = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 	viewController.HTML = YES;
     self.navigationController.view.frame = [[UIScreen mainScreen] applicationFrame]; //iNethack2 - fix for width on iphone6

@@ -62,10 +62,10 @@ extern short glyph2tile[];
 - (void) setMenuWindow:(Window *)w {
 	self.menuWindow = w;
 	self.menuWindow.menuResult = kMenuCancelled;
-	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? menuWindow.menuPrompt : @"Menu";
+	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? self.menuWindow.menuPrompt : @"Menu";
 
 	// extend menu items
-	if (self.menuWindow.acceptBareHanded || self.menuWindow.acceptMoney || menuWindow.acceptMore) {
+	if (self.menuWindow.acceptBareHanded || self.menuWindow.acceptMoney || self.menuWindow.acceptMore) {
 		anything any;
 		any.a_int = 0;
 		NethackMenuItem *miParent = [[NethackMenuItem alloc] initWithId:&any title:"Meta" glyph:kNoGlyph preselected:NO];
@@ -260,7 +260,7 @@ extern short glyph2tile[];
 		if (section != 0) {
 			NSLog(@"error in %s: section number in shallow menu!", __FUNCTION__);
 		}
-		return menuWindow.menuItems.count;
+		return self.menuWindow.menuItems.count;
 	} else {
 		NethackMenuItem *i = [self.menuWindow.menuItems objectAtIndex:section];
 		return i.children.count;

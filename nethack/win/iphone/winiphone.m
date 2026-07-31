@@ -50,7 +50,7 @@
 #include "TargetConditionals.h"
 #endif
 
-static MainViewController *g_main_view_controller = nil;
+MainViewController *g_main_view_controller = nil;
 
 #define kOptionUsername (@"username")
 #define kOptionAutopickup (@"autopickup")

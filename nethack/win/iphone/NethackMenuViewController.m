@@ -24,7 +24,7 @@
 #import <NetHackSharedUI/Window.h>
 #import <NetHackSharedUI/NethackMenuItem.h>
 #import "MainViewController.h"
-#import <NetHackSharedUI/TileSet.h>
+#import "TileSet.h"
 #import <NetHackSharedUI/NSString+Regexp.h>
 #import <NetHackSharedUI/NSString+NetHack.h>
 #import <NetHackSharedUI/ItemAmountViewController.h>

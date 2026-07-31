@@ -23,11 +23,14 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+@class AbstractMainViewController;
+
 @interface TextDisplayViewController : UIViewController <WKNavigationDelegate> {
     UITextView *textView;
     BOOL colorInvert;
 }
 
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @property (nonatomic, copy) NSString *text;
 @property (assign, getter=isHTML) BOOL HTML;
 @property (nonatomic, retain) NSCondition *condition;

@@ -30,5 +30,6 @@
 }
 
 @property (nonatomic, retain) NSArray *menuItems;
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 
 @end

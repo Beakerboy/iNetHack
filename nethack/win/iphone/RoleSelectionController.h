@@ -14,6 +14,7 @@
 
 #import <UIKit/UIKit.h>
 
+extern MainViewController *g_main_view_controller;
 @protocol RoleSelectionControllerDelegate <NSObject>
 - (void)didCompleteRoleSelection:(id)sender;
 @end

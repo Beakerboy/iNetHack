@@ -59,7 +59,7 @@ extern short glyph2tile[];
 	[self.tableView reloadData];
 }
 
-- (void) setMenuWindow:(Window *)w {
+- (void) loadMenuWithWindow:(Window *)w {
 	self.menuWindow = w;
 	self.menuWindow.menuResult = kMenuCancelled;
 	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? self.menuWindow.menuPrompt : @"Menu";

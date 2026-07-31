@@ -47,18 +47,6 @@ extern short glyph2tile[];
 	}
 }
 
-- (void) selectAll:(id)sender {
-	UIBarButtonItem *bi = sender;
-	if (selectAll) {
-		bi.title = @"None";
-	} else {
-		bi.title = @"All";
-	}
-	[self selectAllItems:self.menuWindow.menuItems select:selectAll];
-	selectAll = !selectAll;
-	[self.tableView reloadData];
-}
-
 - (void) loadMenuWithWindow:(Window *)w {
 	self.menuWindow = w;
 	self.menuWindow.menuResult = kMenuCancelled;

@@ -31,7 +31,7 @@
 
 extern short glyph2tile[];
 
-@implementation NethackMenuViewController
+@implementation AbstractNethackMenuViewController
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;

@@ -88,7 +88,7 @@
 		[self.navigationController pushViewController:submenuController animated:YES];
 		[submenuController release];
 	} else if (menuItem.key) {
-		[[[MainViewController instance] nethackEventQueue] addKeyEvent:menuItem.key];
+		[[self.mainViewController nethackEventQueue] addKeyEvent:menuItem.key];
 		[self.navigationController popToRootViewControllerAnimated:NO];
 	} else {
 		[menuItem invoke];

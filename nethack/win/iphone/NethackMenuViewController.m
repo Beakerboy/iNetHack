@@ -154,7 +154,7 @@ extern short glyph2tile[];
 				NethackMenuItem *item = [items objectAtIndex:i];
 				menu_item *nativeList = (menu_item *)self.menuWindow.menuList;
 				nativeList[i].count = item.amount;
-				self.menuWindow.menuList[i].item = item.identifier;
+				nativeList[i].item.a_void = (void *)item.identifier;
 			}
 		}
 		[self.mainViewController broadcastUIEvent];

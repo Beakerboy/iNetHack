@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class AbstractMainViewController;
 
 @interface MenuViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 	

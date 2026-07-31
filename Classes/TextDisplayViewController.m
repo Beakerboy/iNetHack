@@ -21,7 +21,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "TextDisplayViewController.h"
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 #import <WebKit/WebKit.h>
 
 @implementation TextDisplayViewController

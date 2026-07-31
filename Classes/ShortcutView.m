@@ -216,7 +216,7 @@ static NSArray *DefaultShortcuts () {
 	NSArray* identifiers = [[NSUserDefaults standardUserDefaults] arrayForKey:ShortcutPrefencesIdentifier];
 	NSMutableArray *newShortcuts = [NSMutableArray arrayWithCapacity:identifiers.count];
 	for (NSString *identifier in identifiers) {
-		[newShortcuts addObject:ShortcutForIdentifier(identifier)];
+		[newShortcuts addObject:ShortcutForIdentifier(identifier, self.mainViewController)];
 	}
 	self.shortcuts = newShortcuts;
 	[[NSUserDefaults standardUserDefaults] synchronize];

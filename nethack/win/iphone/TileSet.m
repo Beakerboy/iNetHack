@@ -1,4 +1,5 @@
 #import "TileSet.h"
+#import "hack.h"
 
 @implementation AbstractTileSet
 

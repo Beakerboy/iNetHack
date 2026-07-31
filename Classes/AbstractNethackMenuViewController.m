@@ -23,7 +23,7 @@
 #import "Window.h"
 #import "NethackMenuItem.h"
 #import "AbstractMainViewController.h"
-#import "TileSet.h"
+#import "AbstractTileSet.h"
 #import "NSString+Regexp.h"
 #import "NSString+NetHack.h"
 #import "ItemAmountViewController.h"

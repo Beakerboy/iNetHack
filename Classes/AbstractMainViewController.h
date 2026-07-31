@@ -33,7 +33,7 @@
 #define kCenterTapWidth (40)
 
 @class Window, AbstractNethackMenuViewController, NethackYnFunction, TextInputViewController, NethackEventQueue;
-@class DirectionInputViewController, ExtendedCommandViewController;
+@class DirectionInputViewController, ExtendedCommandViewController, MenuViewController;
 @class TouchInfo, TouchInfoStore;
 @class TilePosition;
 @class DMath;
@@ -44,6 +44,7 @@
     IBOutlet TextInputViewController *textInputViewController;
     IBOutlet DirectionInputViewController *directionInputViewController;
     IBOutlet ExtendedCommandViewController *extendedCommandViewController;
+    IBOutlet MenuViewController *menuViewController;
 
     NSMutableDictionary *windows; 
     int windowIdCounter; 
@@ -73,6 +74,7 @@
 @property (nonatomic, retain) IBOutlet TextInputViewController *textInputViewController;
 @property (nonatomic, retain) IBOutlet ExtendedCommandViewController *extendedCommandViewController;
 @property (nonatomic, retain) IBOutlet DirectionInputViewController *directionInputViewController;
+@property (nonatomic, retain) IBOutlet MenuViewController *menuViewController;
 @property (nonatomic, readonly, retain) PlayerState *playerState;
 @property (nonatomic, assign) BOOL isRogueLevel;
 @property (nonatomic, readonly, retain) NSDictionary *windows; 

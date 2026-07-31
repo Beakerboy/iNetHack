@@ -37,16 +37,6 @@ extern short glyph2tile[];
 	return YES;
 }
 
-- (void) selectAllItems:(NSArray *)items select:(BOOL)s {
-	for (NethackMenuItem *i in items) {
-		if (i.isTitle) {
-			[self selectAllItems:i.children select:s];
-		} else {
-			i.selected = s;
-		}
-	}
-}
-
 - (void) loadMenuWithWindow:(Window *)w {
 	self.menuWindow = w;
 	self.menuWindow.menuResult = kMenuCancelled;

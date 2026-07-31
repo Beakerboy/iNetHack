@@ -26,7 +26,7 @@
 #import "TilePosition.h"
 #import "AbstractTileSet.h"
 #import "ShortcutView.h"
-#import "Shortcut.h"
+//#import "Shortcut.h"
 #import "AbstractAsciiTileSet.h"
 
 #define kKeyTileset (@"tileset")

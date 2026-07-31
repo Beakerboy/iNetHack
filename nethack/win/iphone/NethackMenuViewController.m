@@ -33,10 +33,6 @@ extern short glyph2tile[];
 
 @implementation AbstractNethackMenuViewController
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
-}
-
 - (void) loadMenuWithWindow:(Window *)w {
 	self.menuWindow = w;
 	self.menuWindow.menuResult = kMenuCancelled;

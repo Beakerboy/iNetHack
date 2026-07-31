@@ -6,10 +6,11 @@ extern int iphone_main(int argc, char **argv);
 extern void save_currentstate(void);
 extern int dosave(void);
 extern char lock[]; 
-@implementation MainViewController
+
 @interface MainViewController () <RoleSelectionControllerDelegate>
 @end
 
+@implementation MainViewController
 - (void) runNativeEngineLoop {
     // This runs safely on the background thread spawned by the parent class
     char *argv[] = {"nethack36"};

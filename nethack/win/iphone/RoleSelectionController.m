@@ -44,7 +44,7 @@ static void reset_choices (int type)
 @implementation RoleSelectionController
 - (void)showChoices:(NSArray *)items withTitle:(NSString *)title {
 	if (items.count > 1) {
-		MenuViewController* controller = [MenuViewController new];
+		MenuViewController *controller = g_main_view_controller.menuViewController;
 		controller.title     = title;
 		controller.menuItems = items;
 

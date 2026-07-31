@@ -55,9 +55,28 @@ targets:
     deploymentTarget: "12.0"
     sources:
       - path: Classes
-        headerVisibility: public 
+        headerVisibility: public
     settings:
       CLANG_ENABLE_MODULES: YES
+    scheme:
+      testTargets:
+        - NetHackSharedUITests
+
+  NetHackSharedUITests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "12.0"
+    sources:
+      - path: Tests/NetHackSharedUITests
+    dependencies:
+      - framework: NetHackSharedUI.framework
+        embed: false
+    settings:
+      base:
+        CLANG_ENABLE_MODULES: YES
+        CLANG_ENABLE_OBJC_ARC: YES
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: ge.zima.nethack.NetHackSharedUITests
 
   iNetHack2:
     type: application

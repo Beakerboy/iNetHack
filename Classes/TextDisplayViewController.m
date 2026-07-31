@@ -92,7 +92,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	if (condition) {
-		[[MainViewController instance] broadcastCondition:condition];
+		[self.mainViewController broadcastCondition:condition];
 	}
 }
 @end

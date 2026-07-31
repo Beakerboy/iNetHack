@@ -145,18 +145,18 @@ extern short glyph2tile[];
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	if (self.navigationController.topViewController != itemAmountViewController) {
-		if (menuWindow.menuHow == PICK_ANY) {
+		if (self.menuWindow.menuHow == PICK_ANY) {
 			NSMutableArray *items = [NSMutableArray array];
 			[self collectSelectedItems:self.menuWindow.menuItems into:items];
-			menuWindow.menuResult = (int) items.count;
-			menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
+			self.menuWindow.menuResult = (int) items.count;
+			self.menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
 			for (int i = 0; i < items.count; ++i) {
 				NethackMenuItem *item = [items objectAtIndex:i];
-				menuWindow.menuList[i].count = item.amount;
-				menuWindow.menuList[i].item = item.identifier;
+				self.menuWindow.menuList[i].count = item.amount;
+				self.menuWindow.menuList[i].item = item.identifier;
 			}
 		}
-		[[MainViewController instance] broadcastUIEvent];
+		[[self.mainViewController broadcastUIEvent];
 	}
 }
 

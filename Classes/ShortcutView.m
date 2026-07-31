@@ -45,8 +45,16 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
         title    = @"log";
         selector = @selector(nethackShowLog:);
 	}
-	return [[[Shortcut alloc] initWithTitle:title keys:(selector ? nil : identifier) selector:selector target:nil]
-			autorelease];
+	Shortcut *newShortcut = [[Shortcut alloc] initWithTitle:title 
+                                                    keys:(selector ? nil : identifier) 
+                                                selector:selector 
+                                                  target:nil];
+
+    // Inject the view's mainViewController reference directly into the model!
+    newShortcut.mainViewController = self.mainViewController;
+
+    // Autorelease and return the configured shortcut to match your original memory lifecycle
+    return [newShortcut autorelease];
 }
 
 #define TextColor        UIColor.whiteColor.CGColor

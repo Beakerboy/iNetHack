@@ -3,7 +3,7 @@
 #define USE_TILES
 #endif
 #import "hack.h"
-
+extern short glyph2tile[];
 @implementation AbstractTileSet
 
 + (int) glyphToTileIndex:(int)g {

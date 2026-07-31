@@ -272,7 +272,9 @@ extern short glyph2tile[];
 
     BOOL showMenuLetters = [[NSUserDefaults standardUserDefaults] floatForKey:@"showmenuletters"];
 
-    char invletter = i.identifier.a_char;
+    const anything *nativeUnion = (const anything *)i.identifier;
+
+    char invletter = nativeUnion ? nativeUnion->a_char : '\0';
     if (i.accelerator > 0) {
         invletter = i.accelerator;
     }

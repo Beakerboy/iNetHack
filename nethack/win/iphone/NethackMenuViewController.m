@@ -157,7 +157,7 @@ extern short glyph2tile[];
 				self.menuWindow.menuList[i].item = item.identifier;
 			}
 		}
-		[[self.mainViewController broadcastUIEvent];
+		[self.mainViewController broadcastUIEvent];
 	}
 }
 

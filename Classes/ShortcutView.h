@@ -22,12 +22,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class AbstractMainViewController;
+
 @interface ShortcutView : UIScrollView <UIActionSheetDelegate, UITextFieldDelegate> {
-	NSArray        *shortcuts;
+    NSArray        *shortcuts;
 	NSMutableArray *shortcutLayers;
 	NSInteger       highlightedIndex;
 
 	NSTimer        *editTimer;
 	NSInteger       editIndex;
 }
+
+@property (nonatomic, assign) AbstractMainViewController *mainViewController;
 @end

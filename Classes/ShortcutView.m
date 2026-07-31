@@ -32,7 +32,7 @@ BOOL colorInvert; // Textmode: White background, black becomes white.
 #define ShortcutKeyboardIdentifier @"keyboard"
 #define ShortcutLogIdentifier @"log"
 
-static Shortcut *ShortcutForIdentifier (NSString *identifier) {
+static Shortcut *ShortcutForIdentifier (NSString *identifier, AbstractMainViewController *controller) {
 	NSString *title = identifier;
 	SEL selector    = NULL;
 	if ([identifier isEqualToString:ShortcutMainMenuIdentifier]) {
@@ -46,14 +46,10 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
         selector = @selector(nethackShowLog:);
 	}
 	Shortcut *newShortcut = [[Shortcut alloc] initWithTitle:title 
-                                                    keys:(selector ? nil : identifier) 
-                                                selector:selector 
-                                                  target:nil];
-
-    // Inject the view's mainViewController reference directly into the model!
-    newShortcut.mainViewController = self.mainViewController;
-
-    // Autorelease and return the configured shortcut to match your original memory lifecycle
+                                                       keys:(selector ? nil : identifier) 
+                                                   selector:selector 
+                                                     target:nil];
+    newShortcut.mainViewController = controller;
     return [newShortcut autorelease];
 }
 

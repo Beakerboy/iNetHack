@@ -13,6 +13,7 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
 extern MainViewController *g_main_view_controller;
 @protocol RoleSelectionControllerDelegate <NSObject>

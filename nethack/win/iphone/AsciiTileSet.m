@@ -85,7 +85,7 @@
 	return images[tile];
 }
 
-- (BOOL)isGlyphObject(int)glyph {
+- (BOOL)isGlyphObject:(int)glyph {
     return glyph_is_object(glyph);
 }
 @end

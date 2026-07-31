@@ -1,4 +1,5 @@
 #import "AsciiTileSet.h"
+#import "TileSet.h"
 #include "hack.h"
 #include "display.h" // Safe: compiles directly alongside 3.6 engine source code
 

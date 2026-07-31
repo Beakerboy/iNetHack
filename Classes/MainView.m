@@ -187,6 +187,7 @@
 	petMark = [[UIImage alloc] initWithContentsOfFile:[bundlePath stringByAppendingPathComponent:@"petmark.png"]];
 
 	shortcutView = [[ShortcutView alloc] initWithFrame:CGRectZero];
+	shortcutView.mainViewController = self.mainViewController;
 	[self addSubview:shortcutView];
 
 	// reuse the more button

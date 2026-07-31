@@ -365,45 +365,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellEditingStyleNone;
 }
 
-- (void) setMenuWindow:(Window *)w {
-	self.menuWindow = w;
-	self.menuWindow.menuResult = kMenuCancelled;
-	self.title = (w.menuPrompt && w.menuPrompt.length > 0) ? self.menuWindow.menuPrompt : @"Menu";
-
-	// extend menu items
-	if (self.menuWindow.acceptBareHanded || self.menuWindow.acceptMoney || self.menuWindow.acceptMore) {
-		anything any;
-		any.a_int = 0;
-		NethackMenuItem *miParent = [[NethackMenuItem alloc] initWithId:&any title:"Meta" glyph:kNoGlyph preselected:NO];
-		[menuWindow addMenuItem:miParent];
-		[miParent release];
-		if (self.menuWindow.acceptBareHanded) {
-			any.a_int = '-';
-			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"Hands (-)"
-																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[self.menuWindow addMenuItem:mi];
-			[mi release];
-		}
-		if (self.menuWindow.acceptMore) {
-			any.a_int = '*';
-			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:"More (*)"
-																glyph:kNoGlyph isMeta:YES preselected:NO];
-			[menuWindow addMenuItem:mi];
-			[mi release];
-		}
-		if (self.menuWindow.acceptMoney) {
-			any.a_int = '$';
-            NSString *title = [WinIPhone universalMoneyString];
-
-			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
-																glyph:kNoGlyph isMeta:YES preselected:NO];
-			mi.gold = YES;
-			[self.menuWindow addMenuItem:mi];
-			[mi release];
-		}
-	}
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	if (self.navigationController.topViewController != itemAmountViewController) {
@@ -422,12 +383,4 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	}
 }
 
-- (void) finishPickOne:(NethackMenuItem *)i {
-	self.menuWindow.menuResult = 1;
-	self.menuWindow.menuList = malloc(sizeof(menu_item));
-	self.menuWindow.menuList->count = i.amount;
-	self.menuWindow.menuList->item = i.identifier;
-    self.menuWindow.nethackMenuItem.amount = i.amount;
-	[self.navigationController popToRootViewControllerAnimated:NO];
-}
 @end

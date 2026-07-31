@@ -22,7 +22,7 @@
 
 #import "MenuViewController.h"
 #import "MenuItem.h"
-#import "MainViewController.h"
+#import "AbstractMainViewController.h"
 #import "NethackEventQueue.h"
 
 @implementation MenuViewController

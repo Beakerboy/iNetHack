@@ -173,7 +173,7 @@ extern short glyph2tile[];
 	if (self.navigationController.topViewController != itemAmountViewController) {
 		if (menuWindow.menuHow == PICK_ANY) {
 			NSMutableArray *items = [NSMutableArray array];
-			[self collectSelectedItems:menuWindow.menuItems into:items];
+			[self collectSelectedItems:self.menuWindow.menuItems into:items];
 			menuWindow.menuResult = (int) items.count;
 			menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
 			for (int i = 0; i < items.count; ++i) {
@@ -409,7 +409,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.navigationController.topViewController != itemAmountViewController) {
 		if (self.menuWindow.menuHow == PICK_ANY) {
 			NSMutableArray *items = [NSMutableArray array];
-			[self collectSelectedItems:menuWindow.menuItems into:items];
+			[self collectSelectedItems:self.menuWindow.menuItems into:items];
 			self.menuWindow.menuResult = (int) items.count;
 			self.menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
 			for (int i = 0; i < items.count; ++i) {

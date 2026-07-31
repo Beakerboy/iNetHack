@@ -152,7 +152,8 @@ extern short glyph2tile[];
 			self.menuWindow.menuList = malloc(sizeof(menu_item) * items.count);
 			for (int i = 0; i < items.count; ++i) {
 				NethackMenuItem *item = [items objectAtIndex:i];
-				self.menuWindow.menuList[i].count = item.amount;
+				menu_item *nativeList = (menu_item *)self.menuWindow.menuList;
+				nativeList[i].count = item.amount;
 				self.menuWindow.menuList[i].item = item.identifier;
 			}
 		}

@@ -62,7 +62,7 @@ extern short glyph2tile[];
 	[self.tableView reloadData];
 }
 
-- (void) setMenuWindow:(Window *)w {
+- (void) loadMenuWithWindow:(Window *)w {
 	
 }
 

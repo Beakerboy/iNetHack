@@ -222,7 +222,7 @@ extern short glyph2tile[];
 	NethackMenuItem *i = [self nethackMenuItemAtIndexPath:indexPath];
 
 	if (i.glyph != self.mainViewController.noGlyphConstant && i.glyph != kNoGlyph) {
-		UIImage *uiImg = [UIImage imageWithCGImage:[[TileSet instance] imageForGlyph:i.glyph]];
+		UIImage *uiImg = [self.mainViewController imageForGlyphConstant:i.glyph];
 		cell.imageView.image = uiImg;
 
         // For large tiles (like IBMGraphics), shrink it down since we are using larger tiles for better clarity.

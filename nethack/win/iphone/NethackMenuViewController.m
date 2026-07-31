@@ -54,7 +54,7 @@ extern short glyph2tile[];
 	} else {
 		bi.title = @"All";
 	}
-	[self selectAllItems:menuWindow.menuItems select:selectAll];
+	[self selectAllItems:self.menuWindow.menuItems select:selectAll];
 	selectAll = !selectAll;
 	[self.tableView reloadData];
 }

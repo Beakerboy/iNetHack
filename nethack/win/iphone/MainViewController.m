@@ -50,6 +50,7 @@ extern char lock[];
     
     state.ux        = u.ux;
     state.uy        = u.uy;
+    state.uy        = u.uz;
     state.mhmax     = u.mhmax;
     state.mh        = u.mh;
     state.mtimedone = u.mtimedone;

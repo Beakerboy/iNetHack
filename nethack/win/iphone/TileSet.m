@@ -4,7 +4,7 @@
 #endif
 #import "hack.h"
 extern short glyph2tile[];
-@implementation AbstractTileSet
+@implementation TileSet
 
 + (int) glyphToTileIndex:(int)g {
 	return glyph2tile[g];

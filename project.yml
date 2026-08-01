@@ -156,6 +156,7 @@ targets:
           - $(inherited)
           - nethack36/include
           - nethack36/sys/share
+          - nethack36/win/iphone
 
     sources:
       - path: nethack36/include

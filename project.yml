@@ -163,6 +163,8 @@ targets:
         name: nethack36/include
       - path: nethack36/src
         name: nethack36/src
+        excludes:
+          - "win/iphone/**"
       - path: nethack36/win/iphone
         name: nethack36/win/iphone
       - path: nethack36/sys/share

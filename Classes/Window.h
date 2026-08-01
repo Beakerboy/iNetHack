@@ -23,11 +23,11 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, NHWindowType) {
-    NHW_MESSAGE = 1,
-    NHW_STATUS  = 2,
-    NHW_MAP     = 3,
-    NHW_MENU    = 4,
-    NHW_TEXT    = 5
+    UI_NHW_MESSAGE = 1,
+    UI_NHW_STATUS  = 2,
+    UI_NHW_MAP     = 3,
+    UI_NHW_MENU    = 4,
+    UI_NHW_TEXT    = 5
 };
 #define kNoGlyph (-1)
 

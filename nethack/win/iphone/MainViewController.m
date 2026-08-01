@@ -2,6 +2,7 @@
 #import "RoleSelectionController.h"
 #import "AsciiTileSet.m"
 #import "TileSet.m"
+#import <NetHackSharedUI/PlayerState.h>
 #import "winiphone.m"
 #import "func_tab.h"
 

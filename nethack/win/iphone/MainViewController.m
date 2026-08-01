@@ -2,6 +2,7 @@
 #import "RoleSelectionController.h"
 #import "AsciiTileSet.m"
 #import "TileSet.m"
+#import "winiphone.m"
 #import "func_tab.h"
 
 // Declare the external C main function from this target's winiphone.m

@@ -157,9 +157,11 @@ extern char lock[];
     // 1. Get the current active tile index for this version using your engine's mapping rules
     int tileIndex = [TileSet glyphToTileIndex:glyph];
     
-    // 2. Safely read the image asset from your active tileset instance variable 
-    // (Assumes your view controller or MainView tracks the loaded tileSet instance)
-    CGImageRef cgImg = [self.tileSet imageForTile:tileIndex]; 
+    // 2. Typecast self.view to MainView to grab the active tileset instance safely
+    MainView *gameView = (MainView *)self.view;
+    
+    // 3. Read the image memory address from the view's live asset property
+    CGImageRef cgImg = [gameView.tileSet imageForTile:tileIndex]; 
     
     if (cgImg) {
         return [UIImage imageWithCGImage:cgImg];

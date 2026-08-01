@@ -155,7 +155,6 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(inherited)
           - nethack36/include
-          - Classes/win/iphone
           - nethack36/sys/share
 
     sources:

@@ -6,7 +6,7 @@
 #import "func_tab.h"
 
 // Declare the external C main function from this target's winiphone.m
-extern int iphone_main(int argc, char **argv);
+extern void iphone_main(int argc, char **argv);
 extern void save_currentstate(void);
 extern int dosave(void);
 extern char lock[]; 

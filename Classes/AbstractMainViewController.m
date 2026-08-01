@@ -153,7 +153,7 @@ static AbstractMainViewController *instance;
 	//for (Window *w in windows) {
     for (NSString* key in windows) {    //iNethack2 now a dict
         Window *w = [windows objectForKey:key];
-        if (w.type == NHW_MAP) {
+        if (w.type == UI_NHW_MAP) {
 			return w;
 		}
 	}
@@ -164,7 +164,7 @@ static AbstractMainViewController *instance;
 //	for (Window *w in windows) {
     for (NSString* key in windows) {    //iNethack2 now a dict
         Window *w = [windows objectForKey:key];
-        if (w.type == NHW_STATUS) {
+        if (w.type == UI_NHW_STATUS) {
 			return w;
 		}
 	}
@@ -175,7 +175,7 @@ static AbstractMainViewController *instance;
 //	for (Window *w in windows) {
     for (NSString* key in windows) {    //iNethack2 now a dict
         Window *w = [windows objectForKey:key];
-        if (w.type == NHW_MESSAGE) {
+        if (w.type == UI_NHW_MESSAGE) {
 			return w;
 		}
 	}
@@ -706,8 +706,8 @@ static AbstractMainViewController *instance;
 	BOOL mapBlocked = NO;
 	Window *w = [self windowWithId:wid];
 	switch (w.type) {
-		case NHW_MENU:
-		case NHW_TEXT:
+		case UI_NHW_MENU:
+		case UI_NHW_TEXT:
 			if (w.strings.count > 0) {
 				[uiCondition lock];
 				[self performSelectorOnMainThread:@selector(displayMessage:) withObject:w waitUntilDone:YES];
@@ -715,13 +715,13 @@ static AbstractMainViewController *instance;
 				[uiCondition unlock];
 			}
 			break;
-		case NHW_MAP:
+		case UI_NHW_MAP:
 			if (blocking) {
 				w.blocking = YES;
 				blockingMap = w;
 				mapBlocked = YES;
 			}
-		case NHW_MESSAGE:
+		case UI_NHW_MESSAGE:
             // ios15 prevent "[UIViewController view] must be used from main thread only" warning
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 dispatch_async(dispatch_get_main_queue(), ^{

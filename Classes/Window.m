@@ -47,20 +47,20 @@
 		maxWidth = COLNO;
 		maxHeight = ROWNO;
 		switch (t) {
-			case NHW_MESSAGE:
+			case UI_NHW_MESSAGE:
 				width = maxWidth;
 				height = 3;
 				break;
-			case NHW_STATUS:
+			case UI_NHW_STATUS:
 				width = maxWidth;
 				height = 1;
 				break;
-			case NHW_MAP:
+			case UI_NHW_MAP:
 				width = maxWidth;
 				height = maxHeight;
 				break;
-			case NHW_MENU:
-			case NHW_TEXT:
+			case UI_NHW_MENU:
+			case UI_NHW_TEXT:
 				width = maxWidth;
 				height = maxHeight;
 				break;
@@ -99,10 +99,10 @@
 - (void) putString:(const char *)s {
 	[self lock];
 	NSString *str = [NSString stringWithCString:s encoding:NSASCIIStringEncoding];
-	if (type == NHW_STATUS && strings.count == 2) {
+	if (type == UI_NHW_STATUS && strings.count == 2) {
 		[strings removeAllObjects];
 	}
-	if (type == NHW_STATUS) {
+	if (type == UI_NHW_STATUS) {
 		str = [str stringWithTrimmedWhitespaces];
 	}
 	[strings addObject:str];
@@ -148,7 +148,7 @@
 }
 
 - (void) addLogString:(NSString *)s {
-	if (type != NHW_STATUS) {
+	if (type != UI_NHW_STATUS) {
 		[log addObject:s];
 		if (log.count > maxLogEntries) {
 			[log removeObjectAtIndex:0];

@@ -1,4 +1,5 @@
 #import "MainViewController.h"
+#import "RoleSelectionController.h"
 #import "func_tab.h"
 
 // Declare the external C main function from this target's winiphone.m

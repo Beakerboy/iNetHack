@@ -126,7 +126,6 @@ targets:
     sources:
       - path: MainMenuApp
         name: MainMenuApp
-      - path: main.m # Included explicitly
       - path: Resources
         name: Resources
         excludes:

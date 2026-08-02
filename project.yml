@@ -85,6 +85,7 @@ targets:
       - sdk: CoreGraphics.framework
       - sdk: QuartzCore.framework
       - sdk: SystemConfiguration.framework
+      - sdk: WebKit.framework
 
     settings:
       base:

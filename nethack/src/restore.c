@@ -803,11 +803,15 @@ int
 dorecover(fd)
 register int fd;
 {
+    int trace_count = 1;
+    char trace_buf[32];
+    Sprintf(trace_buf, "Trace Point: %d", trace_count++);
+    yn(trace_buf);
     unsigned int stuckid = 0, steedid = 0; /* not a register */
     xchar ltmp;
     int rtmp;
     struct obj *otmp;
-
+    
     restoring = TRUE;
     get_plname_from_file(fd, plname);
     getlev(fd, 0, (xchar) 0, FALSE);

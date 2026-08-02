@@ -59,7 +59,8 @@ static AbstractTileSet *instance = nil;
 }
 
 - (CGImageRef) imageForGlyph:(int)g atX:(int)x y:(int)y {
-	return [self imageAt:[AbstractTileSet glyphToTileIndex:g]];
+    Class currentClass = [self class];
+	return [self imageAt:[currentClass glyphToTileIndex:g]];
 }
 
 - (CGImageRef) imageForGlyph:(int)g {

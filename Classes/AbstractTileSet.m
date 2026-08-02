@@ -67,6 +67,10 @@ static AbstractTileSet *instance = nil;
 	return [self imageForGlyph:g atX:0 y:0];
 }
 
++ (int)glyphToTileIndex:(int)g {
+    return g; // Base fallback pass-through
+}
+
 - (void) dealloc {
 	for (int i = 0; i < numImages; ++i) {
 		CGImageRelease(images[i]);

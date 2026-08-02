@@ -41,8 +41,11 @@
 
 #include <stdio.h>
 #include <fcntl.h>
+
 #include "dlb.h"
+#pragma pack(push, 4)
 #include "hack.h"
+#pragma pack(pop)
 #include "func_tab.h"
 #include "date.h"
 

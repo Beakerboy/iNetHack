@@ -31,7 +31,7 @@
 
 extern short glyph2tile[];
 
-@implementation AbstractNethackMenuViewController
+@implementation NethackMenuViewController
 
 - (void) loadMenuWithWindow:(Window *)w {
 	self.menuWindow = w;

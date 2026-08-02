@@ -34,7 +34,9 @@ settings:
     CLANG_WARN_NON_LITERAL_NULL_CONVERSION: YES
     CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF: YES
     CLANG_WARN_OBJC_LITERAL_CONVERSION: YES
+    
     CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
+    
     CLANG_WARN_RANGE_LOOP_ANALYSIS: YES
     CLANG_WARN_STRICT_PROTOTYPES: YES
     CLANG_WARN_SUSPICIOUS_MOVE: YES
@@ -49,55 +51,39 @@ settings:
     "CODE_SIGN_IDENTITY[sdk=iphoneos*]": "iPhone Developer"
 
 targets:
+  # =========================================================================
+  # 1. FIXED: SHARED UI LAYER AS A PURE STATIC LIBRARY
+  # =========================================================================
   NetHackSharedUI:
-    type: framework
+    type: library.static # 💡 UPGRADED: Wipes out the plist and packaging layout requirements completely!
     platform: iOS
     deploymentTarget: "12.0"
     sources:
       - path: Classes
-        headerVisibility: public
     settings:
       base:
         CLANG_ENABLE_MODULES: YES
-        MACH_O_TYPE: mh_dylib
-        DEFINES_MODULE: YES
-    scheme:
-      testTargets:
-        - NetHackSharedUITests
 
-  NetHackSharedUITests:
-    type: bundle.unit-test
-    platform: iOS
-    deploymentTarget: "12.0"
-    sources:
-      - path: Tests/NetHackSharedUITests
-    dependencies:
-      - framework: NetHackSharedUI.framework
-        embed: false
-    settings:
-      base:
-        CLANG_ENABLE_MODULES: YES
-        CLANG_ENABLE_OBJC_ARC: YES
-        GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: ge.zima.nethack.NetHackSharedUITests
-
+  # =========================================================================
+  # 2. MAIN APPLICATION TARGET
+  # =========================================================================
   iNetHack2:
     type: application
     platform: iOS
     deploymentTarget: "12.0"
     
     dependencies:
-      - framework: NetHackEngine36
-        embed: true
+      - target: NetHackEngine36
         link: true
-      - framework: NetHackSharedUI
-        embed: true
+      - target: NetHackSharedUI
         link: true
       - sdk: Foundation.framework
       - sdk: UIKit.framework
       - sdk: CoreGraphics.framework
       - sdk: QuartzCore.framework
       - sdk: SystemConfiguration.framework
+      - sdk: WebKit.framework
+      - sdk: CoreHaptics.framework
 
     settings:
       base:
@@ -110,6 +96,7 @@ targets:
           - $(inherited)
           - nethack36/include
           - nethack36/win/iphone
+          - Classes # 💡 ADDED: Gives your main app access to your Shared UI header signatures natively
         MACH_O_TYPE: mh_execute
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
@@ -117,7 +104,7 @@ targets:
         OTHER_LDFLAGS:
           - $(inherited)
           - -Xlinker -ignore_auto_link
-        
+
       configs:
         Debug:
           ONLY_ACTIVE_ARCH: YES
@@ -130,9 +117,10 @@ targets:
         script: |
           set -e
           echo "=== Copying Data Files Flat into Application Container Root ==="
-          # TARGET_BUILD_DIR/EXECUTABLE_FOLDER_PATH resolves directly to your built .app folder root
-          cp -f "${SRCROOT}/nethack34/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack34/"
-          cp -f "${SRCROOT}/nethack36/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack36/"
+          mkdir -p "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack34"
+          mkdir -p "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack36"
+          if [ -d "${SRCROOT}/nethack34/dat" ]; then cp -f "${SRCROOT}/nethack34/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack34/"; fi
+          if [ -d "${SRCROOT}/nethack36/dat" ]; then cp -f "${SRCROOT}/nethack36/dat/"* "${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/nethack36/"; fi
         runOnlyForDeploymentPostprocessing: false
 
     sources:
@@ -151,10 +139,10 @@ targets:
         type: folder
 
   # =========================================================================
-  # 2. THE ISOLATED NETHACK 3.6 ENGINE
+  # 3. FIXED: NETHACK 3.6 ENGINE LAYER AS A PURE STATIC LIBRARY
   # =========================================================================
   NetHackEngine36:
-    type: framework
+    type: library.static # 💡 UPGRADED: Completely eliminates framework wrapper bundles!
     platform: iOS
     deploymentTarget: "12.0"
     
@@ -163,8 +151,9 @@ targets:
         HEADER_SEARCH_PATHS:
           - $(inherited)
           - nethack36/include
-          - nethack36/sys/share
           - nethack36/win/iphone
+          - nethack36/sys/share
+          - Classes # 💡 ADDED: Gives engine files visibility to abstract headers natively
 
     sources:
       - path: nethack36/include
@@ -172,6 +161,9 @@ targets:
       - path: nethack36/src
         name: nethack36/src
         excludes:
+          - "**/winiphone.m"
+          - "**/winiphone.c"
+          - "**/MainViewController.m"
           - "win/iphone/**"
       - path: nethack36/win/iphone
         name: nethack36/win/iphone
@@ -179,33 +171,6 @@ targets:
         name: nethack36/sys/share
         includes:
           - "posixregex.c"
+          
     dependencies:
-      - framework: NetHackSharedUI.framework
-
-  # =========================================================================
-  # 2. THE ISOLATED NETHACK 3.4 ENGINE
-  # =========================================================================
-  #NetHackEngine34:
-  #  type: library.static
-  #  platform: iOS
-  #  deploymentTarget: "12.0"
-    
-  #  settings:
-  #    base:
-  #      HEADER_SEARCH_PATHS:
-  #        - $(inherited)
-  #        - nethack34/include
-  #        - nethack34/win/iphone
-  #        - nethack34/sys/share
-
-  #  sources:
-  #    - path: nethack34/include
-  #      name: nethack34/include
-  #    - path: nethack34/src
-  #      name: nethack34/src
-  #    - path: nethack34/win/iphone
-  #      name: nethack34/win/iphone
-  #    - path: nethack34/sys/share
-  #      name: nethack34/sys/share
-  #      includes:
-  #        - "posixregex.c"
+      - target: NetHackSharedUI

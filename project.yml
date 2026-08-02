@@ -52,19 +52,17 @@ settings:
 
 targets:
   # =========================================================================
-  # 1. FIXED: SHARED UI LAYER AS A STATIC FRAMEWORK
+  # 1. FIXED: SHARED UI LAYER AS A PURE STATIC LIBRARY
   # =========================================================================
   NetHackSharedUI:
-    type: framework.static # 💡 FIX 1: Change to static to guarantee symbol availability!
+    type: library.static # 💡 UPGRADED: Wipes out the plist and packaging layout requirements completely!
     platform: iOS
     deploymentTarget: "12.0"
     sources:
       - path: Classes
-        headerVisibility: public 
     settings:
       base:
         CLANG_ENABLE_MODULES: YES
-        DEFINES_MODULE: YES
 
   # =========================================================================
   # 2. MAIN APPLICATION TARGET
@@ -75,7 +73,6 @@ targets:
     deploymentTarget: "12.0"
     
     dependencies:
-      # 💡 FIX 2: Link the static framework targets directly! (No embed needed for static)
       - target: NetHackEngine36
         link: true
       - target: NetHackSharedUI
@@ -98,6 +95,7 @@ targets:
           - $(inherited)
           - nethack36/include
           - nethack36/win/iphone
+          - Classes # 💡 ADDED: Gives your main app access to your Shared UI header signatures natively
         MACH_O_TYPE: mh_execute
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME: LaunchImage
@@ -140,10 +138,10 @@ targets:
         type: folder
 
   # =========================================================================
-  # 3. FIXED: NETHACK 3.6 ENGINE LAYER AS A STATIC FRAMEWORK
+  # 3. FIXED: NETHACK 3.6 ENGINE LAYER AS A PURE STATIC LIBRARY
   # =========================================================================
   NetHackEngine36:
-    type: framework.static # 💡 FIX 3: Change to static to merge symbols flawlessly!
+    type: library.static # 💡 UPGRADED: Completely eliminates framework wrapper bundles!
     platform: iOS
     deploymentTarget: "12.0"
     
@@ -154,6 +152,7 @@ targets:
           - nethack36/include
           - nethack36/win/iphone
           - nethack36/sys/share
+          - Classes # 💡 ADDED: Gives engine files visibility to abstract headers natively
 
     sources:
       - path: nethack36/include
@@ -174,4 +173,3 @@ targets:
           
     dependencies:
       - target: NetHackSharedUI
-

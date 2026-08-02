@@ -1,9 +1,9 @@
 #import "MainViewController.h"
 #import "RoleSelectionController.h"
-#import "AsciiTileSet.m"
-#import "TileSet.m"
+#import "AsciiTileSet.h"
+#import "TileSet.h"
 #import <NetHackSharedUI/PlayerState.h>
-#import "winiphone.m"
+#import "winiphone.h"
 #import "func_tab.h"
 
 // Declare the external C main function from this target's winiphone.m

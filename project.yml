@@ -84,9 +84,9 @@ targets:
     deploymentTarget: "12.0"
     
     dependencies:
-      - framework: NetHackEngine36.framework
+      - framework: NetHackEngine36
         embed: true
-      - framework: NetHackSharedUI.framework
+      - framework: NetHackSharedUI
         embed: true
       - sdk: Foundation.framework
       - sdk: UIKit.framework

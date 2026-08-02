@@ -24,6 +24,7 @@
 #define WINIPHONE_H
 #include "hack.h"
 
+extern boolean winiphone_clickable_tiles;
 void iphone_init_nhwindows(int* argc, char** argv);
 void iphone_player_selection();
 void iphone_askname();

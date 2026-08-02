@@ -154,9 +154,6 @@ targets:
           - nethack36/win/iphone
           - nethack36/sys/share
           - Classes # 💡 ADDED: Gives engine files visibility to abstract headers natively
-        OTHER_CFLAGS:
-          - $(inherited)
-          - -fpack-struct=4
 
     sources:
       - path: nethack36/include

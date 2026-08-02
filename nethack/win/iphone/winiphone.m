@@ -1086,11 +1086,13 @@ void iphone_main() {
 		}
 #endif
 		pline("Restoring save file...");
-		yn("1");
+		
 		mark_synch();	/* flush output */
-		yn("2");
+		
 		if(!dorecover(fd))
+		    yn("1");
 			goto not_recovered;
+		yn("2");
 #ifdef WIZARD
 		if(!wizard && remember_wiz_mode) wizard = TRUE;
 #endif

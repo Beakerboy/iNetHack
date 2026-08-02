@@ -1086,15 +1086,18 @@ void iphone_main() {
 		}
 #endif
 		pline("Restoring save file...");
+		yn("1");
 		mark_synch();	/* flush output */
+		yn("2");
 		if(!dorecover(fd))
 			goto not_recovered;
 #ifdef WIZARD
 		if(!wizard && remember_wiz_mode) wizard = TRUE;
 #endif
+		yn("3");
 		check_special_room(FALSE);
 		//wd_message();
-		
+		yn("4");
 		if (discover || wizard) {
 			if(yn("Do you want to keep the save file?") == 'n') {
 			    (void) delete_savefile();
@@ -1114,8 +1117,9 @@ void iphone_main() {
         set_wear(0);
 		(void) pickup(1);
 	}
-	
+	yn("5");
 	iphone_override_options();
+	yn("6");
 	[[MainViewController instance] setGameInProgress:YES];
 	moveloop(restored);
 	[[MainViewController instance] setGameInProgress:NO];

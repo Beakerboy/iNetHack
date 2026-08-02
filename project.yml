@@ -57,7 +57,10 @@ targets:
       - path: Classes
         headerVisibility: public
     settings:
-      CLANG_ENABLE_MODULES: YES
+      base:
+        CLANG_ENABLE_MODULES: YES
+        MACH_O_TYPE: mh_dylib
+        DEFINES_MODULE: YES
     scheme:
       testTargets:
         - NetHackSharedUITests

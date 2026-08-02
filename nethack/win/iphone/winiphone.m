@@ -1026,13 +1026,18 @@ sys_random_seed()
 
 
 void iphone_main() {
+    int trace_count = 1;
+    char trace_buf[32];
+    Sprintf(trace_buf, "iPhone Main: %d", trace_count++);
+    yn(trace_buf);
 	int argc = 0;
 	char **argv = NULL;
     
     ScreenTimer *screenTimer = [[ScreenTimer alloc] init];
     [screenTimer timerAction];
     
-
+    Sprintf(trace_buf, "iPhone Main: %d", trace_count++);
+    yn(trace_buf);
 	
 	// from macmain.c, enables special levels like sokoban
 	x_maze_max = COLNO-1;
@@ -1043,7 +1048,8 @@ void iphone_main() {
 	if (y_maze_max % 2) {
 		y_maze_max--;
 	}
-
+    Sprintf(trace_buf, "iPhone Main: %d", trace_count++);
+    yn(trace_buf);
 	hackpid = getpid();
 	
 	choose_windows(DEFAULT_WINDOW_SYS); /* choose a default window system */
@@ -1062,7 +1068,8 @@ void iphone_main() {
 	[logFilePath release];
 
 	check_recordfile("");
-
+    Sprintf(trace_buf, "iPhone Main: %d", trace_count++);
+    yn(trace_buf);
 	dlb_init();
 	vision_init();
 	display_gamewindows();		   /* create & display the game windows */

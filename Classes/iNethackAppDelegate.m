@@ -142,13 +142,6 @@
 #endif
 }
 
-- (void) createTestBadBonesFile {
-	NSString *bones = @"./bonD0.1"; //iNethack2 -- added "./" to path
-	[@"contents of bad bones file" writeToFile:bones atomically:NO encoding:NSASCIIStringEncoding error:NULL];
-	NSString *md5Bones = [Hearse md5HexForFile:bones];
-	[md5Bones writeToFile:@"./bonD0.1.bad" atomically:NO encoding:NSASCIIStringEncoding error:NULL]; //iNethack2 -- added "./"
-}
-
 - (BOOL) checkNetHackDirectories {
 	BOOL badBonesSeen = NO;
 	static NSString *const suffix = @".bad";

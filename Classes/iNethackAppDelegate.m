@@ -39,6 +39,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startAsBlind = [defaults boolForKey:@"blind"];
 	BOOL startAsNudist = [defaults boolForKey:@"nudist"];
+	BOOL startAsDeaf = [defaults boolForKey:@"deaf"];
+	BOOL startAsPauper = [defaults boolForKey:@"pauper"];
+	BOOL allowSeduction = [defaults boolForKey:@"seduce"];
 	NSString *petType = [defaults stringForKey:@"pettype"];
 	NSString *dogName = [defaults stringForKey:@"dogname"];
 	NSString *catName = [defaults stringForKey:@"catname"];
@@ -50,6 +53,12 @@
 	}
 	if (startAsNudist) {
 		[activeOptions addObject:@"nudist"];
+	}
+	if (startAsDeaf) {
+		[activeOptions addObject:@"deaf"];
+	}
+	if (startAsPauper) {
+		[activeOptions addObject:@"pauper"];
 	}
 	if (petType && [petType length] > 0 && ![petType isEqualToString:@"random"]) {
         NSString *petOption = [NSString stringWithFormat:@"pettype:%@", petType];
@@ -67,7 +76,12 @@
         NSString *horseOption = [NSString stringWithFormat:@"horsename:%@", horseName];
         [activeOptions addObject:horseOption];
     }
-	if ([activeOptions count] > 0) {
+	if (!allowSeduction) {
+		// Seduction is on by default, but it can be turned off with SEDUCE=0
+        [activeOptions addObject:@"SEDUCE=0"];
+	}
+
+    if ([activeOptions count] > 0) {
 	    NSString *optionsString = [activeOptions componentsJoinedByString:@","];
 		setenv("NETHACKOPTIONS", [optionsString UTF8String], 1);
 	} else {

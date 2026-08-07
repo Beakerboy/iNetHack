@@ -49,6 +49,36 @@
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Deaf</string>
+			<key>Key</key>
+			<string>deaf</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Pauper</string>
+			<key>Key</key>
+			<string>pauper</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Allow Seduction</string>
+			<key>Key</key>
+			<string>seduce</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
 	</array>
     </dict>
 </plist>
